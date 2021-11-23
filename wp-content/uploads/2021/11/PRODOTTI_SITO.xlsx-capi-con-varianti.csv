@@ -1,0 +1,907 @@
+ID,Type,SKU,Name,Published,Is featured?,Visibility in catalog,Short description,Description,Date sale price starts,Date sale price ends,Tax status,Tax class,In stock?,Stock,Low stock amount,Backorders allowed?,Sold individually?,Weight (kg),Length (cm),Width (cm),Height (cm),Allow customer reviews?,Purchase note,Sale price,Regular price,Categories,Tags,Shipping class,Images,Download limit,Download expiry days,Parent,Grouped products,Upsells,Cross-sells,External URL,Button text,Position,Attribute 1 name,Attribute 1 value(s),Attribute 1 visible,Attribute 1 global,Attribute 2 name,Attribute 2 value(s),Attribute 2 visible,Attribute 2 global
+10204,variable,CDD-22L,DIAMANTE LONG COAT,1,1,visible,Double breast long coat.,"This is the iconic garment of Archivio brand. The long coat is inspired by masculine tailoring, the wide and structured shoulders support the body of the satin coat. The fit is soft. Thanks to this precious fabric, this garment is made not to go unnoticed. The double-breasted lacing and the deep slit on the back combine the classic style with the contemporary one. Details: welt pockets with flap at the waist plus side pockets on the seam at the hips, peak lapel, inner welt pocket. Fully lined. Made in Italy. Dry cleaning. Main material: 100% silk. Lining: 100% polyester. The model is tall 1,75cm, she is wearing size 40.  ",,,taxable,,1,,,0,1,,,,,0,,,720,Coats and Jackets,jacket coat,,,,,,,,,,,1,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10205,variable,CDD-22M,DIAMANTE COAT,1,1,visible,Double breast coat.,"Coat inspired by men’s tailoring made of satin. It has wide and structured shoulders. The fit is soft, with double-breasted lacing. The length of this garment is perfect to complete your suit or to be worn as a coat. Silk satin, in all its colors, gives brightness and elegance to every look. Details: welt pockets with flap at the waist plus side pockets on the seam at the hips, peak lapel, inner welt pocket. Fully lined. Made in Italy. Dry cleaning. Main material: 100% silk. Lining: 100% polyester. The model is tall 1,75cm, she is wearing size 40. ",,,taxable,,1,,,0,1,,,,,0,,,660,Coats and Jackets,jacket coat,,,,,,,,,,,2,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10206,variable,CDD-22C,DIAMANTE SHORT COAT,1,1,visible,Double breast jacket,"This short jacket is inspired by men’s tailoring. It has wide and structured shoulders.The fit is soft, with double-breasted lacing.Combined with trousers or skirt creates an impeccable suit. Silk satin, in all its colors, gives brightness and elegance to every look. Details: double welt pockets at waist, peak lapel, inner welt pocket. Fully lined. Made in Italy. Dry cleaning. Main material: 100% silk. Lining: 100% polyester\nThe model is tall 1,75cm, she is wearing size 40. ",,,taxable,,1,,,0,1,,,,,0,,,620,Coats and Jackets,jacket coat,,,,,,,,,,,3,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10207,variable,SHIRT-01,DONNA SHIRT,1,1,visible,Woman's shirt. ,"A classic piece with a contemporary style in pure silk satin. Wear it to enhance both sartorial trousers and skirts. Tight fit, shaped by the sinuous design of the vinces. Details: Front fastening with hidden buttons in mother-of-pearl. Collar slightly elongated style '70s. Cuffs with mother-of-pearl closure. Unlined. Made in Italy.Dry cleaning. Main materia: 100% silk. The model is tall 1,75cm, she is wearing size 40. ",,,taxable,,1,,,0,1,,,,,0,,,280,Shirts and tops,shirt top,,,,,,,,,,,4,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10208,variable,SHIRT-11,DONNA SHIRT WITH FOULARD,1,1,visible,Woman's shirt with foulard. ,"A large scarf with applied drawstring adds to the pure silk satin shirt. The men’s tie is replaced by the scarf that gives the look personality and charm. Wear it to enhance both sartorial trousers and skirts. Tight fit, shaped by the sinuous design of the vinces. Details: Front fastening with hidden buttons in mother-of-pearl. Collar slightly elongated style '70s. Cuffs with mother-of-pearl closure. Foulard dimensions: 50cm x 60cm. Unlined. Made in Italy.Dry cleaning. Main materia: 100% silk. The model is tall 1,75cm, she is wearing size 40. ",,,taxable,,1,,,0,1,,,,,0,,,390,Shirts and tops,shirt foulard top,,,,,,,,,,,5,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10209,variable,SHIRT-02,LUCA SHIRT,1,1,visible,Oversize shirt.,"From the male to the female wardrobe this shirt can also be worn as a super sexy mini dress. Very abundant volumes fall on the light body caressing the silhouette. Details: Collar slightly elongated style '70s. Front fastening with visible mother-of-pearl buttons, high cuffs with mother-of-pearl button closure.  Unlined. Made in Italy. Dry cleaning. Main materia: 100% silk. The model is tall 1,75cm, she is wearing size 40. ",,,taxable,,1,,,0,1,,,,,0,,,400,Shirts and tops,shirt top dress,,,,,,,,,,,6,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10210,variable,TOP-01,URSULA TOP,1,1,visible,Top with ribbons.,"Silk satin top with thin straps and long ribbons. With this accessory you can go wild. The long ribbons wrap around the bust creating a soft bodice. Alone, above or below the shirts, it allows various combinations, giving personality to every look. Unlined. Made in Italy. Dry cleaning. Main materia: 100% silk. The model is tall 1,75cm, she is wearing size 40. ",,,taxable,,1,,,0,1,,,,,0,,,250,Shirts and tops,top,,,,,,,,,,,7,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10211,variable,PANT-W01,GIA TROUSERS,1,1,visible,High-rise pinces trouser with belt.,"High waist trousers with double pleats and belt in the same fabric. This pant is the must-have of every wardrobe, comfortable fit with a timeless style. The belt in the same fabric with silver metallic eyelets, gives the final look an extra class detail. Perfect to match with the jacket and shirt for a dress that will remain in your closet for life. Details: strap with 5 loops. Side pockets and welt pocket on the left side back. Outer side slit bottom leg 18cm high. Straight leg with pressed pleats. Unlined. Made in Italy. Dry cleaning. Main materia: 100% silk. The model is tall 1,75cm, she is wearing size 40. ",,,taxable,,1,,,0,1,,,,,0,,,370,Trousers,trouser pant,,,,,,,,,,,8,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10212,variable,PANT-03,NARCISO TROUSERS,1,1,visible,High-rise wide leg pant.,"Wide leg trousers with high waist in silk satin. The inner band at the waist gives support to the fit, enveloping at the waist, soft on the legs.   Combined with the belt panel and the matching jacket, it gives the final look a touch of style: perfect for your work outfit, or for the evening look. Details: Side pockets. Side closure with invisible zip. Wide legs leg with pressed pleats. Unlined. Made in Italy. Dry cleaning. Main materia: 100% silk. The model is tall 1,75cm, she is wearing size 40.",,,taxable,,1,,,0,1,,,,,0,,,320,Trousers,trouser pant,,,,,,,,,,,9,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10213,variable,PANT-U04,DALLAS PANT,1,1,visible,Maxi trousers with drawstrings.,"Maxi pants with drawstring at the waist and bottom leg.\nCurling at the waist supported by internal elastic. Double drawstring in the same fabric for closure in front. Drawstring on the bottom of the leg to adjust as desired. Details: Pockets on the side seam. nickel eyelets. Unlined. Made in Italy. Dry cleaning. Main materia: 100% silk. The model is tall 1,75cm, she is wearing size 40. ",,,taxable,,1,,,0,1,,,,,0,,,366,Trousers,trouser pant,,,,,,,,,,,10,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10214,variable,SKIRT-02,LEA SKIRT,1,1,visible,Mid-rise wrap skirt.,"Midi wrap skirt, mid high rise. Front panel applied to create asymmetry.\nThe overlapping closure creates a front slit. Combining the skirt with the shirt and coat you will have a total flawless look from morning to night. \nDetails: Closure with two mini snap. Fully lined. Made in Italy. Dry cleaning. Main materia: 100% silk Lining: 100% polyester. The model is tall 1,75cm, she is wearing size 40. ",,,taxable,,1,,,0,1,,,,,0,,,340,Skirts,Skirt,,,,,,,,,,,11,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10215,variable,SKIRT-03,DALIA SKIRT,1,1,visible,High-rise pencil skirt.,"Mid pencil skirt, high waist with long ribbon to wrap around the waist. Slit front. This skirt is suitable for slim silhouettes. The garment is perfect for both formal and casual looks, the ribbon at the waist gives way to play with the volumes of the tops making the final look unique. Details: removable ribbon. Side closure with invisible zip. Unlined. Made in Italy. Dry cleaning. Main materia: 100% silk. The model is tall 1,75cm, she is wearing size 40.  ",,,taxable,,1,,,0,1,,,,,0,,,300,Skirts,Skirt,,,,,,,,,,,12,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10216,variable,SKIRT-04,ALOCASIA SKIRT,1,1,visible,High-rise long skirt.,"Long skirt with high waist. Triple pleats on both sides at the waist. Very deep slit on the center back. Virtuous at first glance this skirt reveals a super sexy detail on the back not making you go unnoticed. The ribbon on the front strap, twisted at the waist, gives way to play with the volumes of the tops making the final look unique. Details: Loop for detachable ribbon at the waist. Back fastening with invisible zip and two mini hooks. Unlined. Made in Italy. Dry cleaning. Main materia: 100% silk. The model is tall 1,75cm, she is wearing size 40. ",,,taxable,,1,,,0,1,,,,,0,,,378,Skirts,Skirt,,,,,,,,,,,13,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10217,variable,PANEL-01,LAVA PANEL BELT,1,1,visible,Belt with silk panel.,"Belt with removable panel. This accessory is perfect to be worn tight at the waist on coats, which carry soft on the hips on pants and skirts. In all cases the final result creates a layering game and unexpectedly chic volumes. Details: 5 nickel eyelets. Nickel buckle. Fully lined panel. Made in Italy. Dry cleaning. Main materia: 100% silk. The model is tall 1,75cm, she is wearing size 40. ",,,taxable,,1,,,0,1,,,,,0,,,130,Accessories,belt panel accessorise,,,,,,,,,,,14,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,Size,"36, 38, 40, 42, 44, 46, 48",1,1
+10218,variable,FOULARD-01,PERLA FOULARD,1,1,visible,Foulard with ribbons.,"Scarf in silk satin. With long ribbon applied at the tip, loops hidden on two ends to allow the passage of the tape, giving the possibility to wear it as a top, creating different patterns woven on the back. Dimensions: 50cm x 60cm. Made in Italy. Dry cleaning. Main materia: 100% silk. The model is tall 1,75cm, she is wearing size 40. ",,,taxable,,1,,,0,1,,,,,0,,,120,Accessories,Foulard accessorise,,,,,,,,,,,15,Color,"AQUA, BLACK, DARK BLUE, IVORY, LIGHT GREEN, LIGHT PINK, MAGENTA, ROSEWOOD, SILVER",1,1,,,,
+10219,variation,,"DIAMANTE LONG COAT - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,14,Color,AQUA,,1,Size,36,,1
+10220,variation,,"DIAMANTE LONG COAT - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,15,Color,AQUA,,1,Size,38,,1
+10221,variation,,"DIAMANTE LONG COAT - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,16,Color,AQUA,,1,Size,40,,1
+10222,variation,,"DIAMANTE LONG COAT - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,17,Color,AQUA,,1,Size,42,,1
+10223,variation,,"DIAMANTE LONG COAT - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,18,Color,AQUA,,1,Size,44,,1
+10224,variation,,"DIAMANTE LONG COAT - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,19,Color,AQUA,,1,Size,46,,1
+10225,variation,,"DIAMANTE LONG COAT - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,20,Color,AQUA,,1,Size,48,,1
+10226,variation,,"DIAMANTE LONG COAT - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,21,Color,BLACK,,1,Size,36,,1
+10227,variation,,"DIAMANTE LONG COAT - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,22,Color,BLACK,,1,Size,38,,1
+10228,variation,,"DIAMANTE LONG COAT - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,23,Color,BLACK,,1,Size,40,,1
+10229,variation,,"DIAMANTE LONG COAT - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,24,Color,BLACK,,1,Size,42,,1
+10230,variation,,"DIAMANTE LONG COAT - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,25,Color,BLACK,,1,Size,44,,1
+10231,variation,,"DIAMANTE LONG COAT - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,26,Color,BLACK,,1,Size,46,,1
+10232,variation,,"DIAMANTE LONG COAT - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,27,Color,BLACK,,1,Size,48,,1
+10233,variation,,"DIAMANTE LONG COAT - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+10234,variation,,"DIAMANTE LONG COAT - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+10235,variation,,"DIAMANTE LONG COAT - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+10236,variation,,"DIAMANTE LONG COAT - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+10237,variation,,"DIAMANTE LONG COAT - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+10238,variation,,"DIAMANTE LONG COAT - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+10239,variation,,"DIAMANTE LONG COAT - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+10240,variation,,"DIAMANTE LONG COAT - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,35,Color,IVORY,,1,Size,36,,1
+10241,variation,,"DIAMANTE LONG COAT - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,36,Color,IVORY,,1,Size,38,,1
+10242,variation,,"DIAMANTE LONG COAT - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,37,Color,IVORY,,1,Size,40,,1
+10243,variation,,"DIAMANTE LONG COAT - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,38,Color,IVORY,,1,Size,42,,1
+10244,variation,,"DIAMANTE LONG COAT - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,39,Color,IVORY,,1,Size,44,,1
+10245,variation,,"DIAMANTE LONG COAT - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,40,Color,IVORY,,1,Size,46,,1
+10246,variation,,"DIAMANTE LONG COAT - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,41,Color,IVORY,,1,Size,48,,1
+10247,variation,,"DIAMANTE LONG COAT - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+10248,variation,,"DIAMANTE LONG COAT - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+10249,variation,,"DIAMANTE LONG COAT - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+10250,variation,,"DIAMANTE LONG COAT - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+10251,variation,,"DIAMANTE LONG COAT - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+10252,variation,,"DIAMANTE LONG COAT - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+10253,variation,,"DIAMANTE LONG COAT - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+10254,variation,,"DIAMANTE LONG COAT - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+10255,variation,,"DIAMANTE LONG COAT - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+10256,variation,,"DIAMANTE LONG COAT - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+10257,variation,,"DIAMANTE LONG COAT - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+10258,variation,,"DIAMANTE LONG COAT - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+10259,variation,,"DIAMANTE LONG COAT - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+10260,variation,,"DIAMANTE LONG COAT - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+10261,variation,,"DIAMANTE LONG COAT - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+10262,variation,,"DIAMANTE LONG COAT - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+10263,variation,,"DIAMANTE LONG COAT - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+10264,variation,,"DIAMANTE LONG COAT - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+10265,variation,,"DIAMANTE LONG COAT - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+10266,variation,,"DIAMANTE LONG COAT - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+10267,variation,,"DIAMANTE LONG COAT - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+10268,variation,,"DIAMANTE LONG COAT - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+10269,variation,,"DIAMANTE LONG COAT - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+10270,variation,,"DIAMANTE LONG COAT - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+10271,variation,,"DIAMANTE LONG COAT - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+10272,variation,,"DIAMANTE LONG COAT - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+10273,variation,,"DIAMANTE LONG COAT - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+10274,variation,,"DIAMANTE LONG COAT - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+10275,variation,,"DIAMANTE LONG COAT - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,7,Color,SILVER,,1,Size,36,,1
+10276,variation,,"DIAMANTE LONG COAT - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,8,Color,SILVER,,1,Size,38,,1
+10277,variation,,"DIAMANTE LONG COAT - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,9,Color,SILVER,,1,Size,40,,1
+10278,variation,,"DIAMANTE LONG COAT - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,10,Color,SILVER,,1,Size,42,,1
+10279,variation,,"DIAMANTE LONG COAT - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,11,Color,SILVER,,1,Size,44,,1
+10280,variation,,"DIAMANTE LONG COAT - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,12,Color,SILVER,,1,Size,46,,1
+10281,variation,,"DIAMANTE LONG COAT - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,720,,,,,,,CDD-22L,,,,,,13,Color,SILVER,,1,Size,48,,1
+10282,variation,,"DIAMANTE COAT - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,14,Color,AQUA,,1,Size,36,,1
+10283,variation,,"DIAMANTE COAT - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,15,Color,AQUA,,1,Size,38,,1
+10284,variation,,"DIAMANTE COAT - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,16,Color,AQUA,,1,Size,40,,1
+10285,variation,,"DIAMANTE COAT - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,17,Color,AQUA,,1,Size,42,,1
+10286,variation,,"DIAMANTE COAT - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,18,Color,AQUA,,1,Size,44,,1
+10287,variation,,"DIAMANTE COAT - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,19,Color,AQUA,,1,Size,46,,1
+10288,variation,,"DIAMANTE COAT - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,20,Color,AQUA,,1,Size,48,,1
+10289,variation,,"DIAMANTE COAT - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,21,Color,BLACK,,1,Size,36,,1
+10290,variation,,"DIAMANTE COAT - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,22,Color,BLACK,,1,Size,38,,1
+10291,variation,,"DIAMANTE COAT - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,23,Color,BLACK,,1,Size,40,,1
+10292,variation,,"DIAMANTE COAT - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,24,Color,BLACK,,1,Size,42,,1
+10293,variation,,"DIAMANTE COAT - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,25,Color,BLACK,,1,Size,44,,1
+10294,variation,,"DIAMANTE COAT - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,26,Color,BLACK,,1,Size,46,,1
+10295,variation,,"DIAMANTE COAT - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,27,Color,BLACK,,1,Size,48,,1
+10296,variation,,"DIAMANTE COAT - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+10297,variation,,"DIAMANTE COAT - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+10298,variation,,"DIAMANTE COAT - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+10299,variation,,"DIAMANTE COAT - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+10300,variation,,"DIAMANTE COAT - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+10301,variation,,"DIAMANTE COAT - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+10302,variation,,"DIAMANTE COAT - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+10303,variation,,"DIAMANTE COAT - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,35,Color,IVORY,,1,Size,36,,1
+10304,variation,,"DIAMANTE COAT - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,36,Color,IVORY,,1,Size,38,,1
+10305,variation,,"DIAMANTE COAT - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,37,Color,IVORY,,1,Size,40,,1
+10306,variation,,"DIAMANTE COAT - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,38,Color,IVORY,,1,Size,42,,1
+10307,variation,,"DIAMANTE COAT - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,39,Color,IVORY,,1,Size,44,,1
+10308,variation,,"DIAMANTE COAT - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,40,Color,IVORY,,1,Size,46,,1
+10309,variation,,"DIAMANTE COAT - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,41,Color,IVORY,,1,Size,48,,1
+10310,variation,,"DIAMANTE COAT - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+10311,variation,,"DIAMANTE COAT - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+10312,variation,,"DIAMANTE COAT - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+10313,variation,,"DIAMANTE COAT - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+10314,variation,,"DIAMANTE COAT - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+10315,variation,,"DIAMANTE COAT - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+10316,variation,,"DIAMANTE COAT - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+10317,variation,,"DIAMANTE COAT - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+10318,variation,,"DIAMANTE COAT - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+10319,variation,,"DIAMANTE COAT - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+10320,variation,,"DIAMANTE COAT - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+10321,variation,,"DIAMANTE COAT - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+10322,variation,,"DIAMANTE COAT - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+10323,variation,,"DIAMANTE COAT - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+10324,variation,,"DIAMANTE COAT - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+10325,variation,,"DIAMANTE COAT - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+10326,variation,,"DIAMANTE COAT - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+10327,variation,,"DIAMANTE COAT - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+10328,variation,,"DIAMANTE COAT - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+10329,variation,,"DIAMANTE COAT - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+10330,variation,,"DIAMANTE COAT - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+10331,variation,,"DIAMANTE COAT - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+10332,variation,,"DIAMANTE COAT - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+10333,variation,,"DIAMANTE COAT - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+10334,variation,,"DIAMANTE COAT - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+10335,variation,,"DIAMANTE COAT - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+10336,variation,,"DIAMANTE COAT - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+10337,variation,,"DIAMANTE COAT - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+10338,variation,,"DIAMANTE COAT - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,7,Color,SILVER,,1,Size,36,,1
+10339,variation,,"DIAMANTE COAT - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,8,Color,SILVER,,1,Size,38,,1
+10340,variation,,"DIAMANTE COAT - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,9,Color,SILVER,,1,Size,40,,1
+10341,variation,,"DIAMANTE COAT - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,10,Color,SILVER,,1,Size,42,,1
+10342,variation,,"DIAMANTE COAT - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,11,Color,SILVER,,1,Size,44,,1
+10343,variation,,"DIAMANTE COAT - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,12,Color,SILVER,,1,Size,46,,1
+10344,variation,,"DIAMANTE COAT - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,660,,,,,,,CDD-22M,,,,,,13,Color,SILVER,,1,Size,48,,1
+10345,variation,,"DIAMANTE SHORT COAT - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,14,Color,AQUA,,1,Size,36,,1
+10346,variation,,"DIAMANTE SHORT COAT - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,15,Color,AQUA,,1,Size,38,,1
+10347,variation,,"DIAMANTE SHORT COAT - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,16,Color,AQUA,,1,Size,40,,1
+10348,variation,,"DIAMANTE SHORT COAT - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,17,Color,AQUA,,1,Size,42,,1
+10349,variation,,"DIAMANTE SHORT COAT - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,18,Color,AQUA,,1,Size,44,,1
+10350,variation,,"DIAMANTE SHORT COAT - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,19,Color,AQUA,,1,Size,46,,1
+10351,variation,,"DIAMANTE SHORT COAT - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,20,Color,AQUA,,1,Size,48,,1
+10352,variation,,"DIAMANTE SHORT COAT - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,21,Color,BLACK,,1,Size,36,,1
+10353,variation,,"DIAMANTE SHORT COAT - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,22,Color,BLACK,,1,Size,38,,1
+10354,variation,,"DIAMANTE SHORT COAT - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,23,Color,BLACK,,1,Size,40,,1
+10355,variation,,"DIAMANTE SHORT COAT - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,24,Color,BLACK,,1,Size,42,,1
+10356,variation,,"DIAMANTE SHORT COAT - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,25,Color,BLACK,,1,Size,44,,1
+10357,variation,,"DIAMANTE SHORT COAT - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,26,Color,BLACK,,1,Size,46,,1
+10358,variation,,"DIAMANTE SHORT COAT - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,27,Color,BLACK,,1,Size,48,,1
+10359,variation,,"DIAMANTE SHORT COAT - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+10360,variation,,"DIAMANTE SHORT COAT - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+10361,variation,,"DIAMANTE SHORT COAT - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+10362,variation,,"DIAMANTE SHORT COAT - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+10363,variation,,"DIAMANTE SHORT COAT - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+10364,variation,,"DIAMANTE SHORT COAT - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+10365,variation,,"DIAMANTE SHORT COAT - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+10366,variation,,"DIAMANTE SHORT COAT - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,35,Color,IVORY,,1,Size,36,,1
+10367,variation,,"DIAMANTE SHORT COAT - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,36,Color,IVORY,,1,Size,38,,1
+10368,variation,,"DIAMANTE SHORT COAT - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,37,Color,IVORY,,1,Size,40,,1
+10369,variation,,"DIAMANTE SHORT COAT - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,38,Color,IVORY,,1,Size,42,,1
+10370,variation,,"DIAMANTE SHORT COAT - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,39,Color,IVORY,,1,Size,44,,1
+10371,variation,,"DIAMANTE SHORT COAT - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,40,Color,IVORY,,1,Size,46,,1
+10372,variation,,"DIAMANTE SHORT COAT - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,41,Color,IVORY,,1,Size,48,,1
+10373,variation,,"DIAMANTE SHORT COAT - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+10374,variation,,"DIAMANTE SHORT COAT - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+10375,variation,,"DIAMANTE SHORT COAT - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+10376,variation,,"DIAMANTE SHORT COAT - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+10377,variation,,"DIAMANTE SHORT COAT - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+10378,variation,,"DIAMANTE SHORT COAT - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+10379,variation,,"DIAMANTE SHORT COAT - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+10380,variation,,"DIAMANTE SHORT COAT - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+10381,variation,,"DIAMANTE SHORT COAT - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+10382,variation,,"DIAMANTE SHORT COAT - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+10383,variation,,"DIAMANTE SHORT COAT - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+10384,variation,,"DIAMANTE SHORT COAT - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+10385,variation,,"DIAMANTE SHORT COAT - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+10386,variation,,"DIAMANTE SHORT COAT - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+10387,variation,,"DIAMANTE SHORT COAT - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+10388,variation,,"DIAMANTE SHORT COAT - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+10389,variation,,"DIAMANTE SHORT COAT - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+10390,variation,,"DIAMANTE SHORT COAT - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+10391,variation,,"DIAMANTE SHORT COAT - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+10392,variation,,"DIAMANTE SHORT COAT - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+10393,variation,,"DIAMANTE SHORT COAT - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+10394,variation,,"DIAMANTE SHORT COAT - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+10395,variation,,"DIAMANTE SHORT COAT - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+10396,variation,,"DIAMANTE SHORT COAT - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+10397,variation,,"DIAMANTE SHORT COAT - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+10398,variation,,"DIAMANTE SHORT COAT - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+10399,variation,,"DIAMANTE SHORT COAT - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+10400,variation,,"DIAMANTE SHORT COAT - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+10401,variation,,"DIAMANTE SHORT COAT - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,7,Color,SILVER,,1,Size,36,,1
+10402,variation,,"DIAMANTE SHORT COAT - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,8,Color,SILVER,,1,Size,38,,1
+10403,variation,,"DIAMANTE SHORT COAT - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,9,Color,SILVER,,1,Size,40,,1
+10404,variation,,"DIAMANTE SHORT COAT - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,10,Color,SILVER,,1,Size,42,,1
+10405,variation,,"DIAMANTE SHORT COAT - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,11,Color,SILVER,,1,Size,44,,1
+10406,variation,,"DIAMANTE SHORT COAT - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,12,Color,SILVER,,1,Size,46,,1
+10407,variation,,"DIAMANTE SHORT COAT - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,620,,,,,,,CDD-22C,,,,,,13,Color,SILVER,,1,Size,48,,1
+10408,variation,,"DONNA SHIRT - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,14,Color,AQUA,,1,Size,36,,1
+10409,variation,,"DONNA SHIRT - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,15,Color,AQUA,,1,Size,38,,1
+10410,variation,,"DONNA SHIRT - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,16,Color,AQUA,,1,Size,40,,1
+10411,variation,,"DONNA SHIRT - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,17,Color,AQUA,,1,Size,42,,1
+10412,variation,,"DONNA SHIRT - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,18,Color,AQUA,,1,Size,44,,1
+10413,variation,,"DONNA SHIRT - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,19,Color,AQUA,,1,Size,46,,1
+10414,variation,,"DONNA SHIRT - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,20,Color,AQUA,,1,Size,48,,1
+10415,variation,,"DONNA SHIRT - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,21,Color,BLACK,,1,Size,36,,1
+10416,variation,,"DONNA SHIRT - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,22,Color,BLACK,,1,Size,38,,1
+10417,variation,,"DONNA SHIRT - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,23,Color,BLACK,,1,Size,40,,1
+10418,variation,,"DONNA SHIRT - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,24,Color,BLACK,,1,Size,42,,1
+10419,variation,,"DONNA SHIRT - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,25,Color,BLACK,,1,Size,44,,1
+10420,variation,,"DONNA SHIRT - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,26,Color,BLACK,,1,Size,46,,1
+10421,variation,,"DONNA SHIRT - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,27,Color,BLACK,,1,Size,48,,1
+10422,variation,,"DONNA SHIRT - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+10423,variation,,"DONNA SHIRT - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+10424,variation,,"DONNA SHIRT - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+10425,variation,,"DONNA SHIRT - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+10426,variation,,"DONNA SHIRT - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+10427,variation,,"DONNA SHIRT - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+10428,variation,,"DONNA SHIRT - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+10429,variation,,"DONNA SHIRT - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,35,Color,IVORY,,1,Size,36,,1
+10430,variation,,"DONNA SHIRT - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,36,Color,IVORY,,1,Size,38,,1
+10431,variation,,"DONNA SHIRT - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,37,Color,IVORY,,1,Size,40,,1
+10432,variation,,"DONNA SHIRT - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,38,Color,IVORY,,1,Size,42,,1
+10433,variation,,"DONNA SHIRT - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,39,Color,IVORY,,1,Size,44,,1
+10434,variation,,"DONNA SHIRT - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,40,Color,IVORY,,1,Size,46,,1
+10435,variation,,"DONNA SHIRT - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,41,Color,IVORY,,1,Size,48,,1
+10436,variation,,"DONNA SHIRT - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+10437,variation,,"DONNA SHIRT - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+10438,variation,,"DONNA SHIRT - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+10439,variation,,"DONNA SHIRT - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+10440,variation,,"DONNA SHIRT - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+10441,variation,,"DONNA SHIRT - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+10442,variation,,"DONNA SHIRT - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+10443,variation,,"DONNA SHIRT - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+10444,variation,,"DONNA SHIRT - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+10445,variation,,"DONNA SHIRT - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+10446,variation,,"DONNA SHIRT - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+10447,variation,,"DONNA SHIRT - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+10448,variation,,"DONNA SHIRT - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+10449,variation,,"DONNA SHIRT - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+10450,variation,,"DONNA SHIRT - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+10451,variation,,"DONNA SHIRT - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+10452,variation,,"DONNA SHIRT - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+10453,variation,,"DONNA SHIRT - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+10454,variation,,"DONNA SHIRT - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+10455,variation,,"DONNA SHIRT - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+10456,variation,,"DONNA SHIRT - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+10457,variation,,"DONNA SHIRT - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+10458,variation,,"DONNA SHIRT - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+10459,variation,,"DONNA SHIRT - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+10460,variation,,"DONNA SHIRT - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+10461,variation,,"DONNA SHIRT - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+10462,variation,,"DONNA SHIRT - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+10463,variation,,"DONNA SHIRT - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+10464,variation,,"DONNA SHIRT - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,7,Color,SILVER,,1,Size,36,,1
+10465,variation,,"DONNA SHIRT - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,8,Color,SILVER,,1,Size,38,,1
+10466,variation,,"DONNA SHIRT - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,9,Color,SILVER,,1,Size,40,,1
+10467,variation,,"DONNA SHIRT - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,10,Color,SILVER,,1,Size,42,,1
+10468,variation,,"DONNA SHIRT - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,11,Color,SILVER,,1,Size,44,,1
+10469,variation,,"DONNA SHIRT - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,12,Color,SILVER,,1,Size,46,,1
+10470,variation,,"DONNA SHIRT - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,280,,,,,,,SHIRT-01,,,,,,13,Color,SILVER,,1,Size,48,,1
+10471,variation,,"DONNA SHIRT WITH FOULARD - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,14,Color,AQUA,,1,Size,36,,1
+10472,variation,,"DONNA SHIRT WITH FOULARD - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,15,Color,AQUA,,1,Size,38,,1
+10473,variation,,"DONNA SHIRT WITH FOULARD - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,16,Color,AQUA,,1,Size,40,,1
+10474,variation,,"DONNA SHIRT WITH FOULARD - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,17,Color,AQUA,,1,Size,42,,1
+10475,variation,,"DONNA SHIRT WITH FOULARD - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,18,Color,AQUA,,1,Size,44,,1
+10476,variation,,"DONNA SHIRT WITH FOULARD - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,19,Color,AQUA,,1,Size,46,,1
+10477,variation,,"DONNA SHIRT WITH FOULARD - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,20,Color,AQUA,,1,Size,48,,1
+10478,variation,,"DONNA SHIRT WITH FOULARD - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,21,Color,BLACK,,1,Size,36,,1
+10479,variation,,"DONNA SHIRT WITH FOULARD - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,22,Color,BLACK,,1,Size,38,,1
+10480,variation,,"DONNA SHIRT WITH FOULARD - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,23,Color,BLACK,,1,Size,40,,1
+10481,variation,,"DONNA SHIRT WITH FOULARD - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,24,Color,BLACK,,1,Size,42,,1
+10482,variation,,"DONNA SHIRT WITH FOULARD - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,25,Color,BLACK,,1,Size,44,,1
+10483,variation,,"DONNA SHIRT WITH FOULARD - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,26,Color,BLACK,,1,Size,46,,1
+10484,variation,,"DONNA SHIRT WITH FOULARD - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,27,Color,BLACK,,1,Size,48,,1
+10485,variation,,"DONNA SHIRT WITH FOULARD - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+10486,variation,,"DONNA SHIRT WITH FOULARD - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+10487,variation,,"DONNA SHIRT WITH FOULARD - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+10488,variation,,"DONNA SHIRT WITH FOULARD - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+10489,variation,,"DONNA SHIRT WITH FOULARD - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+10490,variation,,"DONNA SHIRT WITH FOULARD - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+10491,variation,,"DONNA SHIRT WITH FOULARD - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+10492,variation,,"DONNA SHIRT WITH FOULARD - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,35,Color,IVORY,,1,Size,36,,1
+10493,variation,,"DONNA SHIRT WITH FOULARD - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,36,Color,IVORY,,1,Size,38,,1
+10494,variation,,"DONNA SHIRT WITH FOULARD - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,37,Color,IVORY,,1,Size,40,,1
+10495,variation,,"DONNA SHIRT WITH FOULARD - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,38,Color,IVORY,,1,Size,42,,1
+10496,variation,,"DONNA SHIRT WITH FOULARD - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,39,Color,IVORY,,1,Size,44,,1
+10497,variation,,"DONNA SHIRT WITH FOULARD - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,40,Color,IVORY,,1,Size,46,,1
+10498,variation,,"DONNA SHIRT WITH FOULARD - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,41,Color,IVORY,,1,Size,48,,1
+10499,variation,,"DONNA SHIRT WITH FOULARD - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+10500,variation,,"DONNA SHIRT WITH FOULARD - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+10501,variation,,"DONNA SHIRT WITH FOULARD - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+10502,variation,,"DONNA SHIRT WITH FOULARD - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+10503,variation,,"DONNA SHIRT WITH FOULARD - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+10504,variation,,"DONNA SHIRT WITH FOULARD - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+10505,variation,,"DONNA SHIRT WITH FOULARD - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+10506,variation,,"DONNA SHIRT WITH FOULARD - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+10507,variation,,"DONNA SHIRT WITH FOULARD - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+10508,variation,,"DONNA SHIRT WITH FOULARD - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+10509,variation,,"DONNA SHIRT WITH FOULARD - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+10510,variation,,"DONNA SHIRT WITH FOULARD - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+10511,variation,,"DONNA SHIRT WITH FOULARD - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+10512,variation,,"DONNA SHIRT WITH FOULARD - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+10513,variation,,"DONNA SHIRT WITH FOULARD - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+10514,variation,,"DONNA SHIRT WITH FOULARD - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+10515,variation,,"DONNA SHIRT WITH FOULARD - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+10516,variation,,"DONNA SHIRT WITH FOULARD - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+10517,variation,,"DONNA SHIRT WITH FOULARD - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+10518,variation,,"DONNA SHIRT WITH FOULARD - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+10519,variation,,"DONNA SHIRT WITH FOULARD - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+10520,variation,,"DONNA SHIRT WITH FOULARD - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+10521,variation,,"DONNA SHIRT WITH FOULARD - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+10522,variation,,"DONNA SHIRT WITH FOULARD - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+10523,variation,,"DONNA SHIRT WITH FOULARD - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+10524,variation,,"DONNA SHIRT WITH FOULARD - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+10525,variation,,"DONNA SHIRT WITH FOULARD - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+10526,variation,,"DONNA SHIRT WITH FOULARD - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+10527,variation,,"DONNA SHIRT WITH FOULARD - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,7,Color,SILVER,,1,Size,36,,1
+10528,variation,,"DONNA SHIRT WITH FOULARD - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,8,Color,SILVER,,1,Size,38,,1
+10529,variation,,"DONNA SHIRT WITH FOULARD - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,9,Color,SILVER,,1,Size,40,,1
+10530,variation,,"DONNA SHIRT WITH FOULARD - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,10,Color,SILVER,,1,Size,42,,1
+10531,variation,,"DONNA SHIRT WITH FOULARD - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,11,Color,SILVER,,1,Size,44,,1
+10532,variation,,"DONNA SHIRT WITH FOULARD - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,12,Color,SILVER,,1,Size,46,,1
+10533,variation,,"DONNA SHIRT WITH FOULARD - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,390,,,,,,,SHIRT-11,,,,,,13,Color,SILVER,,1,Size,48,,1
+10534,variation,,"LUCA SHIRT - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,14,Color,AQUA,,1,Size,36,,1
+10535,variation,,"LUCA SHIRT - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,15,Color,AQUA,,1,Size,38,,1
+10536,variation,,"LUCA SHIRT - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,16,Color,AQUA,,1,Size,40,,1
+10537,variation,,"LUCA SHIRT - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,17,Color,AQUA,,1,Size,42,,1
+10538,variation,,"LUCA SHIRT - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,18,Color,AQUA,,1,Size,44,,1
+10539,variation,,"LUCA SHIRT - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,19,Color,AQUA,,1,Size,46,,1
+10540,variation,,"LUCA SHIRT - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,20,Color,AQUA,,1,Size,48,,1
+10541,variation,,"LUCA SHIRT - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,21,Color,BLACK,,1,Size,36,,1
+10542,variation,,"LUCA SHIRT - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,22,Color,BLACK,,1,Size,38,,1
+10543,variation,,"LUCA SHIRT - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,23,Color,BLACK,,1,Size,40,,1
+10544,variation,,"LUCA SHIRT - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,24,Color,BLACK,,1,Size,42,,1
+10545,variation,,"LUCA SHIRT - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,25,Color,BLACK,,1,Size,44,,1
+10546,variation,,"LUCA SHIRT - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,26,Color,BLACK,,1,Size,46,,1
+10547,variation,,"LUCA SHIRT - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,27,Color,BLACK,,1,Size,48,,1
+10548,variation,,"LUCA SHIRT - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+10549,variation,,"LUCA SHIRT - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+10550,variation,,"LUCA SHIRT - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+10551,variation,,"LUCA SHIRT - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+10552,variation,,"LUCA SHIRT - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+10553,variation,,"LUCA SHIRT - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+10554,variation,,"LUCA SHIRT - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+10555,variation,,"LUCA SHIRT - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,35,Color,IVORY,,1,Size,36,,1
+10556,variation,,"LUCA SHIRT - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,36,Color,IVORY,,1,Size,38,,1
+10557,variation,,"LUCA SHIRT - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,37,Color,IVORY,,1,Size,40,,1
+10558,variation,,"LUCA SHIRT - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,38,Color,IVORY,,1,Size,42,,1
+10559,variation,,"LUCA SHIRT - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,39,Color,IVORY,,1,Size,44,,1
+10560,variation,,"LUCA SHIRT - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,40,Color,IVORY,,1,Size,46,,1
+10561,variation,,"LUCA SHIRT - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,41,Color,IVORY,,1,Size,48,,1
+10562,variation,,"LUCA SHIRT - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+10563,variation,,"LUCA SHIRT - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+10564,variation,,"LUCA SHIRT - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+10565,variation,,"LUCA SHIRT - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+10566,variation,,"LUCA SHIRT - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+10567,variation,,"LUCA SHIRT - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+10568,variation,,"LUCA SHIRT - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+10569,variation,,"LUCA SHIRT - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+10570,variation,,"LUCA SHIRT - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+10571,variation,,"LUCA SHIRT - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+10572,variation,,"LUCA SHIRT - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+10573,variation,,"LUCA SHIRT - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+10574,variation,,"LUCA SHIRT - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+10575,variation,,"LUCA SHIRT - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+10576,variation,,"LUCA SHIRT - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+10577,variation,,"LUCA SHIRT - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+10578,variation,,"LUCA SHIRT - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+10579,variation,,"LUCA SHIRT - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+10580,variation,,"LUCA SHIRT - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+10581,variation,,"LUCA SHIRT - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+10582,variation,,"LUCA SHIRT - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+10583,variation,,"LUCA SHIRT - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+10584,variation,,"LUCA SHIRT - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+10585,variation,,"LUCA SHIRT - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+10586,variation,,"LUCA SHIRT - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+10587,variation,,"LUCA SHIRT - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+10588,variation,,"LUCA SHIRT - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+10589,variation,,"LUCA SHIRT - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+10590,variation,,"LUCA SHIRT - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,7,Color,SILVER,,1,Size,36,,1
+10591,variation,,"LUCA SHIRT - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,8,Color,SILVER,,1,Size,38,,1
+10592,variation,,"LUCA SHIRT - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,9,Color,SILVER,,1,Size,40,,1
+10593,variation,,"LUCA SHIRT - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,10,Color,SILVER,,1,Size,42,,1
+10594,variation,,"LUCA SHIRT - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,11,Color,SILVER,,1,Size,44,,1
+10595,variation,,"LUCA SHIRT - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,12,Color,SILVER,,1,Size,46,,1
+10596,variation,,"LUCA SHIRT - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,400,,,,,,,SHIRT-02,,,,,,13,Color,SILVER,,1,Size,48,,1
+10598,variation,,"URSULA TOP - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,14,Color,AQUA,,1,Size,36,,1
+10599,variation,,"URSULA TOP - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,15,Color,AQUA,,1,Size,38,,1
+10600,variation,,"URSULA TOP - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,16,Color,AQUA,,1,Size,40,,1
+10601,variation,,"URSULA TOP - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,17,Color,AQUA,,1,Size,42,,1
+10602,variation,,"URSULA TOP - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,18,Color,AQUA,,1,Size,44,,1
+10603,variation,,"URSULA TOP - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,19,Color,AQUA,,1,Size,46,,1
+10604,variation,,"URSULA TOP - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,20,Color,AQUA,,1,Size,48,,1
+10605,variation,,"URSULA TOP - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,21,Color,BLACK,,1,Size,36,,1
+10606,variation,,"URSULA TOP - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,22,Color,BLACK,,1,Size,38,,1
+10607,variation,,"URSULA TOP - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,23,Color,BLACK,,1,Size,40,,1
+10608,variation,,"URSULA TOP - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,24,Color,BLACK,,1,Size,42,,1
+10609,variation,,"URSULA TOP - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,25,Color,BLACK,,1,Size,44,,1
+10610,variation,,"URSULA TOP - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,26,Color,BLACK,,1,Size,46,,1
+10611,variation,,"URSULA TOP - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,27,Color,BLACK,,1,Size,48,,1
+10612,variation,,"URSULA TOP - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+10613,variation,,"URSULA TOP - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+10614,variation,,"URSULA TOP - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+10615,variation,,"URSULA TOP - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+10616,variation,,"URSULA TOP - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+10617,variation,,"URSULA TOP - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+10618,variation,,"URSULA TOP - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+10619,variation,,"URSULA TOP - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,35,Color,IVORY,,1,Size,36,,1
+10620,variation,,"URSULA TOP - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,36,Color,IVORY,,1,Size,38,,1
+10621,variation,,"URSULA TOP - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,37,Color,IVORY,,1,Size,40,,1
+10622,variation,,"URSULA TOP - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,38,Color,IVORY,,1,Size,42,,1
+10623,variation,,"URSULA TOP - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,39,Color,IVORY,,1,Size,44,,1
+10624,variation,,"URSULA TOP - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,40,Color,IVORY,,1,Size,46,,1
+10625,variation,,"URSULA TOP - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,41,Color,IVORY,,1,Size,48,,1
+10626,variation,,"URSULA TOP - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+10627,variation,,"URSULA TOP - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+10628,variation,,"URSULA TOP - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+10629,variation,,"URSULA TOP - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+10630,variation,,"URSULA TOP - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+10631,variation,,"URSULA TOP - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+10632,variation,,"URSULA TOP - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+10633,variation,,"URSULA TOP - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+10634,variation,,"URSULA TOP - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+10635,variation,,"URSULA TOP - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+10636,variation,,"URSULA TOP - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+10637,variation,,"URSULA TOP - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+10638,variation,,"URSULA TOP - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+10639,variation,,"URSULA TOP - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+10640,variation,,"URSULA TOP - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+10641,variation,,"URSULA TOP - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+10642,variation,,"URSULA TOP - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+10643,variation,,"URSULA TOP - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+10644,variation,,"URSULA TOP - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+10645,variation,,"URSULA TOP - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+10646,variation,,"URSULA TOP - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+10647,variation,,"URSULA TOP - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+10648,variation,,"URSULA TOP - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+10649,variation,,"URSULA TOP - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+10650,variation,,"URSULA TOP - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+10651,variation,,"URSULA TOP - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+10652,variation,,"URSULA TOP - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+10653,variation,,"URSULA TOP - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+10654,variation,,"URSULA TOP - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,7,Color,SILVER,,1,Size,36,,1
+10655,variation,,"URSULA TOP - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,8,Color,SILVER,,1,Size,38,,1
+10656,variation,,"URSULA TOP - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,9,Color,SILVER,,1,Size,40,,1
+10657,variation,,"URSULA TOP - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,10,Color,SILVER,,1,Size,42,,1
+10658,variation,,"URSULA TOP - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,11,Color,SILVER,,1,Size,44,,1
+10659,variation,,"URSULA TOP - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,12,Color,SILVER,,1,Size,46,,1
+10660,variation,,"URSULA TOP - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,250,,,,,,,TOP-01,,,,,,13,Color,SILVER,,1,Size,48,,1
+10661,variation,,"GIA TROUSERS - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,14,Color,AQUA,,1,Size,36,,1
+10662,variation,,"GIA TROUSERS - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,15,Color,AQUA,,1,Size,38,,1
+10663,variation,,"GIA TROUSERS - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,16,Color,AQUA,,1,Size,40,,1
+10664,variation,,"GIA TROUSERS - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,17,Color,AQUA,,1,Size,42,,1
+10665,variation,,"GIA TROUSERS - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,18,Color,AQUA,,1,Size,44,,1
+10666,variation,,"GIA TROUSERS - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,19,Color,AQUA,,1,Size,46,,1
+10667,variation,,"GIA TROUSERS - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,20,Color,AQUA,,1,Size,48,,1
+10668,variation,,"GIA TROUSERS - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,21,Color,BLACK,,1,Size,36,,1
+10669,variation,,"GIA TROUSERS - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,22,Color,BLACK,,1,Size,38,,1
+10670,variation,,"GIA TROUSERS - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,23,Color,BLACK,,1,Size,40,,1
+10671,variation,,"GIA TROUSERS - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,24,Color,BLACK,,1,Size,42,,1
+10672,variation,,"GIA TROUSERS - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,25,Color,BLACK,,1,Size,44,,1
+10673,variation,,"GIA TROUSERS - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,26,Color,BLACK,,1,Size,46,,1
+10674,variation,,"GIA TROUSERS - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,27,Color,BLACK,,1,Size,48,,1
+10675,variation,,"GIA TROUSERS - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+10676,variation,,"GIA TROUSERS - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+10677,variation,,"GIA TROUSERS - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+10678,variation,,"GIA TROUSERS - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+10679,variation,,"GIA TROUSERS - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+10680,variation,,"GIA TROUSERS - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+10681,variation,,"GIA TROUSERS - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+10682,variation,,"GIA TROUSERS - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,35,Color,IVORY,,1,Size,36,,1
+10683,variation,,"GIA TROUSERS - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,36,Color,IVORY,,1,Size,38,,1
+10684,variation,,"GIA TROUSERS - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,37,Color,IVORY,,1,Size,40,,1
+10685,variation,,"GIA TROUSERS - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,38,Color,IVORY,,1,Size,42,,1
+10686,variation,,"GIA TROUSERS - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,39,Color,IVORY,,1,Size,44,,1
+10687,variation,,"GIA TROUSERS - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,40,Color,IVORY,,1,Size,46,,1
+10688,variation,,"GIA TROUSERS - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,41,Color,IVORY,,1,Size,48,,1
+10689,variation,,"GIA TROUSERS - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+10690,variation,,"GIA TROUSERS - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+10691,variation,,"GIA TROUSERS - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+10692,variation,,"GIA TROUSERS - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+10693,variation,,"GIA TROUSERS - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+10694,variation,,"GIA TROUSERS - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+10695,variation,,"GIA TROUSERS - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+10696,variation,,"GIA TROUSERS - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+10697,variation,,"GIA TROUSERS - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+10698,variation,,"GIA TROUSERS - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+10699,variation,,"GIA TROUSERS - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+10700,variation,,"GIA TROUSERS - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+10701,variation,,"GIA TROUSERS - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+10702,variation,,"GIA TROUSERS - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+10703,variation,,"GIA TROUSERS - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+10704,variation,,"GIA TROUSERS - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+10705,variation,,"GIA TROUSERS - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+10706,variation,,"GIA TROUSERS - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+10707,variation,,"GIA TROUSERS - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+10708,variation,,"GIA TROUSERS - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+10709,variation,,"GIA TROUSERS - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+10710,variation,,"GIA TROUSERS - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+10711,variation,,"GIA TROUSERS - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+10712,variation,,"GIA TROUSERS - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+10713,variation,,"GIA TROUSERS - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+10714,variation,,"GIA TROUSERS - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+10715,variation,,"GIA TROUSERS - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+10716,variation,,"GIA TROUSERS - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+10717,variation,,"GIA TROUSERS - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,7,Color,SILVER,,1,Size,36,,1
+10718,variation,,"GIA TROUSERS - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,8,Color,SILVER,,1,Size,38,,1
+10719,variation,,"GIA TROUSERS - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,9,Color,SILVER,,1,Size,40,,1
+10720,variation,,"GIA TROUSERS - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,10,Color,SILVER,,1,Size,42,,1
+10721,variation,,"GIA TROUSERS - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,11,Color,SILVER,,1,Size,44,,1
+10722,variation,,"GIA TROUSERS - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,12,Color,SILVER,,1,Size,46,,1
+10723,variation,,"GIA TROUSERS - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,370,,,,,,,PANT-W01,,,,,,13,Color,SILVER,,1,Size,48,,1
+10724,variation,,"NARCISO TROUSERS - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,14,Color,AQUA,,1,Size,36,,1
+10725,variation,,"NARCISO TROUSERS - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,15,Color,AQUA,,1,Size,38,,1
+10726,variation,,"NARCISO TROUSERS - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,16,Color,AQUA,,1,Size,40,,1
+10727,variation,,"NARCISO TROUSERS - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,17,Color,AQUA,,1,Size,42,,1
+10728,variation,,"NARCISO TROUSERS - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,18,Color,AQUA,,1,Size,44,,1
+10729,variation,,"NARCISO TROUSERS - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,19,Color,AQUA,,1,Size,46,,1
+10730,variation,,"NARCISO TROUSERS - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,20,Color,AQUA,,1,Size,48,,1
+10731,variation,,"NARCISO TROUSERS - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,21,Color,BLACK,,1,Size,36,,1
+10732,variation,,"NARCISO TROUSERS - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,22,Color,BLACK,,1,Size,38,,1
+10733,variation,,"NARCISO TROUSERS - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,23,Color,BLACK,,1,Size,40,,1
+10734,variation,,"NARCISO TROUSERS - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,24,Color,BLACK,,1,Size,42,,1
+10735,variation,,"NARCISO TROUSERS - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,25,Color,BLACK,,1,Size,44,,1
+10736,variation,,"NARCISO TROUSERS - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,26,Color,BLACK,,1,Size,46,,1
+10737,variation,,"NARCISO TROUSERS - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,27,Color,BLACK,,1,Size,48,,1
+10738,variation,,"NARCISO TROUSERS - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+10739,variation,,"NARCISO TROUSERS - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+10740,variation,,"NARCISO TROUSERS - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+10741,variation,,"NARCISO TROUSERS - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+10742,variation,,"NARCISO TROUSERS - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+10743,variation,,"NARCISO TROUSERS - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+10744,variation,,"NARCISO TROUSERS - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+10745,variation,,"NARCISO TROUSERS - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,35,Color,IVORY,,1,Size,36,,1
+10746,variation,,"NARCISO TROUSERS - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,36,Color,IVORY,,1,Size,38,,1
+10747,variation,,"NARCISO TROUSERS - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,37,Color,IVORY,,1,Size,40,,1
+10748,variation,,"NARCISO TROUSERS - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,38,Color,IVORY,,1,Size,42,,1
+10749,variation,,"NARCISO TROUSERS - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,39,Color,IVORY,,1,Size,44,,1
+10750,variation,,"NARCISO TROUSERS - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,40,Color,IVORY,,1,Size,46,,1
+10751,variation,,"NARCISO TROUSERS - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,41,Color,IVORY,,1,Size,48,,1
+10752,variation,,"NARCISO TROUSERS - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+10753,variation,,"NARCISO TROUSERS - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+10754,variation,,"NARCISO TROUSERS - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+10755,variation,,"NARCISO TROUSERS - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+10756,variation,,"NARCISO TROUSERS - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+10757,variation,,"NARCISO TROUSERS - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+10758,variation,,"NARCISO TROUSERS - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+10759,variation,,"NARCISO TROUSERS - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+10760,variation,,"NARCISO TROUSERS - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+10761,variation,,"NARCISO TROUSERS - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+10762,variation,,"NARCISO TROUSERS - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+10763,variation,,"NARCISO TROUSERS - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+10764,variation,,"NARCISO TROUSERS - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+10765,variation,,"NARCISO TROUSERS - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+10766,variation,,"NARCISO TROUSERS - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+10767,variation,,"NARCISO TROUSERS - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+10768,variation,,"NARCISO TROUSERS - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+10769,variation,,"NARCISO TROUSERS - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+10770,variation,,"NARCISO TROUSERS - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+10771,variation,,"NARCISO TROUSERS - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+10772,variation,,"NARCISO TROUSERS - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+10773,variation,,"NARCISO TROUSERS - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+10774,variation,,"NARCISO TROUSERS - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+10775,variation,,"NARCISO TROUSERS - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+10776,variation,,"NARCISO TROUSERS - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+10777,variation,,"NARCISO TROUSERS - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+10778,variation,,"NARCISO TROUSERS - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+10779,variation,,"NARCISO TROUSERS - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+10780,variation,,"NARCISO TROUSERS - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,7,Color,SILVER,,1,Size,36,,1
+10781,variation,,"NARCISO TROUSERS - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,8,Color,SILVER,,1,Size,38,,1
+10782,variation,,"NARCISO TROUSERS - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,9,Color,SILVER,,1,Size,40,,1
+10783,variation,,"NARCISO TROUSERS - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,10,Color,SILVER,,1,Size,42,,1
+10784,variation,,"NARCISO TROUSERS - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,11,Color,SILVER,,1,Size,44,,1
+10785,variation,,"NARCISO TROUSERS - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,12,Color,SILVER,,1,Size,46,,1
+10786,variation,,"NARCISO TROUSERS - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,320,,,,,,,PANT-03,,,,,,13,Color,SILVER,,1,Size,48,,1
+10787,variation,,"DALLAS PANT - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,14,Color,AQUA,,1,Size,36,,1
+10788,variation,,"DALLAS PANT - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,15,Color,AQUA,,1,Size,38,,1
+10789,variation,,"DALLAS PANT - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,16,Color,AQUA,,1,Size,40,,1
+10790,variation,,"DALLAS PANT - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,17,Color,AQUA,,1,Size,42,,1
+10791,variation,,"DALLAS PANT - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,18,Color,AQUA,,1,Size,44,,1
+10792,variation,,"DALLAS PANT - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,19,Color,AQUA,,1,Size,46,,1
+10793,variation,,"DALLAS PANT - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,20,Color,AQUA,,1,Size,48,,1
+10794,variation,,"DALLAS PANT - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,21,Color,BLACK,,1,Size,36,,1
+10795,variation,,"DALLAS PANT - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,22,Color,BLACK,,1,Size,38,,1
+10796,variation,,"DALLAS PANT - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,23,Color,BLACK,,1,Size,40,,1
+10797,variation,,"DALLAS PANT - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,24,Color,BLACK,,1,Size,42,,1
+10798,variation,,"DALLAS PANT - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,25,Color,BLACK,,1,Size,44,,1
+10799,variation,,"DALLAS PANT - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,26,Color,BLACK,,1,Size,46,,1
+10800,variation,,"DALLAS PANT - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,27,Color,BLACK,,1,Size,48,,1
+10801,variation,,"DALLAS PANT - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+10802,variation,,"DALLAS PANT - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+10803,variation,,"DALLAS PANT - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+10804,variation,,"DALLAS PANT - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+10805,variation,,"DALLAS PANT - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+10806,variation,,"DALLAS PANT - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+10807,variation,,"DALLAS PANT - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+10808,variation,,"DALLAS PANT - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,35,Color,IVORY,,1,Size,36,,1
+10809,variation,,"DALLAS PANT - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,36,Color,IVORY,,1,Size,38,,1
+10810,variation,,"DALLAS PANT - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,37,Color,IVORY,,1,Size,40,,1
+10811,variation,,"DALLAS PANT - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,38,Color,IVORY,,1,Size,42,,1
+10812,variation,,"DALLAS PANT - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,39,Color,IVORY,,1,Size,44,,1
+10813,variation,,"DALLAS PANT - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,40,Color,IVORY,,1,Size,46,,1
+10814,variation,,"DALLAS PANT - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,41,Color,IVORY,,1,Size,48,,1
+10815,variation,,"DALLAS PANT - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+10816,variation,,"DALLAS PANT - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+10817,variation,,"DALLAS PANT - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+10818,variation,,"DALLAS PANT - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+10819,variation,,"DALLAS PANT - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+10820,variation,,"DALLAS PANT - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+10821,variation,,"DALLAS PANT - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+10822,variation,,"DALLAS PANT - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+10823,variation,,"DALLAS PANT - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+10824,variation,,"DALLAS PANT - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+10825,variation,,"DALLAS PANT - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+10826,variation,,"DALLAS PANT - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+10827,variation,,"DALLAS PANT - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+10828,variation,,"DALLAS PANT - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+10829,variation,,"DALLAS PANT - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+10830,variation,,"DALLAS PANT - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+10831,variation,,"DALLAS PANT - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+10832,variation,,"DALLAS PANT - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+10833,variation,,"DALLAS PANT - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+10834,variation,,"DALLAS PANT - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+10835,variation,,"DALLAS PANT - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+10836,variation,,"DALLAS PANT - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+10837,variation,,"DALLAS PANT - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+10838,variation,,"DALLAS PANT - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+10839,variation,,"DALLAS PANT - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+10840,variation,,"DALLAS PANT - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+10841,variation,,"DALLAS PANT - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+10842,variation,,"DALLAS PANT - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+10843,variation,,"DALLAS PANT - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,7,Color,SILVER,,1,Size,36,,1
+10844,variation,,"DALLAS PANT - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,8,Color,SILVER,,1,Size,38,,1
+10845,variation,,"DALLAS PANT - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,9,Color,SILVER,,1,Size,40,,1
+10846,variation,,"DALLAS PANT - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,10,Color,SILVER,,1,Size,42,,1
+10847,variation,,"DALLAS PANT - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,11,Color,SILVER,,1,Size,44,,1
+10848,variation,,"DALLAS PANT - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,12,Color,SILVER,,1,Size,46,,1
+10849,variation,,"DALLAS PANT - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,366,,,,,,,PANT-U04,,,,,,13,Color,SILVER,,1,Size,48,,1
+10850,variation,,"LEA SKIRT - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,14,Color,AQUA,,1,Size,36,,1
+10851,variation,,"LEA SKIRT - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,15,Color,AQUA,,1,Size,38,,1
+10852,variation,,"LEA SKIRT - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,16,Color,AQUA,,1,Size,40,,1
+10853,variation,,"LEA SKIRT - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,17,Color,AQUA,,1,Size,42,,1
+10854,variation,,"LEA SKIRT - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,18,Color,AQUA,,1,Size,44,,1
+10855,variation,,"LEA SKIRT - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,19,Color,AQUA,,1,Size,46,,1
+10856,variation,,"LEA SKIRT - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,20,Color,AQUA,,1,Size,48,,1
+10857,variation,,"LEA SKIRT - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,21,Color,BLACK,,1,Size,36,,1
+10858,variation,,"LEA SKIRT - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,22,Color,BLACK,,1,Size,38,,1
+10859,variation,,"LEA SKIRT - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,23,Color,BLACK,,1,Size,40,,1
+10860,variation,,"LEA SKIRT - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,24,Color,BLACK,,1,Size,42,,1
+10861,variation,,"LEA SKIRT - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,25,Color,BLACK,,1,Size,44,,1
+10862,variation,,"LEA SKIRT - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,26,Color,BLACK,,1,Size,46,,1
+10863,variation,,"LEA SKIRT - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,27,Color,BLACK,,1,Size,48,,1
+10864,variation,,"LEA SKIRT - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+10865,variation,,"LEA SKIRT - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+10866,variation,,"LEA SKIRT - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+10867,variation,,"LEA SKIRT - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+10868,variation,,"LEA SKIRT - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+10869,variation,,"LEA SKIRT - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+10870,variation,,"LEA SKIRT - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+10871,variation,,"LEA SKIRT - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,35,Color,IVORY,,1,Size,36,,1
+10872,variation,,"LEA SKIRT - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,36,Color,IVORY,,1,Size,38,,1
+10873,variation,,"LEA SKIRT - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,37,Color,IVORY,,1,Size,40,,1
+10874,variation,,"LEA SKIRT - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,38,Color,IVORY,,1,Size,42,,1
+10875,variation,,"LEA SKIRT - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,39,Color,IVORY,,1,Size,44,,1
+10876,variation,,"LEA SKIRT - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,40,Color,IVORY,,1,Size,46,,1
+10877,variation,,"LEA SKIRT - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,41,Color,IVORY,,1,Size,48,,1
+10878,variation,,"LEA SKIRT - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+10879,variation,,"LEA SKIRT - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+10880,variation,,"LEA SKIRT - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+10881,variation,,"LEA SKIRT - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+10882,variation,,"LEA SKIRT - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+10883,variation,,"LEA SKIRT - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+10884,variation,,"LEA SKIRT - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+10885,variation,,"LEA SKIRT - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+10886,variation,,"LEA SKIRT - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+10887,variation,,"LEA SKIRT - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+10888,variation,,"LEA SKIRT - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+10889,variation,,"LEA SKIRT - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+10890,variation,,"LEA SKIRT - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+10891,variation,,"LEA SKIRT - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+10892,variation,,"LEA SKIRT - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+10893,variation,,"LEA SKIRT - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+10894,variation,,"LEA SKIRT - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+10895,variation,,"LEA SKIRT - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+10896,variation,,"LEA SKIRT - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+10897,variation,,"LEA SKIRT - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+10898,variation,,"LEA SKIRT - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+10899,variation,,"LEA SKIRT - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+10900,variation,,"LEA SKIRT - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+10901,variation,,"LEA SKIRT - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+10902,variation,,"LEA SKIRT - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+10903,variation,,"LEA SKIRT - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+10904,variation,,"LEA SKIRT - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+10905,variation,,"LEA SKIRT - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+10906,variation,,"LEA SKIRT - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,7,Color,SILVER,,1,Size,36,,1
+10907,variation,,"LEA SKIRT - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,8,Color,SILVER,,1,Size,38,,1
+10908,variation,,"LEA SKIRT - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,9,Color,SILVER,,1,Size,40,,1
+10909,variation,,"LEA SKIRT - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,10,Color,SILVER,,1,Size,42,,1
+10910,variation,,"LEA SKIRT - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,11,Color,SILVER,,1,Size,44,,1
+10911,variation,,"LEA SKIRT - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,12,Color,SILVER,,1,Size,46,,1
+10912,variation,,"LEA SKIRT - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,340,,,,,,,SKIRT-02,,,,,,13,Color,SILVER,,1,Size,48,,1
+10913,variation,,"DALIA SKIRT - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,14,Color,AQUA,,1,Size,36,,1
+10914,variation,,"DALIA SKIRT - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,15,Color,AQUA,,1,Size,38,,1
+10915,variation,,"DALIA SKIRT - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,16,Color,AQUA,,1,Size,40,,1
+10916,variation,,"DALIA SKIRT - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,17,Color,AQUA,,1,Size,42,,1
+10917,variation,,"DALIA SKIRT - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,18,Color,AQUA,,1,Size,44,,1
+10918,variation,,"DALIA SKIRT - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,19,Color,AQUA,,1,Size,46,,1
+10919,variation,,"DALIA SKIRT - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,20,Color,AQUA,,1,Size,48,,1
+10920,variation,,"DALIA SKIRT - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,21,Color,BLACK,,1,Size,36,,1
+10921,variation,,"DALIA SKIRT - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,22,Color,BLACK,,1,Size,38,,1
+10922,variation,,"DALIA SKIRT - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,23,Color,BLACK,,1,Size,40,,1
+10923,variation,,"DALIA SKIRT - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,24,Color,BLACK,,1,Size,42,,1
+10924,variation,,"DALIA SKIRT - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,25,Color,BLACK,,1,Size,44,,1
+10925,variation,,"DALIA SKIRT - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,26,Color,BLACK,,1,Size,46,,1
+10926,variation,,"DALIA SKIRT - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,27,Color,BLACK,,1,Size,48,,1
+10927,variation,,"DALIA SKIRT - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+10928,variation,,"DALIA SKIRT - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+10929,variation,,"DALIA SKIRT - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+10930,variation,,"DALIA SKIRT - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+10931,variation,,"DALIA SKIRT - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+10932,variation,,"DALIA SKIRT - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+10933,variation,,"DALIA SKIRT - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+10934,variation,,"DALIA SKIRT - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,35,Color,IVORY,,1,Size,36,,1
+10935,variation,,"DALIA SKIRT - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,36,Color,IVORY,,1,Size,38,,1
+10936,variation,,"DALIA SKIRT - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,37,Color,IVORY,,1,Size,40,,1
+10937,variation,,"DALIA SKIRT - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,38,Color,IVORY,,1,Size,42,,1
+10938,variation,,"DALIA SKIRT - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,39,Color,IVORY,,1,Size,44,,1
+10939,variation,,"DALIA SKIRT - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,40,Color,IVORY,,1,Size,46,,1
+10940,variation,,"DALIA SKIRT - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,41,Color,IVORY,,1,Size,48,,1
+10941,variation,,"DALIA SKIRT - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+10942,variation,,"DALIA SKIRT - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+10943,variation,,"DALIA SKIRT - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+10944,variation,,"DALIA SKIRT - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+10945,variation,,"DALIA SKIRT - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+10946,variation,,"DALIA SKIRT - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+10947,variation,,"DALIA SKIRT - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+10948,variation,,"DALIA SKIRT - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+10949,variation,,"DALIA SKIRT - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+10950,variation,,"DALIA SKIRT - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+10951,variation,,"DALIA SKIRT - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+10952,variation,,"DALIA SKIRT - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+10953,variation,,"DALIA SKIRT - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+10954,variation,,"DALIA SKIRT - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+10955,variation,,"DALIA SKIRT - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+10956,variation,,"DALIA SKIRT - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+10957,variation,,"DALIA SKIRT - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+10958,variation,,"DALIA SKIRT - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+10959,variation,,"DALIA SKIRT - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+10960,variation,,"DALIA SKIRT - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+10961,variation,,"DALIA SKIRT - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+10962,variation,,"DALIA SKIRT - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+10963,variation,,"DALIA SKIRT - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+10964,variation,,"DALIA SKIRT - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+10965,variation,,"DALIA SKIRT - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+10966,variation,,"DALIA SKIRT - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+10967,variation,,"DALIA SKIRT - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+10968,variation,,"DALIA SKIRT - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+10969,variation,,"DALIA SKIRT - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,7,Color,SILVER,,1,Size,36,,1
+10970,variation,,"DALIA SKIRT - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,8,Color,SILVER,,1,Size,38,,1
+10971,variation,,"DALIA SKIRT - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,9,Color,SILVER,,1,Size,40,,1
+10972,variation,,"DALIA SKIRT - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,10,Color,SILVER,,1,Size,42,,1
+10973,variation,,"DALIA SKIRT - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,11,Color,SILVER,,1,Size,44,,1
+10974,variation,,"DALIA SKIRT - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,12,Color,SILVER,,1,Size,46,,1
+10975,variation,,"DALIA SKIRT - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,300,,,,,,,SKIRT-03,,,,,,13,Color,SILVER,,1,Size,48,,1
+10976,variation,,"ALOCASIA SKIRT - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,14,Color,AQUA,,1,Size,36,,1
+10977,variation,,"ALOCASIA SKIRT - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,15,Color,AQUA,,1,Size,38,,1
+10978,variation,,"ALOCASIA SKIRT - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,16,Color,AQUA,,1,Size,40,,1
+10979,variation,,"ALOCASIA SKIRT - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,17,Color,AQUA,,1,Size,42,,1
+10980,variation,,"ALOCASIA SKIRT - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,18,Color,AQUA,,1,Size,44,,1
+10981,variation,,"ALOCASIA SKIRT - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,19,Color,AQUA,,1,Size,46,,1
+10982,variation,,"ALOCASIA SKIRT - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,20,Color,AQUA,,1,Size,48,,1
+10983,variation,,"ALOCASIA SKIRT - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,21,Color,BLACK,,1,Size,36,,1
+10984,variation,,"ALOCASIA SKIRT - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,22,Color,BLACK,,1,Size,38,,1
+10985,variation,,"ALOCASIA SKIRT - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,23,Color,BLACK,,1,Size,40,,1
+10986,variation,,"ALOCASIA SKIRT - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,24,Color,BLACK,,1,Size,42,,1
+10987,variation,,"ALOCASIA SKIRT - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,25,Color,BLACK,,1,Size,44,,1
+10988,variation,,"ALOCASIA SKIRT - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,26,Color,BLACK,,1,Size,46,,1
+10989,variation,,"ALOCASIA SKIRT - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,27,Color,BLACK,,1,Size,48,,1
+10990,variation,,"ALOCASIA SKIRT - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+10991,variation,,"ALOCASIA SKIRT - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+10992,variation,,"ALOCASIA SKIRT - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+10993,variation,,"ALOCASIA SKIRT - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+10994,variation,,"ALOCASIA SKIRT - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+10995,variation,,"ALOCASIA SKIRT - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+10996,variation,,"ALOCASIA SKIRT - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+10997,variation,,"ALOCASIA SKIRT - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,35,Color,IVORY,,1,Size,36,,1
+10998,variation,,"ALOCASIA SKIRT - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,36,Color,IVORY,,1,Size,38,,1
+10999,variation,,"ALOCASIA SKIRT - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,37,Color,IVORY,,1,Size,40,,1
+11000,variation,,"ALOCASIA SKIRT - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,38,Color,IVORY,,1,Size,42,,1
+11001,variation,,"ALOCASIA SKIRT - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,39,Color,IVORY,,1,Size,44,,1
+11002,variation,,"ALOCASIA SKIRT - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,40,Color,IVORY,,1,Size,46,,1
+11003,variation,,"ALOCASIA SKIRT - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,41,Color,IVORY,,1,Size,48,,1
+11004,variation,,"ALOCASIA SKIRT - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+11005,variation,,"ALOCASIA SKIRT - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+11006,variation,,"ALOCASIA SKIRT - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+11007,variation,,"ALOCASIA SKIRT - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+11008,variation,,"ALOCASIA SKIRT - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+11009,variation,,"ALOCASIA SKIRT - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+11010,variation,,"ALOCASIA SKIRT - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+11011,variation,,"ALOCASIA SKIRT - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+11012,variation,,"ALOCASIA SKIRT - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+11013,variation,,"ALOCASIA SKIRT - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+11014,variation,,"ALOCASIA SKIRT - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+11015,variation,,"ALOCASIA SKIRT - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+11016,variation,,"ALOCASIA SKIRT - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+11017,variation,,"ALOCASIA SKIRT - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+11018,variation,,"ALOCASIA SKIRT - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+11019,variation,,"ALOCASIA SKIRT - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+11020,variation,,"ALOCASIA SKIRT - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+11021,variation,,"ALOCASIA SKIRT - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+11022,variation,,"ALOCASIA SKIRT - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+11023,variation,,"ALOCASIA SKIRT - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+11024,variation,,"ALOCASIA SKIRT - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+11025,variation,,"ALOCASIA SKIRT - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+11026,variation,,"ALOCASIA SKIRT - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+11027,variation,,"ALOCASIA SKIRT - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+11028,variation,,"ALOCASIA SKIRT - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+11029,variation,,"ALOCASIA SKIRT - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+11030,variation,,"ALOCASIA SKIRT - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+11031,variation,,"ALOCASIA SKIRT - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+11032,variation,,"ALOCASIA SKIRT - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,7,Color,SILVER,,1,Size,36,,1
+11033,variation,,"ALOCASIA SKIRT - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,8,Color,SILVER,,1,Size,38,,1
+11034,variation,,"ALOCASIA SKIRT - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,9,Color,SILVER,,1,Size,40,,1
+11035,variation,,"ALOCASIA SKIRT - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,10,Color,SILVER,,1,Size,42,,1
+11036,variation,,"ALOCASIA SKIRT - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,11,Color,SILVER,,1,Size,44,,1
+11037,variation,,"ALOCASIA SKIRT - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,12,Color,SILVER,,1,Size,46,,1
+11038,variation,,"ALOCASIA SKIRT - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,378,,,,,,,SKIRT-04,,,,,,13,Color,SILVER,,1,Size,48,,1
+11039,variation,,"LAVA PANEL BELT - AQUA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,14,Color,AQUA,,1,Size,36,,1
+11040,variation,,"LAVA PANEL BELT - AQUA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,15,Color,AQUA,,1,Size,38,,1
+11041,variation,,"LAVA PANEL BELT - AQUA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,16,Color,AQUA,,1,Size,40,,1
+11042,variation,,"LAVA PANEL BELT - AQUA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,17,Color,AQUA,,1,Size,42,,1
+11043,variation,,"LAVA PANEL BELT - AQUA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,18,Color,AQUA,,1,Size,44,,1
+11044,variation,,"LAVA PANEL BELT - AQUA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,19,Color,AQUA,,1,Size,46,,1
+11045,variation,,"LAVA PANEL BELT - AQUA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,20,Color,AQUA,,1,Size,48,,1
+11046,variation,,"LAVA PANEL BELT - BLACK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,21,Color,BLACK,,1,Size,36,,1
+11047,variation,,"LAVA PANEL BELT - BLACK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,22,Color,BLACK,,1,Size,38,,1
+11048,variation,,"LAVA PANEL BELT - BLACK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,23,Color,BLACK,,1,Size,40,,1
+11049,variation,,"LAVA PANEL BELT - BLACK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,24,Color,BLACK,,1,Size,42,,1
+11050,variation,,"LAVA PANEL BELT - BLACK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,25,Color,BLACK,,1,Size,44,,1
+11051,variation,,"LAVA PANEL BELT - BLACK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,26,Color,BLACK,,1,Size,46,,1
+11052,variation,,"LAVA PANEL BELT - BLACK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,27,Color,BLACK,,1,Size,48,,1
+11053,variation,,"LAVA PANEL BELT - DARK BLUE, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,28,Color,DARK BLUE,,1,Size,36,,1
+11054,variation,,"LAVA PANEL BELT - DARK BLUE, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,29,Color,DARK BLUE,,1,Size,38,,1
+11055,variation,,"LAVA PANEL BELT - DARK BLUE, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,30,Color,DARK BLUE,,1,Size,40,,1
+11056,variation,,"LAVA PANEL BELT - DARK BLUE, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,31,Color,DARK BLUE,,1,Size,42,,1
+11057,variation,,"LAVA PANEL BELT - DARK BLUE, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,32,Color,DARK BLUE,,1,Size,44,,1
+11058,variation,,"LAVA PANEL BELT - DARK BLUE, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,33,Color,DARK BLUE,,1,Size,46,,1
+11059,variation,,"LAVA PANEL BELT - DARK BLUE, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,34,Color,DARK BLUE,,1,Size,48,,1
+11060,variation,,"LAVA PANEL BELT - IVORY, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,35,Color,IVORY,,1,Size,36,,1
+11061,variation,,"LAVA PANEL BELT - IVORY, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,36,Color,IVORY,,1,Size,38,,1
+11062,variation,,"LAVA PANEL BELT - IVORY, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,37,Color,IVORY,,1,Size,40,,1
+11063,variation,,"LAVA PANEL BELT - IVORY, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,38,Color,IVORY,,1,Size,42,,1
+11064,variation,,"LAVA PANEL BELT - IVORY, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,39,Color,IVORY,,1,Size,44,,1
+11065,variation,,"LAVA PANEL BELT - IVORY, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,40,Color,IVORY,,1,Size,46,,1
+11066,variation,,"LAVA PANEL BELT - IVORY, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,41,Color,IVORY,,1,Size,48,,1
+11067,variation,,"LAVA PANEL BELT - LIGHT GREEN, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,42,Color,LIGHT GREEN,,1,Size,36,,1
+11068,variation,,"LAVA PANEL BELT - LIGHT GREEN, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,43,Color,LIGHT GREEN,,1,Size,38,,1
+11069,variation,,"LAVA PANEL BELT - LIGHT GREEN, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,44,Color,LIGHT GREEN,,1,Size,40,,1
+11070,variation,,"LAVA PANEL BELT - LIGHT GREEN, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,45,Color,LIGHT GREEN,,1,Size,42,,1
+11071,variation,,"LAVA PANEL BELT - LIGHT GREEN, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,46,Color,LIGHT GREEN,,1,Size,44,,1
+11072,variation,,"LAVA PANEL BELT - LIGHT GREEN, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,47,Color,LIGHT GREEN,,1,Size,46,,1
+11073,variation,,"LAVA PANEL BELT - LIGHT GREEN, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,48,Color,LIGHT GREEN,,1,Size,48,,1
+11074,variation,,"LAVA PANEL BELT - LIGHT PINK, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,49,Color,LIGHT PINK,,1,Size,36,,1
+11075,variation,,"LAVA PANEL BELT - LIGHT PINK, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,50,Color,LIGHT PINK,,1,Size,38,,1
+11076,variation,,"LAVA PANEL BELT - LIGHT PINK, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,51,Color,LIGHT PINK,,1,Size,40,,1
+11077,variation,,"LAVA PANEL BELT - LIGHT PINK, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,52,Color,LIGHT PINK,,1,Size,42,,1
+11078,variation,,"LAVA PANEL BELT - LIGHT PINK, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,53,Color,LIGHT PINK,,1,Size,44,,1
+11079,variation,,"LAVA PANEL BELT - LIGHT PINK, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,54,Color,LIGHT PINK,,1,Size,46,,1
+11080,variation,,"LAVA PANEL BELT - LIGHT PINK, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,55,Color,LIGHT PINK,,1,Size,48,,1
+11081,variation,,"LAVA PANEL BELT - MAGENTA, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,56,Color,MAGENTA,,1,Size,36,,1
+11082,variation,,"LAVA PANEL BELT - MAGENTA, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,57,Color,MAGENTA,,1,Size,38,,1
+11083,variation,,"LAVA PANEL BELT - MAGENTA, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,58,Color,MAGENTA,,1,Size,40,,1
+11084,variation,,"LAVA PANEL BELT - MAGENTA, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,59,Color,MAGENTA,,1,Size,42,,1
+11085,variation,,"LAVA PANEL BELT - MAGENTA, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,60,Color,MAGENTA,,1,Size,44,,1
+11086,variation,,"LAVA PANEL BELT - MAGENTA, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,61,Color,MAGENTA,,1,Size,46,,1
+11087,variation,,"LAVA PANEL BELT - MAGENTA, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,62,Color,MAGENTA,,1,Size,48,,1
+11088,variation,,"LAVA PANEL BELT - ROSEWOOD, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,63,Color,ROSEWOOD,,1,Size,36,,1
+11089,variation,,"LAVA PANEL BELT - ROSEWOOD, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,1,Color,ROSEWOOD,,1,Size,38,,1
+11090,variation,,"LAVA PANEL BELT - ROSEWOOD, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,2,Color,ROSEWOOD,,1,Size,40,,1
+11091,variation,,"LAVA PANEL BELT - ROSEWOOD, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,3,Color,ROSEWOOD,,1,Size,42,,1
+11092,variation,,"LAVA PANEL BELT - ROSEWOOD, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,4,Color,ROSEWOOD,,1,Size,44,,1
+11093,variation,,"LAVA PANEL BELT - ROSEWOOD, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,5,Color,ROSEWOOD,,1,Size,46,,1
+11094,variation,,"LAVA PANEL BELT - ROSEWOOD, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,6,Color,ROSEWOOD,,1,Size,48,,1
+11095,variation,,"LAVA PANEL BELT - SILVER, 36",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,7,Color,SILVER,,1,Size,36,,1
+11096,variation,,"LAVA PANEL BELT - SILVER, 38",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,8,Color,SILVER,,1,Size,38,,1
+11097,variation,,"LAVA PANEL BELT - SILVER, 40",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,9,Color,SILVER,,1,Size,40,,1
+11098,variation,,"LAVA PANEL BELT - SILVER, 42",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,10,Color,SILVER,,1,Size,42,,1
+11099,variation,,"LAVA PANEL BELT - SILVER, 44",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,11,Color,SILVER,,1,Size,44,,1
+11100,variation,,"LAVA PANEL BELT - SILVER, 46",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,12,Color,SILVER,,1,Size,46,,1
+11101,variation,,"LAVA PANEL BELT - SILVER, 48",1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,130,,,,,,,PANEL-01,,,,,,13,Color,SILVER,,1,Size,48,,1
+11102,variation,,PERLA FOULARD - AQUA,1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,120,,,,,,,FOULARD-01,,,,,,1,Color,AQUA,,1,,,,
+11103,variation,,PERLA FOULARD - BLACK,1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,120,,,,,,,FOULARD-01,,,,,,2,Color,BLACK,,1,,,,
+11104,variation,,PERLA FOULARD - DARK BLUE,1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,120,,,,,,,FOULARD-01,,,,,,3,Color,DARK BLUE,,1,,,,
+11105,variation,,PERLA FOULARD - IVORY,1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,120,,,,,,,FOULARD-01,,,,,,4,Color,IVORY,,1,,,,
+11106,variation,,PERLA FOULARD - LIGHT GREEN,1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,120,,,,,,,FOULARD-01,,,,,,5,Color,LIGHT GREEN,,1,,,,
+11107,variation,,PERLA FOULARD - LIGHT PINK,1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,120,,,,,,,FOULARD-01,,,,,,6,Color,LIGHT PINK,,1,,,,
+11108,variation,,PERLA FOULARD - MAGENTA,1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,120,,,,,,,FOULARD-01,,,,,,7,Color,MAGENTA,,1,,,,
+11109,variation,,PERLA FOULARD - ROSEWOOD,1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,120,,,,,,,FOULARD-01,,,,,,8,Color,ROSEWOOD,,1,,,,
+11110,variation,,PERLA FOULARD - SILVER,1,0,visible,,,,,taxable,parent,1,,,0,1,,,,,0,,,120,,,,,,,FOULARD-01,,,,,,9,Color,SILVER,,1,,,,

@@ -1,0 +1,95 @@
+/* ------------------- */
+/* HEADER EDIT RIDEV */
+/* ------------------- */
+#qodef-page-header {
+  	background-color: #fff0;
+		/*position: absolute*/
+}
+
+#qodef-page-inner {
+    position: relative;
+    padding: 0px 0 100px;
+}
+
+/*
+.qodef-header--divided #qodef-page-header {
+    height: 55px;
+}
+*/
+/*
+.qodef-content-grid {
+		width: auto;
+}
+*/
+/*
+.qodef-divided-header-left-wrapper {
+    margin-left: 40px;
+}
+
+.qodef-divided-header-right-wrapper {
+    margin-right: 40px;
+}
+*/
+
+
+/* ------------------- */
+/*  OUTER EDIT RIDEV   */
+/* ------------------- */
+/*
+#qodef-page-outer {
+    padding-top: 0px;
+}
+
+/* ------------------- */
+/* HOMEPAGE EDIT RIDEV */
+/* ------------------- */
+/*
+#hp-100w-image{
+		padding:0px;
+}
+
+
+/* ------------------ */
+/* OUR SELECTION SHOP */
+/* ------------------ */
+/*display titolo e prezzo sotto le foto dei prodotti*/
+.qodef-woo-product-list .qodef-woo-product-content{
+		text-align: left;
+		display: inherit
+}
+
+/*testo sotto le foto dei prodotti*/
+h6.qodef-woo-product-title {
+		font-family: "lato";
+		font-size: 0.8125rem;
+		line-height: 0.4rem
+}
+
+/*prezzo sotto le foto dei prodotti*/
+span.woocommerce-Price-amount.amount {
+		font-family: "lato";
+  	font-size: 0.8125rem;
+		color: black
+}
+
+/*riquadro testo e prezzo sotto prodotti*/
+.qodef-woo-product-content {
+    margin: 1.5rem auto 0.1rem;
+    margin-top: 1.5rem;
+    margin-right: auto;
+    margin-bottom: 0.1rem;
+    margin-left: auto;
+}
+
+/* simbolo di carrello al mouse hover */
+.qodef-woo-product-list .qodef-e-inner:hover .qodef-woo-product-image-inner {
+    opacity: 0;
+}
+
+/* margini dello slider */
+/*
+div#qodef-page-inner {
+    margin-left: 75px;
+		margin-right: 75px;
+}
+*/
