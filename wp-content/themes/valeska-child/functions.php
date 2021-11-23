@@ -22,3 +22,14 @@ endif;
 add_action( 'wp_enqueue_scripts', 'child_theme_configurator_css', 25 );
 
 // END ENQUEUE PARENT ACTION
+
+add_action('woocommerce_before_single_product','print_color');
+function print_color(){
+    echo '<h2>green</h2>';
+
+}
+
+add_action( 'woocommerce_before_single_product', 'quadlayers_woocommerce_hooks');
+function quadlayers_woocommerce_hooks() {
+echo '<img src="https://kokohai.com/wp-content/uploads/2020/02/logo-kokohai-tienda-de-merchandising-de-anime-y-maga-e1584570981420.png">'; // Change to desired image url
+}

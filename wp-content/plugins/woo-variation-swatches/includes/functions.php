@@ -940,6 +940,8 @@ endif;
 //-------------------------------------------------------------------------------
 // Variation variable item
 //-------------------------------------------------------------------------------
+$color = "";
+
 if ( ! function_exists( 'wvs_variable_item' ) ):
 	function wvs_variable_item( $type, $options, $args, $saved_attribute = array() ) {
 
@@ -972,9 +974,9 @@ if ( ! function_exists( 'wvs_variable_item' ) ):
 
 						switch ( $type ):
 							case 'color':
-
 								$color = sanitize_hex_color( wvs_get_product_attribute_color( $term ) );
 								$data  .= sprintf( '<span class="variable-item-span variable-item-span-%s" style="background-color:%s;"></span>', esc_attr( $type ), esc_attr( $color ) );
+								echo "<script type='text/javascript'>alert('$color');</script>";
 								break;
 
 							case 'image':
