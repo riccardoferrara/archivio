@@ -940,8 +940,6 @@ endif;
 //-------------------------------------------------------------------------------
 // Variation variable item
 //-------------------------------------------------------------------------------
-$color = "";
-
 if ( ! function_exists( 'wvs_variable_item' ) ):
 	function wvs_variable_item( $type, $options, $args, $saved_attribute = array() ) {
 
@@ -970,13 +968,13 @@ if ( ! function_exists( 'wvs_variable_item' ) ):
 							$tooltip_html_attr .= ! empty( $tooltip ) ? ' tabindex="2"' : '';
 						}
 
-						$data .= sprintf( '<li %1$s class="variable-item %2$s-variable-item %2$s-variable-item-%3$s %4$s" title="%5$s" data-title="%5$s" data-value="%3$s" role="radio" tabindex="0"><div class="variable-item-contents">', $screen_reader_html_attr . $tooltip_html_attr, esc_attr( $type ), esc_attr( $term->slug ), esc_attr( $selected_class ), $option );
+						$data .= sprintf( '<li %1$s class="variable-item %2$s-variable-item %2$s-variable-item-%3$s %4$s" title="%5$s" data-title="%5$s" data-value="%3$s" role="radio" name="%2$s" tabindex="0"><div class="variable-item-contents">', $screen_reader_html_attr . $tooltip_html_attr, esc_attr( $type ), esc_attr( $term->slug ), esc_attr( $selected_class ), $option );
 
 						switch ( $type ):
 							case 'color':
+
 								$color = sanitize_hex_color( wvs_get_product_attribute_color( $term ) );
 								$data  .= sprintf( '<span class="variable-item-span variable-item-span-%s" style="background-color:%s;"></span>', esc_attr( $type ), esc_attr( $color ) );
-								echo "<script type='text/javascript'>alert('$color');</script>";
 								break;
 
 							case 'image':
