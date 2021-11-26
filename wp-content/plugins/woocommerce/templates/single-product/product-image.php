@@ -35,38 +35,15 @@ $wrapper_classes   = apply_filters(
 		'images',
 	)
 );
-
-
-function ridev_product_images (){
-	$product_image_ids = $GLOBALS['product']->get_gallery_image_ids();
-	$images_colors_url = [];
-	foreach($product_image_ids as &$id) {
-		$thumbnail_url = wp_get_attachment_image_url($id);
-		$color = explode('-',end(explode('/',$thumbnail_url)))[1];
-		$fullsize_image_url = preg_split("/....[x]+/", $thumbnail_url)[0] .'.png';
-		$position = filter_var(explode('-',end(explode('/',$thumbnail_url)))[0], FILTER_SANITIZE_NUMBER_INT);
-		$images_colors_url["$color-$position"] = $fullsize_image_url;
-	}
-	return $images_colors_url;
-};
-
-
-
-
-
 ?>
-
 <div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
 	<figure class="woocommerce-product-gallery__wrapper">
 		<?php
 		if ( $post_thumbnail_id ) {
 			$html = wc_get_gallery_image_html( $post_thumbnail_id, true );
 		} else {
-			//questa parte inserisce le foto al primo giro
 			$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
-			// $html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
-			$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', ridev_product_images()['black-1'], esc_html__( 'Awaiting product image', 'woocommerce' ) );
-			$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', ridev_product_images()['black-2'], esc_html__( 'Awaiting product image', 'woocommerce' ) );
+			$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
 			$html .= '</div>';
 		}
 
@@ -76,4 +53,3 @@ function ridev_product_images (){
 		?>
 	</figure>
 </div>
-
