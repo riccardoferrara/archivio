@@ -77,14 +77,14 @@ function ridev_product_images (){
 				switch($i) {
 					case 1:
 					case 2:
-						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" />', $image_url, esc_html__( 'Awaiting product image', 'woocommerce' ) );
+						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" style="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), 'margin-bottom: 2px;' );
 						break;
 					case 3:
 					case 4:
-						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" style="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), 'max-width: 50%;' );
+						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" style="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), 'margin-bottom: 2px; max-width: 50%;' );
 						break;
 					case 5:
-						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" style="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), 'max-width: 50%;' );
+						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" style="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), 'margin-bottom: 2px; max-width: 50%;' );
 						$i = 0;
 						break;
 					}
