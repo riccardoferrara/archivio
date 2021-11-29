@@ -65,9 +65,32 @@ function ridev_product_images (){
 			//questa parte inserisce le foto al primo giro
 			$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
 			// $html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
-			$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', ridev_product_images()['black-1'], esc_html__( 'Awaiting product image', 'woocommerce' ) );
-			$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', ridev_product_images()['black-2'], esc_html__( 'Awaiting product image', 'woocommerce' ) );
-			$html .= '</div>';
+			//recupera gli url delle foto
+			$images_colors_url = ridev_product_images();
+			// crea codice html con tutte le foto
+			$i = 1;
+			foreach(array_values($images_colors_url) as &$image_url){
+				//se la foto è la terza o la quarta cambia stile (width 50%)
+				// $img_index = abs(filter_var(array_keys($image_url,FILTER_SANITIZE_NUMBER_INT)));
+				// $html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" />', $image_url, esc_html__( 'Awaiting product image', 'woocommerce' ) );
+
+				switch($i) {
+					case 1:
+					case 2:
+						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" />', $image_url, esc_html__( 'Awaiting product image', 'woocommerce' ) );
+						break;
+					case 3:
+					case 4:
+						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" style="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), 'max-width: 50%;' );
+						break;
+					case 5:
+						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" style="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), 'max-width: 50%;' );
+						$i = 0;
+						break;
+					}
+			$i++;
+			}	
+		$html .= '</div>';
 		}
 
 		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
