@@ -24,22 +24,27 @@ add_action( 'wp_enqueue_scripts', 'child_theme_configurator_css', 25 );
 // END ENQUEUE PARENT ACTION
 
 
+
+
+//******************************************************************************/
 // ----------------------------------------------------------------------------//
 //                RIDEV                                                        //
 // ----------------------------------------------------------------------------//
+//******************************************************************************/
 
-//here some test 
-add_action('woocommerce_before_single_product','print_color');
-function print_color(){
-    echo '<h2>blue</h2>';
+//---------------------------------------------
+// DECLARE SUPPORT THEME FOR WOOCOMMERCE
+//---------------------------------------------
+function ridev_add_woocommerce_support() {
+    add_theme_support( 'woocommerce' );
 }
 
-//here some test
-add_action( 'woocommerce_before_single_product', 'quadlayers_woocommerce_hooks');
-function quadlayers_woocommerce_hooks() {
-echo '<img src="https://kokohai.com/wp-content/uploads/2020/02/logo-kokohai-tienda-de-merchandising-de-anime-y-maga-e1584570981420.png">'; // Change to desired image url
-}
+add_action( 'after_setup_theme', 'ridev_add_woocommerce_support' );
 
+
+//---------------------------------------------
+// RECUPERO IL COLORE SELEZIONATO DALLA PDP
+//---------------------------------------------
 
 //hook javascript per lettura colori nella single-product page
 add_action('woocommerce_after_single_variation','custom_jquery_shop_script');
@@ -48,12 +53,15 @@ function custom_jquery_shop_script(){
         ?>
             <script type="text/javascript">
             var colors
+            var selected_color
 
             //inserisci delle funzioni click per ogni colore
             function assignOnClickBehavoir(colors){
                 for (var i=0, iLen=colors.length; i<iLen; i++) {
                     colors[i].onclick = function() {
-                        alert(this.dataset.value)
+                        selected_color = this.dataset.value
+                        // alert(selected_color)
+                        showSelectedColorVariation()
                     }
                 }
             }
@@ -70,7 +78,85 @@ function custom_jquery_shop_script(){
                 }
             }
             waitForColorsElements()
+            //definisco una funzione che nasconde un elemento imagine cambiando la classe
+            function hideImageElement(imgElement){
+                console.log(imgElement)
+                imgElement.classList.remove('selected-color')
+                imgElement.classList.add('unselected-color')
+            }
+            function showImageElement(imgElement){
+                // alert('start shoImageElement')
+                console.log(imgElement)
+                imgElement.classList.remove('unselected-color')
+                imgElement.classList.add('selected-color')
+            }
+            //nascondo le foto del colore non selezionato e rendo visibili quelle del colore selezionato
+            function showSelectedColorVariation(){
+                // var imagesElementOfShownColor = []
+                // imagesElementOfShownColor = document.getElementsByClassName("selected-color");
+                // for (var i =0; i < imagesElementOfShownColor.length; i++)
+                // {
+                //     console.log(i)
+                //     hideImageElement(imagesElementOfShownColor[i])
+                // }
+                console.log('start hide elements')
+                while (document.getElementsByClassName("selected-color")[0] != undefined){
+                    hideImageElement(document.getElementsByClassName("selected-color")[0])
+                }
+                console.log('end hide elements')
+                var imagesElementOfTheColorToShow = []
+                imagesElementOfTheColorToShow = document.querySelectorAll('[color="'+ selected_color + '"]')
+                for (var i =0; i< imagesElementOfTheColorToShow.length; i++){
+                    showImageElement(imagesElementOfTheColorToShow[i])
+                }
+            }
             </script>
         <?php
 }
+
+// function for alert in php
+function alert($msg){
+    ?>
+    <script type="text/javascript">
+        var msg = <?php echo json_encode($msg); ?>;
+        alert(msg)
+    </script>
+<?php
+};
+
+//alert(wc_get_product( $product_id ));
+
+
+//---------------------------------
+// CREAZIONE IMMAGINI NELLA PDP
+//---------------------------------
+
+// global $product;
+
+// function ridev_product_images (){
+// 	$product_image_ids = $GLOBALS['product']->get_gallery_image_ids();
+// 	$images_colors_url = [];
+// 	foreach($product_image_ids as &$id) {
+// 		$thumbnail_url = wp_get_attachment_image_url($id);
+// 		$color = explode('-',end(explode('/',$thumbnail_url)))[1];
+// 		$fullsize_image_url = preg_split("/....[x]+/", $thumbnail_url)[0] .'.png';
+// 		$position = filter_var(explode('-',end(explode('/',$thumbnail_url)))[0], FILTER_SANITIZE_NUMBER_INT);
+// 		$images_colors_url["$color-$position"] = $fullsize_image_url;
+// 	}
+// 	return $images_colors_url;
+// };
+
+
+// $post_thumbnail_id = $product->get_image_id();
+
+
+// $html  = '<div class="woocommerce-product-gallery__image--placeholder">';
+// // $html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
+// $html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', ridev_product_images()['black-1'], esc_html__( 'Awaiting product image', 'woocommerce' ) );
+// $html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', ridev_product_images()['black-2'], esc_html__( 'Awaiting product image', 'woocommerce' ) );
+// $html .= '</div>';
+
+// echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+
+// do_action( 'woocommerce_product_thumbnails' );
 

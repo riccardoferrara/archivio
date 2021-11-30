@@ -77,16 +77,17 @@ function ridev_product_images (){
 				// $html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" />', $image_url, esc_html__( 'Awaiting product image', 'woocommerce' ) );
 				// $visibility_style = $hidden_color_variation ? 'display: none':'display: initial';
 				$visibility_class = $selected_color ? 'selected-color':'unselected-color';
+				$color = explode(".", end(explode("-",end(explode("/", $image_url)))))[0];
 				switch($i) {
 					case 1:
-						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class );
+						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
 					case 2:
 					case 3:
-						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" />', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class );
+						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
 					case 4:
-						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" />', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class );
+						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						$i = 0;
 						// $hidden_color_variation = TRUE;
 						$selected_color= FALSE;
