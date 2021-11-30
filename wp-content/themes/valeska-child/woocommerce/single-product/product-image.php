@@ -69,22 +69,24 @@ function ridev_product_images (){
 			$images_colors_url = ridev_product_images();
 			// crea codice html con tutte le foto
 			$i = 1;
+			$hidden_color_variation = FALSE;
 			foreach(array_values($images_colors_url) as &$image_url){
 				//se la foto è la terza o la quarta cambia stile (width 50%)
 				// $img_index = abs(filter_var(array_keys($image_url,FILTER_SANITIZE_NUMBER_INT)));
 				// $html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" />', $image_url, esc_html__( 'Awaiting product image', 'woocommerce' ) );
-
+				$visibility_style = $hidden_color_variation ? 'display: none':'display: initial';
 				switch($i) {
 					case 1:
-						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" style="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), 'margin-bottom: 2px;' );
+						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" style="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), 'margin-bottom: 2px; '. $visibility_style);
 						break;
 					case 2:
 					case 3:
-						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" style="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), 'margin-bottom: 2px; max-width: 50%;' );
+						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" style="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), 'margin-bottom: 2px; '. 'max-width: 50%; '. $visibility_style );
 						break;
 					case 4:
-						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" style="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), 'margin-bottom: 2px; max-width: 50%;' );
+						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" style="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), 'margin-bottom: 2px; '. 'max-width: 50%; '. $visibility_style );
 						$i = 0;
+						$hidden_color_variation = TRUE;
 						break;
 					}
 			$i++;
