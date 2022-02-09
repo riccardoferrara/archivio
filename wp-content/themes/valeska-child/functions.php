@@ -45,6 +45,7 @@ add_action( 'after_setup_theme', 'ridev_add_woocommerce_support' );
 //---------------------------------------------
 // RECUPERO IL COLORE SELEZIONATO DALLA PDP
 //---------------------------------------------
+global $product;
 
 //hook javascript per lettura colori nella single-product page
 add_action('woocommerce_after_single_variation','custom_jquery_shop_script');
@@ -54,6 +55,7 @@ function custom_jquery_shop_script(){
             <script type="text/javascript">
             var colors
             var selected_color
+            document.querySelectorAll('[for="pa_size"]')[0].innerText = 'SIZE'
 
             //inserisci delle funzioni click per ogni colore
             function assignOnClickBehavoir(colors){
@@ -62,6 +64,7 @@ function custom_jquery_shop_script(){
                         selected_color = this.dataset.value
                         // alert(selected_color)
                         showSelectedColorVariation()
+                        showSelectedColorDescription()
                     }
                 }
             }
@@ -109,6 +112,11 @@ function custom_jquery_shop_script(){
                 for (var i =0; i< imagesElementOfTheColorToShow.length; i++){
                     showImageElement(imagesElementOfTheColorToShow[i])
                 }
+            }
+            // show the name of the selected color on the page
+            function showSelectedColorDescription(){
+                color_label = document.querySelectorAll('[value="'+ selected_color+'"]')[0].text
+                document.querySelectorAll('[for="pa_color"]')[0].innerText = color_label           
             }
             </script>
         <?php
@@ -159,4 +167,3 @@ function alert($msg){
 // echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
 
 // do_action( 'woocommerce_product_thumbnails' );
-
