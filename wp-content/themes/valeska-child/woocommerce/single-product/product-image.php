@@ -43,8 +43,9 @@ function ridev_product_images (){
 	foreach($product_image_ids as &$id) {
 		$thumbnail_url = wp_get_attachment_image_url($id);
 		$color = explode('-',end(explode('/',$thumbnail_url)))[1];
-		$fullsize_image_url = preg_split("/....[x]+/", $thumbnail_url)[0] .'.png';
-		$position = filter_var(explode('-',end(explode('/',$thumbnail_url)))[0], FILTER_SANITIZE_NUMBER_INT);
+		$fullsize_image_url = preg_split("/....[x]+/", $thumbnail_url)[0] .'.jpg';
+		// $position = filter_var(explode('-',end(explode('/',$thumbnail_url)))[0], FILTER_SANITIZE_NUMBER_INT);
+		$position = explode('-',end(explode('/',$thumbnail_url)))[2];
 		$images_colors_url["$color-$position"] = $fullsize_image_url;
 	}
 	return $images_colors_url;
@@ -71,30 +72,72 @@ function ridev_product_images (){
 			$i = 1;
 			// $hidden_color_variation = FALSE;
 			$selected_color = TRUE;
-			foreach(array_values($images_colors_url) as &$image_url){
+			$change_color = FALSE;
+			$loop_color = "";
+			$first_loop = TRUE;
+			foreach($images_colors_url as $color_position => $image_url){
 				//se la foto è la terza o la quarta cambia stile (width 50%)
 				// $img_index = abs(filter_var(array_keys($image_url,FILTER_SANITIZE_NUMBER_INT)));
 				// $html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" />', $image_url, esc_html__( 'Awaiting product image', 'woocommerce' ) );
 				// $visibility_style = $hidden_color_variation ? 'display: none':'display: initial';
 				$visibility_class = $selected_color ? 'selected-color':'unselected-color';
-				$color = explode(".", end(explode("-",end(explode("/", $image_url)))))[0];
+				// $color = explode(".", end(explode("-",end(explode("/", $image_url)))))[0];
+				// $color = explode('-',end(explode('/',$image_url)))[1];
+				$color = explode('-', $color_position)[0];
+				$i = explode('-', $color_position)[1];
 				switch($i) {
-					case 1:
-						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
+					case "0":
+						// se si cambia di colore prima scrivere l'html con le 3 immagini
+						if ($loop_color != $color) {
+							$loop_color = $color;
+							if (!$first_loop) {
+								$html .= $html_0 . $html_1 . $html_2 . $html_3;
+							}
+							$first_loop = FALSE;
+						}
+						// scrivi html
+						$html_0 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
-					case 2:
-					case 3:
-						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
+					case "1":
+						// se si cambia di colore prima scrivere l'html con le 3 immagini
+						if ($loop_color != $color) {
+							$loop_color = $color;
+							if (!$first_loop) {
+								$html .= $html_0 . $html_1 . $html_2 . $html_3;
+							}
+							$first_loop = FALSE;
+						}
+						$html_1 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
-					case 4:
-						$html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
-						$i = 0;
+					case "2":
+						// se si cambia di colore prima scrivere l'html con le 3 immagini
+						if ($loop_color != $color) {
+							$loop_color = $color;
+							if (!$first_loop) {
+								$html .= $html_0 . $html_1 . $html_2 . $html_3;
+							}
+							$first_loop = FALSE;
+						}
+						$html_2 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
+						break;
+					case "3":
+						// se si cambia di colore prima scrivere l'html con le 3 immagini
+						if ($loop_color != $color) {
+							$loop_color = $color;
+							if (!$first_loop) {
+								$html .= $html_0 . $html_1 . $html_2 . $html_3;
+							}
+							$first_loop = FALSE;
+						}
+						$html_3 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
+						break;
+						// $i = 0;
 						// $hidden_color_variation = TRUE;
-						$selected_color= FALSE;
-						break;
-					}
-			$i++;
+				}
+				// deselect color
+				$selected_color= FALSE;
 			}	
+		$html .= $html_0 . $html_1 . $html_2 . $html_3;
 		$html .= '</div>';
 		}
 
