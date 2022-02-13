@@ -52,10 +52,20 @@ add_action('woocommerce_after_single_variation','custom_jquery_shop_script');
 //funzione che aggiunge javascript per la lettura dei colori
 function custom_jquery_shop_script(){
         ?>
-            <script type="text/javascript">
+            <script type="text/javascript" defer>
             var colors
             var selected_color
-            document.querySelectorAll('[for="pa_size"]')[0].innerText = 'SIZE'
+            if ( document.querySelectorAll('[for="pa_size"]')[0]){
+                document.querySelectorAll('[for="pa_size"]')[0].innerText = 'SIZE'
+            }
+            if (document.querySelectorAll('[for="size"]')[0]){
+                document.querySelectorAll('[for="size"]')[0].innerText = 'SIZE'
+            }
+            if (document.querySelectorAll('[for="pa_color"]')[0]) {
+                document.querySelectorAll('[for="pa_color"]')[0].innerText = 'COLOR'
+            }
+
+
 
             //inserisci delle funzioni click per ogni colore
             function assignOnClickBehavoir(colors){
