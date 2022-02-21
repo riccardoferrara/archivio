@@ -43,7 +43,8 @@ function ridev_product_images (){
 	foreach($product_image_ids as &$id) {
 		$thumbnail_url = wp_get_attachment_image_url($id);
 		$color = explode('-',end(explode('/',$thumbnail_url)))[1];
-		$fullsize_image_url = preg_split("/....[x]+/", $thumbnail_url)[0] .'.jpg';
+		$extension = end(explode('.',$thumbnail_url));
+		$fullsize_image_url = preg_split("/....[x]+/", $thumbnail_url)[0] .'-768x1024'.'.'.$extension;
 		// $position = filter_var(explode('-',end(explode('/',$thumbnail_url)))[0], FILTER_SANITIZE_NUMBER_INT);
 		$position = explode('-',end(explode('/',$thumbnail_url)))[2];
 		$images_colors_url["$color-$position"] = $fullsize_image_url;
@@ -60,7 +61,9 @@ function ridev_product_images (){
 <div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
 	<figure class="woocommerce-product-gallery__wrapper">
 		<?php
-		if ( $post_thumbnail_id ) {
+		// if ( $post_thumbnail_id ) {
+		if ( false ) {
+
 			$html = wc_get_gallery_image_html( $post_thumbnail_id, true );
 		} else {
 			//questa parte inserisce le foto al primo giro
@@ -143,7 +146,7 @@ function ridev_product_images (){
 
 		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
 
-		do_action( 'woocommerce_product_thumbnails' );
+		// do_action( 'woocommerce_product_thumbnails' );
 		?>
 	</figure>
 </div>
