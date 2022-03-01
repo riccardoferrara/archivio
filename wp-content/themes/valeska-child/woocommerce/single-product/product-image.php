@@ -88,54 +88,28 @@ function ridev_product_images (){
 				// $color = explode('-',end(explode('/',$image_url)))[1];
 				$color = explode('-', $color_position)[0];
 				$i = explode('-', $color_position)[1];
+				// se si cambia di colore prima scrivere l'html con le 3 immagini
+				if ($loop_color != $color) {
+					$loop_color = $color;
+					if (!$first_loop) {
+						$html .= $html_0 . $html_1 . $html_2 . $html_3;
+					}
+					$first_loop = FALSE;
+				}
 				switch($i) {
+					// scrivi html
 					case "0":
-						// se si cambia di colore prima scrivere l'html con le 3 immagini
-						if ($loop_color != $color) {
-							$loop_color = $color;
-							if (!$first_loop) {
-								$html .= $html_0 . $html_1 . $html_2 . $html_3;
-							}
-							$first_loop = FALSE;
-						}
-						// scrivi html
 						$html_0 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
 					case "1":
-						// se si cambia di colore prima scrivere l'html con le 3 immagini
-						if ($loop_color != $color) {
-							$loop_color = $color;
-							if (!$first_loop) {
-								$html .= $html_0 . $html_1 . $html_2 . $html_3;
-							}
-							$first_loop = FALSE;
-						}
 						$html_1 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
 					case "2":
-						// se si cambia di colore prima scrivere l'html con le 3 immagini
-						if ($loop_color != $color) {
-							$loop_color = $color;
-							if (!$first_loop) {
-								$html .= $html_0 . $html_1 . $html_2 . $html_3;
-							}
-							$first_loop = FALSE;
-						}
 						$html_2 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
 					case "3":
-						// se si cambia di colore prima scrivere l'html con le 3 immagini
-						if ($loop_color != $color) {
-							$loop_color = $color;
-							if (!$first_loop) {
-								$html .= $html_0 . $html_1 . $html_2 . $html_3;
-							}
-							$first_loop = FALSE;
-						}
 						$html_3 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
-						// $i = 0;
-						// $hidden_color_variation = TRUE;
 				}
 				// deselect color
 				$selected_color= FALSE;
@@ -150,4 +124,3 @@ function ridev_product_images (){
 		?>
 	</figure>
 </div>
-
