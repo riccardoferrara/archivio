@@ -142,6 +142,16 @@ function alert($msg){
 <?php
 };
 
+// function for console_log in php
+function console_log($msg){
+    ?>
+    <script type="text/javascript">
+        var msg = <?php echo json_encode($msg); ?>;
+        console.log(msg)
+    </script>
+<?php
+};
+
 //alert(wc_get_product( $product_id ));
 
 
