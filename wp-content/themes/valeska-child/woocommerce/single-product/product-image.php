@@ -45,7 +45,6 @@ function ridev_product_images (){
 		$color = explode('-',end(explode('/',$thumbnail_url)))[1];
 		$extension = end(explode('.',$thumbnail_url));
 		$fullsize_image_url = preg_split("/....[x]+/", $thumbnail_url)[0] .'-768x1024'.'.'.$extension;
-		// $position = filter_var(explode('-',end(explode('/',$thumbnail_url)))[0], FILTER_SANITIZE_NUMBER_INT);
 		$position = explode('-',end(explode('/',$thumbnail_url)))[2];
 		$images_colors_url["$color-$position"] = $fullsize_image_url;
 	}
@@ -68,24 +67,17 @@ function ridev_product_images (){
 		} else {
 			//questa parte inserisce le foto al primo giro
 			$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
-			// $html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
 			//recupera gli url delle foto
 			$images_colors_url = ridev_product_images();
 			// crea codice html con tutte le foto
 			$i = 1;
-			// $hidden_color_variation = FALSE;
 			$selected_color = TRUE;
 			$change_color = FALSE;
 			$loop_color = "";
 			$first_loop = TRUE;
 			foreach($images_colors_url as $color_position => $image_url){
 				//se la foto è la terza o la quarta cambia stile (width 50%)
-				// $img_index = abs(filter_var(array_keys($image_url,FILTER_SANITIZE_NUMBER_INT)));
-				// $html .= sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image" />', $image_url, esc_html__( 'Awaiting product image', 'woocommerce' ) );
-				// $visibility_style = $hidden_color_variation ? 'display: none':'display: initial';
 				$visibility_class = $selected_color ? 'selected-color':'unselected-color';
-				// $color = explode(".", end(explode("-",end(explode("/", $image_url)))))[0];
-				// $color = explode('-',end(explode('/',$image_url)))[1];
 				$color = explode('-', $color_position)[0];
 				$i = explode('-', $color_position)[1];
 				// se si cambia di colore prima scrivere l'html con le 3 immagini
@@ -118,7 +110,7 @@ function ridev_product_images (){
 		$html .= '</div>';
 		}
 
-		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id );
 
 		// do_action( 'woocommerce_product_thumbnails' );
 		?>
