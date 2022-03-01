@@ -35,17 +35,25 @@ $wrapper_classes   = apply_filters(
 		'images',
 	)
 );
-
+function get_product_images_urls($product_image_ids){
+	$product_images_urls = [];
+	$i = 0;
+	foreach($product_image_ids as &$id) {
+		$product_images_urls[$i] = wp_get_attachment_image_url($id);
+		$i++;
+	}
+	return $product_images_urls;
+}
 
 function ridev_product_images (){
 	$product_image_ids = $GLOBALS['product']->get_gallery_image_ids();
 	$images_colors_url = [];
-	foreach($product_image_ids as &$id) {
-		$thumbnail_url = wp_get_attachment_image_url($id);
-		$color = explode('-',end(explode('/',$thumbnail_url)))[1];
-		$extension = end(explode('.',$thumbnail_url));
-		$fullsize_image_url = preg_split("/....[x]+/", $thumbnail_url)[0] .'-768x1024'.'.'.$extension;
-		$position = explode('-',end(explode('/',$thumbnail_url)))[2];
+	$product_images_urls = get_product_images_urls($product_image_ids);
+	foreach($product_images_urls as &$url) {
+		$color = explode('-',end(explode('/',$url)))[1];
+		$extension = end(explode('.',$url));
+		$fullsize_image_url = preg_split("/....[x]+/", $url)[0] .'-768x1024'.'.'.$extension;
+		$position = explode('-',end(explode('/',$url)))[2];
 		$images_colors_url["$color-$position"] = $fullsize_image_url;
 	}
 	return $images_colors_url;
@@ -70,7 +78,7 @@ function ridev_product_images (){
 			//recupera gli url delle foto
 			$images_colors_url = ridev_product_images();
 			// crea codice html con tutte le foto
-			$i = 1;
+			$i = "";
 			$selected_color = TRUE;
 			$change_color = FALSE;
 			$loop_color = "";
@@ -84,33 +92,46 @@ function ridev_product_images (){
 				if ($loop_color != $color) {
 					$loop_color = $color;
 					if (!$first_loop) {
-						$html .= $html_0 . $html_1 . $html_2 . $html_3;
+						$html .= $html_0 . $html_00 . $html_1 . $html_2 . $html_3;
+						// console_log($html);
+						$html_0 = "";
+						$html_00 = "";
+						$html_1 = "";
+						$html_2 = "";
+						$html_3 = "";
 					}
 					$first_loop = FALSE;
 				}
+				// se è "00" cambio nome altrimenti lo swtich lo contempla nel casso "0" non so perché
+				if ($i === "00"){
+					$i = "still2";
+				}
 				switch($i) {
 					// scrivi html
-					case "0":
+					case "0": //prima immagine "still"
 						$html_0 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
-					case "1":
+					case "still2": //seconda immagine eventuale "still"
+						$html_00 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
+						break;
+					case "1": //indossato uno (piu' piccola)
 						$html_1 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
-					case "2":
+					case "2": //indossato due (piu' piccola)
 						$html_2 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
-					case "3":
+					case "3": //indossato tre (piu' piccola)
 						$html_3 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
 				}
 				// deselect color
 				$selected_color= FALSE;
 			}	
-		$html .= $html_0 . $html_1 . $html_2 . $html_3;
+		$html .= $html_0 . $html_00 . $html_1 . $html_2 . $html_3;
 		$html .= '</div>';
 		}
 
-		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id );
+		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
 
 		// do_action( 'woocommerce_product_thumbnails' );
 		?>
