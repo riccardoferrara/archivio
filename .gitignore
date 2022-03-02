@@ -52,4 +52,6 @@ node_modules
 .quarantine
 .tmb
 .vscode
+.DS_Store*
+.*
 /wp-content/plugins/
