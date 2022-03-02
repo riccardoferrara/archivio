@@ -49,6 +49,16 @@ global $product;
 
 //hook javascript per lettura colori nella single-product page
 add_action('woocommerce_after_single_variation','custom_jquery_shop_script');
+//hook javascript per customizzare il comportamento del bottone add_to_cart
+add_action('woocommerce_after_add_to_cart_form', 'custom_add_to_cart_button');
+
+            
+function custom_add_to_cart_button(){
+    ?>
+        <script src="/wp-content/themes/valeska-child-server/assets/js/frontend/select-a-size.js" type="text/javascript" defer></script>
+    <?php
+}
+
 //funzione che aggiunge javascript per la lettura dei colori
 function custom_jquery_shop_script(){
         ?>
@@ -64,8 +74,6 @@ function custom_jquery_shop_script(){
             if (document.querySelectorAll('[for="pa_color"]')[0]) {
                 document.querySelectorAll('[for="pa_color"]')[0].innerText = 'COLOR'
             }
-
-
 
             //inserisci delle funzioni click per ogni colore
             function assignOnClickBehavoir(colors){
