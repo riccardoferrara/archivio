@@ -58,3 +58,16 @@ function closeSidebar() {
     jQuery(".arrow").removeClass("active");
 }
 /* End of totally unncessary swyping gestures*/
+
+// get sku and add the table in the sidebar
+let sku = document.querySelector('.sku').innerHTML
+let table = document.querySelector(`.${sku}`)
+if (table) {
+    //display title
+    title = document.querySelector('.sc-title.measurement')
+    title.classList.remove('not-displayed')
+    title.classList.add('displayed')
+        //display table
+    table.classList.remove('not-displayed')
+    table.classList.add('displayed')
+}
