@@ -172,68 +172,148 @@ function custom_side_bar(){
         </div>
         <!--The acutal content of the sidebar-->
         <div class="sidebar" id="sidebar">
-        <div class="container-liner">
-            <h4 class="sc-title"> <strong>SIZE CHART</strong> </h4>
-            <div>
-                <table class="sc-table">
-                    <tr>
-                        <td><strong>UNI</strong></td>
-                        <td><strong>XXS</strong></td>
-                        <td><strong>XS-S</strong></td>
-                        <td><strong>S-M</strong></td>
-                        <td><strong>M-L</strong></td>
-                        <td><strong>L-XL</strong></td>
-                        <td><strong>XL</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Germania</strong></td>
-                        <td>32</td>
-                        <td>34</td>
-                        <td>36</td>
-                        <td>38</td>
-                        <td>40</td>
-                        <td>42</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Italia</strong></td>
-                        <td>38</td>
-                        <td>40</td>
-                        <td>42</td>
-                        <td>44</td>
-                        <td>46</td>
-                        <td>48</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Francia</strong></td>
-                        <td>34</td>
-                        <td>36</td>
-                        <td>38</td>
-                        <td>40</td>
-                        <td>42</td>
-                        <td>44</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Regno Unito</strong></td>
-                        <td>6</td>
-                        <td>8</td>
-                        <td>10</td>
-                        <td>12</td>
-                        <td>14</td>
-                        <td>16</td>
-                    </tr>
-                    <tr class="last-row">
-                        <td><strong>USA</strong></td>
-                        <td>2</td>
-                        <td>4</td>
-                        <td>6</td>
-                        <td>8</td>
-                        <td>10</td>
-                        <td>12</td>
-                    </tr>
-                </table>
+            <div class="container-liner">
+                <div class="row">
+                    <h4 class="sc-title"> <strong>SIZE CHART</strong> </h4>
+                </div>
+                <div class="row">
+                    <table class="sc-table">
+                        <tr>
+                            <td><strong>UNI</strong></td>
+                            <td><strong>XXS</strong></td>
+                            <td><strong>XS-S</strong></td>
+                            <td><strong>S-M</strong></td>
+                            <td><strong>M-L</strong></td>
+                            <td><strong>L-XL</strong></td>
+                            <td><strong>XL</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Germania</strong></td>
+                            <td>32</td>
+                            <td>34</td>
+                            <td>36</td>
+                            <td>38</td>
+                            <td>40</td>
+                            <td>42</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Italia</strong></td>
+                            <td>38</td>
+                            <td>40</td>
+                            <td>42</td>
+                            <td>44</td>
+                            <td>46</td>
+                            <td>48</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Francia</strong></td>
+                            <td>34</td>
+                            <td>36</td>
+                            <td>38</td>
+                            <td>40</td>
+                            <td>42</td>
+                            <td>44</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Regno Unito</strong></td>
+                            <td>6</td>
+                            <td>8</td>
+                            <td>10</td>
+                            <td>12</td>
+                            <td>14</td>
+                            <td>16</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td><strong>USA</strong></td>
+                            <td>2</td>
+                            <td>4</td>
+                            <td>6</td>
+                            <td>8</td>
+                            <td>10</td>
+                            <td>12</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <h4 class="sc-title"> <span><strong>MESAUREMENT</strong></span> <span class="sc-subtitle">All mesaurements are listed in centimetres.</span> </h4>
+                </div>
+                <div class="row">
+                    <table class="sc-table CDD-22C">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td>D</td>
+                            <td>E</td>
+                        </tr>
+                        <tr>
+                            <td>Size</td>
+                            <td>Lenght</td>
+                            <td>Sleeve</td>
+                            <td>Shoulder width</td>
+                            <td>Chest</td>
+                            <td>Waist</td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td>72,5</td>
+                            <td>64,2</td>
+                            <td>42,4</td>
+                            <td>59,5</td>
+                            <td>52,4</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>74</td>
+                            <td>64,6</td>
+                            <td>43,6</td>
+                            <td>61,2</td>
+                            <td>54,2</td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td>75,5</td>
+                            <td>65</td>
+                            <td>44,6</td>
+                            <td>63</td>
+                            <td>56</td>
+                        </tr>
+                        <tr>
+                            <td>44</td>
+                            <td>77</td>
+                            <td>65,4</td>
+                            <td>45,8</td>
+                            <td>64,7</td>
+                            <td>57,8</td>
+                        </tr>
+                        <tr>
+                            <td>46</td>
+                            <td>78,5</td>
+                            <td>65,8</td>
+                            <td>47</td>
+                            <td>66,6</td>
+                            <td>59,7</td>
+                        </tr>
+                        <tr>
+                            <td>48</td>
+                            <td>80</td>
+                            <td>66,2</td>
+                            <td>48,2</td>
+                            <td>68,5</td>
+                            <td>61,7</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <img class="schema" src="https://www.archiviowebsite.com/wp-content/uploads/2022/03/CDD-22C_schema.svg">
+                    </div>
+                    <div class="column">
+                        <p class="size-description">Size, fit and measurements may vary from one style to another, which means there might be slight differences in items fit.</p>
+                    </div>
+                </div>
             </div>
-            <h4 class="sc-title"> <span><strong>MESAUREMENT</strong></span> <span class="sc-subtitle">All mesaurements are listed in centimetres.</span> </h4>
-        </div>
         </div>
         <script src="/wp-content/themes/valeska-child-server/assets/js/frontend/pdp-sidebar.js" type="text/javascript" defer></script>
         <style>
@@ -250,7 +330,7 @@ function custom_side_bar(){
                 font-family: lato;
                 font-size: 10px;
                 color: black; 
-                line-height: normal;
+                line-height: 0.7;
             }
             table.sc-table tr {
                 border-bottom: 1px solid #ddd !important;
@@ -261,7 +341,34 @@ function custom_side_bar(){
             table.sc-table td {
                 border: none;
             }
+            .red {
+                color: red;
+            }
             /* end table style */
+            /* schema style */
+            .row {
+                display: flex;
+            }
+            .column {
+                flex: 50%;
+                position: relative;
+            }
+            .schema {
+                height: 12rem !important;
+                margin: 1.5rem;
+            }
+            /* end schema style */
+            /* size description style */
+            .size-description {
+                font-family: lato;
+                font-size: 10px;
+                position: absolute;
+                bottom: 0px;
+                right: 1rem;
+                color: black;
+                line-height: normal;
+            }
+            /* end size description style */
             .move-to-left {
   transform: translateX(-400px);
 }
