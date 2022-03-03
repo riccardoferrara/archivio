@@ -61,7 +61,7 @@ function closeSidebar() {
 
 // get sku and add the table in the sidebar
 let sku = document.querySelector('.sku').innerHTML
-let table = document.querySelector(`.${sku}`)
+let table = document.querySelector(`.${sku}.sc-table`)
 if (table) {
     //display title
     title = document.querySelector('.sc-title.measurement')
@@ -70,4 +70,11 @@ if (table) {
         //display table
     table.classList.remove('not-displayed')
     table.classList.add('displayed')
+}
+//add the schema img in the sidebar
+let schema = document.querySelector(`.${sku}.schema`)
+if (schema) {
+    //display schema 
+    schema.classList.remove('not-displayed')
+    schema.classList.add('displayed')
 }
