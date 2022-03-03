@@ -168,8 +168,10 @@ function custom_side_bar(){
     ?>
         <!--The pull tab used to open and close the sidebar-->
         <div class="sidebar-tab" id="sidebar-tab">
-        <div class="vertical-text text-center" id="sidebar-tab-text" onclick="toggleSidebar()">THIS IS SIDEBAR<span class="arrow vertical-text"></span></div>
+            <div class="vertical-text text-center" id="sidebar-tab-text" onclick="toggleSidebar()">THIS IS SIDEBAR<span class="arrow vertical-text"></span></div>
         </div>
+        <!-- The grey div to show when the sidebar is opened -->
+        <div class="grey-div not-displayed"></div>
         <!--The acutal content of the sidebar-->
         <div class="sidebar" id="sidebar">
             <div class="container-liner">
@@ -774,6 +776,17 @@ function custom_side_bar(){
                 line-height: normal;
             }
             /* end size description style */
+            /* grey div style */
+            .grey-div {
+                z-index: 1;
+                background-color: rgba(50, 50, 50, 0.5);
+                height: 100vh;
+                width: 100vw;
+                position: fixed;
+                left: 0;
+                top: 0;
+            }
+            /* end grey div style */
             .move-to-left {
                 transform: translateX(-400px);
             }
@@ -785,7 +798,7 @@ function custom_side_bar(){
                 width: 400px;
                 position: fixed;
                 top: 90px;
-                z-index: 1;
+                z-index: 2;
                 right: -400px;
                 background-color: #FFF;
                 transition: transform .7s ease-in-out; 
@@ -798,7 +811,7 @@ function custom_side_bar(){
                 width: 2rem;
                 position: fixed;
                 top: 90px;
-                z-index: 1;
+                z-index: 2;
                 right: -2rem;
                 background-color: white;
                 transition: transform .7s ease-in-out;

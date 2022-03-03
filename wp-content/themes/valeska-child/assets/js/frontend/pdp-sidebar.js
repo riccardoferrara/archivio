@@ -13,6 +13,7 @@ function toggleSidebar() {
     jQuery("#sidebar-tab").toggleClass("move-to-left");
     jQuery("main").toggleClass("move-to-left-partly");
     jQuery(".arrow").toggleClass("active");
+    jQuery(".grey-div").toggleClass("not-displayed");
 }
 
 /* Totally unncessary swyping gestures*/
@@ -49,6 +50,7 @@ function openSidebar() {
     jQuery("main").addClass("move-to-left-partly");
     jQuery("#sidebar-tab").addClass("move-to-left");
     jQuery(".arrow").addClass("active");
+    obscure();
 }
 
 function closeSidebar() {
@@ -56,6 +58,20 @@ function closeSidebar() {
     jQuery("main").removeClass("move-to-left-partly");
     jQuery("#sidebar-tab").removeClass("move-to-left");
     jQuery(".arrow").removeClass("active");
+    unobscure();
+}
+
+// function to obscure the window when sidebar is opened
+function obscure() {
+    let grey_div = document.querySelector('.grey-div')
+    grey_div.classList.remove('not-displayed')
+    grey_div.classList.add('displayed')
+}
+// function to unobscure the window when sidebar is opened
+function unobscure() {
+    let grey_div = document.querySelector('.grey-div')
+    grey_div.classList.add('not-displayed')
+    grey_div.classList.remove('displayed')
 }
 /* End of totally unncessary swyping gestures*/
 
