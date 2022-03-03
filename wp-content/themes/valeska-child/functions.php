@@ -174,7 +174,7 @@ function custom_side_bar(){
         <div class="sidebar" id="sidebar">
             <div class="container-liner">
                 <div class="row">
-                    <h4 class="sc-title"> <strong>SIZE CHART</strong> </h4>
+                    <h4 class="sc-title size"> <strong>SIZE CHART</strong> </h4>
                 </div>
                 <div class="row">
                     <table class="sc-table">
@@ -235,10 +235,10 @@ function custom_side_bar(){
                     </table>
                 </div>
                 <div class="row">
-                    <h4 class="sc-title"> <span><strong>MAESUREMENT</strong></span> <span class="sc-subtitle">All mesaurements are listed in centimetres.</span> </h4>
+                    <h4 class="sc-title measurement not-displayed"> <span><strong>MEASUREMENT</strong></span> <span class="sc-subtitle">All mesaurements are listed in centimetres.</span> </h4>
                 </div>
                 <div class="row">
-                    <table class="sc-table CDD-22C">
+                    <table class="sc-table not-displayed CDD-22C">
                         <tr class="red">
                             <td></td>
                             <td>A</td>
@@ -306,7 +306,7 @@ function custom_side_bar(){
                     </table>
                 </div>
                 <div class="row">
-                    <table class="sc-table CDD-22L">
+                    <table class="sc-table not-displayed CDD-22L">
                         <tr class="red">
                             <td></td>
                             <td>A</td>
@@ -374,7 +374,7 @@ function custom_side_bar(){
                     </table>
                 </div>
                 <div class="row">
-                    <table class="sc-table CDD-22M">
+                    <table class="sc-table not-displayed CDD-22M">
                         <tr class="red">
                             <td></td>
                             <td>A</td>
@@ -442,7 +442,7 @@ function custom_side_bar(){
                     </table>
                 </div>
                 <div class="row">
-                    <table class="sc-table FOULARD-01">
+                    <table class="sc-table not-displayed FOULARD-01">
                         <tr class="red">
                             <td></td>
                             <td>A</td>
@@ -461,7 +461,7 @@ function custom_side_bar(){
                     </table>
                 </div>
                 <div class="row">
-                    <table class="sc-table PANT-03">
+                    <table class="sc-table not-displayed PANT-03">
                         <tr class="red">
                             <td></td>
                             <td>A</td>
@@ -521,7 +521,7 @@ function custom_side_bar(){
                     </table>
                 </div>
                 <div class="row">
-                    <table class="sc-table PANT-U04">
+                    <table class="sc-table not-displayed PANT-U04">
                         <tr class="red">
                             <td></td>
                             <td>A</td>
@@ -581,7 +581,7 @@ function custom_side_bar(){
                     </table>
                 </div>
                 <div class="row">
-                    <table class="sc-table SKIRT-02">
+                    <table class="sc-table not-displayed SKIRT-02">
                         <tr class="red">
                             <td></td>
                             <td>A</td>
@@ -632,7 +632,7 @@ function custom_side_bar(){
                     </table>
                 </div> 
                 <div class="row">
-                    <table class="sc-table SKIRT-03">
+                    <table class="sc-table not-displayed SKIRT-03">
                         <tr class="red">
                             <td></td>
                             <td>A</td>
@@ -730,6 +730,12 @@ function custom_side_bar(){
             .red {
                 color: red;
             }
+            .not-displayed {
+                display: none;
+            }
+            .displayed {
+                display: initial;
+            }
             /* end table style */
             /* schema style */
             .row {
@@ -756,94 +762,91 @@ function custom_side_bar(){
             }
             /* end size description style */
             .move-to-left {
-  transform: translateX(-400px);
-}
-.move-to-left-partly {
-  transform: translateX(-200px);
-}
-.sidebar {
-  height: 100%;
-  width: 400px;
-  position: fixed;
-  top: 90px;
-  z-index: 1;
-  right: -400px;
-  background-color: #FFF;
-  transition: transform .7s ease-in-out;
-  
-}
-.container-liner{
-  margin-left:1rem;
-}
-.sidebar-tab {
-  height: 100%;
-  width: 2rem;
-  position: fixed;
-  top: 90px;
-  z-index: 1;
-  right: -2rem;
-  background-color: white;
-  transition: transform .7s ease-in-out;
-}
-#sidebar-tab-text{ 
-    width: 400px;
-}
-.vertical-text {
-	transform: rotate(90deg);
-	transform-origin: left 2rem;
-  vertical-align:middle;
-}
-.arrow {
-  box-sizing: border-box;
-  display: inline-block;
-  cursor: pointer;
-  position: relative;
-  transform: rotate(0deg);
-  transition: all 0.5s ease-in-out;
-  width: 32px;
-  height: 32px;
-  z-index: 1;
-}
-.arrow:after, .arrow:before {
-  content: "";
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  transition: all 0.25s ease-in-out;
-  border-radius: 10px;
-  background: #000;
-  width: 16px;
-  height: 3.2px;
-  top: 14.4px;
-}
-.arrow:after {
-  transform: rotate(44deg);
-  left: 3.2px;
-}
-.arrow:before {
-  right: 3.2px;
-  transform: rotate(-44deg);
-}
-.arrow.active:after {
-  transform: rotate(-44deg);
-}
-.arrow.active:before {
-  transform: rotate(44deg);
-}
-
-
-.card {
-  margin-right: 260px;
-  margin-left: 225px;
-  box-shadow: .5rem .5rem 2rem rgba(0, 0, 0, 0.4);
-}
-.card-text {
-  color: #000;
-}
-.btn.btn-primary {
-  background-color: #F50057;
-  border-color: #F50057;
-}
+                transform: translateX(-400px);
+            }
+            .move-to-left-partly {
+                transform: translateX(-200px);
+            }
+            .sidebar {
+                height: 100%;
+                width: 400px;
+                position: fixed;
+                top: 90px;
+                z-index: 1;
+                right: -400px;
+                background-color: #FFF;
+                transition: transform .7s ease-in-out; 
+            }
+            .container-liner{
+                margin-left:1rem;
+            }
+            .sidebar-tab {
+                height: 100%;
+                width: 2rem;
+                position: fixed;
+                top: 90px;
+                z-index: 1;
+                right: -2rem;
+                background-color: white;
+                transition: transform .7s ease-in-out;
+            }
+            #sidebar-tab-text{ 
+                width: 400px;
+            }
+            .vertical-text {
+                transform: rotate(90deg);
+                transform-origin: left 2rem;
+                vertical-align:middle;
+            }
+            .arrow {
+                box-sizing: border-box;
+                display: inline-block;
+                cursor: pointer;
+                position: relative;
+                transform: rotate(0deg);
+                transition: all 0.5s ease-in-out;
+                width: 32px;
+                height: 32px;
+                z-index: 1;
+            }
+            .arrow:after, .arrow:before {
+                content: "";
+                box-sizing: border-box;
+                display: block;
+                position: absolute;
+                transition: all 0.25s ease-in-out;
+                border-radius: 10px;
+                background: #000;
+                width: 16px;
+                height: 3.2px;
+                top: 14.4px;
+            }
+            .arrow:after {
+                transform: rotate(44deg);
+                left: 3.2px;
+            }
+            .arrow:before {
+                right: 3.2px;
+                transform: rotate(-44deg);
+            }
+            .arrow.active:after {
+                transform: rotate(-44deg);
+            }
+            .arrow.active:before {
+                transform: rotate(44deg);
+            }
+            .card {
+                margin-right: 260px;
+                margin-left: 225px;
+                box-shadow: .5rem .5rem 2rem rgba(0, 0, 0, 0.4);
+            }
+            .card-text {
+                color: #000;
+            }
+            .btn.btn-primary {
+                background-color: #F50057;
+                border-color: #F50057;
+            }
         </style>
     <?php
 }
