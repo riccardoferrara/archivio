@@ -51,8 +51,10 @@ global $product;
 add_action('woocommerce_after_single_variation','custom_jquery_shop_script');
 //hook javascript per customizzare il comportamento del bottone add_to_cart
 add_action('woocommerce_after_add_to_cart_form', 'custom_add_to_cart_button');
+//hook javascript per creazione sidebar
+add_action('woocommerce_after_add_to_cart_form', 'custom_side_bar');
 
-            
+//funzione che aggiunge js per i comportamenti del bottone "ADD TO CART"            
 function custom_add_to_cart_button(){
     ?>
         <script src="/wp-content/themes/valeska-child-server/assets/js/frontend/select-a-size.js" type="text/javascript" defer></script>
@@ -160,38 +162,112 @@ function console_log($msg){
 <?php
 };
 
-//alert(wc_get_product( $product_id ));
+
+//funzione che aggiunge js per i comportamenti del bottone "ADD TO CART"            
+function custom_side_bar(){
+    ?>
+        <!--The pull tab used to open and close the sidebar-->
+        <div class="sidebar-tab" id="sidebar-tab">
+        <div class="vertical-text text-center" id="sidebar-tab-text" onclick="toggleSidebar()">THIS IS SIDEBAR<span class="arrow vertical-text"></span></div>
+        </div>
+        <!--The acutal content of the sidebar-->
+        <div class="sidebar" id="sidebar">
+        <div class="container-liner">
+            <h4> Example Sidebar Content</h4>
+            <div> This is an example of some sidebar content! Yay! :D</div>
+        </div>
+        </div>
+        <script src="/wp-content/themes/valeska-child-server/assets/js/frontend/pdp-sidebar.js" type="text/javascript" defer></script>
+        <style>
+            .move-to-left {
+  transform: translateX(-400px);
+}
+.move-to-left-partly {
+  transform: translateX(-200px);
+}
+.sidebar {
+  height: 100%;
+  width: 400px;
+  position: fixed;
+  top: 90px;
+  z-index: 1;
+  right: -400px;
+  background-color: #FFF;
+  transition: transform .7s ease-in-out;
+  
+}
+.container-liner{
+  margin-left:1rem;
+}
+.sidebar-tab {
+  height: 100%;
+  width: 2rem;
+  position: fixed;
+  top: 90px;
+  z-index: 1;
+  right: -2rem;
+  background-color: white;
+  transition: transform .7s ease-in-out;
+}
+#sidebar-tab-text{ 
+    width: 400px;
+}
+.vertical-text {
+	transform: rotate(90deg);
+	transform-origin: left 2rem;
+  vertical-align:middle;
+}
+.arrow {
+  box-sizing: border-box;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  transform: rotate(0deg);
+  transition: all 0.5s ease-in-out;
+  width: 32px;
+  height: 32px;
+  z-index: 1;
+}
+.arrow:after, .arrow:before {
+  content: "";
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  transition: all 0.25s ease-in-out;
+  border-radius: 10px;
+  background: #000;
+  width: 16px;
+  height: 3.2px;
+  top: 14.4px;
+}
+.arrow:after {
+  transform: rotate(44deg);
+  left: 3.2px;
+}
+.arrow:before {
+  right: 3.2px;
+  transform: rotate(-44deg);
+}
+.arrow.active:after {
+  transform: rotate(-44deg);
+}
+.arrow.active:before {
+  transform: rotate(44deg);
+}
 
 
-//---------------------------------
-// CREAZIONE IMMAGINI NELLA PDP
-//---------------------------------
-
-// global $product;
-
-// function ridev_product_images (){
-// 	$product_image_ids = $GLOBALS['product']->get_gallery_image_ids();
-// 	$images_colors_url = [];
-// 	foreach($product_image_ids as &$id) {
-// 		$thumbnail_url = wp_get_attachment_image_url($id);
-// 		$color = explode('-',end(explode('/',$thumbnail_url)))[1];
-// 		$fullsize_image_url = preg_split("/....[x]+/", $thumbnail_url)[0] .'.png';
-// 		$position = filter_var(explode('-',end(explode('/',$thumbnail_url)))[0], FILTER_SANITIZE_NUMBER_INT);
-// 		$images_colors_url["$color-$position"] = $fullsize_image_url;
-// 	}
-// 	return $images_colors_url;
-// };
-
-
-// $post_thumbnail_id = $product->get_image_id();
-
-
-// $html  = '<div class="woocommerce-product-gallery__image--placeholder">';
-// // $html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
-// $html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', ridev_product_images()['black-1'], esc_html__( 'Awaiting product image', 'woocommerce' ) );
-// $html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', ridev_product_images()['black-2'], esc_html__( 'Awaiting product image', 'woocommerce' ) );
-// $html .= '</div>';
-
-// echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
-
-// do_action( 'woocommerce_product_thumbnails' );
+.card {
+  margin-right: 260px;
+  margin-left: 225px;
+  box-shadow: .5rem .5rem 2rem rgba(0, 0, 0, 0.4);
+}
+.card-text {
+  color: #000;
+}
+.btn.btn-primary {
+  background-color: #F50057;
+  border-color: #F50057;
+}
+        </style>
+    <?php
+}
