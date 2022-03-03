@@ -171,7 +171,7 @@ function custom_side_bar(){
             <div class="vertical-text text-center" id="sidebar-tab-text" onclick="toggleSidebar()">THIS IS SIDEBAR<span class="arrow vertical-text"></span></div>
         </div>
         <!-- The grey div to show when the sidebar is opened -->
-        <div class="grey-div not-displayed"></div>
+        <div class="grey-div not-displayed" onclick="toggleSidebar()"></div>
         <!--The acutal content of the sidebar-->
         <div class="sidebar" id="sidebar">
             <div class="container-liner">
