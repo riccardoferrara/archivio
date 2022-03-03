@@ -235,7 +235,7 @@ function custom_side_bar(){
                     </table>
                 </div>
                 <div class="row">
-                    <h4 class="sc-title"> <span><strong>MESAUREMENT</strong></span> <span class="sc-subtitle">All mesaurements are listed in centimetres.</span> </h4>
+                    <h4 class="sc-title"> <span><strong>MAESUREMENT</strong></span> <span class="sc-subtitle">All mesaurements are listed in centimetres.</span> </h4>
                 </div>
                 <div class="row">
                     <table class="sc-table CDD-22C">
@@ -295,7 +295,7 @@ function custom_side_bar(){
                             <td>66,6</td>
                             <td>59,7</td>
                         </tr>
-                        <tr>
+                        <tr class="last-row">
                             <td>48</td>
                             <td>80</td>
                             <td>66,2</td>
@@ -305,6 +305,392 @@ function custom_side_bar(){
                         </tr>
                     </table>
                 </div>
+                <div class="row">
+                    <table class="sc-table CDD-22L">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td>D</td>
+                            <td>E</td>
+                        </tr>
+                        <tr>
+                            <td>Size</td>
+                            <td>Lenght</td>
+                            <td>Sleeve</td>
+                            <td>Shoulder width</td>
+                            <td>Chest</td>
+                            <td>Waist</td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td>134</td>
+                            <td>64,2</td>
+                            <td>42,4</td>
+                            <td>59,5</td>
+                            <td>52,4</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>135,5</td>
+                            <td>64,6</td>
+                            <td>43,6</td>
+                            <td>61,2</td>
+                            <td>54,2</td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td>137</td>
+                            <td>65</td>
+                            <td>44,6</td>
+                            <td>63</td>
+                            <td>56</td>
+                        </tr>
+                        <tr>
+                            <td>44</td>
+                            <td>138,5</td>
+                            <td>65,4</td>
+                            <td>45,8</td>
+                            <td>64,7</td>
+                            <td>57,8</td>
+                        </tr>
+                        <tr>
+                            <td>46</td>
+                            <td>140</td>
+                            <td>65,8</td>
+                            <td>47</td>
+                            <td>66,6</td>
+                            <td>59,7</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td>48</td>
+                            <td>141,5</td>
+                            <td>66,2</td>
+                            <td>48,2</td>
+                            <td>68,5</td>
+                            <td>61,7</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <table class="sc-table CDD-22M">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td>D</td>
+                            <td>E</td>
+                        </tr>
+                        <tr>
+                            <td>Size</td>
+                            <td>Lenght</td>
+                            <td>Sleeve</td>
+                            <td>Shoulder width</td>
+                            <td>Chest</td>
+                            <td>Waist</td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td>96,5</td>
+                            <td>64,2</td>
+                            <td>42,4</td>
+                            <td>59,5</td>
+                            <td>52,4</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>98</td>
+                            <td>64,6</td>
+                            <td>43,6</td>
+                            <td>61,2</td>
+                            <td>54,2</td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td>99,5</td>
+                            <td>65</td>
+                            <td>44,6</td>
+                            <td>63</td>
+                            <td>56</td>
+                        </tr>
+                        <tr>
+                            <td>44</td>
+                            <td>101</td>
+                            <td>65,4</td>
+                            <td>45,8</td>
+                            <td>64,7</td>
+                            <td>57,8</td>
+                        </tr>
+                        <tr>
+                            <td>46</td>
+                            <td>102,5</td>
+                            <td>65,8</td>
+                            <td>47</td>
+                            <td>66,6</td>
+                            <td>59,7</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td>48</td>
+                            <td>104</td>
+                            <td>66,2</td>
+                            <td>48,2</td>
+                            <td>68,5</td>
+                            <td>61,7</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <table class="sc-table FOULARD-01">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>B</td>
+                        </tr>
+                        <tr>
+                            <td>Size</td>
+                            <td>Lenght</td>
+                            <td>Width</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td>OS</td>
+                            <td>60</td>
+                            <td>50</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <table class="sc-table PANT-03">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td>D</td>
+                        </tr>
+                        <tr>
+                            <td>Size</td>
+                            <td>Lenght</td>
+                            <td>Waist</td>
+                            <td>Hip</td>
+                            <td>Half thigh</td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td>114</td>
+                            <td>32</td>
+                            <td>48</td>
+                            <td>31,5</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>115</td>
+                            <td>34</td>
+                            <td>50</td>
+                            <td>32,7</td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td>116</td>
+                            <td>36</td>
+                            <td>52</td>
+                            <td>34</td>
+                        </tr>
+                        <tr>
+                            <td>44</td>
+                            <td>117</td>
+                            <td>38</td>
+                            <td>54</td>
+                            <td>35,3</td>
+                        </tr>
+                        <tr>
+                            <td>46</td>
+                            <td>118</td>
+                            <td>40</td>
+                            <td>56</td>
+                            <td>36,6</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td>48</td>
+                            <td>119</td>
+                            <td>42</td>
+                            <td>58</td>
+                            <td>38</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <table class="sc-table PANT-U04">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td>D</td>
+                        </tr>
+                        <tr>
+                            <td>Size</td>
+                            <td>Lenght</td>
+                            <td>Waist</td>
+                            <td>Hip</td>
+                            <td>Half thigh</td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td>115</td>
+                            <td>42</td>
+                            <td>56</td>
+                            <td>35</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>118</td>
+                            <td>43,5</td>
+                            <td>58</td>
+                            <td>36,2</td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td>118</td>
+                            <td>43,5</td>
+                            <td>60</td>
+                            <td>37,5</td>
+                        </tr>
+                        <tr>
+                            <td>44</td>
+                            <td>121</td>
+                            <td>45</td>
+                            <td>62</td>
+                            <td>38,7</td>
+                        </tr>
+                        <tr>
+                            <td>46</td>
+                            <td>121</td>
+                            <td>45</td>
+                            <td>64</td>
+                            <td>39.9</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td>48</td>
+                            <td>122</td>
+                            <td>46</td>
+                            <td>66</td>
+                            <td>41</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <table class="sc-table SKIRT-02">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                        </tr>
+                        <tr>
+                            <td>Lenght</td>
+                            <td>Waist</td>
+                            <td>Hip</td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td>72,5</td>
+                            <td>30</td>
+                            <td>46</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>74,5</td>
+                            <td>32</td>
+                            <td>48</td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td>74,5</td>
+                            <td>34</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>44</td>
+                            <td>74,5</td>
+                            <td>36</td>
+                            <td>52</td>
+                        </tr>
+                        <tr>
+                            <td>46</td>
+                            <td>74,5</td>
+                            <td>38</td>
+                            <td>54</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td>48</td>
+                            <td>74,5</td>
+                            <td>40</td>
+                            <td>56</td>
+                        </tr>
+                    </table>
+                </div> 
+                <div class="row">
+                    <table class="sc-table SKIRT-03">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Size</td>
+                            <td>Lenght</td>
+                            <td>Waist</td>
+                            <td>Hip</td>
+                            <td>Front slit</td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td>72,5</td>
+                            <td>30</td>
+                            <td>46</td>
+                            <td>42,5</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>74,5</td>
+                            <td>32</td>
+                            <td>48</td>
+                            <td>44,5</td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td>74,5</td>
+                            <td>34</td>
+                            <td>50</td>
+                            <td>44,5</td>
+                        </tr>
+                        <tr>
+                            <td>44</td>
+                            <td>74,5</td>
+                            <td>36</td>
+                            <td>52</td>
+                            <td>44,5</td>
+                        </tr>
+                        <tr>
+                            <td>46</td>
+                            <td>74,5</td>
+                            <td>38</td>
+                            <td>54</td>
+                            <td>44,5</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td>48</td>
+                            <td>74,5</td>
+                            <td>40</td>
+                            <td>56</td>
+                            <td>44,5</td>
+                        </tr>
+                    </table>
+                </div>              
                 <div class="row">
                     <div class="column">
                         <img class="schema" src="https://www.archiviowebsite.com/wp-content/uploads/2022/03/CDD-22C_schema.svg">
