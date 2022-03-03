@@ -129,6 +129,7 @@ function ridev_product_images (){
 			}	
 		$html .= $html_0 . $html_00 . $html_1 . $html_2 . $html_3;
 		$html .= '</div>';
+		// inserisci un elemento nascosto con lo sku
 		$sku = $product->get_sku();
 		$html .= sprintf('<div class="sku not-selected">%s</div>', $sku);
 		}
