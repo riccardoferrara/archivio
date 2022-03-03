@@ -173,12 +173,95 @@ function custom_side_bar(){
         <!--The acutal content of the sidebar-->
         <div class="sidebar" id="sidebar">
         <div class="container-liner">
-            <h4> Example Sidebar Content</h4>
-            <div> This is an example of some sidebar content! Yay! :D</div>
+            <h4 class="sc-title"> <strong>SIZE CHART</strong> </h4>
+            <div>
+                <table class="sc-table">
+                    <tr>
+                        <td><strong>UNI</strong></td>
+                        <td><strong>XXS</strong></td>
+                        <td><strong>XS-S</strong></td>
+                        <td><strong>S-M</strong></td>
+                        <td><strong>M-L</strong></td>
+                        <td><strong>L-XL</strong></td>
+                        <td><strong>XL</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Germania</strong></td>
+                        <td>32</td>
+                        <td>34</td>
+                        <td>36</td>
+                        <td>38</td>
+                        <td>40</td>
+                        <td>42</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Italia</strong></td>
+                        <td>38</td>
+                        <td>40</td>
+                        <td>42</td>
+                        <td>44</td>
+                        <td>46</td>
+                        <td>48</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Francia</strong></td>
+                        <td>34</td>
+                        <td>36</td>
+                        <td>38</td>
+                        <td>40</td>
+                        <td>42</td>
+                        <td>44</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Regno Unito</strong></td>
+                        <td>6</td>
+                        <td>8</td>
+                        <td>10</td>
+                        <td>12</td>
+                        <td>14</td>
+                        <td>16</td>
+                    </tr>
+                    <tr class="last-row">
+                        <td><strong>USA</strong></td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>6</td>
+                        <td>8</td>
+                        <td>10</td>
+                        <td>12</td>
+                    </tr>
+                </table>
+            </div>
+            <h4 class="sc-title"> <span><strong>MESAUREMENT</strong></span> <span class="sc-subtitle">All mesaurements are listed in centimetres.</span> </h4>
         </div>
         </div>
         <script src="/wp-content/themes/valeska-child-server/assets/js/frontend/pdp-sidebar.js" type="text/javascript" defer></script>
         <style>
+            /* table style */
+            .sc-title {
+                font-family: lato;
+                font-size: 12px;
+            }
+            .sc-subtitle {
+                text-transform: none;
+                margin-left: 30px;
+            }
+            table.sc-table {
+                font-family: lato;
+                font-size: 10px;
+                color: black; 
+                line-height: normal;
+            }
+            table.sc-table tr {
+                border-bottom: 1px solid #ddd !important;
+            }
+            .last-row {
+                border-bottom: none !important;
+            }
+            table.sc-table td {
+                border: none;
+            }
+            /* end table style */
             .move-to-left {
   transform: translateX(-400px);
 }
