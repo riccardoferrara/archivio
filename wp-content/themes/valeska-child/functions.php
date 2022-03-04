@@ -77,6 +77,25 @@ function custom_jquery_shop_script(){
                 document.querySelectorAll('[for="pa_color"]')[0].innerText = 'COLOR'
             }
 
+            //muovi le etichette COLOR and SIZE da accanto a sopra nelle tabelle
+            //recupera la tabella
+            let var_table = document.querySelector('table.variations')
+            //recupera la cella contenente il colore e la taglia per ricopiarla dopo
+            var color_th = var_table.childNodes[1].childNodes[1].childNodes[1]
+            var size_th = var_table.childNodes[1].childNodes[3].childNodes[1]
+            // rimuovi vecchie etichette
+            var_table.childNodes[1].childNodes[1].deleteCell(0)
+            var_table.childNodes[1].childNodes[3].deleteCell(0)
+            // inserisci due nuove righe
+            var color_row = var_table.insertRow(0)
+            var size_row = var_table.insertRow(2)
+            // inserisci una cella per riga
+            var color = color_row.insertCell(0)
+            var size = size_row.insertCell(0)
+            color.outerHTML = color_th.outerHTML
+            size.outerHTML = size_th.outerHTML
+
+
             //inserisci delle funzioni click per ogni colore
             function assignOnClickBehavoir(colors){
                 for (var i=0, iLen=colors.length; i<iLen; i++) {
