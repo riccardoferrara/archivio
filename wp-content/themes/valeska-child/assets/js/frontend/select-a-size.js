@@ -21,9 +21,7 @@ function updateCartButton() {
     }
 }
 
-
-console.log('ok')
-    // cerca il radiogroup 
+// cerca il radiogroup 
 let size_radiogroup = document.querySelectorAll('[role="radiogroup"][aria-label="Size"]')[0]
     //cerca il bottone "add to cart"
 let cartButton = document.querySelector('.single_add_to_cart_button.button.alt')
