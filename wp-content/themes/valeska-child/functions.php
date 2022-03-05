@@ -106,7 +106,7 @@ function custom_jquery_shop_script(){
                     colors[i].onclick = function() {
                         selected_color = this.dataset.value
                         // alert(selected_color)
-                        console.log('selected_color: ', selected_color)
+                        // console.log('selected_color: ', selected_color)
                         showSelectedColorVariation()
                         showSelectedColorDescription()
                     }
@@ -133,7 +133,7 @@ function custom_jquery_shop_script(){
             }
             function showImageElement(imgElement){
                 // alert('start shoImageElement')
-                console.log(imgElement)
+                // console.log(imgElement)
                 imgElement.classList.remove('unselected-color')
                 imgElement.classList.add('selected-color')
             }
@@ -146,11 +146,11 @@ function custom_jquery_shop_script(){
                 //     console.log(i)
                 //     hideImageElement(imagesElementOfShownColor[i])
                 // }
-                console.log('start hide elements')
+                // console.log('start hide elements')
                 while (document.getElementsByClassName("selected-color")[0] != undefined){
                     hideImageElement(document.getElementsByClassName("selected-color")[0])
                 }
-                console.log('end hide elements')
+                // console.log('end hide elements')
                 var imagesElementOfTheColorToShow = []
                 imagesElementOfTheColorToShow = document.querySelectorAll('[color="'+ selected_color + '"]')
                 for (var i =0; i< imagesElementOfTheColorToShow.length; i++){
@@ -165,7 +165,7 @@ function custom_jquery_shop_script(){
 
             //update photos as requested product
             function updatePhotos(){
-                console.log('req_color: '. selected_color)
+                // console.log('req_color: '. selected_color)
                 if (selected_color) {
                     showSelectedColorVariation()
                     showSelectedColorDescription()
