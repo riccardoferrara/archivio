@@ -67,6 +67,10 @@ function custom_jquery_shop_script(){
             <script type="text/javascript" defer>
             var colors
             var selected_color
+
+            // if page is loaded from query, color is in the address
+            selected_color = window.location.href.split('/').slice(-1)[0].split(/[=?&]/)[2]
+
             if ( document.querySelectorAll('[for="pa_size"]')[0]){
                 document.querySelectorAll('[for="pa_size"]')[0].innerText = 'SIZE'
             }
@@ -102,6 +106,7 @@ function custom_jquery_shop_script(){
                     colors[i].onclick = function() {
                         selected_color = this.dataset.value
                         // alert(selected_color)
+                        console.log('selected_color: ', selected_color)
                         showSelectedColorVariation()
                         showSelectedColorDescription()
                     }
@@ -122,7 +127,7 @@ function custom_jquery_shop_script(){
             waitForColorsElements()
             //definisco una funzione che nasconde un elemento imagine cambiando la classe
             function hideImageElement(imgElement){
-                console.log(imgElement)
+                // console.log(imgElement)
                 imgElement.classList.remove('selected-color')
                 imgElement.classList.add('unselected-color')
             }
@@ -157,6 +162,16 @@ function custom_jquery_shop_script(){
                 color_label = document.querySelectorAll('[value="'+ selected_color+'"]')[0].text
                 document.querySelectorAll('[for="pa_color"]')[0].innerText = color_label           
             }
+
+            //update photos as requested product
+            function updatePhotos(){
+                console.log('req_color: '. selected_color)
+                if (selected_color) {
+                    showSelectedColorVariation()
+                    showSelectedColorDescription()
+                }
+            }
+            updatePhotos()
             </script>
         <?php
 }
