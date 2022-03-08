@@ -871,10 +871,18 @@ function custom_side_bar(){
                 background-color: #FFF;
                 transition: transform .7s ease-in-out; 
             }
+            @media screen and (max-width: 767px){
+                .sidebar{
+                    width: 90% !important;
+                    z-index: 100;
+                    top: 0px;
+                }
+            }
             .container-liner{
                 margin-left:1rem;
             }
             .sidebar-tab {
+                display: none;
                 height: 100%;
                 width: 2rem;
                 position: fixed;

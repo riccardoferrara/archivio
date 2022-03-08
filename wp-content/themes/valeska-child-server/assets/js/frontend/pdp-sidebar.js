@@ -45,13 +45,13 @@ function handleGesure(touchendX, touchendY) {
     }
 }
 
-function openSidebar() {
-    jQuery("#sidebar").addClass("move-to-left");
-    jQuery("main").addClass("move-to-left-partly");
-    jQuery("#sidebar-tab").addClass("move-to-left");
-    jQuery(".arrow").addClass("active");
-    obscure();
-}
+// function openSidebar() {
+//     jQuery("#sidebar").addClass("move-to-left");
+//     jQuery("main").addClass("move-to-left-partly");
+//     jQuery("#sidebar-tab").addClass("move-to-left");
+//     jQuery(".arrow").addClass("active");
+//     obscure();
+// }
 
 function closeSidebar() {
     jQuery("#sidebar").removeClass("move-to-left");
