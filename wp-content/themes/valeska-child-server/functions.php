@@ -865,7 +865,7 @@ function custom_side_bar(){
                 height: 100%;
                 width: 400px;
                 position: fixed;
-                top: 90px;
+                top: 86px;
                 z-index: 2;
                 right: -400px;
                 background-color: #FFF;
