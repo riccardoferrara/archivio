@@ -71,53 +71,53 @@ function custom_jquery_shop_script(){
             // if page is loaded from query, color is in the address
             selected_color = window.location.href.split('/').slice(-1)[0].split(/[=?&]/)[2]
 
-            let no_size = true
+            let has_size = false
 
             if ( document.querySelectorAll('[for="pa_size"]')[0]){
                 document.querySelectorAll('[for="pa_size"]')[0].innerText = 'SIZE'
-                no_size = false
+                has_size = true
             }
             if (document.querySelectorAll('[for="size"]')[0]){
                 document.querySelectorAll('[for="size"]')[0].innerText = 'SIZE'
-                no_size = false
+                has_size = true
             }
             if (document.querySelectorAll('[for="pa_color"]')[0]) {
                 document.querySelectorAll('[for="pa_color"]')[0].innerText = 'COLOR'
             }
 
-            //muovi le etichette COLOR and SIZE da accanto a sopra nelle tabelle
-            //recupera la tabella
-            let var_table = document.querySelector('table.variations')
-
-            //color:
-            //recupera la cella contenente il colore e la taglia per ricopiarla dopo
-            var color_th = var_table.childNodes[1].childNodes[1].childNodes[1]
-            // rimuovi vecchie etichette
-            var_table.childNodes[1].childNodes[1].deleteCell(0)
-            // inserisci due nuove righe
-            var color_row = var_table.insertRow(0)
-            // inserisci una cella per riga
-            var color = color_row.insertCell(0)
-            color.outerHTML = color_th.outerHTML
-
-            //size:
-            if (!no_size){
+            if (has_size){
+                //muovi le etichette COLOR and SIZE da accanto a sopra nelle tabelle
+                //recupera la tabella
+                let var_table = document.querySelector('table.variations')
                 //recupera la cella contenente il colore e la taglia per ricopiarla dopo
+                var color_th = var_table.childNodes[1].childNodes[1].childNodes[1]
                 var size_th = var_table.childNodes[1].childNodes[3].childNodes[1]
                 // rimuovi vecchie etichette
+                var_table.childNodes[1].childNodes[1].deleteCell(0)
                 var_table.childNodes[1].childNodes[3].deleteCell(0)
                 // inserisci due nuove righe
+                var color_row = var_table.insertRow(0)
                 var size_row = var_table.insertRow(2)
                 // inserisci una cella per riga
+                var color = color_row.insertCell(0)
                 var size = size_row.insertCell(0)
-                size.outerHTML = size_th.outerHTML
+                color.outerHTML = color_th.outerHTML
+                size.outerHTML = size_th.outerHTML         
+            } else {
+                //muovi l'etichetta COLOR da accanto a sopra nelle tabelle
+                //recupera la tabella
+                let var_table = document.querySelector('table.variations')
+                //color:
+                //recupera la cella contenente il colore e la taglia per ricopiarla dopo
+                var color_th = var_table.childNodes[1].childNodes[1].childNodes[1]
+                // rimuovi vecchie etichette
+                var_table.childNodes[1].childNodes[1].deleteCell(0)
+                // inserisci due nuove righe
+                var color_row = var_table.insertRow(0)
+                // inserisci una cella per riga
+                var color = color_row.insertCell(0)
+                color.outerHTML = color_th.outerHTML
             }
-
-
-
-
-
-
 
             //inserisci delle funzioni click per ogni colore
             function assignOnClickBehavoir(colors){
