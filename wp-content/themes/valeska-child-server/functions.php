@@ -659,6 +659,7 @@ function custom_side_bar(){
                             <td>C</td>
                         </tr>
                         <tr>
+                            <td>size</td>
                             <td>Lenght</td>
                             <td>Waist</td>
                             <td>Hip</td>
