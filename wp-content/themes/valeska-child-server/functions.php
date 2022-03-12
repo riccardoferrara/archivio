@@ -345,15 +345,15 @@ function custom_side_bar(){
                             <td>E</td>
                         </tr>
                         <tr>
-                            <td>Size</td>
-                            <td>Lenght</td>
-                            <td>Sleeve</td>
-                            <td>Shoulder width</td>
-                            <td>Chest</td>
-                            <td>Waist</td>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Lenght</strong></td>
+                            <td><strong>Sleeve</strong></td>
+                            <td><strong>Shoulder width</strong></td>
+                            <td><strong>Chest</strong></td>
+                            <td><strong>Waist</strong></td>
                         </tr>
                         <tr>
-                            <td>38</td>
+                            <td><strong>38</strong></td>
                             <td>72,5</td>
                             <td>64,2</td>
                             <td>42,4</td>
@@ -361,7 +361,7 @@ function custom_side_bar(){
                             <td>52,4</td>
                         </tr>
                         <tr>
-                            <td>40</td>
+                            <td><strong>40</strong></td>
                             <td>74</td>
                             <td>64,6</td>
                             <td>43,6</td>
@@ -369,7 +369,7 @@ function custom_side_bar(){
                             <td>54,2</td>
                         </tr>
                         <tr>
-                            <td>42</td>
+                            <td><strong>42</strong></td>
                             <td>75,5</td>
                             <td>65</td>
                             <td>44,6</td>
@@ -377,7 +377,7 @@ function custom_side_bar(){
                             <td>56</td>
                         </tr>
                         <tr>
-                            <td>44</td>
+                            <td><strong>44</strong></td>
                             <td>77</td>
                             <td>65,4</td>
                             <td>45,8</td>
@@ -385,7 +385,7 @@ function custom_side_bar(){
                             <td>57,8</td>
                         </tr>
                         <tr>
-                            <td>46</td>
+                            <td><strong>46</strong></td>
                             <td>78,5</td>
                             <td>65,8</td>
                             <td>47</td>
@@ -393,7 +393,7 @@ function custom_side_bar(){
                             <td>59,7</td>
                         </tr>
                         <tr class="last-row">
-                            <td>48</td>
+                            <td><strong>48</strong></td>
                             <td>80</td>
                             <td>66,2</td>
                             <td>48,2</td>
@@ -413,15 +413,15 @@ function custom_side_bar(){
                             <td>E</td>
                         </tr>
                         <tr>
-                            <td>Size</td>
-                            <td>Lenght</td>
-                            <td>Sleeve</td>
-                            <td>Shoulder width</td>
-                            <td>Chest</td>
-                            <td>Waist</td>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Lenght</strong></td>
+                            <td><strong>Sleeve</strong></td>
+                            <td><strong>Shoulder width</strong></td>
+                            <td><strong>Chest</strong></td>
+                            <td><strong>Waist</strong></td>
                         </tr>
                         <tr>
-                            <td>38</td>
+                            <td><strong>38</strong></td>
                             <td>134</td>
                             <td>64,2</td>
                             <td>42,4</td>
@@ -429,7 +429,7 @@ function custom_side_bar(){
                             <td>52,4</td>
                         </tr>
                         <tr>
-                            <td>40</td>
+                            <td><strong>40</strong></td>
                             <td>135,5</td>
                             <td>64,6</td>
                             <td>43,6</td>
@@ -437,7 +437,7 @@ function custom_side_bar(){
                             <td>54,2</td>
                         </tr>
                         <tr>
-                            <td>42</td>
+                            <td><strong>42</strong></td>
                             <td>137</td>
                             <td>65</td>
                             <td>44,6</td>
@@ -445,7 +445,7 @@ function custom_side_bar(){
                             <td>56</td>
                         </tr>
                         <tr>
-                            <td>44</td>
+                            <td><strong>44</strong></td>
                             <td>138,5</td>
                             <td>65,4</td>
                             <td>45,8</td>
@@ -453,7 +453,7 @@ function custom_side_bar(){
                             <td>57,8</td>
                         </tr>
                         <tr>
-                            <td>46</td>
+                            <td><strong>46</strong></td>
                             <td>140</td>
                             <td>65,8</td>
                             <td>47</td>
@@ -461,7 +461,7 @@ function custom_side_bar(){
                             <td>59,7</td>
                         </tr>
                         <tr class="last-row">
-                            <td>48</td>
+                            <td><strong>48</strong></td>
                             <td>141,5</td>
                             <td>66,2</td>
                             <td>48,2</td>
@@ -481,15 +481,15 @@ function custom_side_bar(){
                             <td>E</td>
                         </tr>
                         <tr>
-                            <td>Size</td>
-                            <td>Lenght</td>
-                            <td>Sleeve</td>
-                            <td>Shoulder width</td>
-                            <td>Chest</td>
-                            <td>Waist</td>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Lenght</strong></td>
+                            <td><strong>Sleeve</strong></td>
+                            <td><strong>Shoulder width</strong></td>
+                            <td><strong>Chest</strong></td>
+                            <td><strong>Waist</strong></td>
                         </tr>
                         <tr>
-                            <td>38</td>
+                            <td><strong>38</strong></td>
                             <td>96,5</td>
                             <td>64,2</td>
                             <td>42,4</td>
@@ -497,7 +497,7 @@ function custom_side_bar(){
                             <td>52,4</td>
                         </tr>
                         <tr>
-                            <td>40</td>
+                            <td><strong>40</strong></td>
                             <td>98</td>
                             <td>64,6</td>
                             <td>43,6</td>
@@ -505,7 +505,7 @@ function custom_side_bar(){
                             <td>54,2</td>
                         </tr>
                         <tr>
-                            <td>42</td>
+                            <td><strong>42</strong></td>
                             <td>99,5</td>
                             <td>65</td>
                             <td>44,6</td>
@@ -513,7 +513,7 @@ function custom_side_bar(){
                             <td>56</td>
                         </tr>
                         <tr>
-                            <td>44</td>
+                            <td><strong>44</strong></td>
                             <td>101</td>
                             <td>65,4</td>
                             <td>45,8</td>
@@ -521,7 +521,7 @@ function custom_side_bar(){
                             <td>57,8</td>
                         </tr>
                         <tr>
-                            <td>46</td>
+                            <td><strong>46</strong></td>
                             <td>102,5</td>
                             <td>65,8</td>
                             <td>47</td>
@@ -529,7 +529,7 @@ function custom_side_bar(){
                             <td>59,7</td>
                         </tr>
                         <tr class="last-row">
-                            <td>48</td>
+                            <td><strong>48</strong></td>
                             <td>104</td>
                             <td>66,2</td>
                             <td>48,2</td>
@@ -546,12 +546,12 @@ function custom_side_bar(){
                             <td>B</td>
                         </tr>
                         <tr>
-                            <td>Size</td>
-                            <td>Lenght</td>
-                            <td>Width</td>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Lenght</strong></td>
+                            <td><strong>Width</strong></td>
                         </tr>
                         <tr class="last-row">
-                            <td>OS</td>
+                            <td><strong>OS</strong></td>
                             <td>60</td>
                             <td>50</td>
                         </tr>
@@ -567,49 +567,49 @@ function custom_side_bar(){
                             <td>D</td>
                         </tr>
                         <tr>
-                            <td>Size</td>
-                            <td>Lenght</td>
-                            <td>Waist</td>
-                            <td>Hip</td>
-                            <td>Half thigh</td>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Lenght</strong></td>
+                            <td><strong>Waist</strong></td>
+                            <td><strong>Hip</strong></td>
+                            <td><strong>Half thigh</strong></td>
                         </tr>
                         <tr>
-                            <td>38</td>
+                            <td><strong>38</strong></td>
                             <td>114</td>
                             <td>32</td>
                             <td>48</td>
                             <td>31,5</td>
                         </tr>
                         <tr>
-                            <td>40</td>
+                            <td><strong>40</strong></td>
                             <td>115</td>
                             <td>34</td>
                             <td>50</td>
                             <td>32,7</td>
                         </tr>
                         <tr>
-                            <td>42</td>
+                            <td><strong>42</strong></td>
                             <td>116</td>
                             <td>36</td>
                             <td>52</td>
                             <td>34</td>
                         </tr>
                         <tr>
-                            <td>44</td>
+                            <td><strong>44</strong></td>
                             <td>117</td>
                             <td>38</td>
                             <td>54</td>
                             <td>35,3</td>
                         </tr>
                         <tr>
-                            <td>46</td>
+                            <td><strong>46</strong></td>
                             <td>118</td>
                             <td>40</td>
                             <td>56</td>
                             <td>36,6</td>
                         </tr>
                         <tr class="last-row">
-                            <td>48</td>
+                            <td><strong>48</strong></td>
                             <td>119</td>
                             <td>42</td>
                             <td>58</td>
@@ -627,49 +627,49 @@ function custom_side_bar(){
                             <td>D</td>
                         </tr>
                         <tr>
-                            <td>Size</td>
-                            <td>Lenght</td>
-                            <td>Waist</td>
-                            <td>Hip</td>
-                            <td>Half thigh</td>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Lenght</strong></td>
+                            <td><strong>Waist</strong></td>
+                            <td><strong>Hip</strong></td>
+                            <td><strong>Half thigh</strong></td>
                         </tr>
                         <tr>
-                            <td>38</td>
+                            <td><strong>38</strong></td>
                             <td>115</td>
                             <td>42</td>
                             <td>56</td>
                             <td>35</td>
                         </tr>
                         <tr>
-                            <td>40</td>
+                            <td><strong>40</strong></td>
                             <td>118</td>
                             <td>43,5</td>
                             <td>58</td>
                             <td>36,2</td>
                         </tr>
                         <tr>
-                            <td>42</td>
+                            <td><strong>42</strong></td>
                             <td>118</td>
                             <td>43,5</td>
                             <td>60</td>
                             <td>37,5</td>
                         </tr>
                         <tr>
-                            <td>44</td>
+                            <td><strong>44</strong></td>
                             <td>121</td>
                             <td>45</td>
                             <td>62</td>
                             <td>38,7</td>
                         </tr>
                         <tr>
-                            <td>46</td>
+                            <td><strong>46</strong></td>
                             <td>121</td>
                             <td>45</td>
                             <td>64</td>
                             <td>39.9</td>
                         </tr>
                         <tr class="last-row">
-                            <td>48</td>
+                            <td><strong>48</strong></td>
                             <td>122</td>
                             <td>46</td>
                             <td>66</td>
@@ -686,43 +686,43 @@ function custom_side_bar(){
                             <td>C</td>
                         </tr>
                         <tr>
-                            <td>size</td>
-                            <td>Lenght</td>
-                            <td>Waist</td>
-                            <td>Hip</td>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Lenght</strong></td>
+                            <td><strong>Waist</strong></td>
+                            <td><strong>Hip</strong></td>
                         </tr>
                         <tr>
-                            <td>38</td>
+                            <td><strong>38</strong></td>
                             <td>72,5</td>
                             <td>30</td>
                             <td>46</td>
                         </tr>
                         <tr>
-                            <td>40</td>
+                            <td><strong>40</strong></td>
                             <td>74,5</td>
                             <td>32</td>
                             <td>48</td>
                         </tr>
                         <tr>
-                            <td>42</td>
+                            <td><strong>42</strong></td>
                             <td>74,5</td>
                             <td>34</td>
                             <td>50</td>
                         </tr>
                         <tr>
-                            <td>44</td>
+                            <td><strong>44</strong></td>
                             <td>74,5</td>
                             <td>36</td>
                             <td>52</td>
                         </tr>
                         <tr>
-                            <td>46</td>
+                            <td><strong>46</strong></td>
                             <td>74,5</td>
                             <td>38</td>
                             <td>54</td>
                         </tr>
                         <tr class="last-row">
-                            <td>48</td>
+                            <td><strong>48</strong></td>
                             <td>74,5</td>
                             <td>40</td>
                             <td>56</td>
@@ -739,49 +739,49 @@ function custom_side_bar(){
                             <td></td>
                         </tr>
                         <tr>
-                            <td>Size</td>
-                            <td>Lenght</td>
-                            <td>Waist</td>
-                            <td>Hip</td>
-                            <td>Front slit</td>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Lenght</strong></td>
+                            <td><strong>Waist</strong></td>
+                            <td><strong>Hip</strong></td>
+                            <td><strong>Front slit</strong></td>
                         </tr>
                         <tr>
-                            <td>38</td>
+                            <td><strong>38</strong></td>
                             <td>72,5</td>
                             <td>30</td>
                             <td>46</td>
                             <td>42,5</td>
                         </tr>
                         <tr>
-                            <td>40</td>
+                            <td><strong>40</strong></td>
                             <td>74,5</td>
                             <td>32</td>
                             <td>48</td>
                             <td>44,5</td>
                         </tr>
                         <tr>
-                            <td>42</td>
+                            <td><strong>42</strong></td>
                             <td>74,5</td>
                             <td>34</td>
                             <td>50</td>
                             <td>44,5</td>
                         </tr>
                         <tr>
-                            <td>44</td>
+                            <td><strong>44</strong></td>
                             <td>74,5</td>
                             <td>36</td>
                             <td>52</td>
                             <td>44,5</td>
                         </tr>
                         <tr>
-                            <td>46</td>
+                            <td><strong>46</strong></td>
                             <td>74,5</td>
                             <td>38</td>
                             <td>54</td>
                             <td>44,5</td>
                         </tr>
                         <tr class="last-row">
-                            <td>48</td>
+                            <td><strong>48</strong></td>
                             <td>74,5</td>
                             <td>40</td>
                             <td>56</td>
