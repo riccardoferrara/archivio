@@ -42,6 +42,14 @@ function ridev_add_woocommerce_support() {
 add_action( 'after_setup_theme', 'ridev_add_woocommerce_support' );
 
 
+//--------------------------------------------------------
+// OVERRIDE ADD TO CART VARIATION SCRIPT FROM WOOCOMMERCE
+//--------------------------------------------------------
+wp_deregister_script('wc-add-to-cart-variation');
+wp_register_script('wc-add-to-cart-variation', '/wp-content/themes/valeska-child-server/woocommerce/assets/js/frontend/add-to-cart-variation.min.js' , array( 'jquery' ), WC_VERSION, TRUE);
+wp_enqueue_script('wc-add-to-cart-variation');
+
+
 //---------------------------------------------
 // RECUPERO IL COLORE SELEZIONATO DALLA PDP
 //---------------------------------------------
