@@ -872,6 +872,14 @@ function custom_side_bar(){
                 line-height: normal;
             }
             /* end size description style */
+            /* measurement description */
+            @media screen and (max-width: 767px){
+                .sc-title.measurement.displayed{
+                    display: flex;
+                }
+            }
+
+            /* end measurement description */
             /* grey div style */
             .grey-div {
                 z-index: 1;
