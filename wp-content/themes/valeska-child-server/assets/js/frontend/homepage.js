@@ -1,0 +1,149 @@
+//----------------------HEADER------------------------------------
+//              HEADER MENU BEHAVIOUR
+//----------------------------------------------------------------
+// colora i bottoni del primo menu di nero quando il sub menu è attivo
+jQuery(function() {
+    jQuery('.sub-menu').hover(function() {
+        jQuery('ul.menu > li > a > span.qodef-menu-item-text').css('color', 'black');
+    }, function() {
+        // on mouseout, reset the background colour
+        jQuery('ul.menu > li > a > span.qodef-menu-item-text').css('color', '');
+    });
+});
+
+jQuery(function() {
+    jQuery('ul.menu > li > a > span.qodef-menu-item-text').hover(function() {
+        jQuery('ul.menu > li > a > span.qodef-menu-item-text').css('color', 'black');
+    }, function() {
+        // on mouseout, reset the background colour
+        jQuery('ul.menu > li > a > span.qodef-menu-item-text').css('color', '');
+    });
+});
+
+jQuery(function() {
+    jQuery('ul.sub-menu li a').hover(function() {
+        jQuery('ul.menu > li > a > span.qodef-menu-item-text').css('color', 'black');
+    }, function() {
+        // on mouseout, reset the background colour
+        jQuery('ul.menu > li > a > span.qodef-menu-item-text').css('color', '');
+    });
+});
+
+
+
+//----------------------PRODUCTS----------------------------------
+//              OUR SELECTION PRODUCTS
+//----------------------------------------------------------------
+
+// funct that extracts product name from the permalink
+const getProductName = (href) => {
+    var x = href
+    return (x = x.split('/'), x = x[x.length - 1].split('-')[0])
+}
+
+const getColor = (href) => {
+    var x = href
+    return (x = x.split('/'), x = x[x.length - 1].split('-')[1])
+}
+
+// here we have the list of the products that the customer want they appear on the hp
+let products = [{
+        product: 'Diamante-Long-Coat',
+        color: 'LightPink',
+        category: 'coast-and-jackets'
+    },
+    {
+        product: 'Diamante-Short-Coat',
+        color: 'Magenta',
+        category: 'coast-and-jackets'
+    },
+    {
+        product: 'Diamante-Coat',
+        color: 'Acqua',
+        category: 'coast-and-jackets'
+    },
+    {
+        product: 'Diamante-Long-Coat',
+        color: 'Rosewood',
+        category: 'coast-and-jackets'
+    },
+    {
+        product: 'Diamante-Short-Coat',
+        color: 'Silver',
+        category: 'coast-and-jackets'
+    },
+    {
+        product: 'Diamante-Coat',
+        color: 'Black',
+        category: 'coast-and-jackets'
+    },
+]
+
+let href_template = 'https://www.archiviowebsite.com/plp/[category]/[product]/?attribute_pa_color=[color]&attribute_size='
+
+var slider
+
+window.onload = function() {
+    function ready(callback) {
+        // in case the document is already rendered
+        if (document.readyState != 'loading') callback();
+        // modern browsers
+        else if (document.addEventListener) document.addEventListener('DOMContentLoaded', callback);
+        // IE <= 8
+        else document.attachEvent('onreadystatechange', function() {
+            if (document.readyState == 'complete') callback();
+        });
+    }
+
+
+    ready(function() {
+        //def slider
+        slider = document.querySelectorAll('.selected-product-desktop')[0]
+
+        // itera sugli elementi per cambiare href, src, srcset
+        for (let i = 1; i <= products.length; i++) {
+            console.log('update slider elements')
+            p = products[i - 1]
+
+            //create href
+            let href = href_template.replace('[category]', p['category']).replace('[product]', p['product']).replace('[color]', p['color'])
+            console.log('href: ', href)
+
+            //----------------------HREF--------------------------------------
+            //change front href in <a> element (last child node with 5 index)
+            //----------------------------------------------------------------
+            slider.childNodes[1].childNodes[1].childNodes[1].childNodes[i * 2].childNodes[1].childNodes[1].childNodes[5].href = href
+            slider.childNodes[1].childNodes[1].childNodes[1].childNodes[1 * 2].childNodes[1].childNodes[1].childNodes[5].href
+                //HREF CHANGED
+
+            //----------------------SRC+SRCSET--------------------------------
+            // change front srcset of img element (list of sources plus width)
+            //----------------------------------------------------------------
+            console.log('i: ', i)
+            let srcset = slider.childNodes[1].childNodes[1].childNodes[1].childNodes[i * 2].childNodes[1].childNodes[1].childNodes[1].srcset
+            let src = slider.childNodes[1].childNodes[1].childNodes[1].childNodes[i * 2].childNodes[1].childNodes[1].childNodes[1].src
+
+            // array containing all the sources and the width 
+            srcset_array = srcset.split(/[,]/)
+            s = srcset_array[0]
+
+            // each element has a href and a width
+            let link = s.split(' ')[0]
+                // let width = s.split(' ')[1]
+
+            // now lets replace with the new one
+            let old_product_name = getProductName(link)
+            let old_color = getColor(link)
+            srcset = srcset.replaceAll(old_product_name, p['product'].replaceAll('-', '_')).replaceAll(old_color, p['color'])
+            src = src.replaceAll(old_product_name, p['product'].replaceAll('-', '_')).replaceAll(old_color, p['color'])
+
+            // give it to the element 
+            slider.childNodes[1].childNodes[1].childNodes[1].childNodes[i * 2].childNodes[1].childNodes[1].childNodes[1].setAttribute('src', src)
+            slider.childNodes[1].childNodes[1].childNodes[1].childNodes[i * 2].childNodes[1].childNodes[1].childNodes[1].setAttribute('srcset', srcset)
+
+            //SRC+SRCSET CHANGED
+        }
+
+    })
+
+}
