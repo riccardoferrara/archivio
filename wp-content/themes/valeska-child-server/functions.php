@@ -149,7 +149,7 @@ function custom_jquery_shop_script(){
                     assignOnClickBehavoir(colors)
                 }
                 else{
-                    setTimeout(waitForColorsElements, 250);
+                    setTimeout(waitForColorsElements(), 250);
                 }
             }
             waitForColorsElements()
