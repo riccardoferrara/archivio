@@ -156,11 +156,11 @@ window.onload = function() {
 
         //non appena l'elemento colors viene caricato sulla pagina viene generata la variabile colors
         function waitForElements() {
-            if (document.querySelectorAll('.woocommerce-LoopProduct-link.woocommerce-loop-product__link').length >= 6) {
+            if (document.querySelectorAll('.woocommerce-LoopProduct-link.woocommerce-loop-product__link').length >= 12) {
                 updateOurSelectionProducts()
             } else {
                 console.log('length: ', document.querySelector('.woocommerce-LoopProduct-link.woocommerce-loop-product__link').length)
-                setTimeout(waitForElements, 1000 * 3);
+                setTimeout(waitForElements, 250);
             }
         }
         waitForElements()
