@@ -828,6 +828,7 @@ function custom_side_bar(){
                 font-size: 10px;
                 color: black; 
                 line-height: 0.7;
+                width: 320px;
             }
             table.sc-table tr {
                 border-bottom: 1px solid #ddd !important;
@@ -877,6 +878,9 @@ function custom_side_bar(){
                 .sc-title.measurement.displayed{
                     display: flex;
                 }
+                .size-description {
+                    right: 2rem;
+                }
             }
 
             /* end measurement description */
@@ -894,6 +898,11 @@ function custom_side_bar(){
             .move-to-left {
                 transform: translateX(-400px);
             }
+            @media screen and (max-width: 767px){
+                .move-to-left {
+                    transform: translateX(-90%);
+                }
+            }
             .move-to-left-partly {
                 transform: translateX(-200px);
             }
@@ -909,12 +918,19 @@ function custom_side_bar(){
             }
             @media screen and (max-width: 767px){
                 .sidebar{
-                    width: 90% !important;
+                    width: 394px !important;
                     z-index: 100;
                     top: 0px;
-                    right: -90%;
+                    right: -380px;
                 }
             }
+            @media screen and (max-width: 1023px){
+                .sidebar{
+                    top: 0px;
+                    z-index: 100;
+                }
+            }
+            
             .container-liner{
                 margin-left:1rem;
             }
