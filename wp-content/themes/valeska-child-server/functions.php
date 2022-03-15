@@ -912,6 +912,7 @@ function custom_side_bar(){
                     width: 90% !important;
                     z-index: 100;
                     top: 0px;
+                    right: -90%;
                 }
             }
             .container-liner{
