@@ -139,32 +139,36 @@ const updateOurSelectionProduct = (p, index, a_elements, imgs_elements, titles_e
 
 }
 
-window.onload = function() {
-    function ready(callback) {
-        // in case the document is already rendered
-        if (document.readyState != 'loading') callback();
-        // modern browsers
-        else if (document.addEventListener) document.addEventListener('DOMContentLoaded', callback);
-        // IE <= 8
-        else document.attachEvent('onreadystatechange', function() {
-            if (document.readyState == 'complete') callback();
-        });
-    }
+// window.onload = function() {
+//     function ready(callback) {
+//         // in case the document is already rendered
+//         if (document.readyState != 'loading') callback();
+//         // modern browsers
+//         else if (document.addEventListener) document.addEventListener('DOMContentLoaded', callback);
+//         // IE <= 8
+//         else document.attachEvent('onreadystatechange', function() {
+//             if (document.readyState == 'complete') callback();
+//         });
+//     }
 
 
-    ready(function() {
+//     ready(function() {
 
-        //non appena l'elemento colors viene caricato sulla pagina viene generata la variabile colors
-        function waitForElements() {
-            if (document.querySelectorAll('.woocommerce-LoopProduct-link.woocommerce-loop-product__link').length >= 12) {
-                updateOurSelectionProducts()
-            } else {
-                console.log('length: ', document.querySelector('.woocommerce-LoopProduct-link.woocommerce-loop-product__link').length)
-                setTimeout(waitForElements, 250);
-            }
-        }
-        waitForElements()
+//         //non appena l'elemento colors viene caricato sulla pagina viene generata la variabile colors
+//         function waitForElements() {
+//             if (document.querySelectorAll('.woocommerce-LoopProduct-link.woocommerce-loop-product__link').length >= 12) {
+//                 updateOurSelectionProducts()
+//             } else {
+//                 console.log('length: ', document.querySelector('.woocommerce-LoopProduct-link.woocommerce-loop-product__link').length)
+//                 setTimeout(waitForElements, 250);
+//             }
+//         }
+//         waitForElements()
 
-    })
+//     })
 
+// }
+
+window.onload = (event) => {
+    updateOurSelectionProducts()
 }
