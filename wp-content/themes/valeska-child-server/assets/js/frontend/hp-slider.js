@@ -8,6 +8,6 @@ function relocateElementBySelector(elementSelector, destSelector) {
 
 
 window.addEventListener('load', (event) => {
-    relocateElementBySelector(('.swiper-button-prev'), ('.swiper-button-prev-moved'))
-    relocateElementBySelector(('.swiper-button-next'), ('.swiper-button-next-moved'))
+    relocateElementBySelector(('.swiper-button-prev'), ('.swiper-button-prev-moved > .elementor-widget-wrap'))
+    relocateElementBySelector(('.swiper-button-next'), ('.swiper-button-next-moved > .elementor-widget-wrap'))
 });
