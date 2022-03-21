@@ -52,7 +52,7 @@ function ridev_product_images (){
 	foreach($product_images_urls as &$url) {
 		$color = explode('-',end(explode('/',$url)))[1];
 		$extension = end(explode('.',$url));
-		$fullsize_image_url = preg_split("/....[x]+/", $url)[0] .'-768x1024'.'.'.$extension;
+		$fullsize_image_url = preg_split("/....[x]+/", $url)[0] .'-1535x2048'.'.'.$extension;
 		$position = explode('-',end(explode('/',$url)))[2];
 		$images_colors_url["$color-$position"] = $fullsize_image_url;
 	}
