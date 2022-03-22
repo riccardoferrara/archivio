@@ -45,7 +45,7 @@ add_action( 'after_setup_theme', 'ridev_add_woocommerce_support' );
 //--------------------------------------------------------
 // OVERRIDE ADD TO CART VARIATION SCRIPT FROM WOOCOMMERCE
 //--------------------------------------------------------
-// add_action('wp_enqueue_scripts', 'override_woo_frontend_scripts');
+add_action('wp_enqueue_scripts', 'override_woo_frontend_scripts');
 function override_woo_frontend_scripts() {
     wp_deregister_script('wc-add-to-cart-variation');
     wp_enqueue_script('wc-add-to-cart-variation', '/wp-content/themes/valeska-child-server/woocommerce/assets/js/frontend/add-to-cart-variation.min.js', array('jquery', 'woocommerce', 'wc-country-select', 'wc-address-i18n'), null, true);
