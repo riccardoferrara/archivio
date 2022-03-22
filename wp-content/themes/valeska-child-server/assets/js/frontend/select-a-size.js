@@ -18,6 +18,7 @@ function updateCartButton() {
         cartButton.classList.add("single_add_to_cart_button")
         cartButton.classList.add("size_selected")
         cartButton.classList.remove("no_size_selected")
+        jQuery('#add_to_cart').prop("disabled", false)
     }
 }
 
@@ -30,6 +31,7 @@ cartButton.id = "add_to_cart"
 if (size_radiogroup && !radiogroupAriaLabelIsSelected(size_radiogroup)) {
     cartButton.classList.remove("single_add_to_cart_button")
     cartButton.classList.add("no_size_selected")
+    jQuery('#add_to_cart').prop("disabled", true)
     cartButton.style.fontSize = "0px"
 } else {
     cartButton.style.fontSize = "16px"
