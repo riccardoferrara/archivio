@@ -79,6 +79,11 @@ function custom_jquery_shop_script(){
             // if page is loaded from query, color is in the address
             selected_color = window.location.href.split('/').slice(-1)[0].split(/[=?&]/)[2]
 
+            // if page is loaded after add to cart, color is just selected but not in the address
+            if (!selected_color) {
+                selected_color = document.querySelectorAll("[role='radio'][name='color'][aria-checked='true']")[0].dataset.value
+            }
+
             let has_size = false
 
             if ( document.querySelectorAll('[for="pa_size"]')[0]){
