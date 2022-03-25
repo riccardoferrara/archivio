@@ -15,7 +15,7 @@ function relocateSizingChartNearSizeLabel() {
     } else if (document.querySelector('[for="pa_size"]')) {
         relocateElementBySelector(('.sizing-chart-title'), ('[for="pa_size"]'))
     } else {
-        relocateElementBySelector(('.sizing-chart-title'), ('[for="pa_color"]'))
+        // relocateElementBySelector(('.sizing-chart-title'), ('[for="pa_color"]'))
     }
 }
 
