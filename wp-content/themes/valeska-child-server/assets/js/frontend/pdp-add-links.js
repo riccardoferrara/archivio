@@ -1,7 +1,7 @@
 function addLinkToImgs(imgs) {
     imgs.forEach(img => {
         img.onclick = function() {
-            location.href = img.src
+            window.open(img.src.replace('-1535x2048', ''))
         }
     });
 }
