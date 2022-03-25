@@ -936,7 +936,7 @@ function custom_side_bar(){
                 height: 100%;
                 width: 400px;
                 position: fixed;
-                top: 86px;
+                top: 54px;
                 z-index: 2;
                 right: -400px;
                 background-color: #FFF;
@@ -952,7 +952,7 @@ function custom_side_bar(){
             }
             @media screen and (max-width: 1023px){
                 .sidebar{
-                    top: 0px;
+                    top: 40px;
                     z-index: 100;
                 }
             }
