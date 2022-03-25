@@ -65,7 +65,16 @@ add_action('woocommerce_after_add_to_cart_form', 'custom_add_to_cart_button');
 add_action('woocommerce_after_add_to_cart_form', 'custom_side_bar');
 //hook javascript per spostare la scritta sizechart
 add_action('woocommerce_after_add_to_cart_form', 'move_size_chart_title');
+//hook javascript per spostare la scritta sizechart
+add_action('woocommerce_after_add_to_cart_form', 'related_products');
 
+
+//funzione che aggiunge js per i comportamenti del bottone "ADD TO CART"            
+function related_products(){
+    ?>
+        <script src="/wp-content/themes/valeska-child-server/assets/js/frontend/pdp-related-products.js" type="text/javascript" defer></script>
+    <?php
+}
 
 //funzione che aggiunge js per i comportamenti del bottone "ADD TO CART"            
 function move_size_chart_title(){
@@ -73,7 +82,6 @@ function move_size_chart_title(){
         <script src="/wp-content/themes/valeska-child-server/assets/js/frontend/pdp-move-size-chart-title.js" type="text/javascript" defer></script>
     <?php
 }
-
 
 //funzione che aggiunge js per i comportamenti del bottone "ADD TO CART"            
 function custom_add_to_cart_button(){
