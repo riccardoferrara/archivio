@@ -833,13 +833,13 @@ function custom_side_bar(){
                         <img class="schema PANT-03 not-displayed" src="https://www.archiviowebsite.com/wp-content/uploads/2022/03/PANT-03_schema.svg">
                         <img class="schema PANT-U04 not-displayed" src="https://www.archiviowebsite.com/wp-content/uploads/2022/03/PANT-U04_schema.svg">
                         <img class="schema PANT-W01 not-displayed" src="https://www.archiviowebsite.com/wp-content/uploads/2022/03/PANT-W01_schema.svg">
+                        <img class="schema SHIRT-11 not-displayed" src="https://www.archiviowebsite.com/wp-content/uploads/2022/03/SHIRT-11_schema.svg">
                         <img class="schema SHIRT-01 not-displayed" src="https://www.archiviowebsite.com/wp-content/uploads/2022/03/SHIRT-01_schema.svg">
                         <img class="schema SHIRT-02 not-displayed" src="https://www.archiviowebsite.com/wp-content/uploads/2022/03/SHIRT-02_schema.svg">
                         <img class="schema SKIRT-02 not-displayed" src="https://www.archiviowebsite.com/wp-content/uploads/2022/03/SKIRT-02_schema.svg">
                         <img class="schema SKIRT-03 not-displayed" src="https://www.archiviowebsite.com/wp-content/uploads/2022/03/SKIRT-03_schema.svg">
                         <img class="schema SKIRT-04 not-displayed" src="https://www.archiviowebsite.com/wp-content/uploads/2022/03/SKIRT-04_schema.svg">
                         <img class="schema TOP-01 not-displayed" src="https://www.archiviowebsite.com/wp-content/uploads/2022/03/TOP-01_schema.svg">
-
                     </div>
                     <div class="column">
                         <p class="size-description">Size, fit and measurements may vary from one style to another, which means there might be slight differences in items fit.</p>
