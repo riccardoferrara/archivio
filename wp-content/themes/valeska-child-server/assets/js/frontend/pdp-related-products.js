@@ -2,19 +2,6 @@
 //                  RELATED PRODUCTS
 //----------------------------------------------------------------
 
-// funct that extracts product name from the permalink
-const getProductName = (href) => {
-    var x = href
-    return (x = x.split('/'), x = x[x.length - 1].split('-')[0])
-}
-
-const getColor = (href) => {
-    var x = href
-    return (x = x.split('/'), x = x[x.length - 1].split('-')[1])
-}
-
-let href_template = 'https://www.archiviowebsite.com/plp/[category]/[product]/?attribute_pa_color=[color]&attribute_size='
-
 const updateRelatedProducts = () => {
 
     //def <img> elements inside the section
