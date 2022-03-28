@@ -8,6 +8,12 @@ function relocateElementBySelector(elementSelector, destSelector) {
     destElement.appendChild(element);
 }
 
+function removeElementBySelector(elementSelector) {
+    let element = document.querySelector(elementSelector);
+    let elementParent = element.parentElement;
+    elementParent.removeChild(element);
+}
+
 
 function relocateSizingChartNearSizeLabel() {
     if (document.querySelector('[for="size"]')) {
@@ -15,7 +21,7 @@ function relocateSizingChartNearSizeLabel() {
     } else if (document.querySelector('[for="pa_size"]')) {
         relocateElementBySelector(('.sizing-chart-title'), ('[for="pa_size"]'))
     } else {
-        // relocateElementBySelector(('.sizing-chart-title'), ('[for="pa_color"]'))
+        removeElementBySelector(('.sizing-chart-title'), ('[for="pa_color"]'))
     }
 }
 
