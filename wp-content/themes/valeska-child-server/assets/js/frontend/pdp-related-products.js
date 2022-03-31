@@ -18,6 +18,6 @@ const updateSrc = (img) => {
     img.setAttribute('src', src)
 }
 
-window.onload = (event) => {
+window.addEventListener('load', (event) => {
     updateRelatedProducts()
-}
+});
