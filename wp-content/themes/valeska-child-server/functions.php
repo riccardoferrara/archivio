@@ -69,23 +69,31 @@ add_action('woocommerce_after_add_to_cart_form', 'move_size_chart_title');
 add_action('woocommerce_after_add_to_cart_form', 'related_products');
 //hook javascript per aggiungere links alle foto
 add_action('woocommerce_after_add_to_cart_form', 'add_links');
+//hook javascript per gestire il mobile carousel
+add_action('woocommerce_after_add_to_cart_form', 'carousel');
 
+//funzione che aggiunge js per gestire il comportamento del carousel mobile            
+function carousel(){
+    ?>
+        <script src="/wp-content/themes/valeska-child-server/assets/js/frontend/pdp-carousel.js" type="text/javascript" defer></script>
+    <?php
+}
 
-//funzione che aggiunge js per i comportamenti del bottone "ADD TO CART"            
+//funzione che aggiunge js per aggiungere i links alle immagini       
 function add_links(){
     ?>
         <script src="/wp-content/themes/valeska-child-server/assets/js/frontend/pdp-add-links.js" type="text/javascript" defer></script>
     <?php
 }
 
-//funzione che aggiunge js per i comportamenti del bottone "ADD TO CART"            
+//funzione che aggiunge js per gestire i related_products della pdp            
 function related_products(){
     ?>
         <script src="/wp-content/themes/valeska-child-server/assets/js/frontend/pdp-related-products.js" type="text/javascript" defer></script>
     <?php
 }
 
-//funzione che aggiunge js per i comportamenti del bottone "ADD TO CART"            
+//funzione per aggiunge il js spostare il label size_chart  
 function move_size_chart_title(){
     ?>
         <script src="/wp-content/themes/valeska-child-server/assets/js/frontend/pdp-move-size-chart-title.js" type="text/javascript" defer></script>
