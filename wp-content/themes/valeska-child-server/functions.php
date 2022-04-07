@@ -831,7 +831,127 @@ function custom_side_bar(){
                             <td>44,5</td>
                         </tr>
                     </table>
-                </div>              
+                </div>  
+                <div class="row">
+                    <table class="sc-table not-displayed PANEL-01">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>B</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Lenght</strong></td>
+                            <td><strong>Width</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>70/38</strong></td>
+                            <td>68</td>
+                            <td>37</td>
+                        </tr>
+                        <tr>
+                            <td><strong>75/40</strong></td>
+                            <td>68</td>
+                            <td>39</td>
+                        </tr>
+                        <tr>
+                            <td><strong>80/42</strong></td>
+                            <td>68</td>
+                            <td>41</td>
+                        </tr>
+                        <tr>
+                            <td><strong>85/44</strong></td>
+                            <td>68</td>
+                            <td>43</td>
+                        </tr>
+                        <tr>
+                            <td><strong>90/46</strong></td>
+                            <td>68</td>
+                            <td>45</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td><strong>95/48</strong></td>
+                            <td>68</td>
+                            <td>47</td>
+                        </tr>
+                    </table>
+                </div> 
+                <div class="row">
+                    <table class="sc-table not-displayed SHIRT-01">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td>D</td>
+                            <td>E</td>
+                            <td>F</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Lenght</strong></td>
+                            <td><strong>Sleeve</strong></td>
+                            <td><strong>Shoulder width</strong></td>
+                            <td><strong>Chest</strong></td>
+                            <td><strong>Waist</strong></td>
+                            <td><strong>Hip</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>38</strong></td>
+                            <td>72</td>
+                            <td>64</td>
+                            <td>40</td>
+                            <td>43</td>
+                            <td>35</td>
+                            <td>45</td>
+                        </tr>
+                        <tr>
+                            <td><strong>40</strong></td>
+                            <td>73</td>
+                            <td>65</td>
+                            <td>41</td>
+                            <td>45</td>
+                            <td>37</td>
+                            <td>47</td>
+                        </tr>
+                        <tr>
+                            <td><strong>42</strong></td>
+                            <td>74</td>
+                            <td>66</td>
+                            <td>42</td>
+                            <td>47</td>
+                            <td>39</td>
+                            <td>49</td>
+                        </tr>
+                        <tr>
+                            <td><strong>44</strong></td>
+                            <td>75</td>
+                            <td>67</td>
+                            <td>43</td>
+                            <td>49</td>
+                            <td>41</td>
+                            <td>51</td>
+                        </tr>
+                        <tr>
+                            <td><strong>46</strong></td>
+                            <td>76</td>
+                            <td>68</td>
+                            <td>44</td>
+                            <td>51</td>
+                            <td>43</td>
+                            <td>53</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td><strong>48</strong></td>
+                            <td>78</td>
+                            <td>69</td>
+                            <td>45</td>
+                            <td>53</td>
+                            <td>44</td>
+                            <td>54</td>
+                        </tr>
+                    </table>
+                </div>  
                 <div class="row">
                     <div class="column">
                         <img class="schema CDD-22C not-displayed" src="https://www.archiviowebsite.com/wp-content/uploads/2022/03/CDD-22C_schema.svg">
