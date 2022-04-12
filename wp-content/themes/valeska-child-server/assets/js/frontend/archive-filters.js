@@ -3,9 +3,9 @@ function addHrefToNiceFilters() {
     Object.entries(p_filters).map(f => {
         let category = f[1].getAttribute('data-filter')
         if (category == '*') {
-            f[1].href = window.location.href.split('plp')[0] + 'plp'
+            f[1].href = window.location.href.split('women-collection')[0] + 'women-collection'
         } else {
-            f[1].href = window.location.href.split('plp')[0] + 'plp/' + '?' + 'wlfilter=1' + '&' + 'product_cat=' + category
+            f[1].href = window.location.href.split('women-collection')[0] + 'women-collection/' + '?' + 'wlfilter=1' + '&' + 'product_cat=' + category
         }
     })
 }

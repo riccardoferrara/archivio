@@ -73,7 +73,7 @@
 //     },
 // ]
 
-// let href_template = 'https://www.archiviowebsite.com/plp/[category]/[product]/?attribute_pa_color=[color]&attribute_size='
+// let href_template = 'https://www.archiviowebsite.com/women-collection/[category]/[product]/?attribute_pa_color=[color]&attribute_size='
 
 // const updateOurSelectionProducts = () => {
 //     //def slider
