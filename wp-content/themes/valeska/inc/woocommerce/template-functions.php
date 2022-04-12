@@ -527,7 +527,7 @@ if ( ! function_exists( 'valeska_woo_shop_loop_item_title' ) ) {
 	 */
 	function valeska_woo_shop_loop_item_title() {
 		$option    = valeska_get_post_value_through_levels( 'qodef_woo_product_list_title_tag' );
-		$title_tag = ! empty( $option ) ? esc_attr( $option ) : 'h6';
+		$title_tag = ! empty( $option ) ? esc_attr( $option ) : 'p';
 
 		echo '<' . esc_attr( $title_tag ) . ' class="qodef-woo-product-title woocommerce-loop-product__title">';
 		do_action( 'qodef_woo_product_list_title_tag_link_open' );
