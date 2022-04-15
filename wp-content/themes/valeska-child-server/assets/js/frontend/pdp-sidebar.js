@@ -46,20 +46,22 @@ function handleGesure(touchendX, touchendY) {
 }
 
 // function openSidebar() {
-//     jQuery("#sidebar").addClass("move-to-left");
-//     jQuery("main").addClass("move-to-left-partly");
-//     jQuery("#sidebar-tab").addClass("move-to-left");
-//     jQuery(".arrow").addClass("active");
-//     obscure();
-// }
-
-function closeSidebar() {
-    jQuery("#sidebar").removeClass("move-to-left");
-    jQuery("main").removeClass("move-to-left-partly");
-    jQuery("#sidebar-tab").removeClass("move-to-left");
-    jQuery(".arrow").removeClass("active");
-    unobscure();
-}
+    //     jQuery("#sidebar").addClass("move-to-left");
+    //     jQuery("main").addClass("move-to-left-partly");
+    //     jQuery("#sidebar-tab").addClass("move-to-left");
+    //     jQuery(".arrow").addClass("active");
+    //     obscure();
+    // }
+    
+    function closeSidebar() {
+        jQuery("#sidebar").removeClass("move-to-left");
+        jQuery("main").removeClass("move-to-left-partly");
+        jQuery("#sidebar-tab").removeClass("move-to-left");
+        jQuery(".arrow").removeClass("active");
+        unobscure();
+    }
+    
+/* End of totally unncessary swyping gesture s*/
 
 // function to obscure the window when sidebar is opened
 function obscure() {
@@ -73,7 +75,6 @@ function unobscure() {
     grey_div.classList.add('not-displayed')
     grey_div.classList.remove('displayed')
 }
-/* End of totally unncessary swyping gestures*/
 
 // get sku and add the table in the sidebar
 let sku = document.querySelector('.sku').innerHTML
