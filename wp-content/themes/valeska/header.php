@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
 	<meta name="facebook-domain-verification" content="18wg10ezjnp5j0zv2ezeq1ly44foek" />
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-
+	<script src="https://kit.fontawesome.com/09760c552a.js" crossorigin="anonymous"></script>
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?> itemscope itemtype="https://schema.org/WebPage">
