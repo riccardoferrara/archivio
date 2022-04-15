@@ -75,3 +75,20 @@ function unobscure() {
     grey_div.classList.add('not-displayed')
     grey_div.classList.remove('displayed')
 }
+
+
+//--------------------------------------
+//         ADD COLOR LABELS
+//--------------------------------------
+
+//find colors
+var colors = document.querySelectorAll('#sidebar-color-filters li')
+var labels = document.querySelectorAll('.color-label')
+
+Object.entries(labels).map((el, i) => {
+    // console.log('color: ', colors[i].getAttribute('data-title'))
+    // console.log('actual txt: ', el[1].text)
+    el[1].text = colors[i].getAttribute('data-title')
+    // console.log('new text: ', el[1].text)
+    // console.log('\n')
+})
