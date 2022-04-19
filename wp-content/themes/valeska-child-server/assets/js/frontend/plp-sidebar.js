@@ -11,8 +11,6 @@ jQuery(window).resize(function() {
 function toggleSidebar() {
     jQuery("#sidebar").toggleClass("move-to-left");
     jQuery("#sidebar-tab").toggleClass("move-to-left");
-    // jQuery("main").toggleClass("move-to-left-partly");
-    // jQuery(".arrow").toggleClass("active");
     jQuery(".grey-div").toggleClass("not-displayed");
 }
 
@@ -55,9 +53,7 @@ function handleGesure(touchendX, touchendY) {
     
     function closeSidebar() {
         jQuery("#sidebar").removeClass("move-to-left");
-        // jQuery("main").removeClass("move-to-left-partly");
         jQuery("#sidebar-tab").removeClass("move-to-left");
-        // jQuery(".arrow").removeClass("active");
         unobscure();
     }
     
@@ -86,11 +82,7 @@ var colors = document.querySelectorAll('#sidebar-color-filters li')
 var labels = document.querySelectorAll('.color-label')
 
 Object.entries(labels).map((el, i) => {
-    // console.log('color: ', colors[i].getAttribute('data-title'))
-    // console.log('actual txt: ', el[1].text)
     el[1].text = colors[i].getAttribute('data-title')
-    // console.log('new text: ', el[1].text)
-    // console.log('\n')
 })
 
 
@@ -180,7 +172,6 @@ function clearColorsCercleSelection(){
     })
 }
 
-// clear selected elements
 
 // when there are no active filters "CLEAR ALL" button is grey
 
