@@ -101,6 +101,7 @@ Object.entries(labels).map((el, i) => {
 var categories = document.querySelectorAll('[data-taxonomy="product_cat"]')
 
 // underline the element when is clicked -> classes: active-filter underline
+// (but before clear all the underlined filters)
 //---------------------------------------------------------------------------
 Object.entries(labels).map(el => {
     el[1].setAttribute("onclick", "return filterClick(this, 'colorLabel')")
@@ -110,9 +111,24 @@ Object.entries(categories).map(el => {
     el[1].setAttribute("onclick", "return filterClick(this, 'category')")
 })
 
+Object.entries(colors).map(el => {
+    el[1].setAttribute("onclick", "return filterClick(this, 'colorCercle')")
+})
+
 function filterClick(el, filterType) {
-    if (filterType="colorLabel") {clearColorlabels()}
-    if (filterType="category") {clearCategories()} 
+    if (filterType=="colorLabel") {
+        clearColorlabels()
+        clearColorsCercleSelection()
+        selectColor(el.parentElement)
+    }
+    if (filterType=="colorCercle") {
+        clearColorlabels()
+        clearColorsCercleSelection()
+        selectColor(el)
+    }
+    if (filterType=="category") {
+        clearCategories()
+    } 
     activateFilter(el)
     underlineElement(el)
 }
@@ -132,15 +148,16 @@ function ununderlineElement(el){
     el.classList.remove('underline')
 }
 
-// when another element of the same list is clicked clear others
-//---------------------------------------------------------------------------
-// Object.entries(labels).map(el => {
-//     el[1].setAttribute("onclick", "return clearColorlabels()")
-// })
+function unselectColor(el){
+    el.classList.remove('selected')
+}
 
-// Object.entries(categories).map(el => {
-//     el[1].setAttribute("onclick", "return clearCategories()")
-// })
+function selectColor(el){
+    el.classList.add('selected')
+}
+
+// when another element of the same list is clicked clear others (functions)
+//---------------------------------------------------------------------------
 
 function clearCategories (){
     clearFilters(categories)
@@ -154,6 +171,12 @@ function clearFilters(elements){
     Object.entries(elements).map(el => {
         unactivateFilter(el[1])
         ununderlineElement(el[1])
+    })
+}
+
+function clearColorsCercleSelection(){
+    Object.entries(colors).map(el => {
+        unselectColor(el[1])
     })
 }
 
