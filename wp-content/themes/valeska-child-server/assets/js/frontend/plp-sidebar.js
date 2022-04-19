@@ -92,3 +92,81 @@ Object.entries(labels).map((el, i) => {
     // console.log('new text: ', el[1].text)
     // console.log('\n')
 })
+
+
+//--------------------------------------
+//         UNDERLINE BEHAVIOR
+//--------------------------------------
+
+var categories = document.querySelectorAll('[data-taxonomy="product_cat"]')
+
+// underline the element when is clicked -> classes: active-filter underline
+//---------------------------------------------------------------------------
+Object.entries(labels).map(el => {
+    el[1].setAttribute("onclick", "return filterClick(this, 'colorLabel')")
+})
+
+Object.entries(categories).map(el => {
+    el[1].setAttribute("onclick", "return filterClick(this, 'category')")
+})
+
+function filterClick(el, filterType) {
+    if (filterType="colorLabel") {clearColorlabels()}
+    if (filterType="category") {clearCategories()} 
+    activateFilter(el)
+    underlineElement(el)
+}
+
+function activateFilter(el) {
+    el.classList.add('active-filter')
+}
+
+function unactivateFilter(el) {
+    el.classList.remove('active-filter')
+}
+function underlineElement(el) {
+    el.classList.add('underline')
+}
+
+function ununderlineElement(el){
+    el.classList.remove('underline')
+}
+
+// when another element of the same list is clicked clear others
+//---------------------------------------------------------------------------
+// Object.entries(labels).map(el => {
+//     el[1].setAttribute("onclick", "return clearColorlabels()")
+// })
+
+// Object.entries(categories).map(el => {
+//     el[1].setAttribute("onclick", "return clearCategories()")
+// })
+
+function clearCategories (){
+    clearFilters(categories)
+}
+
+function clearColorlabels (){
+    clearFilters(labels)
+}
+
+function clearFilters(elements){
+    Object.entries(elements).map(el => {
+        unactivateFilter(el[1])
+        ununderlineElement(el[1])
+    })
+}
+
+// clear selected elements
+
+// when there are no active filters "CLEAR ALL" button is grey
+
+// when there is one active filter "CLEAR ALL" button is  underlined
+
+// add the right class to the circle of the color when is active
+
+//--------------------------------------
+//         VIEW RESULTS BEHAVIOR
+//--------------------------------------
+
+// when the button is clicked look for active filters and go the href based on the request otherwise just close the sidebar
