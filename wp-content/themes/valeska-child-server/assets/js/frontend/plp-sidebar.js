@@ -109,12 +109,12 @@ Object.entries(colors).map(el => {
 
 function filterClick(el, filterType) {
     if (filterType=="colorLabel") {
-        clearColorlabels()
+        clearColors()
         clearColorsCercleSelection()
         selectColor(el.parentElement)
     }
     if (filterType=="colorCercle") {
-        clearColorlabels()
+        clearColors()
         clearColorsCercleSelection()
         selectColor(el)
     }
@@ -131,6 +131,8 @@ function activateFilter(el) {
 
 function unactivateFilter(el) {
     el.classList.remove('active-filter')
+    enableA(clearAll)
+    enableA(viewResults)
 }
 function underlineElement(el) {
     el.classList.add('underline')
@@ -155,8 +157,11 @@ function clearCategories (){
     clearFilters(categories)
 }
 
-function clearColorlabels (){
+function clearColors() {
+    //  clear colors labels
     clearFilters(labels)
+    // lear cercles
+    clearColorsCercleSelection()
 }
 
 function clearFilters(elements){
@@ -173,14 +178,30 @@ function clearColorsCercleSelection(){
 }
 
 
-// when there are no active filters "CLEAR ALL" button is grey
-
-// when there is one active filter "CLEAR ALL" button is  underlined
-
-// add the right class to the circle of the color when is active
-
 //--------------------------------------
-//         VIEW RESULTS BEHAVIOR
+//   VIEW RESULTS & CLEAR ALL BEHAVIOR
 //--------------------------------------
+
+var viewResults = document.querySelector('[behaviour="view_results"]')
+var clearAll = document.querySelector('[behaviour="clear_all"]')
+
+// when a filter is activted "CLEAR ALL" button from disabled (default) becomes active
+function enableA(el){
+    el.classList.remove('disabled')
+}
+
+function disableA(el){
+    el.classList.add('disabled')
+}
+
+// when click on "clear all" => clear all fiters
+clearAll.setAttribute("onclick", "return clearAllFilters()")
+
+function clearAllFilters () {
+    clearColors()
+    clearCategories()
+    disableA(clearAll)
+    disableA(viewResults)
+}
 
 // when the button is clicked look for active filters and go the href based on the request otherwise just close the sidebar
