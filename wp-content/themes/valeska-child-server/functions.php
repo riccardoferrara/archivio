@@ -1073,7 +1073,8 @@ function custom_side_bar(){
                 height: 100%;
                 width: 400px;
                 position: fixed;
-                top: 54px;
+                top: 0;
+                padding-top: 54px;
                 z-index: 2;
                 right: -400px;
                 background-color: #FFF;
@@ -1082,15 +1083,16 @@ function custom_side_bar(){
             @media screen and (max-width: 767px){
                 .sidebar{
                     width: 394px !important;
-                    z-index: 100;
+                    z-index: 2;
                     top: 0px;
                     right: -380px;
                 }
             }
             @media screen and (max-width: 1023px){
                 .sidebar{
-                    top: 40px;
-                    z-index: 100;
+                    top: 0px;
+                    padding-top: 40px;
+                    z-index: 2;
                 }
             }
             
