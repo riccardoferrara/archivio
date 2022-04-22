@@ -90,7 +90,7 @@ Object.entries(labels).map((el, i) => {
 //         UNDERLINE BEHAVIOR
 //--------------------------------------
 
-var categories = document.querySelectorAll('[data-taxonomy="product_cat"]')
+var categories = document.querySelectorAll('.sidebar [data-taxonomy="product_cat"]')
 
 // underline the element when is clicked -> classes: active-filter underline
 // (but before clear all the underlined filters)
@@ -123,6 +123,8 @@ function filterClick(el, filterType) {
     } 
     activateFilter(el)
     underlineElement(el)
+    
+    updateViewResultsHref()
 }
 
 function activateFilter(el) {
@@ -174,6 +176,7 @@ function clearFilters(elements){
 function clearColorsCercleSelection(){
     Object.entries(colors).map(el => {
         unselectColor(el[1])
+        unactivateFilter(el[1])
     })
 }
 
@@ -205,3 +208,49 @@ function clearAllFilters () {
 }
 
 // when the button is clicked look for active filters and go the href based on the request otherwise just close the sidebar
+function updateViewResultsHref(){
+    var activeFilters = getActiveFilters()
+    var href = getQueryHref (activeFilters['colorFilter'], activeFilters['categoryFilter'])
+    viewResults.setAttribute("href", href)
+}
+
+var colorFilter
+var categoryFilter 
+
+// look for active filters
+function getActiveFilters() {
+    colorFilter = document.querySelector('.active-filter.color-variable-item')
+    if (colorFilter) {colorFilter = colorFilter.getAttribute('data-value')}
+    categoryFilter  = document.querySelector('.active-filter, [data-taxonomy="product-cat"]')
+    if (categoryFilter) {
+        categoryFilter = categoryFilter.getAttribute('data-filter')
+        categoryFilter == "*" ? "":categoryFilter
+    }
+    return {colorFilter, categoryFilter}
+}
+
+//create the href
+function getQueryHref (colorFilter, categoryFilter) {
+    // href = "window.location.href"
+    href = "https://www.archiviowebsite.com/women-collection"
+    console.log('colorFilter: ', colorFilter)
+    console.log('categoryFilter: ', categoryFilter)
+
+    //both filter are active
+    if (categoryFilter && colorFilter) {
+        href += `/?wlfilter=1&filter_color=${colorFilter}&product_cat=${categoryFilter}`
+    }
+
+    //only category filter is active
+    if (categoryFilter && !colorFilter) {
+        href += `/?wlfilter=1&product_cat=${categoryFilter}`
+    }
+
+    //only color filter is active
+    if (!categoryFilter && colorFilter) {
+        href += `/?wlfilter=1&filter_color=${colorFilter}`
+    }
+
+    return href
+}
+
