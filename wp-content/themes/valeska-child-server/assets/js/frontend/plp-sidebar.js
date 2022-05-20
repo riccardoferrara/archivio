@@ -34,7 +34,7 @@ function handleGesure(touchendX, touchendY) {
 
     var swiped = 'swiped: ';
     if (touchendX < touchstartX && acceptableYTravel) {
-        openSidebar();
+        // openSidebar();
         console.log(swiped + 'left!');
     }
     if (touchendX > touchstartX && acceptableYTravel) {
@@ -125,6 +125,8 @@ function filterClick(el, filterType) {
     underlineElement(el)
     
     updateViewResultsHref()
+
+    return false
 }
 
 function activateFilter(el) {
@@ -133,8 +135,10 @@ function activateFilter(el) {
 
 function unactivateFilter(el) {
     el.classList.remove('active-filter')
-    enableA(clearAll)
-    enableA(viewResults)
+    enableA(clearAll[0]) //mobile
+    enableA(clearAll[1]) //desktop
+    enableA(viewResults[0]) //mobile
+    enableA(viewResults[1]) //desktop
 }
 function underlineElement(el) {
     el.classList.add('underline')
@@ -185,8 +189,8 @@ function clearColorsCercleSelection(){
 //   VIEW RESULTS & CLEAR ALL BEHAVIOR
 //--------------------------------------
 
-var viewResults = document.querySelector('[behaviour="view_results"]')
-var clearAll = document.querySelector('[behaviour="clear_all"]')
+var viewResults = document.querySelectorAll('[behaviour="view_results"]')
+var clearAll = document.querySelectorAll('[behaviour="clear_all"]')
 
 // when a filter is activted "CLEAR ALL" button from disabled (default) becomes active
 function enableA(el){
@@ -198,20 +202,25 @@ function disableA(el){
 }
 
 // when click on "clear all" => clear all fiters
-clearAll.setAttribute("onclick", "return clearAllFilters()")
+clearAll[0].setAttribute("onclick", "return clearAllFilters()")
+clearAll[1].setAttribute("onclick", "return clearAllFilters()")
+
 
 function clearAllFilters () {
     clearColors()
     clearCategories()
-    disableA(clearAll)
-    disableA(viewResults)
+    disableA(clearAll[0])
+    disableA(clearAll[1])
+    disableA(viewResults[0])
+    disableA(viewResults[1])
 }
 
 // when the button is clicked look for active filters and go the href based on the request otherwise just close the sidebar
 function updateViewResultsHref(){
     var activeFilters = getActiveFilters()
     var href = getQueryHref (activeFilters['colorFilter'], activeFilters['categoryFilter'])
-    viewResults.setAttribute("href", href)
+    viewResults[0].setAttribute("href", href)
+    viewResults[1].setAttribute("href", href)
 }
 
 var colorFilter
@@ -219,7 +228,7 @@ var categoryFilter
 
 // look for active filters
 function getActiveFilters() {
-    colorFilter = document.querySelector('.active-filter.color-variable-item')
+    colorFilter = document.querySelector('.selected.color-variable-item')
     if (colorFilter) {colorFilter = colorFilter.getAttribute('data-value')}
     categoryFilter  = document.querySelector('.active-filter, [data-taxonomy="product-cat"]')
     if (categoryFilter) {
