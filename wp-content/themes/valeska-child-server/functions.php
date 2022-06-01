@@ -773,6 +773,66 @@ function custom_side_bar(){
                     </table>
                 </div> 
                 <div class="row">
+                    <table class="sc-table not-displayed SKIRT-04">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td>D</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Lenght</strong></td>
+                            <td><strong>Waist</strong></td>
+                            <td><strong>Hip</strong></td>
+                            <td><strong>Back slit</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>38</strong></td>
+                            <td>110</td>
+                            <td>32</td>
+                            <td>46</td>
+                            <td>74</td>
+                        </tr>
+                        <tr>
+                            <td><strong>40</strong></td>
+                            <td>112</td>
+                            <td>34</td>
+                            <td>48</td>
+                            <td>74</td>
+                        </tr>
+                        <tr>
+                            <td><strong>42</strong></td>
+                            <td>114</td>
+                            <td>36</td>
+                            <td>50</td>
+                            <td>74</td>
+                        </tr>
+                        <tr>
+                            <td><strong>44</strong></td>
+                            <td>116</td>
+                            <td>38</td>
+                            <td>52</td>
+                            <td>74</td>
+                        </tr>
+                        <tr>
+                            <td><strong>46</strong></td>
+                            <td>118</td>
+                            <td>40</td>
+                            <td>54</td>
+                            <td>74</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td><strong>48</strong></td>
+                            <td>118</td>
+                            <td>42</td>
+                            <td>56</td>
+                            <td>74</td>
+                        </tr>
+                    </table>
+                </div> 
+                <div class="row">
                     <table class="sc-table not-displayed SKIRT-03">
                         <tr class="red">
                             <td></td>
@@ -949,6 +1009,102 @@ function custom_side_bar(){
                             <td>53</td>
                             <td>44</td>
                             <td>54</td>
+                        </tr>
+                    </table>
+                </div>  
+                <div class="row">
+                    <table class="sc-table not-displayed SHIRT-02">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Back lenght</strong></td>
+                            <td><strong>Sleeve</strong></td>
+                            <td><strong>Chest</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>38</strong></td>
+                            <td>104</td>
+                            <td>62</td>
+                            <td>64</td>
+                        </tr>
+                        <tr>
+                            <td><strong>40</strong></td>
+                            <td>105</td>
+                            <td>63</td>
+                            <td>66</td>
+                        </tr>
+                        <tr>
+                            <td><strong>42</strong></td>
+                            <td>106</td>
+                            <td>64</td>
+                            <td>68</td>
+                        </tr>
+                        <tr>
+                            <td><strong>44</strong></td>
+                            <td>106</td>
+                            <td>64</td>
+                            <td>70</td>
+                        </tr>
+                        <tr>
+                            <td><strong>46</strong></td>
+                            <td>106</td>
+                            <td>64</td>
+                            <td>72</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td><strong>48</strong></td>
+                            <td>106</td>
+                            <td>64</td>
+                            <td>74</td>
+                        </tr>
+                    </table>
+                </div>  
+                <div class="row">
+                    <table class="sc-table not-displayed TOP-01">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>B</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Back lenght</strong></td>
+                            <td><strong>Chest</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>38</strong></td>
+                            <td>50,50</td>
+                            <td>42</td>
+                        </tr>
+                        <tr>
+                            <td><strong>40</strong></td>
+                            <td>51</td>
+                            <td>44</td>
+                        </tr>
+                        <tr>
+                            <td><strong>42</strong></td>
+                            <td>51,5</td>
+                            <td>46</td>
+                        </tr>
+                        <tr>
+                            <td><strong>44</strong></td>
+                            <td>52</td>
+                            <td>48</td>
+                        </tr>
+                        <tr>
+                            <td><strong>46</strong></td>
+                            <td>52,5</td>
+                            <td>50</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td><strong>48</strong></td>
+                            <td>53</td>
+                            <td>52</td>
                         </tr>
                     </table>
                 </div>  
