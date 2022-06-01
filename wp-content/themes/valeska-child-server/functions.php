@@ -721,6 +721,66 @@ function custom_side_bar(){
                     </table>
                 </div>
                 <div class="row">
+                    <table class="sc-table not-displayed PANT-W01">
+                        <tr class="red">
+                            <td></td>
+                            <td>A</td>
+                            <td>C</td>
+                            <td>D</td>
+                            <td>E</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Lenght</strong></td>
+                            <td><strong>Waist</strong></td>
+                            <td><strong>Hip</strong></td>
+                            <td><strong>Half thigh</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>38</strong></td>
+                            <td>83,5</td>
+                            <td>35</td>
+                            <td>48</td>
+                            <td>35</td>
+                        </tr>
+                        <tr>
+                            <td><strong>40</strong></td>
+                            <td>85</td>
+                            <td>37</td>
+                            <td>50</td>
+                            <td>36,25</td>
+                        </tr>
+                        <tr>
+                            <td><strong>42</strong></td>
+                            <td>85</td>
+                            <td>39</td>
+                            <td>52</td>
+                            <td>37,5</td>
+                        </tr>
+                        <tr>
+                            <td><strong>44</strong></td>
+                            <td>86,5</td>
+                            <td>41</td>
+                            <td>54</td>
+                            <td>38,75</td>
+                        </tr>
+                        <tr>
+                            <td><strong>46</strong></td>
+                            <td>86,5</td>
+                            <td>43</td>
+                            <td>656</td>
+                            <td>40</td>
+                        </tr>
+                        <tr class="last-row">
+                            <td><strong>46</strong></td>
+                            <td>86,5</td>
+                            <td>43</td>
+                            <td>56</td>
+                            <td>40</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
                     <table class="sc-table not-displayed SKIRT-02">
                         <tr class="red">
                             <td></td>
