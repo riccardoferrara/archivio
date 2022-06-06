@@ -90,7 +90,7 @@ Object.entries(labels).map((el, i) => {
 //         UNDERLINE BEHAVIOR
 //--------------------------------------
 
-var categories = document.querySelectorAll('.sidebar [data-taxonomy="product_cat"]')
+var categoryElements = document.querySelectorAll('.sidebar [data-taxonomy="product_cat"]')
 
 // underline the element when is clicked -> classes: active-filter underline
 // (but before clear all the underlined filters)
@@ -99,7 +99,7 @@ Object.entries(labels).map(el => {
     el[1].setAttribute("onclick", "return filterClick(this, 'colorLabel')")
 })
 
-Object.entries(categories).map(el => {
+Object.entries(categoryElements).map(el => {
     el[1].setAttribute("onclick", "return filterClick(this, 'category')")
 })
 
@@ -160,7 +160,7 @@ function selectColor(el){
 //---------------------------------------------------------------------------
 
 function clearCategories (){
-    clearFilters(categories)
+    clearFilters(categoryElements)
 }
 
 function clearColors() {
@@ -201,6 +201,20 @@ function disableA(el){
     el.classList.add('disabled')
 }
 
+var categories
+categories = []
+// get all available categories except "ALL"
+function getAllCategories(){
+    categoryElements = document.querySelectorAll('.sidebar [data-taxonomy="product_cat"]')
+    categoryElements.forEach(el => {
+        // console.log(el.getAttribute('data-filter'))
+        if (el.getAttribute('data-filter') != '*'){
+            categories.push(el.getAttribute('data-filter'))
+        }
+    })
+}
+getAllCategories()
+
 // when click on "clear all" => clear all fiters
 clearAll[0].setAttribute("onclick", "return clearAllFilters()")
 clearAll[1].setAttribute("onclick", "return clearAllFilters()")
@@ -233,7 +247,7 @@ function getActiveFilters() {
     categoryFilter  = document.querySelector('.active-filter, [data-taxonomy="product-cat"]')
     if (categoryFilter) {
         categoryFilter = categoryFilter.getAttribute('data-filter')
-        categoryFilter == "*" ? "":categoryFilter
+        categoryFilter = categoryFilter == "*" ? categories.join(','):categoryFilter
     }
     return {colorFilter, categoryFilter}
 }
