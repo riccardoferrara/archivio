@@ -30,7 +30,7 @@ function replaceElement(oldElement, newElement) {
 function addMouseOverImg() {
     //for each img we are going to build a new element like this:
     // 
-    // <div class="container">
+    // <div class="double-img-container">
     //     <img src="standard_img.png" alt="Avatar" class="image">
     //     <div class="overlay">
     //         <img src="overlay_img.png" alt="Avatar" class="image">
