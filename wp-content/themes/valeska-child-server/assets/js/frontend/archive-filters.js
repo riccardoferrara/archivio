@@ -20,12 +20,13 @@ const getGategoryFromUrl = () => {
 //deselect ALL filter
 document.querySelector('a[data-filter="*"]').classList.remove('qodef--active');
 
+//check if we are in case all or case category
+let category = getGategoryFromUrl()
+
 //unshow both all-products and query-products
 document.querySelector('.all-products').classList.add('not-displayed')
 document.querySelector('.query-products').classList.add('not-displayed')
 
-//check if we are in case all or case category
-let category = getGategoryFromUrl()
 
 if (category) {
     document.querySelector('.query-products').classList.remove('not-displayed')
