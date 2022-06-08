@@ -30,7 +30,7 @@ function replaceElement(oldElement, newElement) {
 function addMouseOverImg() {
     //for each img we are going to build a new element like this:
     // 
-    // <div class="double-img-container">
+    // <div class="container">
     //     <img src="standard_img.png" alt="Avatar" class="image">
     //     <div class="overlay">
     //         <img src="overlay_img.png" alt="Avatar" class="image">
@@ -39,23 +39,19 @@ function addMouseOverImg() {
     //
     // find all images
     var imgs = document.querySelectorAll('.attachment-woocommerce_thumbnail.size-woocommerce_thumbnail')
+
     imgs.forEach(img => {
-        // create the div container with the class container
-        let container = document.createElement('div');
-        container.classList.add('double-img-container');
-
-        // create the div overlay
-        let overlay = document.createElement('div')
-        overlay.classList.add('overlay')
-
-        //iterate for each img
-        container.appendChild(img.cloneNode(true))
+        //use the template of the img to create a new img and change the src with the mouse over src
         let newMouseOverImg = img.cloneNode(true)
         newMouseOverImg.srcset = newMouseOverImg.srcset.replace('-0-', '-MouseOver-')
+        newMouseOverImg.classList.add('hover')
+
+        // because many src are not present onerror do nothing
         newMouseOverImg.setAttribute("onerror", `this.onerror=null;this.srcset='${img.srcset}';`)
-        overlay.appendChild(newMouseOverImg)
-        container.appendChild(overlay)
-        replaceElement(img, container)
+
+        //inser the new hover img after the normal img
+        insertAfter(newMouseOverImg, img)
+
     })
 }
 
