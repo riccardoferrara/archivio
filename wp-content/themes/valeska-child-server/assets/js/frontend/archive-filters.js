@@ -5,13 +5,17 @@ function addHrefToNiceFilters() {
         if (category == '*') {
             f[1].href = window.location.href.split('women-collection')[0] + 'women-collection'
         } else {
-            f[1].href = window.location.href.split('women-collection')[0] + 'women-collection/' + '?' + 'wlfilter=1' + '&' + 'product_cat=' + category
+            // f[1].href = window.location.href.split('women-collection')[0] + 'women-collection/' + '?' + 'wlfilter=1' + '&' + 'product_cat=' + category //old filter
+            f[1].href = window.location.href.split('women-collection')[0] + 'women-collection/' + '?' + 'category=' + category // new widget "filter everything"
+
         }
     })
 }
 //get category from url
 const getGategoryFromUrl = () => {
-    let category = window.location.href.split('product_cat=')[1]
+    // let category = window.location.href.split('product_cat=')[1] // old widget filter
+    let category = window.location.href.split('category=')[1]
+
     return category
 }
 

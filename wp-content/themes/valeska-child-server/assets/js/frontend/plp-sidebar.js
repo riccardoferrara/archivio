@@ -247,7 +247,8 @@ function getActiveFilters() {
     categoryFilter  = document.querySelector('.active-filter, [data-taxonomy="product-cat"]')
     if (categoryFilter) {
         categoryFilter = categoryFilter.getAttribute('data-filter')
-        categoryFilter = categoryFilter == "*" ? categories.join(','):categoryFilter
+        // categoryFilter = categoryFilter == "*" ? categories.join(','):categoryFilter //old filter
+        categoryFilter = categoryFilter == "*" ? categories.join(';'):categoryFilter //new filter "everything"
     }
     return {colorFilter, categoryFilter}
 }
@@ -261,17 +262,23 @@ function getQueryHref (colorFilter, categoryFilter) {
 
     //both filter are active
     if (categoryFilter && colorFilter) {
-        href += `/?wlfilter=1&filter_color=${colorFilter}&product_cat=${categoryFilter}`
+        // href += `/?wlfilter=1&filter_color=${colorFilter}&product_cat=${categoryFilter}`//wlfilter (old)
+        href += `/?col=${colorFilter}&category=${categoryFilter}` //new filter "everything"
+
     }
 
     //only category filter is active
     if (categoryFilter && !colorFilter) {
-        href += `/?wlfilter=1&product_cat=${categoryFilter}`
+        // href += `/?wlfilter=1&product_cat=${categoryFilter}` //wlfilter (old)
+        href += `/?category=${categoryFilter}` //new filter "everything"
+
     }
 
     //only color filter is active
     if (!categoryFilter && colorFilter) {
-        href += `/?wlfilter=1&filter_color=${colorFilter}`
+        // href += `/?wlfilter=1&filter_color=${colorFilter}` //wlfilter (old)
+        href += `/?col=${colorFilter}` //new filter "everything"
+
     }
 
     return href
