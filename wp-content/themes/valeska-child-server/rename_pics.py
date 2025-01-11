@@ -1,6 +1,20 @@
 import shutil
 import os
 import glob
+import tkinter as tk
+from tkinter import filedialog
+
+def getFilePath(message = 'please select a file'):
+    root = tk.Tk()
+    root.withdraw()
+    file_path = filedialog.askopenfilename(parent=root, title=message)
+    return file_path
+
+def getFolderPath(message = 'please select a directory'):
+    root = tk.Tk()
+    root.withdraw()
+    dirname = filedialog.askdirectory(parent=root,initialdir="/",title=message)
+    return dirname
 
 def listdir_nohidden(path):
     return glob.glob(os.path.join(path,'*'))
@@ -32,8 +46,9 @@ def rename_files(path, rules):
         os.rename(os.path.join(path, filename), os.path.join(path, new_filename))
 
 
-
-cartella_archivio = '/Users/marcoferrera/Desktop/PDP'
+print('start')
+# cartella_archivio = '/Users/marcoferrera/Desktop/PDP'
+cartella_archivio = getFolderPath()
 cartella_all_products = '/Users/marcoferrera/Desktop/prodottiarchivio'
 #sposta_tutti(cartella_archivio, cartella_all_products):
 rules = {' ':'_', 'Still':'0'}
