@@ -114,14 +114,14 @@ function ridev_product_images (){
 					case "still2": //seconda immagine eventuale "still"
 						$html_00 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
-					case "1": //indossato uno (piu' piccola)
-						$html_1 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
+					case "1": //indossato uno
+						$html_1 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
-					case "2": //indossato due (piu' piccola)
-						$html_2 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
+					case "2": //indossato due
+						$html_2 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
-					case "3": //indossato tre (piu' piccola)
-						$html_3 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image secondary-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
+					case "3": //indossato tre
+						$html_3 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
 						break;
 				}
 				// deselect color
