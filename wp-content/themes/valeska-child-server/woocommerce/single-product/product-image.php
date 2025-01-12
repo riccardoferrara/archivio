@@ -49,27 +49,28 @@ function ridev_product_images (){
 
 
 $images_colors_url = ridev_product_images(); 
-// $images_colors_url["black-0"] = "URL immagine big" ecc.
+// Esempio di output: $images_colors_url["black-0"] = "http://....jpg" ecc.
 
-// Se preferisci un numero preciso di colonne puoi assegnarlo direttamente (es: $columns = 4;)
+// Puoi decidere tu quante colonne: se vuoi, lascia pure la filter come nel tuo codice
 $columns = apply_filters( 'woocommerce_product_thumbnails_columns', 4 );
 
+// Classi wrapper standard WooCommerce (le tue)
 $wrapper_classes = array(
     'woocommerce-product-gallery',
     'woocommerce-product-gallery--columns-' . absint( $columns ),
     'images',
 );
 
-// Prepariamo i contenitori
+// Stringhe in cui accumuliamo l’HTML delle miniature e delle immagini grandi
 $thumbnails_html = '';
 $big_images_html = '';
 
-// Variabili di controllo
-$selected_color = true;
+// Variabili di controllo per la logica
+$selected_color = true; // per marcare la prima immagine di default
 $first_loop     = true;
 $loop_color     = '';
 
-// Variabili dove accumuliamo le immagini in base alle posizioni
+// Variabili dove accumuliamo le immagini di ogni colore
 $html_0  = '';
 $html_00 = '';
 $html_1  = '';
@@ -78,66 +79,81 @@ $html_3  = '';
 
 foreach ( $images_colors_url as $color_position => $image_url ) {
 
+    // Separiamo la parte "colore" dalla parte "posizione"
     list($color, $pos) = explode( '-', $color_position );
 
-    // Se “pos” è '00', lo rinominiamo 'still2' (come nel tuo codice originale)
+    // Se la posizione è “00”, la rinominiamo “still2” (come nel tuo codice)
     if ( $pos === '00' ) {
         $pos = 'still2';
     }
 
-    // Se cambia il colore (es. da black a taupe), “chiudiamo” il blocco del colore precedente
+    // Se stiamo passando a un nuovo colore, chiudiamo il blocco del precedente
     if ( $loop_color !== $color ) {
         if ( ! $first_loop ) {
-            // Aggiungiamo le immagini grandi accumulate per il colore precedente
+            // Concateno le immagini grandi raccolte finora (del colore precedente)
             $big_images_html .= $html_0 . $html_00 . $html_1 . $html_2 . $html_3;
 
-            // Reset
+            // Reset variabili
             $html_0  = '';
             $html_00 = '';
             $html_1  = '';
             $html_2  = '';
             $html_3  = '';
         }
-        $loop_color = $color;
-        $first_loop = false;
+        $loop_color  = $color;
+        $first_loop  = false;
     }
 
-    // ID univoco per ogni immagine “grande”
+    // Definiamo un ID univoco per l’immagine grande, che useremo anche come anchor target
     $img_id = 'img-' . $color . '-' . $pos;
 
-    // Creiamo la miniatura, che linka con un anchor a `#{$img_id}`
+    // Stabiliamo la “visibility class” (solo la prima immagine globale sarà `selected-color`)
+    $visibility_class = $selected_color ? 'selected-color' : 'unselected-color';
+
+    // -----------------------------
+    //  A) Creazione della MINIATURA
+    // -----------------------------
+    // Oltre al link di ancoraggio, aggiungiamo la stessa visibility_class e l’attributo color
     $thumbnails_html .= sprintf(
         '<div class="product-thumbnail">
             <a href="#%1$s">
-                <img loading="lazy" src="%2$s" alt="Thumbnail for %3$s" />
+                <img 
+                    loading="lazy" 
+                    class="%2$s" 
+                    color="%3$s"
+                    src="%4$s" 
+                    alt="Thumbnail for %5$s" 
+                />
             </a>
         </div>',
-        esc_attr( $img_id ),
-        esc_url( $image_url ),
-        esc_html( $color_position )
+        esc_attr( $img_id ),             // #id di destinazione
+        esc_attr( $visibility_class ),   // selected/unselected
+        esc_attr( $color ),             // attributo color="xxx"
+        esc_url( $image_url ),           
+        esc_html( $color_position )      // alt text
     );
 
-    // Classe per indicare se è la prima immagine del primo colore
-    $visibility_class = ( $selected_color ) ? 'selected-color' : 'unselected-color';
-
-    // Creiamo l’immagine grande come <img> (senza div)
+    // ---------------------------
+    //  B) Creazione IMMAGINE GRANDE
+    // ---------------------------
+    // Anche qui aggiungiamo la stessa visibility_class e l’attributo color
     $big_image_element = sprintf(
         '<img 
-            id="%1$s" 
+            id="%1$s"
             class="wp-post-image %2$s" 
-            color="%3$s" 
+            color="%3$s"
             loading="lazy" 
             src="%4$s" 
             alt="%5$s" 
         />',
-        esc_attr( $img_id ),
-        esc_attr( $visibility_class ),
-        esc_attr( $color ),
+        esc_attr( $img_id ),           // ID per l’ancoraggio
+        esc_attr( $visibility_class ), // es. “selected-color”
+        esc_attr( $color ),            // attributo color="xxx"
         esc_url( $image_url ),
         esc_html__( 'Awaiting product image', 'woocommerce' )
     );
 
-    // In base al “pos” scegliamo dove accumularlo
+    // In base alla posizione, lo accumuliamo nella variabile corrispondente
     switch ( $pos ) {
         case '0':
             $html_0  = $big_image_element;
@@ -156,17 +172,17 @@ foreach ( $images_colors_url as $color_position => $image_url ) {
             break;
     }
 
-    // Dopo la prima immagine, la classe “selected-color” non verrà più aggiunta
+    // Dopo la prima immagine, la prossima sarà "unselected-color"
     $selected_color = false;
 }
 
-// Aggiungiamo gli ultimi blocchi di immagini (per l’ultimo colore in coda)
+// Chiudiamo l’ultimo blocco (per l’ultimo colore incontrato)
 $big_images_html .= $html_0 . $html_00 . $html_1 . $html_2 . $html_3;
 
-// Creiamo l’output finale
-// 1) colonna delle miniature
-// 2) colonna delle immagini grandi
-// 3) eventuale SKU nascosto
+// Componiamo l'HTML finale
+// 1) colonna thumbnails
+// 2) colonna immagini grandi
+// 3) SKU nascosto
 $html  = '<div class="woocommerce-product-gallery__thumbnails">';
 $html .= $thumbnails_html;
 $html .= '</div>';
@@ -184,8 +200,39 @@ $html .= sprintf('<div class="sku not-selected">%s</div>', esc_html( $sku ));
      style="opacity: 0; transition: opacity .25s ease-in-out;">
     <figure class="woocommerce-product-gallery__wrapper">
         <?php
-            // Stampa l’HTML delle miniature + immagini grandi
+            // Stampa l’HTML costruito
             echo $html; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
         ?>
     </figure>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Seleziona tutte le miniature
+    const thumbnails = document.querySelectorAll('.product-thumbnail a');
+
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', function (event) {
+            // Evita il comportamento predefinito del link
+            event.preventDefault();
+
+            // Prendi l'ID di destinazione dal link
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                // Scorri all'immagine corrispondente in modo fluido
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center', // Posiziona l'immagine al centro
+                });
+            }
+
+            // Rimuovi la classe 'active-thumbnail' da tutte le miniature
+            thumbnails.forEach(thumb => thumb.parentElement.classList.remove('active-thumbnail'));
+
+            // Aggiungi la classe 'active-thumbnail' solo alla miniatura cliccata
+            this.parentElement.classList.add('active-thumbnail');
+        });
+    });
+});
+</script>
