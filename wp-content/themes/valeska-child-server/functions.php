@@ -234,7 +234,7 @@ function custom_jquery_shop_script(){
                 imgElement.classList.add('selected-color')
             }
             //nascondo le foto del colore non selezionato e rendo visibili quelle del colore selezionato
-            function showSelectedColorVariation(){
+            function showSelectedColorVariation() {
                 // var imagesElementOfShownColor = []
                 // imagesElementOfShownColor = document.getElementsByClassName("selected-color");
                 // for (var i =0; i < imagesElementOfShownColor.length; i++)
@@ -243,16 +243,31 @@ function custom_jquery_shop_script(){
                 //     hideImageElement(imagesElementOfShownColor[i])
                 // }
                 // console.log('start hide elements')
-                while (document.getElementsByClassName("selected-color")[0] != undefined){
-                    hideImageElement(document.getElementsByClassName("selected-color")[0])
+                while (document.getElementsByClassName("selected-color")[0] != undefined) {
+                    hideImageElement(document.getElementsByClassName("selected-color")[0]);
                 }
-                // console.log('end hide elements')
-                var imagesElementOfTheColorToShow = []
-                imagesElementOfTheColorToShow = document.querySelectorAll('[color="'+ selected_color + '"]')
-                for (var i =0; i< imagesElementOfTheColorToShow.length; i++){
-                    showImageElement(imagesElementOfTheColorToShow[i])
+
+                // Ottieni le immagini del colore selezionato
+                var imagesElementOfTheColorToShow = [];
+                imagesElementOfTheColorToShow = document.querySelectorAll('[color="' + selected_color + '"]');
+                
+                // Mostra le immagini del colore selezionato
+                for (var i = 0; i < imagesElementOfTheColorToShow.length; i++) {
+                    showImageElement(imagesElementOfTheColorToShow[i]);
+                }
+
+                // Rimuovi la classe `active-thumbnail` da qualsiasi immagine
+                const activeThumbnails = document.querySelectorAll('.active-thumbnail');
+                activeThumbnails.forEach((thumbnail) => {
+                    thumbnail.classList.remove('active-thumbnail');
+                });
+
+                // Aggiungi la classe `active-thumbnail` alla prima immagine del colore selezionato
+                if (imagesElementOfTheColorToShow.length > 0) {
+                    imagesElementOfTheColorToShow[0].classList.add('active-thumbnail');
                 }
             }
+
             // show the name of the selected color on the page
             function showSelectedColorDescription(){
                 color_label = document.querySelectorAll('[value="'+ selected_color+'"]')[0].text
