@@ -256,15 +256,18 @@ function custom_jquery_shop_script(){
                     showImageElement(imagesElementOfTheColorToShow[i]);
                 }
 
-                // Rimuovi la classe `active-thumbnail` da qualsiasi immagine
-                const activeThumbnails = document.querySelectorAll('.active-thumbnail');
+                // Rimuovi la classe `active-thumbnail` da tutti i div `.product-thumbnail`
+                const activeThumbnails = document.querySelectorAll('.product-thumbnail.active-thumbnail');
                 activeThumbnails.forEach((thumbnail) => {
                     thumbnail.classList.remove('active-thumbnail');
                 });
 
-                // Aggiungi la classe `active-thumbnail` alla prima immagine del colore selezionato
+                // Aggiungi la classe `active-thumbnail` al div contenente la prima immagine del colore selezionato
                 if (imagesElementOfTheColorToShow.length > 0) {
-                    imagesElementOfTheColorToShow[0].classList.add('active-thumbnail');
+                    const firstImageParent = imagesElementOfTheColorToShow[0].closest('.product-thumbnail');
+                    if (firstImageParent) {
+                        firstImageParent.classList.add('active-thumbnail');
+                    }
                 }
             }
 
