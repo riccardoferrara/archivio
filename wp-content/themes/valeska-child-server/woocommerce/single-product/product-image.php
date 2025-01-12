@@ -23,18 +23,6 @@ if ( ! function_exists( 'wc_get_gallery_image_html' ) ) {
 }
 
 global $product;
-
-$columns           = apply_filters( 'woocommerce_product_thumbnails_columns', 4 );
-$post_thumbnail_id = $product->get_image_id();
-$wrapper_classes   = apply_filters(
-	'woocommerce_single_product_image_gallery_classes',
-	array(
-		'woocommerce-product-gallery',
-		'woocommerce-product-gallery--' . ( $post_thumbnail_id ? 'with-images' : 'without-images' ),
-		'woocommerce-product-gallery--columns-' . absint( $columns ),
-		'images',
-	)
-);
 function get_product_images_urls($product_image_ids){
 	$product_images_urls = [];
 	$i = 0;
@@ -60,82 +48,144 @@ function ridev_product_images (){
 };
 
 
+$images_colors_url = ridev_product_images(); 
+// $images_colors_url["black-0"] = "URL immagine big" ecc.
 
+// Se preferisci un numero preciso di colonne puoi assegnarlo direttamente (es: $columns = 4;)
+$columns = apply_filters( 'woocommerce_product_thumbnails_columns', 4 );
 
+$wrapper_classes = array(
+    'woocommerce-product-gallery',
+    'woocommerce-product-gallery--columns-' . absint( $columns ),
+    'images',
+);
+
+// Prepariamo i contenitori
+$thumbnails_html = '';
+$big_images_html = '';
+
+// Variabili di controllo
+$selected_color = true;
+$first_loop     = true;
+$loop_color     = '';
+
+// Variabili dove accumuliamo le immagini in base alle posizioni
+$html_0  = '';
+$html_00 = '';
+$html_1  = '';
+$html_2  = '';
+$html_3  = '';
+
+foreach ( $images_colors_url as $color_position => $image_url ) {
+
+    list($color, $pos) = explode( '-', $color_position );
+
+    // Se “pos” è '00', lo rinominiamo 'still2' (come nel tuo codice originale)
+    if ( $pos === '00' ) {
+        $pos = 'still2';
+    }
+
+    // Se cambia il colore (es. da black a taupe), “chiudiamo” il blocco del colore precedente
+    if ( $loop_color !== $color ) {
+        if ( ! $first_loop ) {
+            // Aggiungiamo le immagini grandi accumulate per il colore precedente
+            $big_images_html .= $html_0 . $html_00 . $html_1 . $html_2 . $html_3;
+
+            // Reset
+            $html_0  = '';
+            $html_00 = '';
+            $html_1  = '';
+            $html_2  = '';
+            $html_3  = '';
+        }
+        $loop_color = $color;
+        $first_loop = false;
+    }
+
+    // ID univoco per ogni immagine “grande”
+    $img_id = 'img-' . $color . '-' . $pos;
+
+    // Creiamo la miniatura, che linka con un anchor a `#{$img_id}`
+    $thumbnails_html .= sprintf(
+        '<div class="product-thumbnail">
+            <a href="#%1$s">
+                <img loading="lazy" src="%2$s" alt="Thumbnail for %3$s" />
+            </a>
+        </div>',
+        esc_attr( $img_id ),
+        esc_url( $image_url ),
+        esc_html( $color_position )
+    );
+
+    // Classe per indicare se è la prima immagine del primo colore
+    $visibility_class = ( $selected_color ) ? 'selected-color' : 'unselected-color';
+
+    // Creiamo l’immagine grande come <img> (senza div)
+    $big_image_element = sprintf(
+        '<img 
+            id="%1$s" 
+            class="wp-post-image %2$s" 
+            color="%3$s" 
+            loading="lazy" 
+            src="%4$s" 
+            alt="%5$s" 
+        />',
+        esc_attr( $img_id ),
+        esc_attr( $visibility_class ),
+        esc_attr( $color ),
+        esc_url( $image_url ),
+        esc_html__( 'Awaiting product image', 'woocommerce' )
+    );
+
+    // In base al “pos” scegliamo dove accumularlo
+    switch ( $pos ) {
+        case '0':
+            $html_0  = $big_image_element;
+            break;
+        case 'still2':
+            $html_00 = $big_image_element;
+            break;
+        case '1':
+            $html_1  = $big_image_element;
+            break;
+        case '2':
+            $html_2  = $big_image_element;
+            break;
+        case '3':
+            $html_3  = $big_image_element;
+            break;
+    }
+
+    // Dopo la prima immagine, la classe “selected-color” non verrà più aggiunta
+    $selected_color = false;
+}
+
+// Aggiungiamo gli ultimi blocchi di immagini (per l’ultimo colore in coda)
+$big_images_html .= $html_0 . $html_00 . $html_1 . $html_2 . $html_3;
+
+// Creiamo l’output finale
+// 1) colonna delle miniature
+// 2) colonna delle immagini grandi
+// 3) eventuale SKU nascosto
+$html  = '<div class="woocommerce-product-gallery__thumbnails">';
+$html .= $thumbnails_html;
+$html .= '</div>';
+
+$html .= '<div class="woocommerce-product-gallery__large-images">';
+$html .= $big_images_html;
+$html .= '</div>';
+
+$sku = $product->get_sku();
+$html .= sprintf('<div class="sku not-selected">%s</div>', esc_html( $sku ));
 
 ?>
-
-<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
-	<figure class="woocommerce-product-gallery__wrapper">
-		<?php
-		// if ( $post_thumbnail_id ) {
-		if ( false ) {
-
-			$html = wc_get_gallery_image_html( $post_thumbnail_id, true );
-		} else {
-			//questa parte inserisce le foto al primo giro
-			$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
-			//recupera gli url delle foto
-			$images_colors_url = ridev_product_images();
-			// crea codice html con tutte le foto
-			$i = "";
-			$selected_color = TRUE;
-			$change_color = FALSE;
-			$loop_color = "";
-			$first_loop = TRUE;
-			foreach($images_colors_url as $color_position => $image_url){
-				//se la foto è la terza o la quarta cambia stile (width 50%)
-				$visibility_class = $selected_color ? 'selected-color':'unselected-color';
-				$color = explode('-', $color_position)[0];
-				$i = explode('-', $color_position)[1];
-				// se si cambia di colore prima scrivere l'html con le 3 immagini
-				if ($loop_color != $color) {
-					$loop_color = $color;
-					if (!$first_loop) {
-						$html .= $html_0 . $html_00 . $html_1 . $html_2 . $html_3;
-						// console_log($html);
-						$html_0 = "";
-						$html_00 = "";
-						$html_1 = "";
-						$html_2 = "";
-						$html_3 = "";
-					}
-					$first_loop = FALSE;
-				}
-				// se è "00" cambio nome altrimenti lo swtich lo contempla nel casso "0" non so perché
-				if ($i === "00"){
-					$i = "still2";
-				}
-				switch($i) {
-					// scrivi html
-					case "0": //prima immagine "still"
-						$html_0 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
-						break;
-					case "still2": //seconda immagine eventuale "still"
-						$html_00 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
-						break;
-					case "1": //indossato uno
-						$html_1 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
-						break;
-					case "2": //indossato due
-						$html_2 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
-						break;
-					case "3": //indossato tre
-						$html_3 = sprintf( '<img loading=lazy src="%s" alt="%s" class="wp-post-image %s" color="%s"/>', $image_url, esc_html__( 'Awaiting product image', 'woocommerce'), $visibility_class, $color );
-						break;
-				}
-				// deselect color
-				$selected_color= FALSE;
-			}	
-		$html .= $html_0 . $html_00 . $html_1 . $html_2 . $html_3;
-		$html .= '</div>';
-		// inserisci un elemento nascosto con lo sku
-		$sku = $product->get_sku();
-		$html .= sprintf('<div class="sku not-selected">%s</div>', $sku);
-		}
-
-		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
-		// do_action( 'woocommerce_product_thumbnails' );
-		?>
-	</figure>
+<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>"
+     data-columns="<?php echo esc_attr( $columns ); ?>"
+     style="opacity: 0; transition: opacity .25s ease-in-out;">
+    <figure class="woocommerce-product-gallery__wrapper">
+        <?php
+            // Stampa l’HTML delle miniature + immagini grandi
+            echo $html; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+        ?>
+    </figure>
 </div>
