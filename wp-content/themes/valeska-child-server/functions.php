@@ -268,6 +268,12 @@ function custom_jquery_shop_script(){
                     if (firstImageParent) {
                         firstImageParent.classList.add('active-thumbnail');
                     }
+
+                    // SCROLL alla prima immagine grande della variazione selezionata
+                    imagesElementOfTheColorToShow[0].scrollIntoView({
+                        behavior: 'smooth', // Scorrimento fluido
+                        block: 'center'     // Centra la prima immagine nello schermo
+                    });
                 }
             }
 
