@@ -154,23 +154,26 @@ foreach ( $images_colors_url as $color_position => $image_url ) {
     );
 
     // In base alla posizione, lo accumuliamo nella variabile corrispondente
-    switch ( $pos ) {
-        case '0':
-            $html_0  = $big_image_element;
-            break;
-        case 'still2':
-            $html_00 = $big_image_element;
-            break;
-        case '1':
-            $html_1  = $big_image_element;
-            break;
-        case '2':
-            $html_2  = $big_image_element;
-            break;
-        case '3':
-            $html_3  = $big_image_element;
-            break;
-    }
+	switch ( $pos ) {
+		case '0': // prima immagine "still"
+			$html_0  = $big_image_element;
+			break;
+		case 'still2': // seconda immagine eventuale "still"
+			$html_00 = $big_image_element;
+			break;
+		case '1': // indossato uno
+			$html_1  = $big_image_element;
+			break;
+		case '2': // indossato due
+			$html_2  = $big_image_element;
+			break;
+		case '3': // indossato tre
+			$html_3  = $big_image_element;
+			break;
+		default: // Gestione di eventuali posizioni mancanti
+			$html_0 .= $big_image_element; // Se la posizione è sconosciuta, aggiungila comunque
+			break;
+	}
 
     // Dopo la prima immagine, la prossima sarà "unselected-color"
     $selected_color = false;
