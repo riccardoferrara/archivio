@@ -238,4 +238,45 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // 1) Seleziona tutte le immagini grandi e le miniature
+    const bigImages    = document.querySelectorAll('.woocommerce-product-gallery__large-images img[id]');
+    const thumbnails   = document.querySelectorAll('.product-thumbnail a[href^="#"]');
+
+    // 2) Crea un osservatore con una soglia (threshold) che determini tu.
+    //    threshold: 0.6 → significa che se il 60% di un'immagine è visibile, la consideriamo "attiva".
+    let options = {
+        root: null,        // viewport del browser
+        rootMargin: '0px', // margini extra
+        threshold: 0.6
+    };
+
+    let observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // L'immagine "entry.target" è quella che sta entrando in vista
+                const currentImgId = entry.target.getAttribute('id');
+
+                // Rimuove la classe active-thumbnail da tutte
+                document.querySelectorAll('.product-thumbnail.active-thumbnail').forEach(el => {
+                    el.classList.remove('active-thumbnail');
+                });
+
+                // Trova la thumbnail corrispondente con href="#currentImgId"
+                const matchingThumbnailLink = document.querySelector(`.product-thumbnail a[href="#${currentImgId}"]`);
+                if (matchingThumbnailLink) {
+                    // Aggiunge la classe al DIV wrapper della thumbnail
+                    matchingThumbnailLink.parentElement.classList.add('active-thumbnail');
+                }
+            }
+        });
+    }, options);
+
+    // 3) Attacca l'observer a tutte le big images
+    bigImages.forEach(img => {
+        observer.observe(img);
+    });
+});
+
 </script>
