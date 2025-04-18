@@ -23,7 +23,15 @@ add_action( 'wp_enqueue_scripts', 'child_theme_configurator_css', 25 );
 
 // END ENQUEUE PARENT ACTION
 
-
+//---------------------------------------------
+// ADD CUSTOM THUMBNAIL SIZE
+//---------------------------------------------
+if ( !function_exists( 'archivio_add_custom_thumbnail_size' ) ):
+    function archivio_add_custom_thumbnail_size() {
+        add_image_size( 'archivio-large-thumbnail', 768, 1024, true ); // Hard crop mode (true)
+    }
+endif;
+add_action( 'after_setup_theme', 'archivio_add_custom_thumbnail_size', 11 );
 
 
 //******************************************************************************/
@@ -235,14 +243,10 @@ function custom_jquery_shop_script(){
             }
             //nascondo le foto del colore non selezionato e rendo visibili quelle del colore selezionato
             function showSelectedColorVariation() {
-                // var imagesElementOfShownColor = []
-                // imagesElementOfShownColor = document.getElementsByClassName("selected-color");
-                // for (var i =0; i < imagesElementOfShownColor.length; i++)
-                // {
-                //     console.log(i)
-                //     hideImageElement(imagesElementOfShownColor[i])
-                // }
-                // console.log('start hide elements')
+                // indico che sto per scorrere per evitare che la funzione IntersectionObserver in product-image.php
+                // prenda il sopravvento
+                isProgrammaticScrolling = true; 
+
                 while (document.getElementsByClassName("selected-color")[0] != undefined) {
                     hideImageElement(document.getElementsByClassName("selected-color")[0]);
                 }
@@ -250,6 +254,9 @@ function custom_jquery_shop_script(){
                 // Ottieni le immagini del colore selezionato
                 var imagesElementOfTheColorToShow = [];
                 imagesElementOfTheColorToShow = document.querySelectorAll('[color="' + selected_color + '"]');
+
+                var bigImagesElementOfTheColorToShow = [];
+                bigImagesElementOfTheColorToShow = document.querySelectorAll('[color="' + selected_color + '"].wp-post-image');
                 
                 // Mostra le immagini del colore selezionato
                 for (var i = 0; i < imagesElementOfTheColorToShow.length; i++) {
@@ -270,10 +277,14 @@ function custom_jquery_shop_script(){
                     }
 
                     // SCROLL alla prima immagine grande della variazione selezionata
-                    imagesElementOfTheColorToShow[0].scrollIntoView({
+                    bigImagesElementOfTheColorToShow[0].scrollIntoView({
                         behavior: 'smooth', // Scorrimento fluido
                         block: 'center'     // Centra la prima immagine nello schermo
                     });
+
+                    setTimeout(() => {
+                        isProgrammaticScrolling = false;
+                    }, 800);
                 }
             }
 
