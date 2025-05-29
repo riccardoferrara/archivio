@@ -25,42 +25,42 @@ gestureZone.addEventListener('touchstart', function(event) {
     touchstartY = event.changedTouches[0].screenY;
 }, false);
 
-gestureZone.addEventListener('touchend', function(event) {
-    var touchendX = event.changedTouches[0].screenX;
-    var touchendY = event.changedTouches[0].screenY;
-    handleGesure(touchendX, touchendY);
-}, false);
+// gestureZone.addEventListener('touchend', function(event) {
+//     var touchendX = event.changedTouches[0].screenX;
+//     var touchendY = event.changedTouches[0].screenY;
+//     handleGesure(touchendX, touchendY);
+// }, false);
 
-function handleGesure(touchendX, touchendY) {
-    var acceptableYTravel = (touchendY - touchstartY) < 15 && (touchendY - touchstartY) > -15;
+// function handleGesure(touchendX, touchendY) {
+//     var acceptableYTravel = (touchendY - touchstartY) < 15 && (touchendY - touchstartY) > -15;
 
-    var swiped = 'swiped: ';
-    if (touchendX < touchstartX && acceptableYTravel) {
-        openSidebar();
-        console.log(swiped + 'left!');
-    }
-    if (touchendX > touchstartX && acceptableYTravel) {
-        closeSidebar();
-        console.log(swiped + 'right!');
-    }
-}
+//     var swiped = 'swiped: ';
+//     if (touchendX < touchstartX && acceptableYTravel) {
+//         openSidebar();
+//         console.log(swiped + 'left!');
+//     }
+//     if (touchendX > touchstartX && acceptableYTravel) {
+//         closeSidebar();
+//         console.log(swiped + 'right!');
+//     }
+// }
 
 // function openSidebar() {
-    //     jQuery("#sidebar").addClass("move-to-left");
-    //     jQuery("main").addClass("move-to-left-partly");
-    //     jQuery("#sidebar-tab").addClass("move-to-left");
-    //     jQuery(".arrow").addClass("active");
-    //     obscure();
-    // }
-    
-    function closeSidebar() {
-        jQuery("#sidebar").removeClass("move-to-left");
-        jQuery("main").removeClass("move-to-left-partly");
-        jQuery("#sidebar-tab").removeClass("move-to-left");
-        jQuery(".arrow").removeClass("active");
-        unobscure();
-    }
-    
+//     jQuery("#sidebar").addClass("move-to-left");
+//     jQuery("main").addClass("move-to-left-partly");
+//     jQuery("#sidebar-tab").addClass("move-to-left");
+//     jQuery(".arrow").addClass("active");
+//     obscure();
+// }
+
+// function closeSidebar() {
+//     jQuery("#sidebar").removeClass("move-to-left");
+//     jQuery("main").removeClass("move-to-left-partly");
+//     jQuery("#sidebar-tab").removeClass("move-to-left");
+//     jQuery(".arrow").removeClass("active");
+//     unobscure();
+// }
+
 /* End of totally unncessary swyping gesture s*/
 
 // function to obscure the window when sidebar is opened
