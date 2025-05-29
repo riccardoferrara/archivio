@@ -209,6 +209,8 @@ $html .= sprintf('<div class="sku not-selected">%s</div>', esc_html( $sku ));
     </figure>
 </div>
 <script>
+let isProgrammaticScrolling = false;
+
 document.addEventListener("DOMContentLoaded", function () {
     // Seleziona tutte le miniature
     const thumbnails = document.querySelectorAll('.product-thumbnail a');
@@ -255,25 +257,26 @@ document.addEventListener('DOMContentLoaded', function () {
     let observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // L'immagine "entry.target" è quella che sta entrando in vista
-                const currentImgId = entry.target.getAttribute('id');
+				// L'immagine "entry.target" è quella che sta entrando in vista
+                // Ma aggiorna le thumbnail SOLO se NON stiamo facendo scroll programmato
+                if (!isProgrammaticScrolling) {
+                    const currentImgId = entry.target.getAttribute('id');
+                    
+                    // Rimuove la classe active-thumbnail da tutte
+                    document.querySelectorAll('.product-thumbnail.active-thumbnail').forEach(el => {
+                        el.classList.remove('active-thumbnail');
+                    });
 
-                // Rimuove la classe active-thumbnail da tutte
-                document.querySelectorAll('.product-thumbnail.active-thumbnail').forEach(el => {
-                    el.classList.remove('active-thumbnail');
-                });
-
-                // Trova la thumbnail corrispondente con href="#currentImgId"
-                const matchingThumbnailLink = document.querySelector(`.product-thumbnail a[href="#${currentImgId}"]`);
-                if (matchingThumbnailLink) {
-                    // Aggiunge la classe al DIV wrapper della thumbnail
-                    matchingThumbnailLink.parentElement.classList.add('active-thumbnail');
+                    // Trova la thumbnail corrispondente con href="#currentImgId"
+                    const matchingThumbnailLink = document.querySelector(`.product-thumbnail a[href="#${currentImgId}"]`);
+                    if (matchingThumbnailLink) {
+                        matchingThumbnailLink.parentElement.classList.add('active-thumbnail');
+                    }
                 }
             }
         });
     }, options);
 
-    // 3) Attacca l'observer a tutte le big images
     bigImages.forEach(img => {
         observer.observe(img);
     });
