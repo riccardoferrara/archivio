@@ -326,10 +326,36 @@ function custom_jquery_shop_script(){
             function showSelectedColorVariationMobile(){
                 var desktop_imgs = document.querySelectorAll('.selected-color')
                 var mobile_imgs = document.querySelectorAll('.swiper-slide-image')
-                let data_swiper_slide_index = [3, 0, 1, 2, 3, 0]
+                
+                // Get the number of images for the selected color
+                const numImages = desktop_imgs.length
+                
+                // Create dynamic mapping array based on the number of images
+                // Order: last, first, second, etc.
+                let data_swiper_slide_index = []
+                
+                if (numImages > 0) {
+                    // Add last image
+                    data_swiper_slide_index.push(numImages - 1)
+                    
+                    // Add remaining images in order from first to second-to-last
+                    for (let i = 0; i < numImages - 1; i++) {
+                        data_swiper_slide_index.push(i)
+                    }
+                    
+                    // If needed, cycle through the pattern again for remaining mobile slots
+                    while (data_swiper_slide_index.length < mobile_imgs.length) {
+                        // Repeat the pattern starting from the beginning
+                        data_swiper_slide_index.push(data_swiper_slide_index[data_swiper_slide_index.length % numImages])
+                    }
+                }
+                
+                // Apply the mapping to update mobile images
                 Object.entries(mobile_imgs).forEach((mobile_img, i) => {
-                    mobile_imgs[i].src = desktop_imgs[data_swiper_slide_index[i]].src
-                    mobile_imgs[i].alt = desktop_imgs[data_swiper_slide_index[i]].src
+                    if (i < data_swiper_slide_index.length) {
+                        mobile_imgs[i].src = desktop_imgs[data_swiper_slide_index[i]].src
+                        mobile_imgs[i].alt = desktop_imgs[data_swiper_slide_index[i]].src
+                    }
                 })
             }
 
