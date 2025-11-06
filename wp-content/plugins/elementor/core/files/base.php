@@ -4,7 +4,7 @@ namespace Elementor\Core\Files;
 use Elementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 abstract class Base {
@@ -130,6 +130,20 @@ abstract class Base {
 		$url = set_url_scheme( self::get_base_uploads_url() . $this->files_dir . $this->file_name );
 
 		return add_query_arg( [ 'ver' => $this->get_meta( 'time' ) ], $url );
+	}
+
+	/**
+	 * Get Path
+	 *
+	 * Returns the local path of the generated file.
+	 *
+	 * @since 3.5.0
+	 * @access public
+	 *
+	 * @return string
+	 */
+	public function get_path() {
+		return set_url_scheme( self::get_base_uploads_dir() . $this->files_dir . $this->file_name );
 	}
 
 	/**

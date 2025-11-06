@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Product_Stock_Element extends Widget_Base {
+class Woolentor_Wb_Product_Stock_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wl-single-product-stock';
@@ -19,6 +19,10 @@ class WL_Product_Stock_Element extends Widget_Base {
 
     public function get_categories() {
         return array( 'woolentor-addons' );
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -80,19 +84,40 @@ class WL_Product_Stock_Element extends Widget_Base {
 
     protected function render( $instance = [] ) {
 
-        $settings   = $this->get_settings_for_display();
+        $settings = $this->get_settings_for_display();
+        $id       = $this->get_id();
         global $product;
         $product = wc_get_product();
         
-        if( Plugin::instance()->editor->is_edit_mode() ){
-            echo \WooLentor_Default_Data::instance()->default( $this->get_name() );
+        if( woolentor_is_preview_mode() ){
+            echo \WooLentor_Default_Data::instance()->default( $this->get_name() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         } else{
             if ( empty( $product ) ) { return; }
-            echo wc_get_stock_html( $product );
+            echo wc_get_stock_html( $product ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        }
+        
+        // For Variable Product
+        $poduct_type = $product ? $product->get_type() : '';
+        if( "variable" == $poduct_type){
+            ?>
+                <div class="woolentor-variable-product-status" id="woolentor-stock-status-<?php echo esc_attr($id); ?>"></div>
+                <script>
+                    ;jQuery(document).ready(function($) {
+                        'use strict';
+                        let widgetUniqid = '<?php echo esc_js($id); ?>';
+                        $( '.single_variation_wrap' ).on( 'show_variation', function ( event, variation ) {
+                            $('#woolentor-stock-status-'+widgetUniqid).html(variation?.availability_html);
+                        });
+
+                        $('.variations').find('.reset_variations').on('click', function(e){
+                            $('#woolentor-stock-status-'+widgetUniqid).html('');
+                        });
+                    });
+                </script>
+            <?php
         }
         
 
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Product_Stock_Element() );

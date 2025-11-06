@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Whols_Element extends Widget_Base {
+class Woolentor_Wb_Whols_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wb-whols';
@@ -19,6 +19,10 @@ class WL_Whols_Element extends Widget_Base {
 
     public function get_categories() {
         return array( 'woolentor-addons' );
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -87,8 +91,7 @@ class WL_Whols_Element extends Widget_Base {
         $settings   = $this->get_settings_for_display();
 
         $short_code_attributes = [];
-        echo woolentor_do_shortcode( 'whols_registration_form', $short_code_attributes );
+        echo woolentor_do_shortcode( 'whols_registration_form', $short_code_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Whols_Element() );

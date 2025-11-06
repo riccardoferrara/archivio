@@ -13,124 +13,124 @@
  * --------------------------------------------------------------------------*/
 
 (() => {
-    "use strict";
+  "use strict";
 
-    /* ------------------------------------------------------------------ */
-    /*  Config & helpers                                                  */
-    /* ------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------ */
+  /*  Config & helpers                                                  */
+  /* ------------------------------------------------------------------ */
 
-    const THUMBNAIL_SELECTOR = ".attachment-woocommerce_thumbnail.size-woocommerce_thumbnail";
-    const PRICE_SELECTOR = ".woocommerce-Price-amount.amount";
-    const HIGHRES_SUFFIX = "-768x1024"; // WordPress hi‑res size to swap in
+  const THUMBNAIL_SELECTOR = ".attachment-woocommerce_thumbnail.size-woocommerce_thumbnail";
+  const PRICE_SELECTOR     = ".woocommerce-Price-amount.amount";
+  const HIGHRES_SUFFIX     = "-768x1024"; // WordPress hi‑res size to swap in
 
-    /** Replace the WP size suffix (e.g. -150x150) with the desired one. */
-    const swapSizeSuffix = (url, newSuffix = HIGHRES_SUFFIX) =>
-        url.replace(/-\d+x\d+(?=\.[a-z]+$)/i, newSuffix);
+  /** Replace the WP size suffix (e.g. -150x150) with the desired one. */
+  const swapSizeSuffix = (url, newSuffix = HIGHRES_SUFFIX) =>
+    url.replace(/-\d+x\d+(?=\.[a-z]+$)/i, newSuffix);
 
-    /** Build the MouseOver filename: replace “-0-” with “-MouseOver-”. */
-    const buildHoverUrl = url => url.replace("-0-", "-MouseOver-");
+  /** Build the MouseOver filename: replace “-0-” with “-MouseOver-”. */
+  const buildHoverUrl = url => url.replace("-0-", "-MouseOver-");
 
-    /** Lightweight HEAD probe (falls back to <img> if HEAD blocked). */
-    const imageExists = async url => {
-        try {
-            const res = await fetch(url, { method: "HEAD" });
-            return res.ok;
-        } catch {
-            return new Promise(resolve => {
-                const probe = new Image();
-                probe.onload = () => resolve(true);
-                probe.onerror = () => resolve(false);
-                probe.src = url;
-            });
-        }
-    };
-
-    /* ------------------------------------------------------------------ */
-    /* 1. Upgrade a single thumbnail (src & srcset)                       */
-    /* ------------------------------------------------------------------ */
-
-    function upgradeThumbnail(img) {
-        const original = img.getAttribute("src");
-        if (!original) return;
-        const highRes = swapSizeSuffix(original);
-
-        img.src = highRes;
-        img.srcset = `${highRes} 1x`;
-        img.sizes = "(max-width: 300px) 100vw, 300px";
+  /** Lightweight HEAD probe (falls back to <img> if HEAD blocked). */
+  const imageExists = async url => {
+    try {
+      const res = await fetch(url, { method: "HEAD" });
+      return res.ok;
+    } catch {
+      return new Promise(resolve => {
+        const probe = new Image();
+        probe.onload  = () => resolve(true);
+        probe.onerror = () => resolve(false);
+        probe.src = url;
+      });
     }
+  };
 
-    /* ------------------------------------------------------------------ */
-    /* 2. Attach hover overlay for a single thumbnail                     */
-    /* ------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------ */
+  /* 1. Upgrade a single thumbnail (src & srcset)                       */
+  /* ------------------------------------------------------------------ */
 
-    async function attachHover(img) {
-        const hoverUrl = buildHoverUrl(img.getAttribute("src"));
-        if (hoverUrl === img.src) return; // no “-0-” segment found
-        if (!(await imageExists(hoverUrl))) return; // counterpart missing
+  function upgradeThumbnail (img) {
+    const original = img.getAttribute("src");
+    if (!original) return;
+    const highRes  = swapSizeSuffix(original);
 
-        const wrapper = document.createElement("div");
-        wrapper.className = "img-hover-wrapper";
-        img.parentNode.insertBefore(wrapper, img);
-        wrapper.appendChild(img);
+    img.src    = highRes;
+    img.srcset = `${highRes} 1x`;
+    img.sizes  = "(max-width: 300px) 100vw, 300px";
+  }
 
-        const hoverImg = img.cloneNode();
-        hoverImg.src = hoverUrl;
-        hoverImg.srcset = `${hoverUrl} 1x`;
-        hoverImg.classList.add("hover");
-        wrapper.appendChild(hoverImg);
-    }
+  /* ------------------------------------------------------------------ */
+  /* 2. Attach hover overlay for a single thumbnail                     */
+  /* ------------------------------------------------------------------ */
 
-    /* ------------------------------------------------------------------ */
-    /* 3. Observe thumbnails lazily                                       */
-    /* ------------------------------------------------------------------ */
+  async function attachHover (img) {
+    const hoverUrl = buildHoverUrl(img.getAttribute("src"));
+    if (hoverUrl === img.src) return;           // no “-0-” segment found
+    if (!(await imageExists(hoverUrl))) return; // counterpart missing
 
-    function enhanceThumbnailsLazily() {
-        const thumbnails = document.querySelectorAll(THUMBNAIL_SELECTOR);
-        console.log(`[ProductEnhancements] Found ${thumbnails.length} thumbnails to observe`);
+    const wrapper = document.createElement("div");
+    wrapper.className = "img-hover-wrapper";
+    img.parentNode.insertBefore(wrapper, img);
+    wrapper.appendChild(img);
 
-        let processed = 0;
+    const hoverImg = img.cloneNode();
+    hoverImg.src = hoverUrl;
+    hoverImg.srcset = `${hoverUrl} 1x`;
+    hoverImg.classList.add("hover");
+    wrapper.appendChild(hoverImg);
+  }
 
-        const io = new IntersectionObserver(entries => {
-            entries.forEach(async entry => {
-                if (!entry.isIntersecting) return;
-                io.unobserve(entry.target); // enhance once, then stop observing
+  /* ------------------------------------------------------------------ */
+  /* 3. Observe thumbnails lazily                                       */
+  /* ------------------------------------------------------------------ */
 
-                upgradeThumbnail(entry.target);
-                await attachHover(entry.target);
+  function enhanceThumbnailsLazily () {
+    const thumbnails = document.querySelectorAll(THUMBNAIL_SELECTOR);
+    console.log(`[ProductEnhancements] Found ${thumbnails.length} thumbnails to observe`);
 
-                processed += 1;
-                console.log(`[ProductEnhancements] Enhanced ${processed}/${thumbnails.length}`);
-            });
-        }, { rootMargin: "200px" });
+    let processed = 0;
 
-        thumbnails.forEach(img => io.observe(img));
-    }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(async entry => {
+        if (!entry.isIntersecting) return;
+        io.unobserve(entry.target); // enhance once, then stop observing
 
-    /* ------------------------------------------------------------------ */
-    /* 4. Make prices clickable                                           */
-    /* ------------------------------------------------------------------ */
+        upgradeThumbnail(entry.target);
+        await attachHover(entry.target);
 
-    function addLinkToPrices() {
-        document.querySelectorAll(PRICE_SELECTOR).forEach(priceEl => {
-            const productAnchor = priceEl.closest(".product") ? .querySelector("a.woocommerce-LoopProduct-link");
-            if (!productAnchor) return;
-            if (priceEl.parentElement ? .tagName === "A") return; // already wrapped
+        processed += 1;
+        console.log(`[ProductEnhancements] Enhanced ${processed}/${thumbnails.length}`);
+      });
+    }, { rootMargin: "200px" });
 
-            const link = productAnchor.cloneNode(false); // shallow clone keeps href
-            link.className = "price-link";
-            priceEl.parentNode.insertBefore(link, priceEl);
-            link.appendChild(priceEl);
-        });
-    }
+    thumbnails.forEach(img => io.observe(img));
+  }
 
-    /* ------------------------------------------------------------------ */
-    /* 5. Bootstrap on DOM ready                                          */
-    /* ------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------ */
+  /* 4. Make prices clickable                                           */
+  /* ------------------------------------------------------------------ */
 
-    document.addEventListener("DOMContentLoaded", () => {
-        addLinkToPrices();
-        enhanceThumbnailsLazily();
+  function addLinkToPrices () {
+    document.querySelectorAll(PRICE_SELECTOR).forEach(priceEl => {
+      const productAnchor = priceEl.closest(".product")?.querySelector("a.woocommerce-LoopProduct-link");
+      if (!productAnchor) return;
+      if (priceEl.parentElement?.tagName === "A") return; // already wrapped
+
+      const link = productAnchor.cloneNode(false); // shallow clone keeps href
+      link.className = "price-link";
+      priceEl.parentNode.insertBefore(link, priceEl);
+      link.appendChild(priceEl);
     });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* 5. Bootstrap on DOM ready                                          */
+  /* ------------------------------------------------------------------ */
+
+  document.addEventListener("DOMContentLoaded", () => {
+    addLinkToPrices();
+    enhanceThumbnailsLazily();
+  });
 })();
 
 /* ----------------------------------------------------------------------

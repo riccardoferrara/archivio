@@ -1,12 +1,11 @@
 <?php
-
 namespace Elementor\Data;
 
 use Elementor\Core\Base\Module as BaseModule;
 use Elementor\Data\Base\Processor;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 class Manager extends BaseModule {
@@ -111,20 +110,15 @@ class Manager extends BaseModule {
 	 *
 	 * @param string $command
 	 * @param string $format
-	 *
 	 */
 	public function register_endpoint_format( $command, $format ) {
 		$this->command_formats[ $command ] = rtrim( $format, '/' );
 	}
 
 	public function register_rest_error_handler() {
-		// TODO: Remove - Find better solution.
-		return;
-
 		if ( ! $this->is_internal() ) {
 			$logger_manager = \Elementor\Core\Logger\Manager::instance();
-
-			set_error_handler( [ $logger_manager, 'rest_error_handler' ], E_ALL );
+			$logger_manager->register_error_handler();
 		}
 	}
 

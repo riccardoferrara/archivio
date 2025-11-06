@@ -71,6 +71,10 @@
             $message.removeClass( 'install-now installed button-disabled updated-message' )
                 .addClass( 'updating-message' )
                 .html( WLIM.buttontxt.activating );
+            
+            if( $( '.htwptemplata-plugin-' + $plugindata['slug'] ).hasClass('need-plugin') ){
+                $( '.htwptemplata-plugin-' + $plugindata['slug'] ).removeClass('need-plugin');
+            }
 
             setTimeout( function() {
                 $.ajax( {
@@ -78,6 +82,7 @@
                     type: 'POST',
                     data: {
                         action   : 'woolentor_ajax_plugin_activation',
+                        nonce    : WLIM.nonce,
                         location : $plugindata['location'],
                     },
                 } ).done( function( result ) {
@@ -86,6 +91,12 @@
                             .attr( 'disabled', 'disabled' )
                             .addClass( 'disabled' )
                             .text( WLIM.buttontxt.active );
+                        
+                        if( $('.htwptemplata-requiredplugins .need-plugin').length == 0 ){
+                            $(".htwptimport-button-dynamic .wptemplataimpbtn").removeClass('htwptdisabled');
+                        }else{
+                            $(".htwptimport-button-dynamic .wptemplataimpbtn").addClass('htwptdisabled');
+                        }
 
                     } else {
                         $message.removeClass( 'updating-message' );
@@ -112,11 +123,16 @@
 
             $button.addClass( 'updating-message button-primary' ).html( WLIM.buttontxt.activating );
 
+            if( $( '.htwptemplata-plugin-' + $plugindata['slug'] ).hasClass('need-plugin') ){
+                $( '.htwptemplata-plugin-' + $plugindata['slug'] ).removeClass('need-plugin');
+            }
+
             $.ajax( {
                 url: WLIM.ajaxurl,
                 type: 'POST',
                 data: {
                     action   : 'woolentor_ajax_plugin_activation',
+                    nonce    : WLIM.nonce,
                     location : $plugindata['location'],
                 },
             }).done( function( response ) {
@@ -125,6 +141,12 @@
                         .attr( 'disabled', 'disabled' )
                         .addClass( 'disabled' )
                         .text( WLIM.buttontxt.active );
+                    
+                    if( $('.htwptemplata-requiredplugins .need-plugin').length == 0 ){
+                        $(".htwptimport-button-dynamic .wptemplataimpbtn").removeClass('htwptdisabled');
+                    }else{
+                        $(".htwptimport-button-dynamic .wptemplataimpbtn").addClass('htwptdisabled');
+                    }
                 }
             });
 
@@ -210,6 +232,7 @@
                     type: 'POST',
                     data: {
                         action   : 'woolentor_ajax_theme_activation',
+                        nonce    : WLIM.nonce,
                         themeslug : $themedata['slug'],
                     },
                 } ).done( function( result ) {
@@ -249,6 +272,7 @@
                 type: 'POST',
                 data: {
                     action   : 'woolentor_ajax_theme_activation',
+                    nonce    : WLIM.nonce,
                     themeslug : $themedata['slug'],
                 },
             }).done( function( response ) {

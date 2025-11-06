@@ -85,7 +85,7 @@ abstract class Base_Tag extends Controls_Stack {
 	 * @access public
 	 */
 	public function get_editor_config() {
-		 ob_start();
+		ob_start();
 
 		$this->print_panel_template();
 
@@ -140,7 +140,7 @@ abstract class Base_Tag extends Controls_Stack {
 				}
 			}
 
-			print( '(' + key + ')' );
+			print( '(' + _.escape( key ) + ')' );
 		}
 		#>
 		<?php

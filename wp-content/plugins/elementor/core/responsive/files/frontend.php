@@ -6,9 +6,10 @@ use Elementor\Core\Breakpoints\Breakpoint;
 use Elementor\Core\Files\Base;
 use Elementor\Core\Responsive\Responsive;
 use Elementor\Plugin;
+use Elementor\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 class Frontend extends Base {
@@ -36,7 +37,7 @@ class Frontend extends Base {
 
 		$breakpoints_keys = array_keys( $breakpoints );
 
-		$file_content = file_get_contents( $this->template_file );
+		$file_content = Utils::file_get_contents( $this->template_file );
 
 		// The regex pattern parses placeholders located in the frontend _templates.scss file.
 		$file_content = preg_replace_callback( '/ELEMENTOR_SCREEN_([A-Z_]+)(?:_(MIN|MAX|NEXT))/', function ( $placeholder_data ) use ( $breakpoints_keys, $breakpoints ) {
@@ -58,7 +59,7 @@ class Frontend extends Base {
 			} elseif ( false === $breakpoint_index ) {
 				// If the breakpoint in the placeholder is not active - use a -1 value for the media query, to make
 				// sure the setting is printed (to avoid a PHP error) but doesn't apply.
-				$value = -1;
+				return -1;
 			} elseif ( 'WIDESCREEN' === $placeholder_data[1] ) {
 				$value = $breakpoints['widescreen']->get_value();
 			} else {
@@ -175,9 +176,6 @@ class Frontend extends Base {
 	 * Used for backwards compatibility for old Pro versions that were built with an Elementor Core version <3.2.0.
 	 *
 	 * @since 3.2.3
-	 *
-	 * @param $placeholder_data
-	 * @return mixed
 	 */
 	private function maybe_convert_placeholder_data( $placeholder_data ) {
 		switch ( $placeholder_data[1] ) {

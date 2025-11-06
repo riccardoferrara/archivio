@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Product_Upsell_Element extends Widget_Base {
+class Woolentor_Wb_Product_Upsell_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wl-single-product-upsell';
@@ -15,6 +15,10 @@ class WL_Product_Upsell_Element extends Widget_Base {
 
     public function get_icon() {
         return 'eicon-product-upsell';
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_categories() {
@@ -170,8 +174,8 @@ class WL_Product_Upsell_Element extends Widget_Base {
             $order = $settings['order'];
         }
 
-        if( Plugin::instance()->editor->is_edit_mode() ){
-            echo \WooLentor_Default_Data::instance()->default( $this->get_name(), $settings );
+        if( woolentor_is_preview_mode() ){
+            echo \WooLentor_Default_Data::instance()->default( $this->get_name(), $settings ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         }else{
             woocommerce_upsell_display( $product_per_page, $columns, $orderby, $order );
         }
@@ -179,4 +183,3 @@ class WL_Product_Upsell_Element extends Widget_Base {
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Product_Upsell_Element() );

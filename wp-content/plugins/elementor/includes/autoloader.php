@@ -128,6 +128,7 @@ class Autoloader {
 			'Frontend' => 'includes/frontend.php',
 			'Group_Control_Base' => 'includes/controls/groups/base.php',
 			'Group_Control_Interface' => 'includes/interfaces/group-control.php',
+			'Has_Validation' => 'includes/interfaces/has-validation.php',
 			'Heartbeat' => 'includes/heartbeat.php',
 			'Images_Manager' => 'includes/managers/image.php',
 			'Maintenance' => 'includes/maintenance.php',
@@ -144,13 +145,17 @@ class Autoloader {
 			'Stylesheet' => 'includes/stylesheet.php',
 			'System_Info\Main' => 'includes/settings/system-info/main.php',
 			'TemplateLibrary\Classes\Import_Images' => 'includes/template-library/classes/class-import-images.php',
+			'TemplateLibrary\Forms\New_Template_Form' => 'includes/template-library/forms/new-template-form.php',
 			'TemplateLibrary\Manager' => 'includes/template-library/manager.php',
 			'TemplateLibrary\Source_Base' => 'includes/template-library/sources/base.php',
 			'TemplateLibrary\Source_Local' => 'includes/template-library/sources/local.php',
 			'TemplateLibrary\Source_Remote' => 'includes/template-library/sources/remote.php',
+			'TemplateLibrary\Source_Cloud' => 'includes/template-library/sources/cloud.php',
 			'Tools' => 'includes/settings/tools.php',
+			'Container\Container' => 'includes/container/container.php',
 			'Tracker' => 'includes/tracker.php',
 			'User' => 'includes/user.php',
+			'User_Data' => 'includes/user-data.php',
 			'Utils' => 'includes/utils.php',
 			'Widget_WordPress' => 'includes/widgets/wordpress.php',
 			'Widgets_Manager' => 'includes/managers/widgets.php',
@@ -184,7 +189,7 @@ class Autoloader {
 	 *
 	 * Used to convert control names to class names.
 	 *
-	 * @param $string
+	 * @param string $string
 	 * @param string $delimiter
 	 *
 	 * @return mixed
@@ -193,36 +198,35 @@ class Autoloader {
 		return ucwords( str_replace( '-', '_', $string ), $delimiter );
 	}
 
+	/**
+	 * Init classes aliases.
+	 *
+	 * When Elementor classes renamed or moved to different folders, developers
+	 * can still use the old names by setting an alias.
+	 *
+	 * While in deprecation period both classes will work. When the deprecation
+	 * period ends, the alies should be removed from the list of aliases.
+	 *
+	 * Usage:
+	 *
+	 *  self::$classes_aliases = [
+	 *    'Namespace\OldClassName' => [
+	 *      'replacement' => 'Namespace\NewClassName',
+	 *      'version' => '3.0.0',
+	 *    ],
+	 *    'Namespace\OldModule\ClassName' => [
+	 *      'replacement' => 'Namespace\NewModule\ClassName',
+	 *      'version' => '3.5.0',
+	 *    ],
+	 *  ];
+	 *
+	 * @access private
+	 * @static
+	 *
+	 * @return void
+	 */
 	private static function init_classes_aliases() {
 		self::$classes_aliases = [
-			'Core\Ajax' => [
-				'replacement' => 'Core\Common\Modules\Ajax\Module',
-				'version' => '2.3.0',
-			],
-			'Editor' => [
-				'replacement' => 'Core\Editor\Editor',
-				'version' => '2.6.0',
-			],
-			'Scheme_Base' => [
-				'replacement' => 'Core\Schemes\Base',
-				'version' => '2.8.0',
-			],
-			'Scheme_Color' => [
-				'replacement' => 'Core\Schemes\Color',
-				'version' => '2.8.0',
-			],
-			'Scheme_Color_Picker' => [
-				'replacement' => 'Core\Schemes\Color_Picker',
-				'version' => '2.8.0',
-			],
-			'Schemes_Manager' => [
-				'replacement' => 'Core\Schemes\Manager',
-				'version' => '2.8.0',
-			],
-			'Scheme_Typography' => [
-				'replacement' => 'Core\Schemes\Typography',
-				'version' => '2.8.0',
-			],
 			'System_Info\Main' => [
 				'replacement' => 'Modules\System_Info\Module',
 				'version' => '2.9.0',
@@ -317,7 +321,7 @@ class Autoloader {
 
 		$has_class_alias = isset( $classes_aliases[ $relative_class_name ] );
 
-		// Backward Compatibility: Save old class name for set an alias after the new class is loaded
+		// Backward Compatibility: Save old class name for set an alias after the new class is loaded.
 		if ( $has_class_alias ) {
 			$alias_data = $classes_aliases[ $relative_class_name ];
 

@@ -4,7 +4,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
+class Woolentor_Product_Curvy_Widget extends Widget_Base {
 
     public function get_name() {
         return 'woolentor-curvy-product';
@@ -22,6 +22,10 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
         return [ 'woolentor-addons' ];
     }
 
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
+    }
+
     public function get_style_depends(){
         return [
             'htflexboxgrid',
@@ -34,7 +38,7 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
     public function get_script_depends() {
         return [
             'woolentor-widgets-scripts',
-            ];
+        ];
     }
 
     public function get_keywords(){
@@ -262,9 +266,6 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                 [
                     'label'     => __( 'Hide Title', 'woolentor' ),
                     'type'      => Controls_Manager::SWITCHER,
-                    'selectors' => [
-                        '{{WRAPPER}} .wl_single-product-item .product-content .product-content-top .title' => 'display: none !important;',
-                    ],
                 ]
             );
 
@@ -273,9 +274,6 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                 [
                     'label'     => __( 'Hide Price', 'woolentor' ),
                     'type'      => Controls_Manager::SWITCHER,
-                    'selectors' => [
-                        '{{WRAPPER}} .wl_single-product-item .product-content .product-content-top .product-price' => 'display: none !important;',
-                    ],
                 ]
             );
 
@@ -284,9 +282,6 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                 [
                     'label'     => __( 'Hide Content', 'woolentor' ),
                     'type'      => Controls_Manager::SWITCHER,
-                    'selectors' => [
-                        '{{WRAPPER}} .wl_single-product-item .product-content p' => 'display: none !important;',
-                    ],
                 ]
             );
 
@@ -310,9 +305,6 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                 [
                     'label'     => __( 'Hide Rating', 'woolentor' ),
                     'type'      => Controls_Manager::SWITCHER,
-                    'selectors' => [
-                        '{{WRAPPER}} .wl_single-product-item .product-content .product-content-top .reading' => 'display: none !important;',
-                    ],
                 ]
             );
 
@@ -492,6 +484,7 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                     'default' => '#0A3ACA',
                     'selectors' => [
                         '{{WRAPPER}} .wl_single-product-item .product-content .product-content-top .product-price' => 'color: {{VALUE}};',
+                        '.woocommerce {{WRAPPER}} div.product span.price' => 'color: {{VALUE}};',
                     ],
                 ]
             );
@@ -506,6 +499,7 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                    'default' => '#ffffff',
                     'selectors' => [
                         '{{WRAPPER}} .wl_single-product-item.wl_dark-item .product-content .product-content-top .product-price' => 'color: {{VALUE}};',
+                        '.woocommerce {{WRAPPER}} div.product .wl_single-product-item.wl_dark-item span.price' => 'color: {{VALUE}};',
                     ],
                 ]
             );
@@ -514,7 +508,7 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                 Group_Control_Typography::get_type(),
                 [
                     'name' => 'product_sale_price_typography',
-                    'selector' => '{{WRAPPER}} .wl_single-product-item .product-content .product-content-top .product-price, {{WRAPPER}} .wl_single-product-item.wl_dark-item .product-content .product-content-top .product-price',
+                    'selector' => '{{WRAPPER}} .wl_single-product-item .product-content .product-content-top .product-price, {{WRAPPER}} .wl_single-product-item.wl_dark-item .product-content .product-content-top .product-price,.woocommerce {{WRAPPER}} div.product span.price',
                 ]
             );
 
@@ -529,7 +523,8 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                     'separator' => 'before',
                     'default' => '#0A3ACA',
                     'selectors' => [
-                        '{{WRAPPER}} .wl_single-product-item .product-content .product-content-top .product-price del' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .wl_single-product-item .product-content .product-content-top .product-price del' => 'color: {{VALUE}} !important;',
+                        '.woocommerce {{WRAPPER}} div.product span.price del' => 'color: {{VALUE}};',
                     ],
                 ]
             );
@@ -544,7 +539,8 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                     'separator' => 'before',
                     'default' => '#ffffff',
                     'selectors' => [
-                        '{{WRAPPER}} .wl_single-product-item.wl_dark-item .product-content .product-content-top .product-price del' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .wl_single-product-item.wl_dark-item .product-content .product-content-top .product-price del' => 'color: {{VALUE}} !important;',
+                        '.woocommerce {{WRAPPER}} div.product .wl_single-product-item.wl_dark-item span.price del' => 'color: {{VALUE}} !important;',
                     ],
                 ]
             );
@@ -553,7 +549,7 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                 Group_Control_Typography::get_type(),
                 [
                     'name' => 'product_regular_price_typography',
-                    'selector' => '{{WRAPPER}} .wl_single-product-item .product-content .product-content-top .product-price del, {{WRAPPER}} .wl_single-product-item.wl_dark-item .product-content .product-content-top .product-price del',
+                    'selector' => '{{WRAPPER}} .wl_single-product-item .product-content .product-content-top .product-price del, {{WRAPPER}} .wl_single-product-item.wl_dark-item .product-content .product-content-top .product-price del ,.woocommerce {{WRAPPER}} div.product span.price del',
                 ]
             );
 
@@ -564,7 +560,7 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%', 'em' ],
                     'selectors' => [
-                        '{{WRAPPER}} .wl_single-product-item .product-content .product-content-top .product-price' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .wl_single-product-item .product-content .product-content-top .product-price' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
                     ],
                 ]
             );
@@ -585,7 +581,7 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                 \Elementor\Group_Control_Typography::get_type(),
                 [
                     'name' => 'content_typography',
-                    'label' => esc_html__( 'Typography', 'moveaddons' ),
+                    'label' => esc_html__( 'Typography', 'woolentor' ),
                     'selector' => '{{WRAPPER}} .wl_single-product-item .product-content .product-content-top p',
                 ]
             );
@@ -963,23 +959,31 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                     </a>
                     <div class="product-content">
                         <div class="product-content-top">
-                            <h6 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
+                            <?php if ( $settings['hide_product_title'] != 'yes' ) { ?>
+                                <h6 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
+                            <?php } ?>
                             <div class="product-price">
-                                <span class="new-price"><?php woocommerce_template_loop_price();?></span>
+                                <?php if ( $settings['hide_product_price'] != 'yes' ) { ?>
+                                    <span class="new-price"><?php woocommerce_template_loop_price();?></span>
+                                <?php } ?>
                             </div>
-                            <p><?php echo $content_count; ?> </p>
-                            <div class="reading">
-                                <?php woocommerce_template_loop_rating(); ?>
-                            </div>
+                            <?php do_action( 'woolentor_addon_after_price' ); ?>
+                            <?php if ( $settings['hide_product_content'] != 'yes' ) { ?>
+                                <p><?php echo $content_count; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> </p>
+                            <?php } ?>
+                            <?php if ( $settings['hide_product_ratting'] != 'yes' ) { ?>
+                                <div class="reading">
+                                    <?php woocommerce_template_loop_rating(); ?>
+                                </div>
+                            <?php } ?>
                         </div>
                         <ul class="action">
                             <li class="wl_cart">
-
-                                <a href="<?php echo $product->add_to_cart_url(); ?>" data-quantity="1" class="action-item <?php echo $btn_class; ?>" data-product_id="<?php echo $product->get_id(); ?>"><?php echo __( $cart_btn, 'woolentor' );?></a>
+                                <a href="<?php echo esc_url($product->add_to_cart_url()); ?>" data-quantity="1" class="action-item <?php echo esc_attr($btn_class); ?>" data-product_id="<?php echo esc_attr($product->get_id()); ?>"><?php echo __( $cart_btn, 'woolentor' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?></a>
                             </li>
                             <?php
                                 if( true === woolentor_has_wishlist_plugin() ){
-                                    echo '<li>'.woolentor_add_to_wishlist_button('<i class="sli sli-heart"></i>','<i class="sli sli-heart"></i>').'</li>';
+                                    echo '<li>'.woolentor_add_to_wishlist_button('<i class="sli sli-heart"></i>','<i class="sli sli-heart"></i>').'</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                 }
                             ?>                                    
                             <?php
@@ -999,8 +1003,8 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
                     </div>
                 </div>             
             </div>
-                            <!--Product End-->
-                <?php endwhile; wp_reset_query(); wp_reset_postdata(); endif; ?>
+            <!--Product End-->
+            <?php endwhile; wp_reset_query(); wp_reset_postdata(); endif; ?>
         </div>
                
         <?php
@@ -1008,5 +1012,3 @@ class Woolentor_Product_Curvy_Layout_Widget extends Widget_Base {
     }
 
 }
-
-Plugin::instance()->widgets_manager->register_widget_type( new Woolentor_Product_Curvy_Layout_Widget() );

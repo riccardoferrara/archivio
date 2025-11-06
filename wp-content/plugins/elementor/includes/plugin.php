@@ -1,10 +1,12 @@
 <?php
 namespace Elementor;
 
+use Elementor\Container\Container;
+use ElementorDeps\DI\Container as DIContainer;
+use Elementor\Core\Admin\Menu\Admin_Menu_Manager;
 use Elementor\Core\Wp_Api;
 use Elementor\Core\Admin\Admin;
 use Elementor\Core\Breakpoints\Manager as Breakpoints_Manager;
-use Elementor\Core\Common\Modules\Ajax\Module as Ajax;
 use Elementor\Core\Common\App as CommonApp;
 use Elementor\Core\Debug\Inspector;
 use Elementor\Core\Documents_Manager;
@@ -14,18 +16,20 @@ use Elementor\Core\Editor\Editor;
 use Elementor\Core\Files\Manager as Files_Manager;
 use Elementor\Core\Files\Assets\Manager as Assets_Manager;
 use Elementor\Core\Modules_Manager;
-use Elementor\Core\Schemes\Manager as Schemes_Manager;
 use Elementor\Core\Settings\Manager as Settings_Manager;
 use Elementor\Core\Settings\Page\Manager as Page_Settings_Manager;
-use Elementor\Core\Upgrade\Elementor_3_Re_Migrate_Globals;
 use Elementor\Modules\History\Revisions_Manager;
 use Elementor\Core\DynamicTags\Manager as Dynamic_Tags_Manager;
 use Elementor\Core\Logger\Manager as Log_Manager;
 use Elementor\Core\Page_Assets\Loader as Assets_Loader;
 use Elementor\Modules\System_Info\Module as System_Info_Module;
 use Elementor\Data\Manager as Data_Manager;
-use Elementor\Core\Common\Modules\DevTools\Module as Dev_Tools;
-use Elementor\Core\Files\Uploads_Manager as Uploads_Manager;
+use Elementor\Data\V2\Manager as Data_Manager_V2;
+use Elementor\Core\Files\Uploads_Manager;
+use ElementorDeps\DI\{
+	DependencyException,
+	NotFoundException,
+};
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -69,20 +73,6 @@ class Plugin {
 	public $db;
 
 	/**
-	 * Ajax Manager.
-	 *
-	 * Holds the plugin ajax handlers which are responsible for ajax requests
-	 * and responses.
-	 *
-	 * @since 1.9.0
-	 * @deprecated 2.3.0 Use `Plugin::$instance->common->get_component( 'ajax' )` instead.
-	 * @access public
-	 *
-	 * @var Ajax
-	 */
-	public $ajax;
-
-	/**
 	 * Controls manager.
 	 *
 	 * Holds the plugin controls manager handler is responsible for registering
@@ -106,18 +96,6 @@ class Plugin {
 	 * @var Documents_Manager
 	 */
 	public $documents;
-
-	/**
-	 * Schemes manager.
-	 *
-	 * Holds the plugin schemes manager.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 * @var Schemes_Manager
-	 */
-	public $schemes_manager;
 
 	/**
 	 * Elements manager.
@@ -375,19 +353,6 @@ class Plugin {
 	public $icons_manager;
 
 	/**
-	 * Files Manager.
-	 *
-	 * Holds the plugin files manager.
-	 *
-	 * @since 1.0.0
-	 * @deprecated 2.1.0 Use `Plugin::$files_manager` instead.
-	 * @access public
-	 *
-	 * @var Files_Manager
-	 */
-	private $posts_css_manager;
-
-	/**
 	 * WordPress widgets manager.
 	 *
 	 * Holds the WordPress widgets manager.
@@ -424,18 +389,6 @@ class Plugin {
 	public $beta_testers;
 
 	/**
-	 * Debugger.
-	 *
-	 * Holds the plugin debugger data.
-	 *
-	 * @deprecated 2.1.2 Use `Plugin::$inspector` instead.
-	 * @access public
-	 *
-	 * @var Inspector
-	 */
-	public $debugger;
-
-	/**
 	 * Inspector.
 	 *
 	 * Holds the plugin inspector data.
@@ -446,6 +399,11 @@ class Plugin {
 	 * @var Inspector
 	 */
 	public $inspector;
+
+	/**
+	 * @var Admin_Menu_Manager
+	 */
+	public $admin_menu_manager;
 
 	/**
 	 * Common functionality.
@@ -471,17 +429,6 @@ class Plugin {
 	public $logger;
 
 	/**
-	 * Dev tools.
-	 *
-	 * Holds the plugin dev tools.
-	 *
-	 * @access private
-	 *
-	 * @var Dev_Tools
-	 */
-	private $dev_tools;
-
-	/**
 	 * Upgrade manager.
 	 *
 	 * Holds the plugin upgrade manager.
@@ -491,6 +438,15 @@ class Plugin {
 	 * @var Core\Upgrade\Manager
 	 */
 	public $upgrade;
+
+	/**
+	 * Tasks manager.
+	 *
+	 * Holds the plugin tasks manager.
+	 *
+	 * @var Core\Upgrade\Custom_Tasks_Manager
+	 */
+	public $custom_tasks;
 
 	/**
 	 * Kits manager.
@@ -504,15 +460,9 @@ class Plugin {
 	public $kits_manager;
 
 	/**
-	 * Data manager.
-	 *
-	 * Holds the plugin data manager.
-	 *
-	 * @access public
-	 *
-	 * @var \Core\Data\Manager
+	 * @var \Elementor\Data\V2\Manager
 	 */
-	public $data_manager;
+	public $data_manager_v2;
 
 	/**
 	 * Legacy mode.
@@ -533,7 +483,7 @@ class Plugin {
 	 * @since 3.0.0
 	 * @access public
 	 *
-	 * @var Core\App\App
+	 * @var App\App
 	 */
 	public $app;
 
@@ -611,8 +561,11 @@ class Plugin {
 	 * @since 1.0.0
 	 */
 	public function __clone() {
-		// Cloning instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Something went wrong.', 'elementor' ), '1.0.0' );
+		_doing_it_wrong(
+			__FUNCTION__,
+			sprintf( 'Cloning instances of the singleton "%s" class is forbidden.', get_class( $this ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			'1.0.0'
+		);
 	}
 
 	/**
@@ -624,8 +577,11 @@ class Plugin {
 	 * @since 1.0.0
 	 */
 	public function __wakeup() {
-		// Unserializing instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Something went wrong.', 'elementor' ), '1.0.0' );
+		_doing_it_wrong(
+			__FUNCTION__,
+			sprintf( 'Unserializing instances of the singleton "%s" class is forbidden.', get_class( $this ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			'1.0.0'
+		);
 	}
 
 	/**
@@ -730,7 +686,6 @@ class Plugin {
 		$this->experiments = new Experiments_Manager();
 		$this->breakpoints = new Breakpoints_Manager();
 		$this->inspector = new Inspector();
-		$this->debugger = $this->inspector;
 
 		Settings_Manager::run();
 
@@ -738,7 +693,6 @@ class Plugin {
 		$this->controls_manager = new Controls_Manager();
 		$this->documents = new Documents_Manager();
 		$this->kits_manager = new Kits_Manager();
-		$this->schemes_manager = new Schemes_Manager();
 		$this->elements_manager = new Elements_Manager();
 		$this->widgets_manager = new Widgets_Manager();
 		$this->skins_manager = new Skins_Manager();
@@ -762,20 +716,24 @@ class Plugin {
 		$this->assets_loader = new Assets_Loader();
 		$this->uploads_manager = new Uploads_Manager();
 
+		$this->admin_menu_manager = new Admin_Menu_Manager();
+		$this->admin_menu_manager->register_actions();
+
 		User::init();
+		User_Data::init();
 		Api::init();
 		Tracker::init();
 
 		$this->upgrade = new Core\Upgrade\Manager();
+		$this->custom_tasks = new Core\Upgrade\Custom_Tasks_Manager();
 
-		$this->app = new Core\App\App();
+		$this->app = new App\App();
 
 		if ( is_admin() ) {
 			$this->heartbeat = new Heartbeat();
 			$this->wordpress_widgets_manager = new WordPress_Widgets_Manager();
 			$this->admin = new Admin();
 			$this->beta_testers = new Beta_Testers();
-			new Elementor_3_Re_Migrate_Globals();
 		}
 	}
 
@@ -787,38 +745,6 @@ class Plugin {
 		$this->common = new CommonApp();
 
 		$this->common->init_components();
-
-		$this->ajax = $this->common->get_component( 'ajax' );
-	}
-
-	/**
-	 * Get Legacy Mode
-	 *
-	 * @since 3.0.0
-	 * @deprecated 3.1.0 Use `Plugin::$instance->experiments->is_feature_active()` instead
-	 *
-	 * @param string $mode_name Optional. Default is null
-	 *
-	 * @return bool|bool[]
-	 */
-	public function get_legacy_mode( $mode_name = null ) {
-		self::$instance->modules_manager->get_modules( 'dev-tools' )->deprecation
-			->deprecated_function( __METHOD__, '3.1.0', 'Plugin::$instance->experiments->is_feature_active()' );
-
-		$legacy_mode = [
-			'elementWrappers' => ! self::$instance->experiments->is_feature_active( 'e_dom_optimization' ),
-		];
-
-		if ( ! $mode_name ) {
-			return $legacy_mode;
-		}
-
-		if ( isset( $legacy_mode[ $mode_name ] ) ) {
-			return $legacy_mode[ $mode_name ];
-		}
-
-		// If there is no legacy mode with the given mode name;
-		return false;
 	}
 
 	/**
@@ -857,14 +783,14 @@ class Plugin {
 	}
 
 	/**
-	 * Plugin Magic Getter
+	 * Magic getter for accessing certain properties.
 	 *
 	 * @since 3.1.0
 	 * @access public
 	 *
-	 * @param $property
-	 * @return mixed
-	 * @throws \Exception
+	 * @param string $property The property name.
+	 * @return mixed The property value or null if not found.
+	 * @throws \Exception If trying to access a private property.
 	 */
 	public function __get( $property ) {
 		if ( 'posts_css_manager' === $property ) {
@@ -873,8 +799,12 @@ class Plugin {
 			return $this->files_manager;
 		}
 
+		if ( 'data_manager' === $property ) {
+			return Data_Manager::instance();
+		}
+
 		if ( property_exists( $this, $property ) ) {
-			throw new \Exception( 'Cannot access private property' );
+			throw new \Exception( 'Cannot access private property.' );
 		}
 
 		return null;
@@ -892,13 +822,13 @@ class Plugin {
 		$this->register_autoloader();
 
 		$this->logger = Log_Manager::instance();
-		$this->data_manager = Data_Manager::instance();
+		$this->data_manager_v2 = Data_Manager_V2::instance();
 
 		Maintenance::init();
 		Compatibility::register_actions();
 
 		add_action( 'init', [ $this, 'init' ], 0 );
-		add_action( 'rest_api_init', [ $this, 'on_rest_api_init' ] );
+		add_action( 'rest_api_init', [ $this, 'on_rest_api_init' ], 9 );
 	}
 
 	final public static function get_title() {

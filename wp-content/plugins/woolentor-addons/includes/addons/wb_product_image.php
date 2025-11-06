@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Product_Image_Element extends Widget_Base {
+class Woolentor_Wb_Product_Image_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wl-single-product-image';
@@ -19,6 +19,10 @@ class WL_Product_Image_Element extends Widget_Base {
 
     public function get_categories() {
         return array( 'woolentor-addons' );
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -59,7 +63,7 @@ class WL_Product_Image_Element extends Widget_Base {
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
                         '.woocommerce {{WRAPPER}} .woocommerce-product-gallery__trigger + .woocommerce-product-gallery__wrapper,
-                        .woocommerce {{WRAPPER}} .flex-viewport' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                        .woocommerce {{WRAPPER}} .flex-viewport' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow:hidden',
                     ],
                 ]
             );
@@ -132,20 +136,29 @@ class WL_Product_Image_Element extends Widget_Base {
         global $product;
         $product = wc_get_product();
 
-        if( Plugin::instance()->editor->is_edit_mode() ){
-            echo \WooLentor_Default_Data::instance()->default( $this->get_name() );
+        if( woolentor_is_preview_mode() ){
+            echo \WooLentor_Default_Data::instance()->default( $this->get_name() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         } else{
             if ( empty( $product ) ) { return; }
+            $current_theme = wp_get_theme();
             /**
              * Hook: woocommerce_before_single_product_summary.
              *
              * @hooked woocommerce_show_product_sale_flash - 10
              * @hooked woocommerce_show_product_images - 20
              */
-            do_action( 'woocommerce_before_single_product_summary' );
+            if( $current_theme->get( 'TextDomain' ) == 'woostify' ){
+                do_action( 'woocommerce_before_single_product_summary' );
+                echo '</div></div></div>';
+            }elseif( $current_theme->get( 'TextDomain' ) == 'blocksy' || woolentor_current_theme_is_fse()){
+                woocommerce_show_product_sale_flash();
+                woocommerce_show_product_images();
+            }else{
+                do_action( 'woocommerce_before_single_product_summary' );
+            }
+
         }
 
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Product_Image_Element() );

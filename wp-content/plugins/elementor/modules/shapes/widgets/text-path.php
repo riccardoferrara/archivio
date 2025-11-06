@@ -6,7 +6,8 @@ use Elementor\Controls_Manager;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Typography;
 use Elementor\Modules\Shapes\Module as Shapes_Module;
-use Elementor\Utils;
+use Elementor\Group_Control_Text_Stroke;
+use Elementor\Plugin;
 use Elementor\Widget_Base;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -17,7 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Elementor WordArt widget.
  *
  * Elementor widget that displays text along SVG path.
- *
  */
 class TextPath extends Widget_Base {
 
@@ -30,10 +30,13 @@ class TextPath extends Widget_Base {
 	 *
 	 * @return string Widget name.
 	 * @access public
-	 *
 	 */
 	public function get_name() {
 		return 'text-path';
+	}
+
+	public function get_group_name() {
+		return 'shapes';
 	}
 
 	/**
@@ -43,7 +46,6 @@ class TextPath extends Widget_Base {
 	 *
 	 * @return string Widget title.
 	 * @access public
-	 *
 	 */
 	public function get_title() {
 		return esc_html__( 'Text Path', 'elementor' );
@@ -56,7 +58,6 @@ class TextPath extends Widget_Base {
 	 *
 	 * @return string Widget icon.
 	 * @access public
-	 *
 	 */
 	public function get_icon() {
 		return 'eicon-wordart';
@@ -69,10 +70,27 @@ class TextPath extends Widget_Base {
 	 *
 	 * @return array Widget keywords.
 	 * @access public
-	 *
 	 */
 	public function get_keywords() {
 		return [ 'text path', 'word path', 'text on path', 'wordart', 'word art' ];
+	}
+
+	/**
+	 * Get style dependencies.
+	 *
+	 * Retrieve the list of style dependencies the widget requires.
+	 *
+	 * @since 3.24.0
+	 * @access public
+	 *
+	 * @return array Widget style dependencies.
+	 */
+	public function get_style_depends(): array {
+		return [ 'widget-text-path' ];
+	}
+
+	public function has_widget_inner_wrapper(): bool {
+		return ! Plugin::$instance->experiments->is_feature_active( 'e_optimized_markup' );
 	}
 
 	/**
@@ -127,10 +145,9 @@ class TextPath extends Widget_Base {
 					'active' => true,
 				],
 				'description' => sprintf(
-					/* translators: 1: Link open tag, 2: Link close tag. */
-					esc_html__( 'Want to create custom text paths with SVG? %1$sLearn More%2$s', 'elementor' ),
-					'<a target="_blank" href="https://go.elementor.com/text-path-create-paths/">',
-					'</a>'
+					'%1$s <a target="_blank" href="https://go.elementor.com/text-path-create-paths/">%2$s</a>',
+					esc_html__( 'Want to create custom text paths with SVG?', 'elementor' ),
+					esc_html__( 'Learn more', 'elementor' )
 				),
 			]
 		);
@@ -233,7 +250,7 @@ class TextPath extends Widget_Base {
 			[
 				'label' => esc_html__( 'Size', 'elementor' ),
 				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ '%', 'px' ],
+				'size_units' => [ 'px', '%', 'em', 'rem', 'vw', 'custom' ],
 				'range' => [
 					'%' => [
 						'min' => 0,
@@ -241,21 +258,17 @@ class TextPath extends Widget_Base {
 						'step' => 10,
 					],
 					'px' => [
-						'min' => 0,
 						'max' => 800,
 						'step' => 50,
 					],
 				],
 				'default' => [
-					'unit' => 'px',
 					'size' => 500,
 				],
 				'tablet_default' => [
-					'unit' => 'px',
 					'size' => 500,
 				],
 				'mobile_default' => [
-					'unit' => 'px',
 					'size' => 500,
 				],
 				'selectors' => [
@@ -269,25 +282,15 @@ class TextPath extends Widget_Base {
 			[
 				'label' => esc_html__( 'Rotate', 'elementor' ),
 				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'deg' ],
-				'range' => [
-					'deg' => [
-						'min' => 0,
-						'max' => 360,
-						'step' => 1,
-					],
-				],
+				'size_units' => [ 'deg', 'grad', 'rad', 'turn', 'custom' ],
 				'default' => [
 					'unit' => 'deg',
-					'size' => '',
 				],
 				'tablet_default' => [
 					'unit' => 'deg',
-					'size' => '',
 				],
 				'mobile_default' => [
 					'unit' => 'deg',
-					'size' => '',
 				],
 				'selectors' => [
 					'{{WRAPPER}}' => '--rotate: {{SIZE}}{{UNIT}};',
@@ -330,29 +333,41 @@ class TextPath extends Widget_Base {
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Text_Stroke::get_type(),
+			[
+				'name' => 'text_stroke',
+				'selector' => '{{WRAPPER}} textPath',
+			]
+		);
+
 		$this->add_responsive_control(
 			'word_spacing',
 			[
 				'label' => esc_html__( 'Word Spacing', 'elementor' ),
 				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px' ],
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'range' => [
 					'px' => [
 						'min' => -20,
 						'max' => 20,
-						'step' => 1,
+					],
+					'em' => [
+						'min' => -1,
+						'max' => 1,
+					],
+					'rem' => [
+						'min' => -1,
+						'max' => 1,
 					],
 				],
 				'default' => [
-					'unit' => 'px',
 					'size' => '',
 				],
 				'tablet_default' => [
-					'unit' => 'px',
 					'size' => '',
 				],
 				'mobile_default' => [
-					'unit' => 'px',
 					'size' => '',
 				],
 				'selectors' => [
@@ -364,7 +379,7 @@ class TextPath extends Widget_Base {
 		$this->add_control(
 			'start_point',
 			[
-				'label' => esc_html__( 'Starting Point', 'elementor' ),
+				'label' => esc_html__( 'Starting Point', 'elementor' ) . ' (%)',
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ '%' ],
 				'range' => [
@@ -444,16 +459,10 @@ class TextPath extends Widget_Base {
 			[
 				'label' => esc_html__( 'Transition Duration', 'elementor' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 's', 'ms', 'custom' ],
 				'default' => [
-					'size' => 0.3,
 					'unit' => 's',
-				],
-				'range' => [
-					's' => [
-						'min' => 0,
-						'max' => 3,
-						'step' => 0.1,
-					],
+					'size' => 0.3,
 				],
 				'selectors' => [
 					'{{WRAPPER}}' => '--transition: {{SIZE}}{{UNIT}}',
@@ -530,15 +539,20 @@ class TextPath extends Widget_Base {
 			[
 				'label' => esc_html__( 'Width', 'elementor' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'default' => [
 					'size' => 1,
-					'unit' => 'px',
 				],
 				'range' => [
 					'px' => [
-						'min' => 0,
+						'min' => 1,
 						'max' => 20,
-						'step' => 1,
+					],
+					'em' => [
+						'max' => 2,
+					],
+					'rem' => [
+						'max' => 2,
 					],
 				],
 				'selectors' => [
@@ -596,15 +610,20 @@ class TextPath extends Widget_Base {
 			[
 				'label' => esc_html__( 'Width', 'elementor' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'default' => [
 					'size' => '',
-					'unit' => 'px',
 				],
 				'range' => [
 					'px' => [
-						'min' => 0,
+						'min' => 1,
 						'max' => 20,
-						'step' => 1,
+					],
+					'em' => [
+						'max' => 2,
+					],
+					'rem' => [
+						'max' => 2,
 					],
 				],
 				'selectors' => [
@@ -618,16 +637,10 @@ class TextPath extends Widget_Base {
 			[
 				'label' => esc_html__( 'Transition Duration', 'elementor' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 's', 'ms', 'custom' ],
 				'default' => [
-					'size' => 0.3,
 					'unit' => 's',
-				],
-				'range' => [
-					's' => [
-						'min' => 0,
-						'max' => 3,
-						'step' => 0.1,
-					],
+					'size' => 0.3,
 				],
 				'selectors' => [
 					'{{WRAPPER}}' => '--stroke-transition: {{SIZE}}{{UNIT}}',
@@ -664,16 +677,21 @@ class TextPath extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		// Get the shape SVG markup.
-		if ( 'custom' !== $settings['path'] ) {
-			$path_svg = Shapes_Module::get_path_svg( $settings['path'] );
-		} else {
-			$path = get_attached_file( $settings['custom_path']['id'] );
-			$path_svg = Shapes_Module::read_svg( $path );
-		}
+		// Get the path URL.
+		$path_url = ( 'custom' === $settings['path'] )
+			? wp_get_attachment_url( $settings['custom_path']['id'] )
+			: Shapes_Module::get_path_url( $settings['path'] );
 
-		// Add Text Path text.
-		$this->add_render_attribute( 'text_path', 'class', 'e-text-path' );
+		// Remove the HTTP protocol to prevent Mixed Content error.
+		$path_url = preg_replace( '/^https?:/i', '', $path_url );
+
+		// Add Text Path attributes.
+		$this->add_render_attribute( 'text_path', [
+			'class' => 'e-text-path',
+			'data-text' => htmlentities( esc_attr( $settings['text'] ) ),
+			'data-url' => esc_url( $path_url ),
+			'data-link-url' => esc_url( $settings['link']['url'] ?? '' ),
+		] );
 
 		// Add hover animation.
 		if ( ! empty( $settings['hover_animation'] ) ) {
@@ -682,9 +700,7 @@ class TextPath extends Widget_Base {
 
 		// Render.
 		?>
-		<div <?php $this->print_render_attribute_string( 'text_path' ); ?> data-text="<?php echo esc_attr( $settings['text'] ); ?>">
-			<?php Utils::print_wp_kses_extended( $path_svg, [ 'svg' ] ); ?>
-		</div>
+		<div <?php $this->print_render_attribute_string( 'text_path' ); ?>></div>
 		<?php
 	}
 }

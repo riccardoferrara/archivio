@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Product_Title_Element extends Widget_Base {
+class Woolentor_Wb_Product_Title_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wl-single-product-title';
@@ -21,6 +21,10 @@ class WL_Product_Title_Element extends Widget_Base {
         return array( 'woolentor-addons' );
     }
 
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
+    }
+
     public function get_style_depends(){
         return [
             'woolentor-widgets',
@@ -33,8 +37,6 @@ class WL_Product_Title_Element extends Widget_Base {
 
     protected function register_controls() {
 
-
-        // Slider Button stle
         $this->start_controls_section(
             'product_title_content',
             [
@@ -128,14 +130,13 @@ class WL_Product_Title_Element extends Widget_Base {
 
         $title_html_tag = woolentor_validate_html_tag( $settings['product_title_html_tag'] );
 
-        if( Plugin::instance()->editor->is_edit_mode() ){
+        if( woolentor_is_preview_mode() ){
             $title = get_the_title( woolentor_get_last_product_id() );
-            echo sprintf( "<%s class='product_title entry-title'>%s</%s>", $title_html_tag, $title, $title_html_tag );
+            echo sprintf( "<%s class='product_title entry-title'>%s</%s>", $title_html_tag, $title, $title_html_tag ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         }else{
-            echo sprintf( "<%s class='product_title entry-title'>%s</%s>", $title_html_tag, get_the_title(), $title_html_tag  );
+            echo sprintf( "<%s class='product_title entry-title'>%s</%s>", $title_html_tag, get_the_title(), $title_html_tag  ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         }
 
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Product_Title_Element() );

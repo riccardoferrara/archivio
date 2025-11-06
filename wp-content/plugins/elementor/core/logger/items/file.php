@@ -2,7 +2,7 @@
 namespace Elementor\Core\Logger\Items;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 class File extends Base {
@@ -19,6 +19,7 @@ class File extends Base {
 		$this->line = empty( $args['line'] ) ? '' : $args['line'];
 	}
 
+	#[\ReturnTypeWillChange]
 	public function jsonSerialize() {
 		$json_arr = parent::jsonSerialize();
 		$json_arr['file'] = $this->file;

@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Image_Marker_Element extends Widget_Base {
+class Woolentor_Wb_Image_Marker_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wl-image-marker';
@@ -19,6 +19,10 @@ class WL_Image_Marker_Element extends Widget_Base {
 
     public function get_categories() {
         return array( 'woolentor-addons' );
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -437,4 +441,3 @@ class WL_Image_Marker_Element extends Widget_Base {
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Image_Marker_Element() );

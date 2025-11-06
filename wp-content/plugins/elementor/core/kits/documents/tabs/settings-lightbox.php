@@ -5,7 +5,7 @@ namespace Elementor\Core\Kits\Documents\Tabs;
 use Elementor\Controls_Manager;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 class Settings_Lightbox extends Tab_Base {
@@ -27,7 +27,7 @@ class Settings_Lightbox extends Tab_Base {
 	}
 
 	public function get_help_url() {
-		return 'https://go.elementor.com/global-lightbox';
+		return 'https://go.elementor.com/global-lightbox/';
 	}
 
 	protected function register_tab_controls() {
@@ -173,6 +173,7 @@ class Settings_Lightbox extends Tab_Base {
 			[
 				'label' => esc_html__( 'Toolbar Icons Size', 'elementor' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em', 'rem', 'vw', 'custom' ],
 				'selectors' => [
 					'.elementor-lightbox' => '--lightbox-header-icons-size: {{SIZE}}{{UNIT}}',
 				],
@@ -185,6 +186,7 @@ class Settings_Lightbox extends Tab_Base {
 			[
 				'label' => esc_html__( 'Navigation Icons Size', 'elementor' ),
 				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em', 'rem', 'vw', 'custom' ],
 				'selectors' => [
 					'.elementor-lightbox' => '--lightbox-navigation-icons-size: {{SIZE}}{{UNIT}}',
 				],

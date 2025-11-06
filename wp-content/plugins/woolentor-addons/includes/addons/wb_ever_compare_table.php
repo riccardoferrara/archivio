@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_EverCompare_Table_Element extends Widget_Base {
+class Woolentor_Wb_Ever_Compare_Table_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wb-evercompare-table';
@@ -19,6 +19,10 @@ class WL_EverCompare_Table_Element extends Widget_Base {
 
     public function get_categories() {
         return array( 'woolentor-addons' );
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -198,8 +202,7 @@ class WL_EverCompare_Table_Element extends Widget_Base {
         $short_code_attributes = [
             'empty_compare_text' => $settings['empty_table_text'],
         ];
-        echo woolentor_do_shortcode( 'evercompare_table', $short_code_attributes );
+        echo woolentor_do_shortcode( 'evercompare_table', $short_code_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_EverCompare_Table_Element() );

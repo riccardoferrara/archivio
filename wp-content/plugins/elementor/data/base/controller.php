@@ -2,6 +2,7 @@
 namespace Elementor\Data\Base;
 
 use Elementor\Data\Manager;
+use Elementor\Plugin;
 use WP_REST_Controller;
 use WP_REST_Server;
 
@@ -24,10 +25,12 @@ abstract class Controller extends WP_REST_Controller {
 	 * Controller constructor.
 	 *
 	 * Register endpoints on 'rest_api_init'.
-	 *
 	 */
 	public function __construct() {
 		// TODO: Controllers and endpoints can have common interface.
+
+		// TODO: Uncomment when native 3rd plugins uses V2.
+		// $this->deprecated();
 
 		$this->namespace = Manager::ROOT_NAMESPACE . '/v' . Manager::VERSION;
 		$this->rest_base = Manager::REST_BASE . $this->get_name();
@@ -186,7 +189,7 @@ abstract class Controller extends WP_REST_Controller {
 		register_rest_route( $this->get_namespace(), '/' . $this->get_rest_base(), [
 			[
 				'methods' => WP_REST_Server::READABLE,
-				'callback' => array( $this, 'get_items' ),
+				'callback' => [ $this, 'get_items' ],
 				'args' => [],
 				'permission_callback' => function ( $request ) {
 					return $this->get_permission_callback( $request );
@@ -301,7 +304,7 @@ abstract class Controller extends WP_REST_Controller {
 	 *
 	 * Default controller permission callback.
 	 * By default endpoint will inherit the permission callback from the controller.
-	 * By default permission is `current_user_can( 'administrator' );`.
+	 * By default permission is `current_user_can( 'manage_options' );`.
 	 *
 	 * @param \WP_REST_Request $request
 	 *
@@ -316,9 +319,27 @@ abstract class Controller extends WP_REST_Controller {
 			case 'PUT':
 			case 'DELETE':
 			case 'PATCH':
-				return current_user_can( 'administrator' );
+				return current_user_can( 'manage_options' );
 		}
 
 		return false;
+	}
+
+	private static $notify_deprecated = true;
+
+	private function deprecated() {
+		add_action( 'elementor/init', function () {
+			if ( ! self::$notify_deprecated ) {
+				return;
+			}
+
+			Plugin::$instance->modules_manager->get_modules( 'dev-tools' )->deprecation->deprecated_function(
+				'Elementor\Data\Manager',
+				'3.5.0',
+				'Elementor\Data\V2\Manager'
+			);
+
+			self::$notify_deprecated = false;
+		} );
 	}
 }

@@ -7,10 +7,21 @@ class Archive_Products_Render extends WC_Shortcode_Products {
 
     private $settings = [];
     private $is_added_product_filter = false;
+    private $filterable = true;
+    private $filter_args = [];
 
-    public function __construct( $settings = array(), $type = 'products' ) {
+    public function __construct( $settings = array(), $type = 'products', $filterable = true, $filter_args = array() ) {
         $this->settings = $settings;
         $this->type = $type;
+
+        // Product Filter Module
+        $this->filterable  = $filterable;
+        $this->filter_args = $filter_args;
+        if( function_exists('wlpf_hooked_before_shop_loop') ){
+            remove_action( 'woocommerce_before_shop_loop', 'wlpf_hooked_before_shop_loop', -10000 );
+            remove_action( 'woocommerce_after_shop_loop', 'wlpf_hooked_after_shop_loop', 10000 );
+        }
+        
         $this->attributes = $this->parse_attributes( [
             'columns' => $settings['columns'],
             'rows' => $settings['rows'],
@@ -68,15 +79,43 @@ class Archive_Products_Render extends WC_Shortcode_Products {
         }elseif ( 'current_query' === $this->settings['query_post_type'] ) {
             
             if ( !is_page( wc_get_page_id( 'shop' ) ) && $this->settings['editor_mode'] != true ) {
-                $query_args = $GLOBALS['wp_query']->query_vars;
+                if ( ! isset( $_GET['wlfilter'] ) ) {
+                    $query_args = $GLOBALS['wp_query']->query_vars;
+                }
             }
             // Fix for parent::get_transient_name.
             if ( ! isset( $query_args['orderby'] ) ) {
                 $query_args['orderby'] = '';
                 $query_args['order'] = '';
             }
-    
-            add_action( 'pre_get_posts', [ wc()->query, 'product_query' ] );
+
+            if ( 'yes' !== $settings['paginate'] && !isset( $_GET['wlfilter'] )) {
+
+                if( isset( $settings['orderby'] ) && $settings['orderby'] === 'price' ) {
+                    $query_args['meta_key'] = '_price';
+                    $query_args['orderby']  = 'meta_value_num'; 
+                    $query_args['order'] = strtoupper( $settings['order'] );
+                }else{
+                    $query_args['orderby'] = $settings['orderby'];
+                    $query_args['order'] = strtoupper( $settings['order'] );
+                }
+
+            }else{
+                // If Fibosearch plugin activate.
+                if( ! isset( $query_args['dgwt_wcas'] ) ){
+                    // Get Customizer Setting
+                    $default_shorting = get_option('woocommerce_default_catalog_orderby', false );
+                    if( $query_args['orderby'] !== 'date ID' ){
+                        if( $default_shorting == 'price-desc' && !isset( $_GET['wlfilter'] )){
+                            $query_args['meta_key'] = '_price';
+                            $query_args['orderby']  = 'meta_value_num';
+                        }else{
+                            add_action( 'pre_get_posts', [ wc()->query, 'product_query' ] );
+                        }
+                    }
+                }
+            }
+
             $this->is_added_product_filter = true;
             
         } else {
@@ -153,6 +192,11 @@ class Archive_Products_Render extends WC_Shortcode_Products {
         // Support WooLentor Filter
         if ( isset( $_GET['q'] ) ) {
             $query_args['s'] = !empty( $_GET['q'] ) ? $_GET['q'] : '';
+        }
+
+        // Filterable products query.
+        if ( true === $this->filterable ) {
+            $query_args = apply_filters( 'woolentor_filterable_shortcode_products_query', $query_args, $this->attributes, $this->type, $this->filter_args );
         }
 
         return $query_args;

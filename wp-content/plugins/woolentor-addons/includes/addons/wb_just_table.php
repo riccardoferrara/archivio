@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Just_Table_Element extends Widget_Base {
+class Woolentor_Wb_Just_Table_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wb-just-table';
@@ -19,6 +19,10 @@ class WL_Just_Table_Element extends Widget_Base {
 
     public function get_categories() {
         return array( 'woolentor-addons' );
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -149,8 +153,7 @@ class WL_Just_Table_Element extends Widget_Base {
         $short_code_attributes = [
             'id' => $settings['table_id'],
         ];
-        echo woolentor_do_shortcode( 'JT_Product_Table', $short_code_attributes );
+        echo woolentor_do_shortcode( 'JT_Product_Table', $short_code_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Just_Table_Element() );

@@ -8,6 +8,10 @@ class Typography extends Base {
 		return 'typography';
 	}
 
+	public function get_format() {
+		return 'globals/typography/{id}';
+	}
+
 	protected function get_kit_items() {
 		$result = [];
 
@@ -44,7 +48,7 @@ class Typography extends Base {
 			$id = $item['_id'];
 
 			$result[ $id ] = [
-				'title' => $item['title'],
+				'title' => $item['title'] ?? '',
 				'id' => $id,
 			];
 
@@ -59,7 +63,7 @@ class Typography extends Base {
 	protected function convert_db_format( $item ) {
 		$db_format = [
 			'_id' => $item['id'],
-			'title' => $item['title'],
+			'title' => $item['title'] ?? '',
 		];
 
 		$db_format = array_merge( $item['value'], $db_format );

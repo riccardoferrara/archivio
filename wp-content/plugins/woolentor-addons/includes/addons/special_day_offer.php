@@ -1,13 +1,9 @@
 <?php
 namespace Elementor;
 
-// Elementor Classes
-use \Elementor\Core\Schemes\Color as Scheme_Color;
-use \Elementor\Core\Schemes\Typography as Scheme_Typography;
-
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Woolentor_Elementor_Widget_Special_day_Banner extends Widget_Base {
+class Woolentor_Special_Day_Offer_Widget extends Widget_Base {
 
     public function get_name() {
         return 'woolentor-specialdaybanner-addons';
@@ -23,6 +19,10 @@ class Woolentor_Elementor_Widget_Special_day_Banner extends Widget_Base {
 
     public function get_categories() {
         return [ 'woolentor-addons' ];
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -781,7 +781,7 @@ class Woolentor_Elementor_Widget_Special_day_Banner extends Widget_Base {
         // URL Generate
         if ( ! empty( $settings['banner_link']['url'] ) ) {
             
-            $this->add_render_attribute( 'url', 'href', $settings['banner_link']['url'] );
+            $this->add_render_attribute( 'url', 'href', esc_url($settings['banner_link']['url']) );
             if ( $settings['banner_link']['is_external'] ) {
                 $this->add_render_attribute( 'url', 'target', '_blank' );
             }
@@ -796,32 +796,32 @@ class Woolentor_Elementor_Widget_Special_day_Banner extends Widget_Base {
                 <div class="banner-thumb">
                     <a <?php echo $this->get_render_attribute_string( 'url' ); ?>>
                         <?php
-                            echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'banner_image_size', 'banner_image' );
+                            echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'banner_image_size', 'banner_image' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                         ?>
                     </a>
                 </div>
                 <?php
                     if( !empty($settings['banner_badge_image']['url']) ){
-                        echo '<div class="wlbanner-badgeimage"><img src="' . $settings['banner_badge_image']['url'] . '"></div>';
+                        echo '<div class="wlbanner-badgeimage"><img src="' . esc_url($settings['banner_badge_image']['url']) . '"></div>';
                     }
                 ?>
                 <div class="banner-content">
                     <?php
                         if( !empty( $settings['banner_title'] ) ){
-                            echo '<h2>'.$settings['banner_title'].'</h2>';
+                            echo '<h2>'.esc_html__($settings['banner_title'],'woolentor').'</h2>';
                         }
                         if( !empty( $settings['banner_sub_title'] ) ){
-                            echo '<h6>'.$settings['banner_sub_title'].'</h6>';
+                            echo '<h6>'.esc_html__($settings['banner_sub_title'],'woolentor').'</h6>';
                         }
                         if( !empty( $settings['banner_offer'] ) ){
-                            echo '<h5>'.$settings['banner_offer'].'<span>'.$settings['banner_offer_tag_line'].'</span></h5>';
+                            echo '<h5>'.esc_html__($settings['banner_offer'],'woolentor').'<span>'.esc_html__($settings['banner_offer_tag_line'],'woolentor').'</span></h5>';
                         }
                         if( !empty( $settings['banner_description'] ) ){
-                            echo '<p>'.$settings['banner_description'].'</p>';
+                            echo '<p>'.esc_html__($settings['banner_description'],'woolentor').'</p>';
                         }
 
                         if( !empty( $settings['banner_button_txt'] ) ){
-                            echo '<a '.$this->get_render_attribute_string( 'url' ).'>'.esc_html__( $settings['banner_button_txt'],'woolentor' ).'</a>';
+                            echo '<a '.$this->get_render_attribute_string( 'url' ).'>'.esc_html__($settings['banner_button_txt'],'woolentor').'</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                         }
                     ?>
                 </div>
@@ -832,5 +832,3 @@ class Woolentor_Elementor_Widget_Special_day_Banner extends Widget_Base {
     }
 
 }
-
-Plugin::instance()->widgets_manager->register_widget_type( new Woolentor_Elementor_Widget_Special_day_Banner() );

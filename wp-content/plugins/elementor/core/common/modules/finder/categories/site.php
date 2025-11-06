@@ -4,7 +4,7 @@ namespace Elementor\Core\Common\Modules\Finder\Categories;
 use Elementor\Core\Common\Modules\Finder\Base_Category;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 /**
@@ -24,6 +24,10 @@ class Site extends Base_Category {
 	 */
 	public function get_title() {
 		return esc_html__( 'Site', 'elementor' );
+	}
+
+	public function get_id() {
+		return 'site';
 	}
 
 	/**

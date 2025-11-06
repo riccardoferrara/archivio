@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Store_Features_Element extends Widget_Base {
+class Woolentor_Wl_Store_Features_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wl-store-feature';
@@ -18,7 +18,11 @@ class WL_Store_Features_Element extends Widget_Base {
     }
 
     public function get_categories() {
-        return array( 'woolentor-addons' );
+        return [ 'woolentor-addons' ];
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -542,7 +546,7 @@ class WL_Store_Features_Element extends Widget_Base {
     protected function render( $instance = [] ) {
         $settings   = $this->get_settings_for_display();
 
-        $this->add_render_attribute( 'area_attr', 'class', 'ht-feature-wrap ht-feature-style-'.$settings['feature_style'] );
+        $this->add_render_attribute( 'area_attr', 'class', 'ht-feature-wrap ht-feature-style-'.esc_attr($settings['feature_style']) );
 
         $icon = '';
         if( 'icon' === $settings['icon_type'] ){
@@ -556,16 +560,16 @@ class WL_Store_Features_Element extends Widget_Base {
                 <div class="ht-feature-inner">
                     <?php
                         if( !empty( $icon ) ){
-                            echo '<div class="ht-feature-img">'.$icon.'</div>';
+                            echo '<div class="ht-feature-img">'.$icon.'</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                         }
                     ?>
                     <div class="ht-feature-content">
                         <?php
                             if( !empty( $settings['feature_title'] ) ){
-                                echo '<h4>'.$settings['feature_title'].'</h4>';
+                                echo '<h4>'.esc_html($settings['feature_title']).'</h4>';
                             }
                             if( !empty( $settings['feature_sub_title'] ) ){
-                                echo '<p>'.$settings['feature_sub_title'].'</p>';
+                                echo '<p>'.esc_html($settings['feature_sub_title']).'</p>';
                             }
                         ?>
                     </div>
@@ -575,4 +579,3 @@ class WL_Store_Features_Element extends Widget_Base {
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Store_Features_Element() );

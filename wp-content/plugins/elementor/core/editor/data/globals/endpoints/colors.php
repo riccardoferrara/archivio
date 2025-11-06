@@ -8,6 +8,10 @@ class Colors extends Base {
 		return 'colors';
 	}
 
+	public function get_format() {
+		return 'globals/colors/{id}';
+	}
+
 	protected function get_kit_items() {
 		$result = [];
 		$kit = Plugin::$instance->kits_manager->get_active_kit_for_frontend();
@@ -29,8 +33,8 @@ class Colors extends Base {
 			$id = $item['_id'];
 			$result[ $id ] = [
 				'id' => $id,
-				'title' => $item['title'],
-				'value' => $item['color'],
+				'title' => $item['title'] ?? '',
+				'value' => $item['color'] ?? '',
 			];
 		}
 
@@ -40,8 +44,8 @@ class Colors extends Base {
 	protected function convert_db_format( $item ) {
 		return [
 			'_id' => $item['id'],
-			'title' => $item['title'],
-			'color' => $item['value'],
+			'title' => $item['title'] ?? '',
+			'color' => $item['value'] ?? '',
 		];
 	}
 }

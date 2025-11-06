@@ -2,7 +2,7 @@
 namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 $user = wp_get_current_user();
 
@@ -29,8 +29,8 @@ $beta_tester_email = $user->user_email;
 		<div id="elementor-beta-tester-form__caption"><?php echo esc_html__( 'Get Beta Updates', 'elementor' ); ?></div>
 		<div id="elementor-beta-tester-form__description"><?php echo esc_html__( 'As a beta tester, you’ll receive an update that includes a testing version of Elementor and its content directly to your Email', 'elementor' ); ?></div>
 		<div id="elementor-beta-tester-form__input-wrapper">
-			<input id="elementor-beta-tester-form__email" name="beta_tester_email" type="email" placeholder="<?php echo esc_html__( 'Your Email', 'elementor' ); ?>" required value="<?php echo esc_html( $beta_tester_email ); ?>" />
-			<button id="elementor-beta-tester-form__submit" class="elementor-button elementor-button-success">
+			<input id="elementor-beta-tester-form__email" name="beta_tester_email" type="email" placeholder="<?php echo esc_attr__( 'Your Email', 'elementor' ); ?>" required value="<?php echo esc_attr( $beta_tester_email ); ?>" />
+			<button id="elementor-beta-tester-form__submit" class="elementor-button">
 				<span class="elementor-state-icon">
 					<i class="eicon-loading eicon-animation-spin" aria-hidden="true"></i>
 				</span>
@@ -38,8 +38,22 @@ $beta_tester_email = $user->user_email;
 			</button>
 		</div>
 		<div id="elementor-beta-tester-form__terms">
-			<?php // PHPCS - The content is escaped inside the sprintf. ?>
-			<?php echo sprintf( esc_html__( 'By clicking Sign Up, you agree to Elementor\'s <a href="%1$s">Terms of Service</a> and <a href="%2$s">Privacy Policy</a>', 'elementor' ), Beta_Testers::NEWSLETTER_TERMS_URL, Beta_Testers::NEWSLETTER_PRIVACY_URL ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php
+			printf(
+				/* translators: 1. "Terms of service" link, 2. "Privacy policy" link */
+				esc_html__( 'By clicking Sign Up, you agree to Elementor\'s %1$s and %2$s', 'elementor' ),
+				sprintf(
+					'<a href="%1$s" target="_blank">%2$s</a>',
+					esc_url( Beta_Testers::NEWSLETTER_TERMS_URL ),
+					esc_html__( 'Terms of Service', 'elementor' )
+				),
+				sprintf(
+					'<a href="%1$s" target="_blank">%2$s</a>',
+					esc_url( Beta_Testers::NEWSLETTER_PRIVACY_URL ),
+					esc_html__( 'Privacy Policy', 'elementor' )
+				)
+			)
+			?>
 		</div>
 	</form>
 </script>

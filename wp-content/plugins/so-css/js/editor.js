@@ -185,7 +185,7 @@
 				tabSize: 2,
 				lineNumbers: true,
 				mode: 'css',
-				theme: 'neat',
+				theme: $textArea.data( 'theme' ),
 				inputStyle: 'contenteditable', //necessary to allow context menu (right click) copy/paste etc.
 				gutters: [
 					"CodeMirror-lint-markers"
@@ -211,7 +211,16 @@
 				this.codeMirror = CodeMirror.fromTextArea( $textArea.get( 0 ), codeMirrorSettings );
 				this.setupCodeMirrorExtensions();
 			}
-			
+
+			var editor = this.codeMirror;
+			$( '#so_css_editor_theme' ).on( 'change', function() {
+				if ( $( this ).val() == 1 ) {
+					editor.setOption( 'theme', 'neat' );
+				} else {
+					editor.setOption( 'theme', 'ambiance' );
+				}
+			} );
+
 			this.codeMirror.on( 'change', function ( cm, change ) {
 				var selectedPost = this.model.get( 'selectedPost' );
 				if ( selectedPost && selectedPost.get( 'css' ) !== cm.getValue().trim() ) {
@@ -382,6 +391,7 @@
 				this.$el.find( '.CodeMirror-scroll' ).css( 'max-height', '' );
 				areaHeight = windowHeight - this.$( '.custom-css-toolbar' ).outerHeight();
 				this.codeMirror.setSize( '100%', areaHeight );
+				this.$el.find( '.CodeMirror-scroll' ).css( 'height', '100%' );
 			}
 			else {
 				// Attempt to calculate approximate space available for editor when not expanded.
@@ -389,7 +399,7 @@
 				var otherEltsHeight = $( '#wpadminbar' ).outerHeight( true ) +
 					$( '#siteorigin-custom-css' ).find( '> h2' ).outerHeight( true ) +
 					$form.find( '> .custom-css-toolbar' ).outerHeight( true ) +
-					$form.find( '> p.description' ).outerHeight( true ) +
+					$form.find( '> .so-css-footer' ).outerHeight( true ) +
 					parseFloat( $( '#wpbody-content' ).css( 'padding-bottom' ) );
 
 				areaHeight = windowHeight - otherEltsHeight;
@@ -398,10 +408,10 @@
 					areaHeight = 300;
 				}
 
-				this.$el.find( '.CodeMirror-scroll' ).css( 'min-height', areaHeight + 'px' );
 				this.codeMirror.setSize( '100%', 'auto' );
+				this.$el.find( '.CodeMirror-scroll' ).css( 'height', areaHeight + 'px' );
 			}
-			this.$el.find( '.CodeMirror-code' ).css( 'min-height', areaHeight + 'px' );
+			this.$el.find( '.CodeMirror-code' ).css( 'height', areaHeight + 'px' );
 		},
 		
 		/**
@@ -415,7 +425,8 @@
 		/**
 		 * Toggle if this is expanded or not
 		 */
-		toggleExpand: function () {
+		toggleExpand: function ( e ) {
+			$( '.editor-expand' ).attr( 'title', $( '.so-css-icon-' + ( this.isExpanded() ? 'expand' : 'compress ') ).attr( 'title' ) );
 			this.$el.toggleClass( 'expanded' );
 			this.scaleEditor();
 		},
@@ -1897,5 +1908,27 @@ jQuery( function ( $ ) {
 
 	$( '.button-primary[name="siteorigin_custom_css_save"]' ).on( 'click', function() {
 		$( '#so-custom-css-form' ).trigger( 'submit' );
+	} );
+
+	$( '.installer-link' ).on( 'click', function( e ) {
+		e.preventDefault();
+		$( this ).hide();
+		$( '.installer-container' ).slideDown( 'fast' );
+	} );
+
+	$( '.installer_status' ).on( 'change', function() {
+		var $$ = $( this );
+		$$.prop( 'disabled', true );
+		jQuery.post(
+			ajaxurl,
+			{
+				action: 'so_installer_status',
+				nonce: $$.data( 'nonce' ),
+				status: $$.is( ':checked' )
+			},
+			function() {
+				$$.prop( 'disabled', false );
+			}
+		);
 	} );
 } );

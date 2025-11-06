@@ -6,6 +6,8 @@ use Elementor\Core\Base\Module as BaseModule;
 use Elementor\Core\DynamicTags\Manager;
 use Elementor\Modules\System_Info\Module as System_Info;
 use Elementor\Plugin;
+use Elementor\Settings;
+use Elementor\Tracker;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -16,7 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Elementor usage module handler class is responsible for registering and
  * managing Elementor usage data.
- *
  */
 class Module extends BaseModule {
 	const GENERAL_TAB = 'general';
@@ -83,7 +84,7 @@ class Module extends BaseModule {
 	 *
 	 * Retrieve formatted usage, for frontend.
 	 *
-	 * @param String format
+	 * @param String $format Optional. Default is 'html'.
 	 *
 	 * @return array
 	 */
@@ -122,6 +123,8 @@ class Module extends BaseModule {
 				} else {
 					$widget_title = $element_type;
 				}
+
+				$widget_title = apply_filters( 'elementor/usage/elements/element_title', $widget_title, $element_type );
 
 				$elements[ $widget_title ] = $data['count'];
 			}
@@ -273,9 +276,10 @@ class Module extends BaseModule {
 			delete_option( self::OPTION_NAME );
 		}
 
-		$post_types = get_post_types( array( 'public' => true ) );
+		$post_types = get_post_types( [ 'public' => true ] );
 
 		$query = new \WP_Query( [
+			'no_found_rows' => true,
 			'meta_key' => '_elementor_data',
 			'post_type' => $post_types,
 			'post_status' => [ 'publish', 'private' ],
@@ -359,7 +363,7 @@ class Module extends BaseModule {
 			if ( $value !== $control_config['default'] ) {
 				$this->increase_controls_count( $element_ref, $tab, $section, $control, 1 );
 
-				$changed_controls_count++;
+				++$changed_controls_count;
 			}
 		}
 
@@ -536,7 +540,7 @@ class Module extends BaseModule {
 
 				$changed_controls_count = $this->add_controls( $settings_controls, $element_controls, $element_ref );
 
-				$percent = $changed_controls_count / ( count( $element_controls ) / 100 );
+				$percent = ! empty( $element_controls ) ? $changed_controls_count / ( count( $element_controls ) / 100 ) : 0;
 
 				$usage[ $type ] ['control_percent'] = (int) round( $percent );
 			}
@@ -576,8 +580,46 @@ class Module extends BaseModule {
 				] );
 
 				return;
-			};
+			}
 		}
+	}
+
+	public static function get_settings_usage() {
+		$usage = [];
+
+		$settings_tab = Plugin::$instance->settings->get_tabs();
+		$settings = array_merge(
+			$settings_tab[ Settings::TAB_GENERAL ]['sections'],
+			$settings_tab[ Settings::TAB_ADVANCED ]['sections']
+		);
+
+		foreach ( $settings as $setting_data ) {
+			foreach ( $setting_data['fields'] as $field_name => $field_data ) {
+				$is_hidden_field = ( empty( $field_data['field_args']['type'] ) || 'hidden' === $field_data['field_args']['type'] );
+
+				if ( $is_hidden_field ) {
+					continue;
+				}
+
+				$setting_value = get_option( 'elementor_' . $field_name );
+
+				if ( empty( $setting_value ) ) {
+					continue;
+				}
+
+				$is_default_value = ( ! empty( $field_data['field_args']['std'] ) && $setting_value === $field_data['field_args']['std'] );
+
+				if ( $is_default_value ) {
+					continue;
+				}
+
+				$usage[ $field_name ] = $setting_value;
+			}
+		}
+
+		$usage = apply_filters( 'elementor/system-info/usage/settings', $usage );
+
+		return $usage;
 	}
 
 	/**
@@ -587,6 +629,11 @@ class Module extends BaseModule {
 		System_Info::add_report( 'usage', [
 			'file_name' => __DIR__ . '/usage-reporter.php',
 			'class_name' => __NAMESPACE__ . '\Usage_Reporter',
+		] );
+
+		System_Info::add_report( 'settings', [
+			'file_name' => __DIR__ . '/settings-reporter.php',
+			'class_name' => __NAMESPACE__ . '\Settings_Reporter',
 		] );
 	}
 
@@ -598,6 +645,10 @@ class Module extends BaseModule {
 	 * @access public
 	 */
 	public function __construct() {
+		if ( ! Tracker::is_allow_track() ) {
+			return;
+		}
+
 		add_action( 'transition_post_status', [ $this, 'on_status_change' ], 10, 3 );
 		add_action( 'before_delete_post', [ $this, 'on_before_delete_post' ] );
 

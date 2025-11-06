@@ -32,11 +32,15 @@
 		removeIcon = 'eicon-disable-trash-o'
 	}
 	#>
-	<div class="elementor-repeater-row-tool elementor-repeater-tool-{{{ removeClass }}}">
+	<# if ( itemActions.sort ) { #>
+	<button class="elementor-repeater-row-tool elementor-repeater-row-tools elementor-repeater-tool-sort" aria-label="<?php echo esc_attr__( 'Reorder', 'elementor' ); ?>">
+		<i class="eicon-cursor-move" aria-hidden="true"></i>
+	</button>
+	<# } #>
+	<button class="elementor-repeater-row-tool elementor-repeater-tool-{{{ removeClass }}}" aria-label="<?php echo esc_attr__( 'Remove', 'elementor' ); ?>">
 		<i class="{{{ removeIcon }}}" aria-hidden="true"></i>
 		<# if ( itemActions.remove ) { #>
-			<span class="elementor-screen-only"><?php echo esc_html__( 'Remove', 'elementor' ); ?></span>
 		<# } #>
-	</div>
+	</button>
 	<div class="elementor-repeater-row-controls"></div>
 </script>

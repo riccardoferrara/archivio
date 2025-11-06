@@ -1,6 +1,56 @@
 ;(function($){
 "use strict";
 
+    /**
+     * Senitize HTML
+     */
+    var woolentorSanitizeHTML = function (str) {
+        if( str ){
+            return str.replace(/[&<>"']/g, function (c) {
+                switch (c) {
+                    case '&': return '&amp;';
+                    case '<': return '&lt;';
+                    case '>': return '&gt;';
+                    case '"': return '&quot;';
+                    case "'": return '&#39;';
+                    default: return c;
+                }
+            });
+        }else{
+            return '';
+        }
+    }
+
+    /**
+     * Sanitize Object
+     */
+    var woolentorSanitizeObject = function (inputObj) {
+        const sanitizedObj = {};
+    
+        for (let key in inputObj) {
+            if (inputObj.hasOwnProperty(key)) {
+                let value = inputObj[key];
+    
+                // Sanitize based on the value type
+                if (typeof value === 'string') {
+                    // Sanitize strings to prevent injection
+                    sanitizedObj[key] = woolentorSanitizeHTML(value);
+                } else if (typeof value === 'number') {
+                    // Ensure numbers are valid (you could also set limits if needed)
+                    sanitizedObj[key] = Number.isFinite(value) ? value : 0;
+                } else if (typeof value === 'boolean') {
+                    // Keep boolean values as they are
+                    sanitizedObj[key] = value;
+                } else {
+                    // Handle other types if needed (e.g., arrays, objects)
+                    sanitizedObj[key] = value;
+                }
+            }
+        }
+    
+        return sanitizedObj;
+    }
+
    /* 
     * Product Slider 
     */
@@ -10,10 +60,13 @@
 
         if (slider_elem.length > 0) {
 
-            var settings = slider_elem.data('settings');
+            slider_elem[0].style.display='block';
+
+            var settings = woolentorSanitizeObject(slider_elem.data('settings'));
             var arrows = settings['arrows'];
             var dots = settings['dots'];
             var autoplay = settings['autoplay'];
+            var infinite = settings.hasOwnProperty('infinite') ? settings['infinite'] : true;
             var rtl = settings['rtl'];
             var autoplay_speed = parseInt(settings['autoplay_speed']) || 3000;
             var animation_speed = parseInt(settings['animation_speed']) || 300;
@@ -33,7 +86,7 @@
                 prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-angle-left"></i></button>',
                 nextArrow: '<button type="button" class="slick-next"><i class="fa fa-angle-right"></i></button>',
                 dots: dots,
-                infinite: true,
+                infinite: infinite,
                 autoplay: autoplay,
                 autoplaySpeed: autoplay_speed,
                 speed: animation_speed,
@@ -107,35 +160,10 @@
             var $this = $(this), finalDate = $(this).data('countdown');
             var customlavel = $(this).data('customlavel');
             $this.countdown(finalDate, function(event) {
-                $this.html(event.strftime('<div class="cd-single"><div class="cd-single-inner"><h3>%D</h3><p>'+customlavel.daytxt+'</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%H</h3><p>'+customlavel.hourtxt+'</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%M</h3><p>'+customlavel.minutestxt+'</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%S</h3><p>'+customlavel.secondstxt+'</p></div></div>'));
+                $this.html(event.strftime('<div class="cd-single"><div class="cd-single-inner"><h3>%D</h3><p>'+woolentorSanitizeHTML(customlavel.daytxt)+'</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%H</h3><p>'+woolentorSanitizeHTML(customlavel.hourtxt)+'</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%M</h3><p>'+woolentorSanitizeHTML(customlavel.minutestxt)+'</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%S</h3><p>'+woolentorSanitizeHTML(customlavel.secondstxt)+'</p></div></div>'));
             });
         });
 
-    }
-
-    /*
-    * woolentorquickview slider
-    */
-    function woolentorquickviewMainImageSlider(){
-        $('.ht-quick-view-learg-img').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            fade: true,
-            asNavFor: '.ht-quick-view-thumbnails'
-        });
-    }
-    function woolentorquickviewThumb(){
-        $('.ht-quick-view-thumbnails').slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            asNavFor: '.ht-quick-view-learg-img',
-            dots: false,
-            arrows: true,
-            focusOnSelect: true,
-            prevArrow: '<button class="woolentor-slick-prev"><i class="sli sli-arrow-left"></i></button>',
-            nextArrow: '<button class="woolentor-slick-next"><i class="sli sli-arrow-right"></i></button>',
-        });
     }
 
     /*
@@ -143,13 +171,13 @@
     */
     function woolentor_tool_tips(element, content) {
         if ( content == 'html' ) {
-            var tipText = element.html();
+            var tipText = element.text();
         } else {
             var tipText = element.attr('title');
         }
         element.on('mouseover', function() {
             if ( $('.woolentor-tip').length == 0 ) {
-                element.before('<span class="woolentor-tip">' + tipText + '</span>');
+                element.before('<span class="woolentor-tip">' + woolentorSanitizeHTML(tipText) + '</span>');
                 $('.woolentor-tip').css('transition', 'all 0.5s ease 0s');
                 $('.woolentor-tip').css('margin-left', 0);
             }
@@ -169,169 +197,9 @@
         $('.woolentor-cart a.add_to_cart_button,.woolentor-cart a.added_to_cart,.woolentor-cart a.button').each(function() {
             woolentor_tool_tips( $(this), 'html');
         });
-    }
-
-    /* Quick View ajax Add to cart */
-    function woolentorquickviewAjaxCart( $selector ){
-
-        $(document).on('click', $selector, function (e) {
-            e.preventDefault();
-
-            var $thisbutton = $(this),
-                $form           = $thisbutton.closest('form.cart'),
-                product_qty     = $form.find('input[name=quantity]').val() || 1,
-                product_id      = $form.find('input[name=product_id]').val() || $thisbutton.val(),
-                variation_id    = $form.find('input[name=variation_id]').val() || 0;
-
-            /* For Variation product */    
-            var item = {},
-                variations = $form.find( 'select[name^=attribute]' );
-                if ( !variations.length) {
-                    variations = $form.find( '[name^=attribute]:checked' );
-                }
-                if ( !variations.length) {
-                    variations = $form.find( 'input[name^=attribute]' );
-                }
-
-                variations.each( function() {
-                    var $thisitem = $( this ),
-                        attributeName = $thisitem.attr( 'name' ),
-                        attributevalue = $thisitem.val(),
-                        index,
-                        attributeTaxName;
-                        $thisitem.removeClass( 'error' );
-                    if ( attributevalue.length === 0 ) {
-                        index = attributeName.lastIndexOf( '_' );
-                        attributeTaxName = attributeName.substring( index + 1 );
-                        $thisitem.addClass( 'required error' );
-                    } else {
-                        item[attributeName] = attributevalue;
-                    }
-                });
-
-            var data = {
-                action: 'woolentor_insert_to_cart',
-                product_id: product_id,
-                product_sku: '',
-                quantity: product_qty,
-                variation_id: variation_id,
-                variations: item,
-            };
-
-            $(document.body).trigger('adding_to_cart', [$thisbutton, data]);
-
-            $.ajax({
-                type: 'post',
-                url: woolentor_addons.woolentorajaxurl,
-                data: data,
-                beforeSend: function (response) {
-                    $thisbutton.removeClass('added').addClass('loading');
-                },
-                complete: function (response) {
-                    $thisbutton.addClass('added').removeClass('loading');
-                },
-                success: function (response) {
-                    if (response.error && response.product_url) {
-                        window.location = response.product_url;
-                        return;
-                    } else {
-                        $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, $thisbutton]);
-                    }
-                },
-            });
-
-            return false;
+        $('a.woolentor-quick-checkout-button').each(function() {
+            woolentor_tool_tips( $(this), 'title' );
         });
-
-
-    }
-
-    /*
-    * Quick view
-    */
-    $(document).on('click', '.woolentorquickview', function (event) {
-        event.preventDefault();
-
-        var $this = $(this);
-        var productID = $this.data('quick-id');
-
-        $('.htwl-modal-body').html(''); /*clear content*/
-        $('#htwlquick-viewmodal').addClass('woolentorquickview-open wlloading');
-        $('#htwlquick-viewmodal .htcloseqv').hide();
-        $('.htwl-modal-body').html('<div class="woolentor-loading"><div class="wlds-css"><div style="width:100%;height:100%" class="wlds-ripple"><div></div><div></div></div>');
-
-        var data = {
-            id: productID,
-            action: "woolentor_quickview",
-        };
-        $.ajax({
-            url: woolentor_addons.woolentorajaxurl,
-            data: data,
-            method: 'POST',
-            success: function (response) {
-                setTimeout(function () {
-                    $('.htwl-modal-body').html(response);
-                    $('#htwlquick-viewmodal .htcloseqv').show();
-                    woolentorquickviewMainImageSlider();
-                    woolentorquickviewThumb();
-                    woolentor_render_variation_quick_view_data( $('.woolentorquickview-open') );
-                    woolentorquickviewAjaxCart( ".htwl-modal-content .single_add_to_cart_button:not(.disabled)" );
-                }, 300 );
-            },
-            complete: function () {
-                $('#htwlquick-viewmodal').removeClass('wlloading');
-                $('.htwl-modal-dialog').css("background-color","#ffffff");
-            },
-            error: function () {
-                console.log("Quick View Not Loaded");
-            },
-        });
-
-    });
-    $('.htcloseqv').on('click', function(event){
-        $('#htwlquick-viewmodal').removeClass('woolentorquickview-open');
-        $('body').removeClass('woolentorquickview');
-        $('.htwl-modal-dialog').css("background-color","transparent");
-    });
-
-    function woolentor_render_variation_quick_view_data( $product ) {
-        $product.find('.variations_form').wc_variation_form().find('.variations select:eq(0)').change();
-        $product.find('.variations_form').trigger('wc_variation_form');
-
-        var $default_data = {
-            src:'',
-            srcfull:'',
-            srcset:'',
-            sizes:'',
-            width:'',
-            height:'',
-        };        
-        $product.find( '.single_variation_wrap' ).on( 'show_variation', function ( event, variation ) {
-
-            // Get First image data
-            if( $default_data.src.length === 0 ){
-                $default_data.src = $('.ht-quick-view-learg-img').find('.wl-quickview-first-image .wp-post-image').attr('src');
-                $default_data.srcset = $('.ht-quick-view-learg-img').find('.wl-quickview-first-image .wp-post-image').attr('srcset');
-                $default_data.srcfull = $('.ht-quick-view-learg-img').find('.wl-quickview-first-image .wp-post-image').attr('data-src');
-            }
-
-            $('.ht-qwick-view-left').find('.ht-quick-view-learg-img').slick('slickGoTo', 0);
-
-            $('.ht-quick-view-learg-img').find('.wl-quickview-first-image .wp-post-image').wc_set_variation_attr('src',variation.image.full_src);
-            $('.ht-quick-view-learg-img').find('.wl-quickview-first-image .wp-post-image').wc_set_variation_attr('srcset',variation.image.srcset);
-            $('.ht-quick-view-learg-img').find('.wl-quickview-first-image .wp-post-image').wc_set_variation_attr('data-src',variation.image.full_src);
-            $('.ht-quick-view-learg-img').find('.wl-quickview-first-image .wp-post-image').wc_set_variation_attr('data-large_image',variation.image.full_src);
-
-            // Reset data
-            $('.variations').find('.reset_variations').on('click', function(e){
-                $('.ht-quick-view-learg-img').find('.wl-quickview-first-image .wp-post-image').wc_set_variation_attr('src', $default_data.src );
-                $('.ht-quick-view-learg-img').find('.wl-quickview-first-image .wp-post-image').wc_set_variation_attr('srcset', $default_data.srcset);
-                $('.ht-quick-view-learg-img').find('.wl-quickview-first-image .wp-post-image').wc_set_variation_attr('data-src', $default_data.srcfull );
-                $('.ht-quick-view-learg-img').find('.wl-quickview-first-image .wp-post-image').wc_set_variation_attr('data-large_image', $default_data.srcfull );
-            });
-
-        });
-
     }
 
     /*
@@ -411,6 +279,256 @@
 
     };
 
+    /**
+     * LoadMore Product Ajax Action handeler
+     * @param {String} selectorBtn // LoadMore Button Selector
+     * @param {String} loadMoreWrapper // LoadMore Enable Track Class
+     */
+    var WooLentorLoadMore = function( selectorBtn, loadMoreWrapper ){
+
+        selectorBtn.on('click', function(e) {
+            e.preventDefault();
+    
+            const $button = selectorBtn;
+            const $loader = $button.siblings('.woolentor-ajax-loader');
+            const $grid = $('#' + $button.data('grid-id'));
+            const currentPage = parseInt($button.data('page'));
+            const maxPages = parseInt($button.data('max-pages'));
+            const dataLayout = $grid.attr('data-show-layout');
+    
+            if (currentPage > maxPages) {
+                return;
+            }
+    
+            $button.hide();
+            $loader.show();
+    
+           let settings = loadMoreWrapper.attr( 'data-wl-widget-settings' );
+    
+            // Prepare AJAX data
+            const ajaxData = {
+                action: 'woolentor_load_more_products',
+                nonce: typeof woolentor_addons !== 'undefined' ? woolentor_addons.ajax_nonce : '',
+                page: currentPage,
+                settings: settings,
+                viewlayout: typeof dataLayout === 'undefined' ? '' : dataLayout
+            };
+    
+            // AJAX request to load more products
+            $.ajax({
+                url: typeof woolentor_addons !== 'undefined' ? woolentor_addons.woolentorajaxurl : '',
+                type: 'POST',
+                data: ajaxData,
+                success: function(response) {
+                    if (response.success && response.data.html) {
+
+                        // Append new products
+                        const $newProducts = $(response.data.html);
+                        $grid.append($newProducts);
+                            
+                        // Update page counter
+                        $button.data('page', currentPage+1);
+    
+                        // Show button if more pages available
+                        if (currentPage < maxPages) {
+                            $button.show();
+                        } else {
+                            $button.text($button.data('complete-loadtxt')).prop('disabled', true).show();
+                        }
+                    }
+                    $loader.hide();
+                },
+                error: function(xhr, status, error) {
+                    $loader.hide();
+                    $button.show();
+                    console.log("Status:", status, "Error:", error);
+                }
+            });
+        });
+
+    }
+
+    var WooLentorInfiniteScroll = function(selectorBtn, productLoadWrapper ){
+
+        let isLoading = false;
+        const $loader = selectorBtn.find('.woolentor-ajax-loader');
+        const $grid = $('#' + selectorBtn.data('grid-id'));
+        const paginationArea = productLoadWrapper.find('.woolentor-pagination-infinite');
+
+        function loadMoreOnScroll() {
+            if (isLoading) return;
+
+            // Calculate trigger point based on product grid bottom position
+            const gridOffset = $grid.offset().top;
+            const gridHeight = $grid.outerHeight();
+            const gridBottom = gridOffset + gridHeight;
+            const scrollTop = $(window).scrollTop();
+            const windowHeight = $(window).height();
+            const triggerPoint = gridBottom - windowHeight - 100; // 100px before grid end
+
+            if (scrollTop >= triggerPoint) {
+                const currentPage = parseInt(selectorBtn.data('page'));
+                const maxPages = parseInt(selectorBtn.data('max-pages'));
+
+                if (currentPage > maxPages) {
+                    $(window).off('scroll', loadMoreOnScroll);
+                    return;
+                }
+
+                paginationArea.css('margin-top', '30px');
+                isLoading = true;
+                $loader.show();
+
+                let settings = productLoadWrapper.attr( 'data-wl-widget-settings' );
+                const dataLayout = $grid.attr('data-show-layout');
+
+                // AJAX request to load more products
+                $.ajax({
+                    url: typeof woolentor_addons !== 'undefined' ? woolentor_addons.woolentorajaxurl : '',
+                    type: 'POST',
+                    data: {
+                        action: 'woolentor_load_more_products',
+                        nonce: typeof woolentor_addons !== 'undefined' ? woolentor_addons.ajax_nonce : '',
+                        page: currentPage,
+                        settings: settings,
+                        viewlayout: typeof dataLayout === 'undefined' ? '' : dataLayout
+                    },
+                    success: function(response) {
+                        if (response.success && response.data.html) {
+                            // Append new products
+                            const $newProducts = $(response.data.html);
+                            $grid.append($newProducts);
+
+                            // Update page counter
+                            selectorBtn.data('page', currentPage + 1);
+
+                            // Check if we've reached the last page
+                            if (currentPage > maxPages) {
+                                $(window).off('scroll', loadMoreOnScroll);
+                                selectorBtn.remove();
+                            }
+                        }
+                    },
+                    complete: function() {
+                        $loader.hide();
+                        isLoading = false;
+                        paginationArea.css('margin-top', '0');
+                    },
+                    error: function() {
+                        $loader.hide();
+                        isLoading = false;
+                    }
+                });
+            }
+        }
+
+        // Bind scroll event
+        $(window).on('scroll', loadMoreOnScroll);
+
+    }
+
+    /**
+     * Quantaty Manager
+     */
+    var WooLentorQtnManager = function(){
+        $(document).on('click', '.woolentor-qty-minus', function(e) {
+            e.preventDefault();
+            const $input = $(this).siblings('.woolentor-qty-input');
+            const $qtnSelector = $(this).parent('.woolentor-quantity-selector').siblings('.add_to_cart_button');
+            const currentVal = parseInt($input.val()) || 1;
+            const minVal = parseInt($input.attr('min')) || 1;
+
+            if (currentVal > minVal) {
+                $input.val(currentVal - 1);
+                $qtnSelector.attr('data-quantity', currentVal - 1);
+                $input.trigger('change');
+            }
+        });
+
+        $(document).on('click', '.woolentor-qty-plus', function(e) {
+            e.preventDefault();
+            const $input = $(this).siblings('.woolentor-qty-input');
+            const $qtnSelector = $(this).parent('.woolentor-quantity-selector').siblings('.add_to_cart_button');
+            const currentVal = parseInt($input.val()) || 1;
+            const maxVal = parseInt($input.attr('max')) || 999;
+
+            if (currentVal < maxVal) {
+                $input.val(currentVal + 1);
+                $qtnSelector.attr('data-quantity', currentVal + 1);
+                $input.trigger('change');
+            }
+        });
+    }
+
+    /**
+     * Grid and View Mode Manager
+     */
+    var WooLentorViewModeManager = function(){
+        $(document).on('click', '.woolentor-layout-btn', function(e){
+            e.preventDefault();
+
+            const $this = $(this);
+            const layout = $this.data('layout');
+            const $gridContainer = $this.closest('.woolentor-product-grid, .woolentor-filters-enabled').find('.woolentor-product-grid-modern');
+
+            // Update active button state
+            $this.siblings().removeClass('woolentor-active');
+            $this.addClass('woolentor-active');
+
+            // Update grid container layout classes
+            if ($gridContainer.length > 0) {
+                // Remove existing layout classes from container
+                $gridContainer.removeClass('woolentor-layout-grid woolentor-layout-list');
+
+                // Add new layout class to container
+                $gridContainer.addClass('woolentor-layout-' + layout);
+                $gridContainer.attr('data-show-layout', layout);
+
+                // Update product card classes
+                const $productCards = $gridContainer.find('.woolentor-product-card');
+                $productCards.removeClass('woolentor-grid-card woolentor-list-card');
+
+                if (layout === 'grid') {
+                    $productCards.addClass('woolentor-grid-card');
+                } else if (layout === 'list') {
+                    $productCards.addClass('woolentor-list-card');
+                }
+            }
+        });
+    }
+
+    /**
+     * New Product Grid
+     * @param {*} $scope
+     * @param {*} $
+     */
+    var WoolentorProductGridModern = function ( $scope, $ ){
+        // Selector
+        let loadMoreWrapper = $scope.find('.woolentor-ajax-enabled').eq(0);
+        let loadMoreButton = $scope.find('.woolentor-load-more-btn').eq(0);
+        let infiniteScroll = $scope.find('.woolentor-infinite-scroll').eq(0);
+        let layoutList = $scope.find('.woolentor-layout-list').eq(0);
+
+        // LoadMore Button
+        if (loadMoreButton.length > 0) {
+            WooLentorLoadMore(loadMoreButton, loadMoreWrapper);
+        }
+
+        // Infinite Scroll
+        if (infiniteScroll.length > 0) {
+            WooLentorInfiniteScroll(infiniteScroll, loadMoreWrapper);
+        }
+
+        // Quantity selector - using event delegation to handle dynamically loaded products
+        if(layoutList.length > 0){
+            WooLentorQtnManager();
+        }
+
+        // View Manager
+        WooLentorViewModeManager();
+
+    }
+
     /*
     * Run this code under Elementor.
     */
@@ -436,14 +554,19 @@
         elementorFrontend.hooks.addAction( 'frontend/element_ready/woolentor-related-product-custom.default', WidgetThumbnaisImagesHandler);
 
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-product-video-gallery.default', WidgetProductVideoGallery );
-        
+
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-brand-logo.default', WidgetProductSliderHandler );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-faq.default', WoolentorAccordion );
-        
+
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-category-grid.default', WidgetProductSliderHandler );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-testimonial.default', WidgetProductSliderHandler );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-product-grid.default', WidgetProductSliderHandler );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-recently-viewed-products.default', WidgetProductSliderHandler );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-onepage-slider.default', WoolentorOnePageSlider );
+
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-customer-veview.default', WidgetProductSliderHandler );
+
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/woolentor-product-grid-modern.default', WoolentorProductGridModern );
 
     });
 

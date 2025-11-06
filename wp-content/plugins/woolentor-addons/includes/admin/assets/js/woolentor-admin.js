@@ -12,6 +12,12 @@
         });
     }
 
+    // Navigation tabs Nested tabs
+    woolentor_admin_tabs( $(".woolentor-nested-tabs"), '.woolentor-admin-nested-tab-pane' );
+
+    // Extension Tabs
+    woolentor_admin_tabs( $(".woolentor-admin-tabs"), '.woolentor-admin-tab-pane' );
+
     // Navigation Tabs
     $('.woolentor-admin-main-nav').on('click', '.woolentor-admin-main-nav-btn', function(e) {
         e.preventDefault()
@@ -26,21 +32,37 @@
         }
     })
     if (localStorage.wlActiveTab !== undefined && localStorage.wlActiveTab !== null ) {
-        const $wlActiveTab = localStorage.getItem('wlActiveTab')
+        const $wlActiveTab = localStorage.getItem('wlActiveTab');
+        let hasActiveElement = false;
         $('.woolentor-admin-main-nav-btn').each(function() {
             const $this = $(this),
                 $siblingsBtn = $this.closest('li').siblings().find('.woolentor-admin-main-nav-btn')
-            if($this.attr('href') === $wlActiveTab) {
-                $this.addClass('wlactive')
-                $siblingsBtn.removeClass('wlactive')
+            if( $this.attr('href') === $wlActiveTab ) {
+                $this.addClass('wlactive');
+                $siblingsBtn.removeClass('wlactive');
+                hasActiveElement = true;
+                return false;
             }
-        })
-        $($wlActiveTab).addClass('wlactive').show().siblings().removeClass('wlactive').hide()
+        });
+        if( hasActiveElement ){
+            $($wlActiveTab).addClass('wlactive').show().siblings().removeClass('wlactive').hide()
+        }else{
+            var $defaultIndex = $('.woolentor-admin-main-nav-btn').length;
+            if( $defaultIndex > 0){
+                const $firstTab = $('.woolentor-admin-main-nav-btn')[$defaultIndex -1 ],
+                    $target = $firstTab.hash;
+                $firstTab.classList.add('wlactive');
+                $($target).addClass('wlactive').show().siblings().removeClass('wlactive').hide();
+            }
+        }
     } else {
-        const $firstTab = $('.woolentor-admin-main-nav-btn')[7],
-            $target = $firstTab.hash
-        $firstTab.classList.add('wlactive')
-        $($target).addClass('wlactive').show().siblings().removeClass('wlactive').hide()
+        var $defaultIndex = $('.woolentor-admin-main-nav-btn').length;
+        if( $defaultIndex > 0){
+            const $firstTab = $('.woolentor-admin-main-nav-btn')[$defaultIndex-1],
+                $target = $firstTab.hash
+            $firstTab.classList.add('wlactive')
+            $($target).addClass('wlactive').show().siblings().removeClass('wlactive').hide()
+        }
     }
 
     /* Number Input */
@@ -54,6 +76,27 @@
             $input.value = Number($input.value) - 1
         }
     });
+
+    // Footer Sticky Save Button
+    var $adminHeaderArea  = $('.woolentor-admin-main-nav'),
+        $stickyFooterArea = $('.woolentor-admin-footer,.woolentor-sticky-condition');
+
+    if ( $stickyFooterArea.length <= 0 || $adminHeaderArea.length <= 0 ) return;
+
+    var totalOffset = $adminHeaderArea.offset().top + $adminHeaderArea.outerHeight();
+    var footerSaveStickyToggler = function () {
+        var windowScroll    = $(window).scrollTop(),
+            windowHeight    = $(window).height(),
+            documentHeight  = $(document).height();
+
+        if (totalOffset < windowScroll && windowScroll + windowHeight != documentHeight) {
+            $stickyFooterArea.addClass('woolentor-admin-sticky');
+        } else if (windowScroll + windowHeight == documentHeight || totalOffset > windowScroll) {
+            $stickyFooterArea.removeClass('woolentor-admin-sticky');
+        }
+    };
+    footerSaveStickyToggler();
+    $(window).scroll(footerSaveStickyToggler);
 
     /* Pro Popup */
     /* Open */
@@ -120,7 +163,7 @@
     /**
      * Admin Module additional setting button
      */
-    $('.woolentor-admin-switch label').on('click',function(e){
+    $('.woolentor-admin-switch .checkbox').on('click',function(e){
         var actionBtn = $(this).closest('.woolentor-admin-switch-block-actions').find('.woolentor-admin-switch-block-setting');
         if( actionBtn.hasClass('woolentor-visibility-none') ){
             actionBtn.removeClass('woolentor-visibility-none');
@@ -166,7 +209,11 @@
     });
 
     // Save Button Enable
-    $('.woolentor-admin-main-tab-pane .woolentor-dashboard').on( 'click', 'input,select,.woolentor-admin-number-btn' , function() {
+    $('.woolentor-admin-main-tab-pane .woolentor-dashboard').on( 'click', 'input,select,textarea,.woolentor-admin-number-btn' , function() {
+        $(this).closest('.woolentor-admin-main-tab-pane').find('.woolentor-admin-btn-save').removeClass('disabled').attr('disabled', false).text( WOOLENTOR_ADMIN.message.btntxt );
+    });
+
+    $('.woolentor-admin-main-tab-pane .woolentor-dashboard').on( 'keyup', 'input' , function() {
         $(this).closest('.woolentor-admin-main-tab-pane').find('.woolentor-admin-btn-save').removeClass('disabled').attr('disabled', false).text( WOOLENTOR_ADMIN.message.btntxt );
     });
 
@@ -185,6 +232,7 @@
         var $this     = $(this),
             $section  = $this.data('section'),
             $fields   = $this.data('fields'),
+            $fieldname = $this.data('fieldname') ? $this.data('fieldname') : '',
             content = null,
             modulewrapper = wp.template( 'woolentormodule' );
 
@@ -195,6 +243,7 @@
                 nonce   : WOOLENTOR_ADMIN.nonce,
                 section : $section,
                 fileds  : $fields,
+                fieldname : $fieldname,
                 action  : 'woolentor_module_data',
                 subaction : 'get_data',
             },
@@ -211,6 +260,7 @@
                 $( 'body' ).append( content );
 
                 woolentor_module_ajax_reactive();
+                $( document ).trigger('module_setting_loaded');
                 $this.removeClass('module-setting-loading');
                 
             },
@@ -230,17 +280,17 @@
     function woolentor_module_ajax_reactive(){
 
         // Select 2 Multiple selection
-        $('.woolentor-module-setting-popup .woolentor-admin-select select[multiple="multiple"]').each(function(){
+        $('.woolentor-module-setting-popup').find('.woolentor-admin-option:not(.woolentor-repeater-field) .woolentor-admin-select select[multiple="multiple"]').each(function(){
             const $this = $(this),
                 $parent = $this.parent();
             $this.select2({
                 dropdownParent: $parent,
-                placeholder: "Select template"
+                placeholder: "Select Item"
             });
         });
 
         //Initiate Color Picker
-        $('.wp-color-picker-field').wpColorPicker({
+        $('.woolentor-module-setting-popup').find('.woolentor-admin-option:not(.woolentor-repeater-field) .wp-color-picker-field').wpColorPicker({
             change: function (event, ui) {
                 $(this).closest('.woolentor-module-setting-popup-content').find('.woolentor-admin-module-save').removeClass('disabled').attr('disabled', false).text( WOOLENTOR_ADMIN.message.btntxt );
             },
@@ -254,14 +304,60 @@
             $(this).attr("disabled", true);
         });
 
+        /* Number Input */
+        $('.woolentor-admin-number-btn').on('click', function(e){
+            e.preventDefault()
+            const $this = $(this),
+                $input = $this.parent('.woolentor-admin-number').find('input[type="number"]')[0]
+            if($this.hasClass('increase')) {
+                $input.value = Number($input.value) + 1
+            } else if($this.hasClass('decrease') && Number($input.value) > 1) {
+                $input.value = Number($input.value) - 1
+            }
+        });
+
         // Icon Picker
-        $('.woolentor_icon_picker .regular-text').fontIconPicker({
+        $('.woolentor-module-setting-popup').find('.woolentor-admin-option:not(.woolentor-repeater-field).woolentor_icon_picker .regular-text').fontIconPicker({
             source: woolentor_fields.iconset,
             emptyIcon: true,
             hasSearch: true,
             theme: 'fip-bootstrap'
         }).on('change', function() {
             $(this).closest('.woolentor-module-setting-popup-content').find('.woolentor-admin-module-save').removeClass('disabled').attr('disabled', false).text( WOOLENTOR_ADMIN.message.btntxt );
+        });
+
+        // Media Uploader
+        $('.woolentor-browse').on('click', function (event) {
+            event.preventDefault();
+
+            var self = $(this);
+
+            // Create the media frame.
+            var file_frame = wp.media.frames.file_frame = wp.media({
+                title: self.data('uploader_title'),
+                button: {
+                    text: self.data('uploader_button_text'),
+                },
+                multiple: false
+            });
+
+            file_frame.on('select', function () {
+                var attachment = file_frame.state().get('selection').first().toJSON();
+                self.prev('.woolentor-url').val(attachment.url).change();
+                self.siblings('.woolentor_display').html('<img src="'+attachment.url+'" alt="'+attachment.title+'" />');
+            });
+
+            // Finally, open the modal
+            file_frame.open();
+            
+        });
+
+        // Remove Media Button
+        $('.woolentor-remove').on('click', function (event) {
+            event.preventDefault();
+            var self = $(this);
+            self.siblings('.woolentor-url').val('').change();
+            self.siblings('.woolentor_display').html('');
         });
 
         // Module additional setting save
@@ -281,7 +377,7 @@
                     section : $section,
                     fileds  : $field_keys,
                     action  : 'woolentor_save_opt_data',
-                    data    : $option_form.serializeJSON()
+                    data    : $(this).closest('.woolentor-module-setting-popup-content').find('form.woolentor-module-setting-data :input').not('.woolentor-repeater-hidden :input').serializeJSON()
                 },
                 beforeSend: function(){
                     $savebtn.text( WOOLENTOR_ADMIN.message.loading ).addClass('updating-message');
@@ -300,8 +396,67 @@
 
         });
 
+        // Module Setting Reset
+        $('.woolentor-admin-module-reset').on('click',function(event){
+            event.preventDefault();
+
+            var $option_form = $(this).closest('.woolentor-module-setting-popup-content').find('form.woolentor-module-setting-data'),
+                $resetbtn    = $(this),
+                $section     = $option_form.data('section');
+
+            Swal.fire({
+                title: WOOLENTOR_ADMIN.message.sure,
+                text: 'It will reset all the settings to default, and all the changes you made will be deleted.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: WOOLENTOR_ADMIN.message.yes,
+                cancelButtonText: WOOLENTOR_ADMIN.message.cancel,
+            }).then((result) => {
+                if ( result.isConfirmed ) {
+
+                    $.ajax( {
+                        url: WOOLENTOR_ADMIN.ajaxurl,
+                        type: 'POST',
+                        data: {
+                            nonce   : WOOLENTOR_ADMIN.nonce,
+                            section : $section,
+                            action  : 'woolentor_module_data',
+                            subaction : 'reset_data',
+                        },
+
+                        beforeSend: function(){
+                            $resetbtn.removeClass('disabled').addClass('updating-message').text( WOOLENTOR_ADMIN.message.reseting );
+                        },
+
+                        success: function( response ) {
+                            $resetbtn.removeClass('updating-message').addClass('disabled').attr('disabled', true).text( WOOLENTOR_ADMIN.message.reseted );
+                        },
+
+                        complete: function( response ) {
+                            $resetbtn.removeClass('updating-message').addClass('disabled').attr('disabled', true).text( WOOLENTOR_ADMIN.message.reseted );
+                            window.location.reload();
+                        },
+
+                        error: function(errorThrown){
+                            console.log(errorThrown);
+                        }
+            
+                    });
+
+
+                }
+            })
+
+        });
+
         // Save button active
-        $('.woolentor-module-setting-popup-content .woolentor-module-setting-data').on( 'click', 'input,select,.woolentor-admin-number-btn' , function() {
+        $('.woolentor-module-setting-popup-content .woolentor-module-setting-data').on( 'click', 'input,select,textarea,.woolentor-admin-number-btn' , function() {
+            $(this).closest('.woolentor-module-setting-popup-content').find('.woolentor-admin-module-save').removeClass('disabled').attr('disabled', false).text( WOOLENTOR_ADMIN.message.btntxt );
+        });
+
+        $('.woolentor-module-setting-popup-content .woolentor-module-setting-data').on( 'keyup', 'input' , function() {
             $(this).closest('.woolentor-module-setting-popup-content').find('.woolentor-admin-module-save').removeClass('disabled').attr('disabled', false).text( WOOLENTOR_ADMIN.message.btntxt );
         });
 
@@ -316,46 +471,302 @@
             $popup.removeClass('open')
         });
 
+        // Repeater Field
+        woolentor_repeater_field();
+        
+        // Field Dependency
+        $(document).ready(function() {
+            $('.woolentor-module-setting-data').woolentor_conditions();
+        });
+
     }
+
+    /* Repeater Item control */
+    $(document).on('repeater_field_added', function( e, hidden_repeater_elem ){
+
+        $( hidden_repeater_elem ).find('.woolentor-admin-select select[multiple="multiple"]').each(function(){
+            const $this = $(this),
+                $parent = $this.parent();
+            $this.select2({
+                dropdownParent: $parent,
+                placeholder: "Select template"
+            });
+        });
+
+        $( hidden_repeater_elem ).find('.wp-color-picker-field').each(function(){
+            $(this).wpColorPicker({
+                change: function (event, ui) {
+                    $(this).closest('.woolentor-module-setting-popup-content').find('.woolentor-admin-module-save').removeClass('disabled').attr('disabled', false).text( WOOLENTOR_ADMIN.message.btntxt );
+                },
+                clear: function (event) {
+                    $(this).closest('.woolentor-module-setting-popup-content').find('.woolentor-admin-module-save').removeClass('disabled').attr('disabled', false).text( WOOLENTOR_ADMIN.message.btntxt );
+                }
+            });
+        });
+
+    });
+
+    function woolentor_repeater_field(){
+        
+        /* Add field */
+        $('.woolentor-repeater-item-add').on('click',function(e){
+            e.preventDefault();
+
+            var $this            = $(this),
+                $hidden          =  $this.prev('.woolentor-repeater-hidden').clone(true),
+                $insert_location =  $this.closest('.woolenor-reapeater-fields-area').find('div.woolentor-option-repeater-item:not(.woolentor-repeater-hidden):last'),
+                $itemCount       =  $this.closest('.woolenor-reapeater-fields-area').find('.woolentor-option-repeater-item:not(.woolentor-repeater-hidden)').length,
+                $addLimit        =  typeof $this.attr('data-limit') !== 'undefined' ? parseInt($this.attr('data-limit')) : '';
+            
+            // If already reach adding limit
+            if( $addLimit != '' && $addLimit <= $itemCount ){
+
+                Swal.fire({
+                    title: 'Upgrade to Premium version',
+                    text: 'With the free version, you can add 2 currencies. To unlock more currencies and advanced features, please upgrade to the pro version.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#ddd',
+                    confirmButtonText: 'Upgrade Now',
+                    cancelButtonText: 'Not Now',
+                }).then((result) => {
+                    if ( result.isConfirmed ) {
+                        window.open('https://woolentor.com/pricing/?utm_source=admin&utm_medium=lockfeatures&utm_campaign=free', '_blank');
+                    }
+                })
+
+                return false;
+            }
+            
+            $hidden.attr('data-id', $itemCount );
+            $('.woolentor-option-repeater-item-area .woolentor-option-repeater-item').removeClass('woolentor_active_repeater');
+            $hidden.removeClass('woolentor-repeater-hidden').addClass('woolentor_active_repeater');
+            $hidden.insertAfter( $insert_location );
+
+            if( $insert_location.length == 0 ){
+                $this.closest('.woolenor-reapeater-fields-area').find('.woolentor-option-repeater-item-area').html( $hidden );
+            }
+
+            $(document).trigger('repeater_field_added', [ $('.woolentor-module-setting-data .woolentor-option-repeater-item.woolentor_active_repeater') ] );
+            $(document).trigger('repeater_field_item_added', [ $('.woolentor-module-setting-data .woolentor-option-repeater-item.woolentor_active_repeater') ] );
+
+            // Title Value update after add.
+            $('.woolentor-module-setting-data .woolentor-option-repeater-item.woolentor_active_repeater').find('.woolentor-repeater-title-field :input').trigger( 'change' );
+
+            // Field Dependency
+            $('.woolentor-option-repeater-item-area').children('.woolentor-option-repeater-item').children('.woolentor-option-repeater-fields').woolentor_conditions();
+
+            // Enable Button
+            $('.woolentor-admin-module-save').removeClass('disabled').attr('disabled', false).text( WOOLENTOR_ADMIN.message.btntxt );
+
+            return false;
+
+        });
+
+        // Change Heading using title field value
+        $('.woolentor-repeater-title-field :input').on('keyup change',function( event ){
+            let titleValue = event.currentTarget.tagName == 'SELECT' ? event.currentTarget.options[event.currentTarget.selectedIndex].text : $(this).val();
+            $(this).closest('.woolentor-option-repeater-fields').siblings('.woolentor-option-repeater-tools').find('.woolentor-option-repeater-item-title').html( titleValue );
+        });
+
+        // Hide Show Manage
+        $('.woolentor-option-repeater-item').on('click', '.woolentor-option-repeater-tools', function(){
+            const $this = $(this),
+                $parentItem = $this.parent();
+            if( $parentItem.hasClass('woolentor_active_repeater') ) {
+                $parentItem.removeClass('woolentor_active_repeater');
+            } else {
+                $parentItem.addClass('woolentor_active_repeater').siblings().removeClass('woolentor_active_repeater');
+                $(document).trigger('repeater_field_added', [ $('.woolentor-module-setting-data .woolentor-option-repeater-item.woolentor_active_repeater') ] );
+                $(document).trigger('repeater_field_item_active', [ $parentItem ] );
+            }
+            $('.woolentor-option-repeater-item-area').children('.woolentor-option-repeater-item').children('.woolentor-option-repeater-fields').woolentor_conditions();
+        });
+
+        // Remove Element
+        $( '.woolentor-option-repeater-item-remove' ).on('click', function( event ) {
+            
+            const $this = $(this),
+                $parentItem = $this.parents('.woolentor-option-repeater-item'),
+                $fieldsArea = $parentItem.parents('.woolenor-reapeater-fields-area');
+
+            $parentItem.remove();
+            
+            // ID Re-Order
+            $('.woolentor-option-repeater-item:not(.woolentor-repeater-hidden)').each( function( index ) {
+                $(this).attr('data-id', index );
+            });
+
+            $(document).trigger('repeater_field_item_removed', [ $parentItem, $fieldsArea ] );
+
+            // Enable Button
+            $('.woolentor-admin-module-save').removeClass('disabled').attr('disabled', false).text( WOOLENTOR_ADMIN.message.btntxt );
+
+            return false;
+        });
+
+        // Initiate sortable Field
+        if( $( ".woolentor-option-repeater-item-area" ).length > 0 ){
+            $( ".woolentor-option-repeater-item-area" ).sortable({
+                axis: 'y',
+                connectWith: ".woolentor-option-repeater-item",
+                handle: ".woolentor-option-repeater-tools",
+                placeholder: "widget-placeholder",
+                update: function( event, ui ) {
+                    $('.woolentor-admin-module-save').removeClass('disabled').attr('disabled', false).text( WOOLENTOR_ADMIN.message.btntxt );
+                    $('.woolentor-option-repeater-item-area').children('.woolentor-option-repeater-item').children('.woolentor-option-repeater-fields').woolentor_conditions();
+                }
+            });
+        }
+
+        /**
+         * Repeater Custom Button
+         */
+        $('.woolentor-repeater-custom-action').on('click', function(){
+
+            let $this = $(this),
+                $fieldsArea = $this.siblings('.woolentor-option-repeater-item-area'), 
+                $data = typeof $this.attr('data-customaction') !== 'undefined' ? JSON.parse( $this.attr('data-customaction') ) : '',
+                $fieldValue = $( document ).find( $data['option_selector'] ),
+                $moduleSaveButton = $('.woolentor-admin-module-save');
+            
+            if( typeof $fieldValue !== 'undefined' ){
+                $data = {...$data, value: $fieldValue.val()}
+            }
+
+            $.ajax( {
+                url: WOOLENTOR_ADMIN.ajaxurl,
+                type: 'POST',
+                data: {
+                    nonce  : WOOLENTOR_ADMIN.nonce,
+                    action : 'woolentor_repeater_custom_action',
+                    data : $data
+                },
+
+                beforeSend: function(){
+                    $this.removeClass('disabled').addClass('updating-message');
+                    // Enable Module Data save button
+                    $moduleSaveButton.removeClass('disabled').attr('disabled', false).text( WOOLENTOR_ADMIN.message.btntxt );
+                },
+
+                success: function( response ) {
+                    $this.removeClass('updating-message');
+                    $(document).trigger('repeater_custom_action_start', [ $data, $fieldsArea, response.data ] );
+                    // Save Module Data
+                    $moduleSaveButton.trigger('click');
+                },
+
+                complete: function( response ) {
+                    $this.removeClass('updating-message');
+                    // Save Module Data
+                    $moduleSaveButton.trigger('click');
+                },
+
+                error: function(errorThrown){
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong! Try again later.",
+                    });
+                }
+    
+            });
+
+        });
+
+
+        
+        /**
+         * For Currency Switcher Module
+         */
+        $( document ).on( 'change', '.wlcs-currency-selection .woolentor-admin-select select', function ( e ) {
+            let thisField = $( this ),
+                item = thisField.closest( '.woolentor-option-repeater-item' ),
+                fieldsArea = item.closest( '.woolenor-reapeater-fields-area' ),
+                uniqueIdWrap = item.find( '.wlcs-currency-selection' );
+
+            if ( ( true === uniqueIdWrap.hasClass( 'wlcs-currency-selection-field' ) ) && ( 'undefined' !== typeof fieldsArea ) ) {
+                $( document ).trigger( 'country_default_select_refresh', [ fieldsArea ] );
+            }
+        } );
+        $( document ).on( 'repeater_field_item_removed', function ( e, item, fieldsArea ) {
+            let uniqueIdWrap = item.find( '.wlcs-currency-selection' );
+            if ( ( true === uniqueIdWrap.hasClass( 'wlcs-currency-selection-field' ) ) && ( 'undefined' !== typeof fieldsArea ) ) {
+                $( document ).trigger( 'country_default_select_refresh', [ fieldsArea ] );
+            }
+        } );
+
+        /**
+         * Change Default Currency Switcher value select refresh.
+         */
+        $( document ).on( 'country_default_select_refresh', function ( e, itemsArea ) {
+            if ( 0 < itemsArea.length ) {
+                let items = itemsArea.find( '.woolentor-option-repeater-item:not(.woolentor-repeater-hidden)' ),
+                    selects = $( document ).find( '.wlcs-default-selection .woolentor-admin-select select' ),
+                    options = {};
+
+                $.each( items, function () {
+                    let thisItem = $( this ),
+                        selectItem = thisItem.find( '.wlcs-currency-selection .woolentor-admin-select select option:selected' ),
+                        label = selectItem.text(),
+                        currencyCode = selectItem.val(),
+                        title = '';
+
+                    if ( ( 'undefined' !== typeof label ) ) {
+                        label = label.trim();
+                        if ( 0 < label.length ) {
+                            title = label;
+                        }
+                        options[ currencyCode ] = title;
+                    }
+                } );
+
+                $.each( selects, function() {
+                    let thisSelect = $( this ),
+                        optionsHTML = '',
+                        selectValue = thisSelect.val();
+
+                    $.each( options, function ( optionId, optionTitle ) {
+                        optionsHTML += '<option value="' + optionId + '">' + optionTitle + '</option>';
+                    } );
+
+                    thisSelect.html( optionsHTML ).val( selectValue ).change();
+
+                } );
+
+            }
+        } );
+
+        // Currency Exchange Rate Field update
+        $( document ).on( 'repeater_custom_action_start', function ( e, buttonData, itemsArea, response ) {
+            let repeaterFields = itemsArea.children();
+            repeaterFields.map( ( index, child ) => {
+                let currencyCode = $(child).find('.wlcs-currency-selection .woolentor-admin-select select').val();
+                if( response[currencyCode] ){
+                    const exchangeRate = parseFloat(response[currencyCode]).toFixed(2);
+                    $(child).find('.wlcs-currency-dynamic-exchange-rate .woolentor-admin-number input').val(exchangeRate);
+                }
+            });
+
+            Swal.fire({
+                title: "Success!",
+                text: "The exchange rates for every added currency have been updated based on the selected default currency.",
+                icon: "success"
+            });
+
+        });
+
+
+    }
+    woolentor_repeater_field();
 
     // Extension Tabs
-    woolentor_admin_tabs( $(".woolentor-admin-tabs"), '.woolentor-admin-tab-pane' );
+    // woolentor_admin_tabs( $(".woolentor-admin-tabs"), '.woolentor-admin-tab-pane' );
 
-    // Check Save data wise
-    WooLentorConditionField( WOOLENTOR_ADMIN.option_data['contenttype'], 'fakes', '.notification_fake' );
-    WooLentorConditionField( WOOLENTOR_ADMIN.option_data['contenttype'], 'actual', '.notification_real' );
-    WooLentorConditionField( WOOLENTOR_ADMIN.option_data['side_mini_cart'], 'on', '.side_mini_cart_field' );
-    WooLentorConditionField( WOOLENTOR_ADMIN.option_data['enablecustomlayout'], 'on', '.depend_enable_custom_layout' );
-    WooLentorConditionField( WOOLENTOR_ADMIN.option_data['enablerenamelabel'], 'on', '.depend_enable_rename_label' );
-
-    // After On change
-    WooLentorOnChangeField('.notification_content_type .radio', 'radio', '.notification_fake', 'fakes' );
-    WooLentorOnChangeField('.notification_content_type .radio', 'radio', '.notification_real', 'actual' );
-    WooLentorOnChangeField('.side_mini_cart .checkbox', 'radio', '.side_mini_cart_field', 'on' );
-    WooLentorOnChangeField('.enablecustomlayout .checkbox', 'radio', '.depend_enable_custom_layout', 'on' );
-    WooLentorOnChangeField('.enablerenamelabel .checkbox', 'radio', '.depend_enable_rename_label', 'on' );
-
-    function WooLentorOnChangeField( field, type = 'select', selector, condition_value ){
-        $(field).on('change',function(){
-            var change_value = '';
-            if( type === 'radio' ){
-                if( $(this).is(":checked") ){
-                    change_value = $(this).val();
-                }
-            }else{
-                change_value = $(this).val();
-            }
-            WooLentorConditionField( change_value, condition_value, selector );
-        });
-    }
-
-    // Hide || Show
-    function WooLentorConditionField( value, condition_value, selector ){
-        if( value === condition_value ){
-            $(selector).show();
-        }else{
-            $(selector).hide();
-        }
-    }
+    // Field Dependency
+    $(document).ready(function() {
+        $('.woolentor-dashboard').children('.woolentor-admin-options').woolentor_conditions();
+    });
         
 })(jQuery);

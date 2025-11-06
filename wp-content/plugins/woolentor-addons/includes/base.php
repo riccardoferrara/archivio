@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 final class Base {
 
     const MINIMUM_PHP_VERSION = '5.4';
-    const MINIMUM_ELEMENTOR_VERSION = '2.0.0';
+    const MINIMUM_ELEMENTOR_VERSION = '3.0.0';
 
     /**
      * [$template_info]
@@ -44,14 +44,27 @@ final class Base {
         add_action( 'init', [ $this, 'i18n' ] );
         add_action( 'plugins_loaded', [ $this, 'init' ] );
 
+        // Installer
+        if( is_admin() ){
+            require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.installer.php' );
+        }
+        // WooLentor Template CPT Manager
+        require( WOOLENTOR_ADDONS_PL_PATH. 'includes/admin/include/class.template-manager.php' );
+
         // Register Plugin Active Hook
         register_activation_hook( WOOLENTOR_ADDONS_PL_ROOT, [ $this, 'plugin_activate_hook' ] );
+        if( empty( get_option('woolentor_version', '') ) ){
+            $this->plugin_activate_hook();
+        }
 
         // Register Plugin Deactive Hook
         register_deactivation_hook( WOOLENTOR_ADDONS_PL_ROOT, [ $this, 'plugin_deactivation_hook'] );
 
         // Support WooCommerce
         add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ] );
+
+        // Product View Count
+        add_action( 'template_redirect', [ $this, 'track_user_viewed_products' ], 99 );
 
     }
 
@@ -69,10 +82,8 @@ final class Base {
      */
     public function init() {
 
-        // Check for required PHP version
-        if ( ! did_action( 'elementor/loaded' ) ) {
-            add_action( 'admin_notices', [ $this, 'admin_notice_missing_main_plugin' ] );
-            return;
+        if( is_admin()){
+            include_once( WOOLENTOR_ADDONS_PL_PATH.'includes/admin/include/class.notice.php' );
         }
 
         // Check for required PHP version
@@ -82,13 +93,14 @@ final class Base {
         }
 
         // Check WooCommerce
-        if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+        if ( !did_action( 'woocommerce_loaded' ) ) {
             add_action('admin_notices', [ $this, 'admin_notic_missing_woocommerce' ] );
             return;
         }
 
         // Plugins Setting Page
         add_filter('plugin_action_links_'.WOOLENTOR_PLUGIN_BASE, [ $this, 'plugins_setting_links' ] );
+        add_filter( 'plugin_row_meta', [ $this, 'plugin_row_meta' ], 10, 4 );
 
         // Include File
         $this->include_files();
@@ -100,52 +112,21 @@ final class Base {
          * [$template_info] Assign template data
          * @var [type]
          */
-        if( is_admin() && class_exists('\Woolentor_Template_Library') ){
-            self::$template_info = \Woolentor_Template_Library::instance()->get_templates_info();
+        if( is_admin() && class_exists('\Woolentor_Template_Library_Manager') ){
+            self::$template_info = \Woolentor_Template_Library_Manager::instance()->get_templates_info();
         }
 
-        // Promo Banner
-        if( is_admin() ){
-            if( isset( self::$template_info['notices'][0]['status'] ) ){
-                if( !is_plugin_active('woolentor-addons-pro/woolentor_addons_pro.php') && ( self::$template_info['notices'][0]['status'] == 1 ) ){
-                    add_action( 'wp_ajax_woolentor_pro_notice', [ $this, 'ajax_dismiss' ] );
-                    add_action( 'admin_notices', [ $this, 'admin_promo_notice' ] );
-                    return;
-                }
-            }
-        }
+        // Admin Notices
+        add_action( 'admin_head', [ $this, 'all_admin_notices' ] );
 
         // Elementor Preview Action
         if ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] && is_admin() ) {
             add_action( 'admin_action_elementor', [ $this, 'wc_fontend_includes' ], 5 );
-        } 
-
-    }
-
-    /**
-     * [admin_notice_missing_main_plugin] Admin Notice For missing elementor.
-     * @return [void]
-     */
-    public function admin_notice_missing_main_plugin() {
-        if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-        $elementor = 'elementor/elementor.php';
-        if( $this->is_plugins_active( $elementor ) ) {
-            if( ! current_user_can( 'activate_plugins' ) ) {
-                return;
-            }
-            $activation_url = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $elementor . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $elementor );
-            $message = sprintf( __( '%1$sWooLentor Addons for Elementor%2$s requires %1$s"Elementor"%2$s plugin to be active. Please activate Elementor to continue.', 'woolentor' ), '<strong>', '</strong>' );
-            $button_text = esc_html__( 'Activate Elementor', 'woolentor' );
-        } else {
-            if( ! current_user_can( 'activate_plugins' ) ) {
-                return;
-            }
-            $activation_url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=elementor' ), 'install-plugin_elementor' );
-            $message = sprintf( __( '%1$sWooLentor Addons for Elementor%2$s requires %1$s"Elementor"%2$s plugin to be installed and activated. Please install Elementor to continue.', 'woolentor' ), '<strong>', '</strong>' );
-            $button_text = esc_html__( 'Install Elementor', 'woolentor' );
         }
-        $button = '<p><a href="' . $activation_url . '" class="button-primary">' . $button_text . '</a></p>';
-        printf( '<div class="error"><p>%1$s</p>%2$s</div>', $message, $button );
+
+        // Manage Page Action
+        \WooLentor_Page_Action::instance()->init();
+
     }
 
     /**
@@ -153,24 +134,30 @@ final class Base {
      * @return [void]
      */
     public function admin_notic_missing_woocommerce(){
-        $woocommerce = 'woocommerce/woocommerce.php';
-        if( $this->is_plugins_active( $woocommerce ) ) {
-            if( ! current_user_can( 'activate_plugins' ) ) {
-                return;
-            }
-            $activation_url = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $woocommerce . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $woocommerce );
-            $message = sprintf( __( '%1$sWooLentor Addons for Elementor%2$s requires %1$s"WooCommerce"%2$s plugin to be active. Please activate WooCommerce to continue.', 'woolentor' ), '<strong>', '</strong>');
-            $button_text = __( 'Activate WooCommerce', 'woolentor' );
-        } else {
-            if( ! current_user_can( 'activate_plugins' ) ) {
-                return;
-            }
-            $activation_url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=woocommerce' ), 'install-plugin_woocommerce' );
-            $message = sprintf( __( '%1$sWooLentor Addons for Elementor%2$s requires %1$s"WooCommerce"%2$s plugin to be installed and activated. Please install WooCommerce to continue.', 'woolentor' ), '<strong>', '</strong>' );
-            $button_text = __( 'Install WooCommerce', 'woolentor' );
+
+        if( ! current_user_can( 'activate_plugins' ) ) {
+            return;
         }
-        $button = '<p><a href="' . $activation_url . '" class="button-primary">' . $button_text . '</a></p>';
-        printf( '<div class="error"><p>%1$s</p>%2$s</div>', __( $message ), $button );
+        $woocommerce = 'woocommerce/woocommerce.php';
+        if( $this->is_plugins_install( $woocommerce ) ) {
+            $button['url'] = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $woocommerce . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $woocommerce );
+            $button['text'] = __( 'Activate WooCommerce', 'woolentor' );
+            $message = sprintf( __( '%1$sShopLentor Addons for Elementor%2$s requires %1$s"WooCommerce"%2$s plugin to be active. Please activate WooCommerce to continue.', 'woolentor' ), '<strong>', '</strong>');
+        }else{
+            $button['url']  = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=woocommerce' ), 'install-plugin_woocommerce' );
+            $button['text'] = __( 'Install WooCommerce', 'woolentor' );
+            $message = sprintf( __( '%1$sShopLentor Addons for Elementor%2$s requires %1$s"WooCommerce"%2$s plugin to be installed and activated. Please install WooCommerce to continue.', 'woolentor' ), '<strong>', '</strong>' );
+        }
+
+        \WooLentor_Notices::add_notice(
+			[
+				'id'          => 'missing-woocommerce',
+				'type'        => 'error',
+                'button'      => $button,
+				'message'     => $message,
+				'is_show'     => true,
+			]
+		);
     }
 
     /**
@@ -182,20 +169,72 @@ final class Base {
         $message = sprintf(
             /* translators: 1: Plugin name 2: PHP 3: Required PHP version */
             esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'woolentor' ),
-            '<strong>' . esc_html__( 'WooLentor', 'woolentor' ) . '</strong>',
+            '<strong>' . esc_html__( 'ShopLentor', 'woolentor' ) . '</strong>',
             '<strong>' . esc_html__( 'PHP', 'woolentor' ) . '</strong>',
              self::MINIMUM_PHP_VERSION
         );
-        printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
+
+        \WooLentor_Notices::add_notice(
+			[
+				'id'          => 'phpcompatibility',
+				'type'        => 'warning',
+				'message'     => $message,
+			]
+		);
     }
 
     /**
-     * [ajax_dismiss] Ajax Call back funtion for update user meta
-     * @return [void]
+     * Admin Notices
+     *
+     * @return void
      */
-    public function ajax_dismiss() {
-        update_user_meta( get_current_user_id(), 'woolentor_dismissed_notice_id', 1 );
-        wp_die();
+    public function all_admin_notices(){
+
+        // Rating notice
+        $this->admin_rating_notice();
+
+        // Promo Banner
+        $this->admin_promo_notice();
+
+    }
+
+    /**
+     * Rating Notice
+     *
+     * @return void
+     */
+    public function admin_rating_notice(){
+        $logo_url = esc_url(WOOLENTOROPT_ASSETS.'/images/logo.png');
+
+        $message = '<div class="hastech-review-notice-wrap">
+                    <div class="hastech-rating-notice-logo">
+                        <img src="' . $logo_url . '" alt="'.esc_attr__('ShopLentor','woolentor').'" style="max-width:85px"/>
+                    </div>
+                    <div class="hastech-review-notice-content">
+                        <h3>'.esc_html__('Hi there! Thanks a lot for choosing ShopLentor to build an outstanding WooCommerce store.','woolentor').'</h3>
+                        <p>'.esc_html__('It would be greatly appreciated if you consider giving us a review in WordPress. These reviews help us improve the plugin further and make it easier for other users to decide when exploring ShopLentor!','woolentor').'</p>
+                        <div class="hastech-review-notice-action">
+                            <a href="https://wordpress.org/support/plugin/woolentor-addons/reviews/?filter=5#new-post" class="hastech-review-notice button-primary" target="_blank">'.esc_html__('Ok, you deserve it!','woolentor').'</a>
+                            <span class="dashicons dashicons-calendar"></span>
+                            <a href="#" class="hastech-notice-close woolentor-review-notice">'.esc_html__('Maybe Later','woolentor').'</a>
+                            <span class="dashicons dashicons-smiley"></span>
+                            <a href="#" data-already-did="yes" class="hastech-notice-close woolentor-review-notice">'.esc_html__('I already did','woolentor').'</a>
+                        </div>
+                    </div>
+                </div>';
+
+        \WooLentor_Notices::set_notice(
+            [
+                'id'          => 'wlrating-notice',
+                'type'        => 'info',
+                'dismissible' => true,
+                'message_type' => 'html',
+                'message'     => $message,
+                'display_after' => ( 2 * WEEK_IN_SECONDS ),
+                'expire_time' => MONTH_IN_SECONDS,
+                'close_by'    => 'transient'
+            ]
+        );
     }
 
     /**
@@ -204,55 +243,50 @@ final class Base {
      */
     public function admin_promo_notice(){
 
-        if( get_user_meta( get_current_user_id(), 'woolentor_dismissed_notice_id', true ) ){
+        if( is_plugin_active('woolentor-addons-pro/woolentor_addons_pro.php') ){
             return;
         }
 
-        if( self::$template_info['notices'] ){
-            ?>
-            <style type="text/css">
-                .woolentor-admin-notice.notice {
-                  position: relative;
-                  padding-top: 20px !important;
-                  padding-right: 40px;
-                }
-                .woolentor-admin-notice.notice img{
-                  width: 100%;
-                }
-                .woolentor-admin-notice.notice-warning {
-                  border-left-color: #22b9ff;
-                }
-            </style>
-            <script>
-                ;jQuery( function( $ ) {
-                    $( 'div.notice.woolentor-admin-notice' ).on( 'click', 'button.notice-dismiss', function( event ) {
-                        event.preventDefault();
-                        $.ajax({
-                            url: ajaxurl,
-                            data: {
-                                'action': 'woolentor_pro_notice',
-                            }
-                        });
-                    } );
-                });
-            </script>
-            <?php
-            $bannerLink = self::$template_info['notices'][0]['bannerlink'] ? self::$template_info['notices'][0]['bannerlink'] : '#';
-            $bannerTitle = self::$template_info['notices'][0]['title'] ? self::$template_info['notices'][0]['title'] : esc_html__('Promo Banner','woolentor');
-            $bannerDescription = self::$template_info['notices'][0]['description'] ? '<p>'.self::$template_info['notices'][0]['description'].'</p>' : '';
-            $bannerImage = self::$template_info['notices'][0]['bannerimage'] ? '<img src='.self::$template_info['notices'][0]['bannerimage'].' alt='.$bannerTitle.'/>' : '#';
-
-            printf( '<div class="woolentor-admin-notice is-dismissible notice notice-warning"><a href="%1$s" target="_blank">%2$s</a>%3$s</div>', $bannerLink, $bannerImage, $bannerDescription  );
-           
+        if( !isset( self::$template_info['notices'] ) || !is_array( self::$template_info['notices'] ) ){
+            return;
         }
+
+        if( isset( self::$template_info['notices'][0]['status'] ) ){
+            if( self::$template_info['notices'][0]['status'] == 0 ){
+                return;
+            }
+        }else{
+            return;
+        }
+
+        // Fetch data
+        $bannerLink = self::$template_info['notices'][0]['bannerlink'] ? self::$template_info['notices'][0]['bannerlink'] : '#';
+        $bannerTitle = self::$template_info['notices'][0]['title'] ? self::$template_info['notices'][0]['title'] : esc_html__('Promo Banner','woolentor');
+        $bannerDescription = self::$template_info['notices'][0]['description'] ? self::$template_info['notices'][0]['description'] : '';
+        $bannerImage = self::$template_info['notices'][0]['bannerimage'] ? '<img src="'.esc_url(self::$template_info['notices'][0]['bannerimage']).'" alt="'.esc_attr($bannerTitle).'"/>' : '';
+
+        $banner['image'] = $bannerImage;
+        $banner['url'] = $bannerLink;
+        \WooLentor_Notices::set_notice(
+            [
+                'id'          => 'wlpromo-banner',
+                'type'        => 'info',
+                'dismissible' => true,
+                'message'     => $bannerDescription,
+                'banner'      => $banner,
+                'close_by'    => 'user',
+                'priority'    => 2
+            ]
+        );
+           
     }
 
    /**
-    * [is_plugins_active] Check Plugin is Installed or not
-    * @param  [string]  $pl_file_path plugin file path
+    * [is_plugins_install] Check Plugin is Installed or not
+    * @param  [string] $pl_file_path plugin file path
     * @return boolean  true|false
     */
-    public function is_plugins_active( $pl_file_path = NULL ){
+    public function is_plugins_install( $pl_file_path = NULL ){
         $installed_plugins_list = get_plugins();
         return isset( $installed_plugins_list[$pl_file_path] );
     }
@@ -266,9 +300,25 @@ final class Base {
         $settings_link = '<a href="'.admin_url('admin.php?page=woolentor').'">'.esc_html__( 'Settings', 'woolentor' ).'</a>'; 
         array_unshift( $links, $settings_link );
         if( !is_plugin_active('woolentor-addons-pro/woolentor_addons_pro.php') ){
-            $links['woolentorgo_pro'] = sprintf('<a href="https://hasthemes.com/plugins/woolentor-pro-woocommerce-page-builder/?fd" target="_blank" style="color: #39b54a; font-weight: bold;">' . esc_html__('Go Pro','woolentor') . '</a>');
+            $links['woolentorgo_pro'] = sprintf('<a href="https://woolentor.com/pricing/?utm_source=admin&utm_medium=gopro&utm_campaign=free" target="_blank" style="color: #39b54a; font-weight: bold;">' . esc_html__('Go Pro','woolentor') . '</a>');
         }
         return $links; 
+    }
+
+    /**
+     * [plugin_row_meta] Plugin row meta
+     * @return [links] plugin action link
+     */
+    public function plugin_row_meta( $links, $file, $data, $status ) {
+        if ( $file === WOOLENTOR_PLUGIN_BASE ) {
+            $new_links = array(
+                'docs'          => '<a href="https://woolentor.com/documentation/wl/" target="_blank"><span class="dashicons dashicons-search"></span>' . esc_html__( 'Documentation', 'woolentor' ) . '</a>',
+                'facebookgroup' => '<a href="https://www.facebook.com/groups/woolentor" target="_blank"><span class="dashicons dashicons-facebook" style="font-size:14px;line-height:1.3"></span>' . esc_html__( 'Facebook Group', 'woolentor' ) . '</a>',
+                'rateus'        => '<a href="https://wordpress.org/support/plugin/woolentor-addons/reviews/?filter=5#new-post" target="_blank"><span class="dashicons dashicons-star-filled" style="font-size:14px;line-height:1.3"></span>' . esc_html__( 'Rate the plugin', 'woolentor' ) . '</a>',
+            );
+            $links = array_merge( $links, $new_links );
+        }
+        return $links;
     }
 
    /**
@@ -276,7 +326,9 @@ final class Base {
     * @return [void]
     */
     public function plugin_activate_hook() {
-        add_option( 'woolentor_do_activation_redirect', TRUE );
+        if( class_exists('\WooLentor\Installer') ){
+            \WooLentor\Installer::instance();
+        }
     }
 
     /**
@@ -284,7 +336,7 @@ final class Base {
      * @return [void]
      */
     public function plugin_deactivation_hook() {
-        delete_metadata( 'user', null, 'woolentor_dismissed_notice_id', null, true );
+        delete_metadata( 'user', 0, 'hastech-notice-id-wlagency-bundle-promo-banner', null, true );
     }
 
     /**
@@ -297,14 +349,6 @@ final class Base {
             if( !isset( $_GET['activate-multi'] ) ){
                 wp_redirect( admin_url("admin.php?page=woolentor") );
             }
-
-            // Fetch Template Library Data
-            $transient = get_transient( \Woolentor_Template_Library::TRANSIENT_KEY );
-            if ( ! $transient ) {
-                $info = \Woolentor_Template_Library::request_remote_templates_info( true );
-                set_transient( \Woolentor_Template_Library::TRANSIENT_KEY, $info, DAY_IN_SECONDS );
-            }
-
         }
     }
 
@@ -316,12 +360,71 @@ final class Base {
     public function after_setup_theme() {
         if( function_exists('woolentor_get_option') ){
             if( woolentor_get_option( 'enablecustomlayout', 'woolentor_woo_template_tabs', 'on' ) == 'on' ){
-                add_theme_support( 'woocommerce' );
-                add_theme_support( 'wc-product-gallery-zoom' );
-                add_theme_support( 'wc-product-gallery-lightbox' );
-                add_theme_support( 'wc-product-gallery-slider' );
+                if( !current_theme_supports('woocommerce') ) {
+                    add_theme_support('woocommerce');
+                    add_theme_support('wc-product-gallery-zoom');
+                    add_theme_support('wc-product-gallery-lightbox');
+                    add_theme_support('wc-product-gallery-slider');
+                }
             }
         }
+    }
+
+    /**
+     * Manage Product Viewed products
+     *
+     * @return void
+     */
+
+     public function track_user_viewed_products(){
+
+        global $post;
+    
+        if ( is_null( $post ) || $post->post_type != 'product' || !is_product() ) {
+            return;
+        }
+    
+        $products_list = woolentor_get_track_user_data();
+        $user_id       = get_current_user_id();
+        $cookie_name   = woolentor_get_cookie_name( 'viewed_products_list' );
+    
+        $product_id = get_the_id();
+    
+        // Initialize products_list as array if it's not already
+        if (!is_array($products_list)) {
+            $products_list = [];
+        }
+    
+        // Check current product exists in the list and remove it
+        if ( ( $key = array_search( $product_id, $products_list ) ) !== false ) {
+            unset( $products_list[$key] );
+        }
+    
+        $timestamp = time();
+        $products_list[$timestamp] = $product_id;
+    
+        // MEMORY FIX: Limit the size of the products list to prevent memory exhaustion
+        $max_products_limit = apply_filters( 'woolentor_max_viewed_products', 100 ); // Default limit: 100 products
+        
+        if ( count( $products_list ) > $max_products_limit ) {
+            // Sort by timestamp (keys) and keep only the most recent products
+            ksort( $products_list );
+            $products_list = array_slice( $products_list, -$max_products_limit, null, true );
+        }
+    
+        // Set cookie or save user meta
+        $cookie_duration = 5;
+        $cookie_duration = time() + (86400 * $cookie_duration);
+    
+        if ( $user_id ) {
+            update_user_meta( $user_id, $cookie_name, $products_list );
+        } else {
+            setcookie( $cookie_name, serialize( $products_list ), $cookie_duration, COOKIEPATH, COOKIE_DOMAIN, false, true );
+        }
+    
+        // Set View Count
+        woolentor_set_views_count( $product_id, 'product' );
+    
     }
 
    /**
@@ -347,65 +450,42 @@ final class Base {
      */
     public function include_files(){
 
-        require( WOOLENTOR_ADDONS_PL_PATH.'includes/helper-function.php' );
-        require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.assest_management.php' );
-        require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.widgets_control.php' );
-        require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.default_data.php' );
-        require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.icon-manager.php' );
-        require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.quickview_manage.php' );
-        require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.icon_list.php' );
-        require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.ajax_actions.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/helper-function.php' );
+        woolentor_include_all(WOOLENTOR_ADDONS_PL_PATH.'includes/traits');
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.assest_management.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.widgets_control.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.default_data.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.icon_list.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.multi_language.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.ajax_actions.php' );
 
         // Admin Setting file
         if( is_admin() ){
-            require( WOOLENTOR_ADDONS_PL_PATH.'includes/custom-metabox.php' );
-            require( WOOLENTOR_ADDONS_PL_PATH.'includes/admin/admin-init.php' );
-
-            // Post Duplicator
-            if( !is_plugin_active('ht-mega-for-elementor/htmega_addons_elementor.php') ){
-                if( woolentor_get_option( 'postduplicator', 'woolentor_others_tabs', 'off' ) === 'on' ){
-                    require_once ( WOOLENTOR_ADDONS_PL_PATH.'classes/class.post-duplicator.php' );
-                }
-            }
-
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/custom-metabox.php' );
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/admin/admin-init.php' );
         }
+
+        // Vue Dashboard
+        require_once( WOOLENTOR_ADDONS_PL_PATH .'includes/admin-panel/settings-panel.php');
 
         // Builder File
         if( woolentor_get_option( 'enablecustomlayout', 'woolentor_woo_template_tabs', 'on' ) == 'on' ){
-            require( WOOLENTOR_ADDONS_PL_PATH.'includes/wl_woo_shop.php' );
-            require( WOOLENTOR_ADDONS_PL_PATH.'includes/archive_product_render.php' );           
-            require( WOOLENTOR_ADDONS_PL_PATH.'includes/class.product_video_gallery.php' );
-            if( !is_admin() && woolentor_get_option( 'enablerenamelabel', 'woolentor_rename_label_tabs', 'off' ) == 'on' ){
-                require( WOOLENTOR_ADDONS_PL_PATH.'includes/rename_label.php' );
-            }
-            require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.product_query.php' );
+
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/manage_wc_template.php' );
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/archive_product_render.php' );           
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/class.product_video_gallery.php' );
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.product_query.php' );
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.third_party.php' );
         }
 
-        // Search
-        if( woolentor_get_option( 'ajaxsearch', 'woolentor_others_tabs', 'off' ) == 'on' ){
-            require( WOOLENTOR_ADDONS_PL_PATH. 'includes/widgets/ajax-search/base.php' );
-        }
+        // Product Query Manager
+        require_once( WOOLENTOR_ADDONS_PL_PATH . 'classes/class.woocommerce_query_manager.php' );
 
-        // Sale Notification
-        if( woolentor_get_option( 'enableresalenotification', 'woolentor_sales_notification_tabs', 'off' ) == 'on' && woolentor_get_option( 'notification_content_type', 'woolentor_sales_notification_tabs', 'actual' ) != 'fakes'){
-            
-        }
+        // Page Action
+        require_once( WOOLENTOR_ADDONS_PL_PATH. 'classes/class.page_action.php' );
 
-        // Sale Notification
-        if( woolentor_get_option( 'enableresalenotification', 'woolentor_sales_notification_tabs', 'off' ) == 'on' ){
-            if( woolentor_get_option( 'notification_content_type', 'woolentor_sales_notification_tabs', 'actual' ) == 'fakes' ){
-                include( WOOLENTOR_ADDONS_PL_PATH. 'includes/class.sale_notification_fake.php' );
-            }else{
-                require( WOOLENTOR_ADDONS_PL_PATH. 'includes/class.sale_notification.php' );
-            }
-        }
-
-        // Single Product Ajax cart
-        if( woolentor_get_option( 'ajaxcart_singleproduct', 'woolentor_others_tabs', 'off' ) == 'on' ){
-            if ( 'yes' === get_option('woocommerce_enable_ajax_add_to_cart') ) {
-                require( WOOLENTOR_ADDONS_PL_PATH. 'classes/class.single_product_ajax_add_to_cart.php' );
-            }
-        }
+        // Modules Manager
+        require_once( WOOLENTOR_ADDONS_PL_PATH. 'includes/modules/class.module-manager.php' );
 
 
     }
@@ -416,7 +496,7 @@ final class Base {
 /**
  * Initializes the main plugin
  *
- * @return \Base
+ * @return Base
  */
 function woolentor() {
     return Base::instance();

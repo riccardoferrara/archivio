@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Customer_Review_Element extends Widget_Base {
+class Woolentor_Wb_Customer_Review_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wl-customer-veview';
@@ -19,6 +19,10 @@ class WL_Customer_Review_Element extends Widget_Base {
 
     public function get_categories() {
         return array( 'woolentor-addons' );
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -64,7 +68,7 @@ class WL_Customer_Review_Element extends Widget_Base {
                     'options' => [
                         'custom'      => __( 'Custom', 'woolentor' ),
                     ],
-                    'description' => sprintf( __( 'Product Wise Rating/Review Display is available in WooLentor Pro. <a href="%s" target="_blank">Purchase WooLentor Pro</a>', 'woolentor' ), esc_url( 'https://hasthemes.com/plugins/woolentor-pro-woocommerce-page-builder/?reviewwidget' ) ),
+                    'description' => sprintf( __( 'Product Wise Rating/Review Display is available in ShopLentor Pro. <a href="%s" target="_blank">Purchase ShopLentor Pro</a>', 'woolentor' ), esc_url( 'https://hasthemes.com/plugins/woolentor-pro-woocommerce-page-builder/?reviewwidget' ) ),
                 ]
             );
 
@@ -604,14 +608,14 @@ class WL_Customer_Review_Element extends Widget_Base {
         echo '<div class="wl-row '.( $settings['no_gutters'] === 'yes' ? 'wlno-gutters' : '' ).'">';
         ?>
             <?php foreach ( $review_list as $review ): ?>
-            <div class="<?php echo esc_attr( esc_attr( $collumval ) ); ?>">
+            <div class="<?php echo esc_attr( $collumval ); ?>">
 
                 <?php if( $settings['review_layout'] == 2 || $settings['review_layout'] == 3 ): ?>
 
                 <div class="wl-customer-testimonal">
                     <?php
                         if( $review['image'] ){
-                            echo $review['image'];
+                            echo $review['image']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                         }
                     ?>
                     <div class="content">
@@ -651,7 +655,7 @@ class WL_Customer_Review_Element extends Widget_Base {
                     <div class="clint-info">
                         <?php
                             if( $review['image'] ){
-                                echo $review['image'];
+                                echo $review['image']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                             }
 
                             if( !empty( $review['name'] ) ){
@@ -676,7 +680,7 @@ class WL_Customer_Review_Element extends Widget_Base {
                     <div class="content">
                         <?php
                             if( $review['image'] ){
-                                echo $review['image'];
+                                echo $review['image']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                             }
                         ?>
                         <div class="clint-info">
@@ -734,4 +738,3 @@ class WL_Customer_Review_Element extends Widget_Base {
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Customer_Review_Element() );

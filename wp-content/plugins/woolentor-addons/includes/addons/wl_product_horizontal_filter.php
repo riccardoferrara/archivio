@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Product_Horizontal_Filter_Element extends Widget_Base {
+class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wl-product-horizontal-filter';
@@ -19,6 +19,10 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
 
     public function get_categories() {
         return ['woolentor-addons'];
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -76,6 +80,73 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                     'type'      => Controls_Manager::SELECT2,
                     'options'   => $filter_by + woolentor_get_taxonomies(),
                     'label_block' => true,
+                ]
+            );
+
+            $repeater->add_control(
+                'sort_by_asc_lavel', 
+                [
+                    'label' => esc_html__( 'Ascending order label', 'woolentor' ),
+                    'type' => Controls_Manager::TEXT,
+                    'label_block' => true,
+                    'default' => esc_html__('ASC','woolentor'),
+                    'condition'=>[
+                        'wl_filter_type' => 'sort_by'
+                    ]
+                ]
+            );
+            $repeater->add_control(
+                'sort_by_desc_lavel', 
+                [
+                    'label' => esc_html__( 'Descending order label', 'woolentor' ),
+                    'type' => Controls_Manager::TEXT,
+                    'label_block' => true,
+                    'default' => esc_html__('DESC','woolentor'),
+                    'condition'=>[
+                        'wl_filter_type' => 'sort_by'
+                    ]
+                ]
+            );
+
+            $repeater->add_control(
+                'order_by_values', 
+                [
+                    'label' => esc_html__( 'Order By Values', 'woolentor' ),
+                    'type' => Controls_Manager::SELECT2,
+                    'multiple' => true,
+                    'options' => function_exists('woolentor_order_by_opts') ? woolentor_order_by_opts() : [],
+                    'label_block' => true,
+                    'default' => ['none','ID','date','name','title','comment_count','rand','featured','_price','total_sales','_wc_average_rating'],
+                    'condition'=>[
+                        'wl_filter_type' => 'order_by'
+                    ]
+                ]
+            );
+
+            $repeater->add_responsive_control(
+                'wl_filter_min_width',
+                [
+                    'label' => esc_html__( 'Min Width', 'woolentor' ),
+                    'type' => Controls_Manager::SLIDER,
+                    'size_units' => [ 'px', '%' ],
+                    'range' => [
+                        'px' => [
+                            'min' => 0,
+                            'max' => 1000,
+                            'step' => 1,
+                        ],
+                        '%' => [
+                            'min' => 0,
+                            'max' => 100,
+                        ],
+                    ],
+                    'default' => [
+                        'unit' => 'px',
+                        'size' => 120,
+                    ],
+                    'selectors' => [
+                        '{{WRAPPER}} .woolentor-horizontal-filter-wrap .woolentor-filter-single-item{{CURRENT_ITEM}} .select2-container .select2-search--inline .select2-search__field' => 'min-width: {{SIZE}}{{UNIT}};',
+                    ],
                 ]
             );
 
@@ -152,7 +223,7 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
             $price_range->add_control(
                 'price_seprator', 
                 [
-                    'label' => esc_html__( 'Filter Placeholder', 'woolentor' ),
+                    'label' => esc_html__( 'Separator', 'woolentor' ),
                     'type' => Controls_Manager::TEXT,
                     'label_block' => true,
                     'default'=> esc_html__( 'to', 'woolentor' ),
@@ -888,7 +959,7 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                         <div class="woolentor-header-left-side">
                             <?php
                                 if( !empty( $settings['wl_filter_area_title'] ) ){
-                                    echo '<h2 class="wl_hoz_filter_title">'.$settings['wl_filter_area_title'].'</h2>';
+                                    echo '<h2 class="wl_hoz_filter_title">'.esc_html($settings['wl_filter_area_title']).'</h2>';
                                 }
                             ?>
                         </div>
@@ -914,20 +985,20 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                                 <form class="woolentor-header-search-form" role="search" method="get" action="<?php echo esc_url( $form_action ); ?>">
                                     <div class="woolentor-search-input-box">
                                         <input class="input-box" type="search" placeholder="<?php echo esc_attr_x( $settings['form_field_placeholder'], 'placeholder', 'woolentor' ); ?>" value="<?php echo esc_attr( $search_value ); ?>" name="q" title="<?php echo esc_attr_x( 'Search for:', 'label', 'woolentor' ); ?>" />
-                                        <button class="input-inner-btn" type="submit"><?php echo $submit_btton_icon; ?></button>
+                                        <button class="input-inner-btn" type="submit" aria-label="<?php echo esc_attr__( 'Search', 'woolentor' );?>"><?php echo $submit_btton_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button>
                                     </div>
                                 </form>
                             <?php endif; ?>
 
                             <?php if( $settings['show_filter_btton'] == 'yes' ): ?>
                                 <div class="woolentor-search-filter-custom">
-                                    <a href="#" id="filter-toggle-<?php echo $id; ?>" class="filter-icon"><?php echo $filter_btton_icon; ?></a>
+                                    <a href="#" id="filter-toggle-<?php echo esc_attr($id); ?>" class="filter-icon"><?php echo $filter_btton_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
                                 </div>
                             <?php endif; ?>
                         </div>
                     </div>
 
-                    <div id="filter-item-<?php echo $id; ?>" class="filter-item">
+                    <div id="filter-item-<?php echo esc_attr($id); ?>" class="filter-item">
                         <div class="woolentor-filter-field-area">
                             <div class="woolentor-filter-field-wrap">
                                 <?php 
@@ -936,20 +1007,22 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
 
                                             $filter_label = '';
                                             if( 'yes' === $settings['show_filter_label'] ){
-                                                $filter_label = '<label for="woolentor-field-for-'.$filter_item['_id'].'">'.$filter_item['wl_filter_title'].'</label>';
+                                                $filter_label = '<label for="woolentor-field-for-'.esc_attr($filter_item['_id']).'">'.esc_html($filter_item['wl_filter_title']).'</label>';
                                             }
 
                                             if( 'sort_by' === $filter_item['wl_filter_type'] ){
                                                 $wlsort = ( isset( $_GET['wlsort'] ) && !empty( $_GET['wlsort'] ) ) ? $_GET['wlsort'] : '';
+                                                $sort_by_asc_lavel = isset( $filter_item['sort_by_asc_lavel'] ) ? $filter_item['sort_by_asc_lavel'] : 'ASC';
+                                                $sort_by_desc_lavel = isset( $filter_item['sort_by_desc_lavel'] ) ? $filter_item['sort_by_desc_lavel'] : 'DESC';
                                             ?>
-                                                <div class="woolentor-filter-single-item woolentor-states-input-auto elementor-repeater-item-<?php echo $filter_item['_id']; ?>">
-                                                    <?php echo $filter_label; ?>
-                                                    <select name="wl_sort" id="woolentor-field-for-<?php echo $filter_item['_id']; ?>" class="woolentor-onchange-single-item woolentor-single-select-<?php echo $id; ?>" data-minimum-results-for-search="Infinity" data-placeholder="<?php echo $filter_item['wl_filter_placeholder']; ?>">
+                                                <div class="woolentor-filter-single-item woolentor-states-input-auto elementor-repeater-item-<?php echo esc_attr($filter_item['_id']); ?>">
+                                                    <?php echo $filter_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                                    <select name="wl_sort" id="woolentor-field-for-<?php echo esc_attr($filter_item['_id']); ?>" class="woolentor-onchange-single-item woolentor-single-select-<?php echo esc_attr($id); ?>" data-minimum-results-for-search="Infinity" data-placeholder="<?php echo esc_attr($filter_item['wl_filter_placeholder']); ?>">
                                                         <?php
                                                             if( !empty( $filter_item['wl_filter_placeholder'] ) ){echo '<option></option>';}
                                                         ?>
-                                                        <option value="&wlsort=ASC" <?php selected( 'ASC', $wlsort, true ); ?> ><?php echo esc_html__( 'ASC', 'woolentor' ); ?></option>
-                                                        <option value="&wlsort=DESC" <?php selected( 'DESC', $wlsort, true ); ?> ><?php echo esc_html__( 'DESC', 'woolentor' ); ?></option>
+                                                        <option value="&wlsort=ASC" <?php selected( 'ASC', $wlsort, true ); ?> ><?php echo esc_html__( $sort_by_asc_lavel, 'woolentor' ); ?></option>
+                                                        <option value="&wlsort=DESC" <?php selected( 'DESC', $wlsort, true ); ?> ><?php echo esc_html__( $sort_by_desc_lavel, 'woolentor' ); ?></option>
                                                     </select>
                                                 </div>
                                             <?php
@@ -957,13 +1030,15 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                                             }elseif( 'order_by' === $filter_item['wl_filter_type'] ){
                                                 $wlorder_by = ( isset( $_GET['wlorder_by'] ) && !empty( $_GET['wlorder_by'] ) ) ? $_GET['wlorder_by'] : '';
                                                 ?>
-                                                <div class="woolentor-filter-single-item woolentor-states-input-auto elementor-repeater-item-<?php echo $filter_item['_id']; ?>">
-                                                    <?php echo $filter_label; ?>
-                                                    <select name="wl_order_by_sort" id="woolentor-field-for-<?php echo $filter_item['_id']; ?>" class="woolentor-onchange-single-item woolentor-single-select-<?php echo $id; ?>" data-minimum-results-for-search="Infinity" data-placeholder="<?php echo $filter_item['wl_filter_placeholder']; ?>">
+                                                <div class="woolentor-filter-single-item woolentor-states-input-auto elementor-repeater-item-<?php echo esc_attr($filter_item['_id']); ?>">
+                                                    <?php echo $filter_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                                    <select name="wl_order_by_sort" id="woolentor-field-for-<?php echo esc_attr($filter_item['_id']); ?>" class="woolentor-onchange-single-item woolentor-single-select-<?php echo esc_attr($id); ?>" data-minimum-results-for-search="Infinity" data-placeholder="<?php echo esc_attr($filter_item['wl_filter_placeholder']); ?>">
                                                         <?php
                                                             if( !empty( $filter_item['wl_filter_placeholder'] ) ){echo '<option></option>';}
-                                                        
-                                                            foreach ( woolentor_order_by_opts() as $key => $opt_data ) {
+
+                                                            $order_by_values = !empty($filter_item['order_by_values']) ? array_intersect_key(woolentor_order_by_opts(), array_flip($filter_item['order_by_values'])) : woolentor_order_by_opts();
+
+                                                            foreach ( $order_by_values as $key => $opt_data ) {
                                                                 echo '<option value="&wlorder_by='.esc_attr( $key ).'" '.selected( $key, $wlorder_by, false ).'>'.esc_html__( $opt_data, 'woolentor' ).'</option>';
                                                             }
                                                         ?>
@@ -972,6 +1047,27 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                                                 <?php
 
                                             }elseif( 'price_by' === $filter_item['wl_filter_type'] ){
+
+                                                $woocommerce_currency_pos = get_option( 'woocommerce_currency_pos' );
+                                                $currency_pos_left = false;
+                                                $currency_pos_space = false;
+                                                if( $woocommerce_currency_pos == 'left' || $woocommerce_currency_pos == 'left_space' ){
+                                                    $currency_pos_left = true;
+                                                }
+
+                                                if( strstr( $woocommerce_currency_pos, 'space' ) ){
+                                                    $currency_pos_space = true;
+                                                }
+                        
+                                                if( $currency_pos_space == true && $currency_pos_left == true){
+                                                    // left space
+                                                    $final_currency_symbol = $currency_symbol.' ';
+                                                }else if( $currency_pos_space == true && $currency_pos_left == false ){
+                                                    // right space
+                                                    $final_currency_symbol = ' '.$currency_symbol;
+                                                }else{
+                                                    $final_currency_symbol = $currency_symbol;
+                                                }
 
                                                 $cmin_price = ( isset( $_GET['min_price'] ) && !empty( $_GET['min_price'] ) ) ? $_GET['min_price'] : '';
                                                 $cmax_price = ( isset( $_GET['max_price'] ) && !empty( $_GET['max_price'] ) ) ? $_GET['max_price'] : '';
@@ -987,15 +1083,25 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                                                 
                                                 if( isset( $price_range_list ) ):
                                                     ?>
-                                                    <div class="woolentor-filter-single-item woolentor-states-input-auto elementor-repeater-item-<?php echo $filter_item['_id']; ?>">
-                                                        <?php echo $filter_label; ?>
-                                                        <select id="woolentor-field-for-<?php echo $filter_item['_id']; ?>" class="woolentor-onchange-single-item woolentor-price-filter woolentor-single-select-<?php echo $id; ?>" data-minimum-results-for-search="Infinity" <?php echo $psl_placeholder; ?> >
+                                                    <div class="woolentor-filter-single-item woolentor-states-input-auto elementor-repeater-item-<?php echo esc_attr($filter_item['_id']); ?>">
+                                                        <?php echo $filter_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                                        <select id="woolentor-field-for-<?php echo esc_attr($filter_item['_id']); ?>" class="woolentor-onchange-single-item woolentor-price-filter woolentor-single-select-<?php echo esc_attr($id); ?>" data-minimum-results-for-search="Infinity" <?php echo $psl_placeholder; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> >
                                                             <?php
                                                                 if( !empty( $filter_item['wl_filter_placeholder'] ) && empty( $cmin_price ) ){echo '<option></option>';}
 
+                                                                $prices_data = function_exists('woolentor_minmax_price_limit') ? woolentor_minmax_price_limit() : array('min' => 10,'max' => 20);
+
+                                                                $min_price_value = $prices_data['min'];
+                                                                $max_price_value = $prices_data['max'];
+
                                                                 foreach ( $price_range_list as $key => $price_range ) {
 
-                                                                    $individual = [$price_range['min_price'], $price_range['max_price'] ];
+                                                                    $min_price = preg_match('/^[0-9]*$/', $price_range['min_price']) ? esc_attr($price_range['min_price']) : $min_price_value;
+                                                                    $max_price = preg_match('/^[0-9]*$/', $price_range['max_price']) ? esc_attr($price_range['max_price']) : $max_price_value;
+
+                                                                    $price_seprator = esc_html($price_range['price_seprator']);
+
+                                                                    $individual = [$min_price, $max_price];
                                                                     $diff = array_diff( $individual, $current_price );
 
                                                                     $pselected = 0;
@@ -1003,9 +1109,13 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                                                                         $pselected = 1;
                                                                     }
 
-                                                                    $generate_price = sprintf('%s%s %s %s%s',$currency_symbol,$price_range['min_price'], $price_range['price_seprator'],$currency_symbol,$price_range['max_price'] );
+                                                                    if( $currency_pos_left ){
+                                                                        $generate_price = sprintf('%s%s %s %s%s',$final_currency_symbol,$min_price, $price_seprator,$final_currency_symbol,$max_price ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                                    }else{
+                                                                        $generate_price = sprintf('%s%s %s %s%s',$min_price, $final_currency_symbol, $price_seprator,$max_price, $final_currency_symbol ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                                    }
 
-                                                                    echo sprintf("<option value='%s' data-min_price='&min_price=%s' data-max_price='&max_price=%s' %s>%s</option>", $key, $price_range['min_price'], $price_range['max_price'], selected( $pselected, 1, false ), $generate_price );
+                                                                    echo sprintf("<option value='%s' data-min_price='&min_price=%s' data-max_price='&max_price=%s' %s>%s</option>", $key, $min_price, $max_price, selected( $pselected, 1, false ), $generate_price ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                                 }
 
                                                             ?>
@@ -1016,7 +1126,7 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
 
                                             }else{
                                                 $terms = get_terms( $filter_item['wl_filter_type'] );
-                                                if ( !empty( $terms ) ){
+                                                if ( !empty( $terms ) && !is_wp_error( $terms )){
 
                                                     $taxonomy_data = get_taxonomy( $filter_item['wl_filter_type'] );
 
@@ -1026,6 +1136,10 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                                                         $filter_name = 'filter_' . wc_attribute_taxonomy_slug( $filter_item['wl_filter_type'] );
                                                     }
 
+                                                    if( $filter_name === 'product_cat' || $filter_name === 'product_tag' || $filter_name === 'product_brand' ){
+                                                        $filter_name = 'woolentor_'.$filter_name;
+                                                    }
+
                                                     $selected_taxonomies = ( isset( $_GET[$filter_name] ) && !empty( $_GET[$filter_name] ) ) ? explode( ',', $_GET[$filter_name] ) : array();
 
                                                     $sl_placeholder = '';
@@ -1033,9 +1147,9 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                                                         $sl_placeholder = 'data-placeholder="'.esc_attr( !empty( $filter_item['wl_filter_placeholder'] ) ? $filter_item['wl_filter_placeholder'] : $taxonomy_data->labels->singular_name ).'"';
                                                     }
 
-                                                    echo '<div class="woolentor-filter-single-item woolentor-states-input-auto elementor-repeater-item-'.$filter_item['_id'].'">';
-                                                    echo $filter_label;
-                                                    echo '<select name="wltaxonomies['.$filter_item['wl_filter_type'].'][]" class="woolentor-onchange-multiple-item woolentor-multiple-select-'.$id.'" '.$sl_placeholder.' multiple="multiple">';
+                                                    echo '<div class="woolentor-filter-single-item woolentor-states-input-auto elementor-repeater-item-'.esc_attr($filter_item['_id']).'">';
+                                                    echo $filter_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                    echo '<select name="wltaxonomies['.$filter_item['wl_filter_type'].'][]" class="woolentor-onchange-multiple-item woolentor-multiple-select-'.esc_attr($id).'" '.$sl_placeholder.' multiple="multiple">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
                                                         foreach ( $terms as $term ){
                                                             $link = $this->generate_term_link( $filter_item['wl_filter_type'], $term, null );
@@ -1045,7 +1159,7 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                                                                 $selected = 1;
                                                             }
 
-                                                            echo sprintf('<option value="%1$s" %3$s>%2$s</option>', $link['link'], $term->name, selected( $selected, 1, false ) );
+                                                            echo sprintf('<option value="%1$s" %3$s>%2$s</option>', $link['link'], $term->name, selected( $selected, 1, false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         }
 
                                                     echo '</select></div>';
@@ -1058,8 +1172,8 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                                     }
                                 ?>
                             </div>
-                            <div class="woolentor-select-drop woolentor-single-select-drop-<?php echo $id; ?>"></div>
-                            <div class="woolentor-select-drop woolentor-multiple-select-drop-<?php echo $id; ?>"></div>
+                            <div class="woolentor-select-drop woolentor-single-select-drop-<?php echo esc_attr($id); ?>"></div>
+                            <div class="woolentor-select-drop woolentor-multiple-select-drop-<?php echo esc_attr($id); ?>"></div>
                         </div>
                     </div>
                 </div>
@@ -1070,7 +1184,8 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                 ;jQuery(document).ready(function($) {
                     'use strict';
 
-                    var id = '<?php echo $id; ?>';
+                    var id = '<?php echo esc_js($id); ?>',
+                        isEditorMode = '<?php echo esc_js(woolentor_is_preview_mode()); ?>';
 
                     // Localize Text
                     var selectTxt = '<?php echo esc_html__( 'select', 'woolentor' ); ?>',
@@ -1103,10 +1218,10 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                     });
 
                     // Filter product
-                    var current_url = '<?php echo $current_url.'?wlfilter=1'; ?>';
+                    var current_url = '<?php echo esc_js($current_url).'?wlfilter=1'; ?>';
                     $('.woolentor-filter-single-item select.woolentor-onchange-single-item').on('change', function () {
                         var sort_key = $(this).val();
-                        if ( sort_key ) {
+                        if ( sort_key && ( isEditorMode != true ) ) {
                             window.location = current_url + sort_key;
                         }
                         return false;
@@ -1119,7 +1234,7 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                             max_price = selected.data('max_price'),
                             location  = min_price + max_price;
 
-                        if ( location ) {
+                        if ( location && ( isEditorMode != true ) ) {
                             window.location = current_url + location;
                         }
 
@@ -1132,7 +1247,7 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                         var currentlySelected = $(this).val();
                         if( currentlySelected != null ){
 
-                             if( currentlySelected.length == 0 ){
+                             if( currentlySelected.length == 0 && ( isEditorMode != true ) ){
                                 window.location = current_url;
                             }else{
                                 var newSelections = currentlySelected.filter(function (element) {
@@ -1143,13 +1258,15 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
                                     // If there are multiple new selections, we'll take the last in the list
                                     var lastSelected = newSelections.reverse()[0];
                                 }
-                                if ( lastSelected ) {
+                                if ( lastSelected && ( isEditorMode != true ) ) {
                                     window.location = lastSelected;
                                 }
                             }
                             
                         }else{
-                            window.location = current_url;
+                            if(isEditorMode != true){
+                                window.location = current_url;
+                            }
                         }
                         return false;
                     });
@@ -1166,6 +1283,10 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
         $str = substr( $filter_type, 0, 3 );
         if( 'pa_' === $str ){
             $filter_name = 'filter_' . wc_attribute_taxonomy_slug( $filter_type );
+        }
+
+        if( $filter_name === 'product_cat' || $filter_name === 'product_tag' || $filter_name === 'product_brand' ){
+            $filter_name = 'woolentor_'.$filter_name;
         }
 
         $current_filter = isset( $_GET[ $filter_name ] ) ? explode( ',', wc_clean( wp_unslash( $_GET[ $filter_name ] ) ) ) : array();
@@ -1207,4 +1328,3 @@ class WL_Product_Horizontal_Filter_Element extends Widget_Base {
 
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Product_Horizontal_Filter_Element() );

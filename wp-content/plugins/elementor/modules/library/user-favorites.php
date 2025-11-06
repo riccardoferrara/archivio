@@ -69,7 +69,7 @@ class User_Favorites {
 	 * @param array $value
 	 *
 	 * @return $this
-	 * @throws \Exception
+	 * @throws \Exception If fails to save.
 	 */
 	public function save( $vendor, $resource, $value = [] ) {
 		$all_favorites = $this->get();
@@ -79,7 +79,7 @@ class User_Favorites {
 		$result = update_user_meta( $this->user_id, self::USER_META_KEY, $all_favorites );
 
 		if ( false === $result ) {
-			throw new \Exception( __( 'Failed to save user favorites', 'elementor' ) );
+			throw new \Exception( 'Failed to save user favorites.' );
 		}
 
 		$this->cache = $all_favorites;
@@ -93,7 +93,7 @@ class User_Favorites {
 	 * @param $id
 	 *
 	 * @return $this
-	 * @throws \Exception
+	 * @throws \Exception If fails to add.
 	 */
 	public function add( $vendor, $resource, $id ) {
 		$favorites = $this->get( $vendor, $resource );
@@ -115,7 +115,7 @@ class User_Favorites {
 	 * @param $id
 	 *
 	 * @return $this
-	 * @throws \Exception
+	 * @throws \Exception If fails to save.
 	 */
 	public function remove( $vendor, $resource, $id ) {
 		$favorites = $this->get( $vendor, $resource );

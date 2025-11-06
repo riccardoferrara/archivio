@@ -16,7 +16,7 @@
 		});
 
 		$('.woolentor_widget_psa_clear_icon').on('click', function(){
-			$(this).siblings('#woolentor_psa_results_wrapper').html('');
+			$(this).closest(".woolentor_widget_psa").find('#woolentor_psa_results_wrapper').html('');
 			$(this).parents('.woolentor_widget_psa').removeClass('woolentor_widget_psa_clear');
 			$(this).siblings('input[type="search"]').val('');
 		});
@@ -38,30 +38,33 @@
 	function doSearch( $this = '' ) {
 
 		if ( $this.length > 0 ) {
-		    var searchString = $this.val();
+		    var searchString 	 = $this.val(),
+				catagoryValue 	 = $this.closest(".woolentor_widget_psa").find(".woolentor_widget_psa_category select").find(':selected').attr('data-value'),
+				searchResultWrap = $this.closest(".woolentor_widget_psa").find("#woolentor_psa_results_wrapper");
 		    if( searchString == '' ){
-		    	$this.siblings('#woolentor_psa_results_wrapper').html('');
+		    	searchResultWrap.html('');
 		    	$this.parents('.woolentor_widget_psa').removeClass('woolentor_widget_psa_clear');
 		    }
 		    if ( searchString.length < 2 ) return; //wasn't enter, not > 2 char
 		    var wrapper_width = $this.parents('.woolentor_widget_psa').width(),
 		    settings	= $this.parents('.woolentor_widget_psa form').data('settings'),
-		    limit	=	settings.limit ? parseInt(settings.limit) : 10;
+		    limit		=	settings.limit ? parseInt(settings.limit) : 10;
 
 		    $.ajax({
 		    	url: woolentor_addons.woolentorajaxurl,
 		    	data: {
 		    		'action': 'woolentor_ajax_search',
-		    		's': searchString,
-		    		'limit': limit,
-		    		'nonce': woolentor_addons.ajax_nonce
+					'category': catagoryValue,
+		    		's'		: searchString,
+		    		'limit'	: limit,
+		    		'nonce'	: woolentor_addons.ajax_nonce
 		    	},
 		    	beforeSend:function(){
 		    		$this.parents('.woolentor_widget_psa').addClass('woolentor_widget_psa_loading');
 		    	},
 		    	success:function(response) {
-		    		$this.siblings('#woolentor_psa_results_wrapper').css({'width': wrapper_width});
-		    		$this.siblings('#woolentor_psa_results_wrapper').html(response);
+		    		searchResultWrap.css({'width': wrapper_width});
+		    		searchResultWrap.html(response);
 		    		$this.parents('.woolentor_widget_psa').removeClass('woolentor_widget_psa_loading');
 		    	},
 		    	error: function(errorThrown){

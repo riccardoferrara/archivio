@@ -43,6 +43,9 @@ class Assets_Management{
         add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'register_assets' ] );
 
+        // Elementor Editor Scripts
+        add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'enqueue_elementor_editor' ] );
+
         // Frontend Scripts
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_frontend_scripts' ] );
 
@@ -111,18 +114,9 @@ class Assets_Management{
                 'src'     => WOOLENTOR_ADDONS_PL_URL . 'assets/addons/ajax-search/css/ajax-search.css',
                 'version' => WOOLENTOR_VERSION
             ],
-
-            'woolentor-admin' => [
-                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/css/woolentor-admin.css',
-                'version' => WOOLENTOR_VERSION
-            ],
-            'woolentor-selectric' => [
-                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/lib/css/selectric.css',
-                'version' => WOOLENTOR_VERSION
-            ],
-            'woolentor-temlibray-style' => [
-                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/css/tmp-style.css',
-                'version' => WOOLENTOR_VERSION
+            'woolentor-flash-sale-module' => [
+                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/modules/flash-sale/assets/css/flash-sale.css',
+                'version' => WOOLENTOR_VERSION,
             ],
             'woolentor-store-feature' => [
                 'src'     => WOOLENTOR_ADDONS_PL_URL . 'assets/css/store-feature.css',
@@ -150,6 +144,15 @@ class Assets_Management{
                 'src'     => WOOLENTOR_ADDONS_PL_URL . 'assets/css/product-grid.css',
                 'version' => WOOLENTOR_VERSION,
                 'deps'    => [ 'slick','simple-line-icons-wl' ]
+            ],
+
+            'woolentor-admin' => [
+                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/css/woolentor-admin.css',
+                'version' => WOOLENTOR_VERSION
+            ],
+            'woolentor-sweetalert' => [
+                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/lib/css/sweetalert2.min.css',
+                'version' => WOOLENTOR_VERSION
             ],
             
 
@@ -221,37 +224,30 @@ class Assets_Management{
                 'version' => WOOLENTOR_VERSION,
                 'deps'    => [ 'jquery' ]
             ],
+            'woolentor-flash-sale-module' => [
+                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/modules/flash-sale/assets/js/flash-sale.js',
+                'version' => WOOLENTOR_VERSION,
+                'deps'    => [ 'jquery', 'countdown-min' ]
+            ],
 
+            'woolentor-jquery-interdependencies' => [
+                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/lib/js/jquery-interdependencies.min.js', 
+                'version' => WOOLENTOR_VERSION,
+                'deps'    => [ 'jquery' ],
+            ],
+            'woolentor-condition' => [
+                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/js/woolentor-condition.js', 
+                'version' => WOOLENTOR_VERSION,
+                'deps'    => [ 'jquery'],
+            ],
             'woolentor-admin-main' =>[
                 'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/js/woolentor-admin.js',
                 'version' => WOOLENTOR_VERSION,
                 'deps'    => [ 'jquery', 'wp-util', 'serializejson' ]
             ],
-
-            'woolentor-modernizr' => [
-                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/lib/js/modernizr.custom.63321.js',
-                'version' => WOOLENTOR_VERSION,
-                'deps'    => [ 'jquery' ]
-            ],
-            'jquery-selectric' => [
-                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/lib/js/jquery.selectric.min.js',
-                'version' => WOOLENTOR_VERSION,
-                'deps'    => [ 'jquery' ]
-            ],
-            'jquery-ScrollMagic' => [
-                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/lib/js/ScrollMagic.min.js',
-                'version' => WOOLENTOR_VERSION,
-                'deps'    => [ 'jquery' ]
-            ],
-            'babel-min' => [
-                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/lib/js/babel.min.js',
-                'version' => WOOLENTOR_VERSION,
-                'deps'    => [ 'jquery' ]
-            ],
-            'woolentor-templates' => [
-                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/js/template_library_manager.js',
-                'version' => WOOLENTOR_VERSION,
-                'deps'    => [ 'jquery' ]
+            'woolentor-sweetalert' => [
+                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/lib/js/sweetalert2.min.js',
+                'version' => WOOLENTOR_VERSION
             ],
             'woolentor-install-manager' => [
                 'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/js/install_manager.js',
@@ -300,17 +296,16 @@ class Assets_Management{
                 'nonce' => wp_create_nonce( 'woolentor_save_opt_nonce' ),
                 'ajaxurl' => admin_url( 'admin-ajax.php' ),
                 'message'=>[
-                    'btntxt'  => esc_html__( 'Save Changes', 'move' ),
-                    'loading' => esc_html__( 'Saving...', 'move' ),
-                    'success' => esc_html__( 'Saved All Data', 'move' ),
+                    'btntxt'  => esc_html__( 'Save Changes', 'woolentor' ),
+                    'loading' => esc_html__( 'Saving...', 'woolentor' ),
+                    'success' => esc_html__( 'Saved All Data', 'woolentor' ),
+                    'yes'     => esc_html__( 'Yes', 'woolentor' ),
+                    'cancel'  => esc_html__( 'Cancel', 'woolentor' ),
+                    'sure'    => esc_html__( 'Are you sure?', 'woolentor' ),
+                    'reseting'=> esc_html__( 'Resetting...', 'woolentor' ),
+                    'reseted' => esc_html__( 'Reset All Settings', 'woolentor' ),
                 ],
-
-                'option_data' => [
-                    'contenttype' => woolentor_get_option( 'notification_content_type','woolentor_sales_notification_tabs', 'actual' ),
-                    'side_mini_cart' => woolentor_get_option( 'mini_side_cart','woolentor_others_tabs', 'off' ),
-                    'enablecustomlayout' => woolentor_get_option( 'enablecustomlayout','woolentor_woo_template_tabs', 'on' ),
-                    'enablerenamelabel' => woolentor_get_option( 'enablerenamelabel','woolentor_rename_label_tabs', 'off' ),
-                ],
+                'option_data' => [],
 
             );
             wp_localize_script( 'woolentor-admin-main', 'WOOLENTOR_ADMIN', $datalocalize );
@@ -319,12 +314,13 @@ class Assets_Management{
             $current_user  = wp_get_current_user();
             $localize_data = [
                 'ajaxurl'          => admin_url( 'admin-ajax.php' ),
+                'nonce'            => wp_create_nonce( 'woolentor_template_nonce' ),
                 'adminURL'         => admin_url(),
                 'elementorURL'     => admin_url( 'edit.php?post_type=elementor_library' ),
                 'version'          => WOOLENTOR_VERSION,
                 'pluginURL'        => plugin_dir_url( __FILE__ ),
                 'alldata'          => !empty( base::$template_info['templates'] ) ? base::$template_info['templates'] : array(),
-                'prolink'          => 'https://hasthemes.com/plugins/woolentor-pro-woocommerce-page-builder/?fd',
+                'prolink'          => 'https://woolentor.com/pricing/?utm_source=admin&utm_medium=library',
                 'prolabel'         => esc_html__( 'Pro', 'woolentor' ),
                 'loadingimg'       => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/images/loading.gif',
                 'message'          =>[
@@ -335,6 +331,7 @@ class Assets_Management{
                 'buttontxt'      =>[
                     'tmplibrary' => esc_html__( 'Import to Library', 'woolentor' ),
                     'tmppage'    => esc_html__( 'Import to Page', 'woolentor' ),
+                    'tmpbuilder' => esc_html__( 'Import to Builder', 'woolentor' ),
                     'import'     => esc_html__( 'Import', 'woolentor' ),
                     'buynow'     => esc_html__( 'Buy Now', 'woolentor' ),
                     'preview'    => esc_html__( 'Preview', 'woolentor' ),
@@ -346,7 +343,6 @@ class Assets_Management{
                     'email' => $current_user->user_email,
                 ],
             ];
-            wp_localize_script( 'woolentor-templates', 'WLTM', $localize_data );
             wp_localize_script( 'woolentor-install-manager', 'WLIM', $localize_data );
         }
         
@@ -363,7 +359,11 @@ class Assets_Management{
         if ( $current_theme->exists() ){
             wp_enqueue_style( 'font-awesome-four' );
         }else{
-            wp_enqueue_style( 'font-awesome' );
+            if( wp_style_is( 'font-awesome', 'registered' ) ){
+                wp_enqueue_style( 'font-awesome' );
+            }else{
+                wp_enqueue_style( 'font-awesome-four' );
+            }
         }
         wp_enqueue_style( 'simple-line-icons-wl' );
         wp_enqueue_style( 'htflexboxgrid' );
@@ -377,7 +377,25 @@ class Assets_Management{
 
     }
 
+    /**
+     * Elementor Editor Panenl Script
+     *
+     * @return void
+     */
+    public function enqueue_elementor_editor(){
+        wp_enqueue_style('woolentor-elementor-editor', WOOLENTOR_ADDONS_PL_URL . 'assets/css/woolentor-elementor-editor.css',['elementor-editor'], WOOLENTOR_VERSION );
+        wp_enqueue_script( 'woolentor-elementor-editor', WOOLENTOR_ADDONS_PL_URL . 'assets/js/woolentor-elementor-editor.js', ['elementor-editor', 'jquery'], WOOLENTOR_VERSION, true );
 
+        // Localized data for elementor editor
+        wp_localize_script(
+            'woolentor-elementor-editor',
+            'woolentorSetting',
+            array(
+                'hasPro'     => is_plugin_active('woolentor-addons-pro/woolentor_addons_pro.php') ? true : false,
+                'proWidgets' => Widgets_Control::promotional_widget_list(),
+            )
+        );
+    }
 
 }
 

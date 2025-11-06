@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Brand_Element extends Widget_Base {
+class Woolentor_Wl_Brand_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wl-brand-logo';
@@ -19,6 +19,10 @@ class WL_Brand_Element extends Widget_Base {
 
     public function get_categories() {
         return ['woolentor-addons'];
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -58,7 +62,7 @@ class WL_Brand_Element extends Widget_Base {
                         'default' => esc_html__('Default','woolentor'),
                     ],
                     'label_block' => true,
-                    'description' => sprintf( __( 'Slider layouts are available in the pro version. <a href="%s" target="_blank">Get Pro</a>', 'woolentor' ), esc_url( 'https://hasthemes.com/plugins/woolentor-pro-woocommerce-page-builder/?fd' ) ),
+                    'description' => sprintf( __( 'Slider layouts are available in the pro version. <a href="%s" target="_blank">Get Pro</a>', 'woolentor' ), esc_url( 'https://woolentor.com/pricing/?utm_source=admin&utm_medium=editor&utm_campaign=free' ) ),
                 ]
             );
 
@@ -221,7 +225,7 @@ class WL_Brand_Element extends Widget_Base {
                             <div class="elementor-nerd-box-message">' .
                                 __( 'Purchase our premium version to unlock these pro features!', 'woolentor' ) .
                             '</div>
-                            <a class="elementor-nerd-box-link elementor-button elementor-button-default elementor-go-pro" href="' . esc_url( 'https://hasthemes.com/plugins/woolentor-pro-woocommerce-page-builder/?fd' ) . '" target="_blank">' .
+                            <a class="elementor-nerd-box-link elementor-button elementor-button-default elementor-go-pro" href="' . esc_url( 'https://woolentor.com/pricing/?utm_source=admin&utm_medium=editor&utm_campaign=free' ) . '" target="_blank">' .
                                 __( 'Go Pro', 'woolentor' ) .
                             '</a>
                             </div>',
@@ -364,7 +368,7 @@ class WL_Brand_Element extends Widget_Base {
                         <div class="elementor-nerd-box-message">' .
                             __( 'Purchase our premium version to unlock these pro features!', 'woolentor' ) .
                         '</div>
-                        <a class="elementor-nerd-box-link elementor-button elementor-button-default elementor-go-pro" href="' . esc_url( 'https://hasthemes.com/plugins/woolentor-pro-woocommerce-page-builder/?fd' ) . '" target="_blank">' .
+                        <a class="elementor-nerd-box-link elementor-button elementor-button-default elementor-go-pro" href="' . esc_url( 'https://woolentor.com/pricing/?utm_source=admin&utm_medium=editor&utm_campaign=free' ) . '" target="_blank">' .
                             __( 'Go Pro', 'woolentor' ) .
                         '</a>
                         </div>',
@@ -413,9 +417,9 @@ class WL_Brand_Element extends Widget_Base {
                 }
                 ?>
                 <div class="<?php echo esc_attr( esc_attr( $collumval ) ); ?>">
-                    <?php if( !empty( $brand['brand_link']['url'] ) ) echo $link; ?>
+                    <?php if( !empty( $brand['brand_link']['url'] ) ) echo $link; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                     <div class="wl-single-brand">
-                        <?php echo $logo; ?>
+                        <?php echo $logo; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                     </div>
                     <?php if( !empty( $brand['brand_link']['url'] ) ) echo '</a>'; ?>
                 </div>
@@ -427,4 +431,3 @@ class WL_Brand_Element extends Widget_Base {
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Brand_Element() );

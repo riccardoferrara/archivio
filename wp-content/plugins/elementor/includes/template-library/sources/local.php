@@ -1,15 +1,20 @@
 <?php
 namespace Elementor\TemplateLibrary;
 
+use Elementor\Core\Admin\Menu\Admin_Menu_Manager;
 use Elementor\Core\Base\Document;
 use Elementor\Core\Editor\Editor;
-use Elementor\Core\Files\File_Types\Zip;
+use Elementor\Core\Utils\Collection;
 use Elementor\DB;
 use Elementor\Core\Settings\Manager as SettingsManager;
 use Elementor\Core\Settings\Page\Model;
+use Elementor\Includes\TemplateLibrary\Sources\AdminMenuItems\Add_New_Template_Menu_Item;
+use Elementor\Includes\TemplateLibrary\Sources\AdminMenuItems\Saved_Templates_Menu_Item;
+use Elementor\Includes\TemplateLibrary\Sources\AdminMenuItems\Templates_Categories_Menu_Item;
 use Elementor\Modules\Library\Documents\Library_Document;
 use Elementor\Plugin;
 use Elementor\Utils;
+use Elementor\User;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -42,7 +47,8 @@ class Source_Local extends Source_Base {
 
 	/**
 	 * Elementor template-library meta key.
-	 * @deprecated 2.3.0 Use \Elementor\Core\Base\Document::TYPE_META_KEY instead
+	 *
+	 * @deprecated 2.3.0 Use `Elementor\Core\Base\Document::TYPE_META_KEY` const instead.
 	 */
 	const TYPE_META_KEY = '_elementor_template_type';
 
@@ -57,6 +63,8 @@ class Source_Local extends Source_Base {
 	const BULK_EXPORT_ACTION = 'elementor_export_multiple_templates';
 
 	const ADMIN_MENU_SLUG = 'edit.php?post_type=elementor_library';
+
+	const ADMIN_MENU_PRIORITY = 10;
 
 	const ADMIN_SCREEN_ID = 'edit-elementor_library';
 
@@ -216,19 +224,19 @@ class Source_Local extends Source_Base {
 	 */
 	public function register_data() {
 		$labels = [
-			'name' => _x( 'My Templates', 'Template Library', 'elementor' ),
-			'singular_name' => _x( 'Template', 'Template Library', 'elementor' ),
-			'add_new' => _x( 'Add New', 'Template Library', 'elementor' ),
-			'add_new_item' => _x( 'Add New Template', 'Template Library', 'elementor' ),
-			'edit_item' => _x( 'Edit Template', 'Template Library', 'elementor' ),
-			'new_item' => _x( 'New Template', 'Template Library', 'elementor' ),
-			'all_items' => _x( 'All Templates', 'Template Library', 'elementor' ),
-			'view_item' => _x( 'View Template', 'Template Library', 'elementor' ),
-			'search_items' => _x( 'Search Template', 'Template Library', 'elementor' ),
-			'not_found' => _x( 'No Templates found', 'Template Library', 'elementor' ),
-			'not_found_in_trash' => _x( 'No Templates found in Trash', 'Template Library', 'elementor' ),
-			'parent_item_colon' => '',
-			'menu_name' => _x( 'Templates', 'Template Library', 'elementor' ),
+			'name' => esc_html_x( 'My Templates', 'Template Library', 'elementor' ),
+			'singular_name' => esc_html_x( 'Template', 'Template Library', 'elementor' ),
+			'add_new' => esc_html__( 'Add New Template', 'elementor' ),
+			'add_new_item' => esc_html__( 'Add New Template', 'elementor' ),
+			'edit_item' => esc_html__( 'Edit Template', 'elementor' ),
+			'new_item' => esc_html__( 'New Template', 'elementor' ),
+			'all_items' => esc_html__( 'All Templates', 'elementor' ),
+			'view_item' => esc_html__( 'View Template', 'elementor' ),
+			'search_items' => esc_html__( 'Search Template', 'elementor' ),
+			'not_found' => esc_html__( 'No Templates found', 'elementor' ),
+			'not_found_in_trash' => esc_html__( 'No Templates found in Trash', 'elementor' ),
+			'parent_item_colon' => esc_html__( 'Parent Template:', 'elementor' ),
+			'menu_name' => esc_html_x( 'Templates', 'Template Library', 'elementor' ),
 		];
 
 		$args = [
@@ -242,8 +250,11 @@ class Source_Local extends Source_Base {
 			'exclude_from_search' => true,
 			'capability_type' => 'post',
 			'hierarchical' => false,
-			'supports' => [ 'title', 'thumbnail', 'author', 'elementor' ],
+			'supports' => [ 'title', 'thumbnail', 'author', 'elementor', 'custom-fields' ],
+			'show_in_rest' => true,
 		];
+
+		$this->avoid_rest_access_for_non_admins();
 
 		/**
 		 * Register template library post type args.
@@ -266,7 +277,7 @@ class Source_Local extends Source_Base {
 			'query_var' => is_admin(),
 			'rewrite' => false,
 			'public' => false,
-			'label' => _x( 'Type', 'Template Library', 'elementor' ),
+			'label' => esc_html_x( 'Type', 'Template Library', 'elementor' ),
 		];
 
 		/**
@@ -307,9 +318,9 @@ class Source_Local extends Source_Base {
 			'rewrite' => false,
 			'public' => false,
 			'labels' => [
-				'name' => _x( 'Categories', 'Template Library', 'elementor' ),
-				'singular_name' => _x( 'Category', 'Template Library', 'elementor' ),
-				'all_items' => _x( 'All Categories', 'Template Library', 'elementor' ),
+				'name' => esc_html_x( 'Categories', 'Template Library', 'elementor' ),
+				'singular_name' => esc_html_x( 'Category', 'Template Library', 'elementor' ),
+				'all_items' => esc_html_x( 'All Categories', 'Template Library', 'elementor' ),
 			],
 		];
 
@@ -335,31 +346,52 @@ class Source_Local extends Source_Base {
 	 * @since 2.4.0
 	 * @access public
 	 */
-	public function admin_menu_reorder() {
+	private function admin_menu_reorder( Admin_Menu_Manager $admin_menu ) {
 		global $submenu;
 
-		if ( ! isset( $submenu[ self::ADMIN_MENU_SLUG ] ) ) {
+		if ( ! isset( $submenu[ static::ADMIN_MENU_SLUG ] ) ) {
 			return;
 		}
-		$library_submenu = &$submenu[ self::ADMIN_MENU_SLUG ];
 
-		// Remove 'All Templates' menu.
-		unset( $library_submenu[5] );
+		remove_submenu_page( static::ADMIN_MENU_SLUG, static::ADMIN_MENU_SLUG );
 
-		// If current use can 'Add New' - move the menu to end, and add the '#add_new' anchor.
-		if ( isset( $library_submenu[10][2] ) ) {
-			$library_submenu[700] = $library_submenu[10];
-			unset( $library_submenu[10] );
-			$library_submenu[700][2] = admin_url( self::ADMIN_MENU_SLUG . '#add_new' );
+		$add_new_slug = 'post-new.php?post_type=' . static::CPT;
+		$category_slug = 'edit-tags.php?taxonomy=' . static::TAXONOMY_CATEGORY_SLUG . '&amp;post_type=' . static::CPT;
+
+		$library_submenu = new Collection( $submenu[ static::ADMIN_MENU_SLUG ] );
+
+		$add_new_item = $library_submenu->find( function ( $item ) use ( $add_new_slug ) {
+			return $add_new_slug === $item[2];
+		} );
+
+		$categories_item = $library_submenu->find( function ( $item ) use ( $category_slug ) {
+			return $category_slug === $item[2];
+		} );
+
+		if ( $add_new_item ) {
+			remove_submenu_page( static::ADMIN_MENU_SLUG, $add_new_slug );
+
+			$admin_menu->register( admin_url( static::ADMIN_MENU_SLUG . '#add_new' ), new Add_New_Template_Menu_Item() );
 		}
 
-		// Move the 'Categories' menu to end.
-		if ( isset( $library_submenu[15] ) ) {
-			$library_submenu[800] = $library_submenu[15];
-			unset( $library_submenu[15] );
+		if ( $categories_item ) {
+			remove_submenu_page( static::ADMIN_MENU_SLUG, $category_slug );
+
+			$admin_menu->register( $category_slug, new Templates_Categories_Menu_Item() );
 		}
+	}
+
+	/**
+	 * Add a `current` CSS class to the `Saved Templates` submenu page when it's active.
+	 * It should work by default, but since we interfere with WordPress' builtin CPT menus it doesn't work properly.
+	 *
+	 * @return void
+	 */
+	private function admin_menu_set_current() {
+		global $submenu;
 
 		if ( $this->is_current_screen() ) {
+			$library_submenu = &$submenu[ static::ADMIN_MENU_SLUG ];
 			$library_title = $this->get_library_title();
 
 			foreach ( $library_submenu as &$item ) {
@@ -373,8 +405,8 @@ class Source_Local extends Source_Base {
 		}
 	}
 
-	public function admin_menu() {
-		add_submenu_page( self::ADMIN_MENU_SLUG, '', esc_html__( 'Saved Templates', 'elementor' ), Editor::EDITING_CAPABILITY, self::get_admin_url( true ) );
+	private function register_admin_menu( Admin_Menu_Manager $admin_menu ) {
+		$admin_menu->register( static::get_admin_url( true ), new Saved_Templates_Menu_Item() );
 	}
 
 	public function admin_title( $admin_title, $title ) {
@@ -467,17 +499,27 @@ class Source_Local extends Source_Base {
 		$defaults = [
 			'title' => esc_html__( '(no title)', 'elementor' ),
 			'page_settings' => [],
-			'status' => current_user_can( 'publish_posts' ) ? 'publish' : 'pending',
 		];
 
 		$template_data = wp_parse_args( $template_data, $defaults );
+		$template_data['status'] = current_user_can( 'publish_posts' ) ? 'publish' : 'pending';
+
+		// BC: Allow importing any template type when using CLI
+		// to support users that rely on this mechanism.
+		$should_check_template_type = ! $this->is_wp_cli();
+
+		if (
+				$should_check_template_type &&
+				! $this->is_valid_template_type( $template_data['type'] )
+		) {
+			return new \WP_Error( 'invalid_template_type', esc_html__( 'Invalid template type.', 'elementor' ) );
+		}
 
 		$document = Plugin::$instance->documents->create(
 			$template_data['type'],
 			[
 				'post_title' => $template_data['title'],
 				'post_status' => $template_data['status'],
-				'post_type' => self::CPT,
 			]
 		);
 
@@ -526,6 +568,33 @@ class Source_Local extends Source_Base {
 		return $template_id;
 	}
 
+	protected function is_valid_template_type( $type ) {
+		$document_class = Plugin::$instance->documents->get_document_type( $type, false );
+
+		if ( ! $document_class ) {
+			return false;
+		}
+
+		$cpt = $document_class::get_property( 'cpt' );
+
+		if ( ! $cpt || ! is_array( $cpt ) || 1 !== count( $cpt ) ) {
+			return false;
+		}
+
+		$is_valid_template_type = in_array( static::CPT, $cpt, true );
+
+		return apply_filters(
+			'elementor/template_library/sources/local/is_valid_template_type',
+			$is_valid_template_type,
+			$cpt,
+		);
+	}
+
+	/** For testing purposes only, in order to be able to mock the `WP_CLI` constant. */
+	protected function is_wp_cli() {
+		return Utils::is_wp_cli();
+	}
+
 	/**
 	 * Update local template.
 	 *
@@ -549,9 +618,17 @@ class Source_Local extends Source_Base {
 			return new \WP_Error( 'save_error', esc_html__( 'Template not exist.', 'elementor' ) );
 		}
 
-		$document->save( [
-			'elements' => $new_data['content'],
-		] );
+		$save_data = [];
+
+		if ( isset( $new_data['title'] ) ) {
+			$save_data['post_title'] = $new_data['title'];
+		}
+
+		if ( isset( $new_data['content'] ) ) {
+			$save_data['elements'] = $new_data['content'];
+		}
+
+		$document->save( $save_data );
 
 		/**
 		 * After template library update.
@@ -688,6 +765,20 @@ class Source_Local extends Source_Base {
 		return wp_delete_post( $template_id, true );
 	}
 
+	public function bulk_delete_items( array $template_ids ) {
+		foreach ( $template_ids as $template_id ) {
+			if ( ! current_user_can( $this->post_type_object->cap->delete_post, $template_id ) ) {
+				return new \WP_Error( 'template_error', esc_html__( 'Access denied.', 'elementor' ) );
+			}
+		}
+
+		foreach ( $template_ids as $template_id ) {
+			wp_delete_post( $template_id, true );
+		}
+
+		return true;
+	}
+
 	/**
 	 * Export local template.
 	 *
@@ -701,6 +792,12 @@ class Source_Local extends Source_Base {
 	 * @return \WP_Error WordPress error if template export failed.
 	 */
 	public function export_template( $template_id ) {
+		$permissions_error = $this->validate_template_export_permissions( $template_id );
+
+		if ( is_wp_error( $permissions_error ) ) {
+			return $permissions_error;
+		}
+
 		$file_data = $this->prepare_template_export( $template_id );
 
 		if ( is_wp_error( $file_data ) ) {
@@ -709,16 +806,27 @@ class Source_Local extends Source_Base {
 
 		$this->send_file_headers( $file_data['name'], strlen( $file_data['content'] ) );
 
-		// Clear buffering just in case.
-		@ob_end_clean();
-
-		flush();
-
-		// Output file contents.
-		// PHPCS - Export widget json
-		echo $file_data['content']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$this->serve_file( $file_data['content'] );
 
 		die;
+	}
+
+	private function validate_template_export_permissions( $template_id ) {
+		$post_id = intval( $template_id );
+		if ( get_post_type( $post_id ) !== self::CPT ) {
+			return new \WP_Error( 'template_error', esc_html__( 'Invalid template type or template does not exist.', 'elementor' ) );
+		}
+
+		$post_status = get_post_status( $post_id );
+		if ( 'private' === $post_status && ! current_user_can( 'read_private_posts', $post_id ) ) {
+			return new \WP_Error( 'template_error', esc_html__( 'You do not have permission to access this template.', 'elementor' ) );
+		}
+
+		if ( 'publish' !== $post_status && ! current_user_can( 'edit_post', $post_id ) ) {
+			return new \WP_Error( 'template_error', esc_html__( 'You do not have permission to export this template.', 'elementor' ) );
+		}
+
+		return null;
 	}
 
 	/**
@@ -788,11 +896,9 @@ class Source_Local extends Source_Base {
 			unlink( $file['path'] );
 		}
 
-		$this->send_file_headers( $zip_archive_filename, filesize( $zip_complete_path ) );
+		$this->send_file_headers( $zip_archive_filename, $this->filesize( $zip_complete_path ) );
 
-		@ob_end_flush();
-
-		@readfile( $zip_complete_path );
+		$this->serve_zip( $zip_complete_path );
 
 		unlink( $zip_complete_path );
 
@@ -807,8 +913,8 @@ class Source_Local extends Source_Base {
 	 * @since 1.0.0
 	 * @access public
 	 *
-	 * @param string $name - The file name
-	 * @param string $path - The file path
+	 * @param string $name - The file name.
+	 * @param string $path - The file path.
 	 * @return \WP_Error|array An array of items on success, 'WP_Error' on failure.
 	 */
 	public function import_template( $name, $path ) {
@@ -816,15 +922,16 @@ class Source_Local extends Source_Base {
 			return new \WP_Error( 'file_error', 'Please upload a file to import' );
 		}
 
+		// Set the Request's state as an Elementor upload request, in order to support unfiltered file uploads.
+		Plugin::$instance->uploads_manager->set_elementor_upload_state( true );
+
 		$items = [];
 
 		// If the import file is a Zip file with potentially multiple JSON files
 		if ( 'zip' === pathinfo( $name, PATHINFO_EXTENSION ) ) {
-			$extracted_files = Plugin::$instance->uploads_manager->extract_and_validate_zip( $path );
+			$extracted_files = Plugin::$instance->uploads_manager->extract_and_validate_zip( $path, [ 'json' ] );
 
 			if ( is_wp_error( $extracted_files ) ) {
-				// Remove the temporary zip file, since it's now not necessary.
-				Plugin::$instance->uploads_manager->remove_file_or_dir( $path );
 				// Delete the temporary extraction directory, since it's now not necessary.
 				Plugin::$instance->uploads_manager->remove_file_or_dir( $extracted_files['extraction_directory'] );
 
@@ -835,7 +942,8 @@ class Source_Local extends Source_Base {
 				$import_result = $this->import_single_template( $file_path );
 
 				if ( is_wp_error( $import_result ) ) {
-					Plugin::$instance->uploads_manager->remove_file_or_dir( $import_result );
+					// Delete the temporary extraction directory, since it's now not necessary.
+					Plugin::$instance->uploads_manager->remove_file_or_dir( $extracted_files['extraction_directory'] );
 
 					return $import_result;
 				}
@@ -850,8 +958,6 @@ class Source_Local extends Source_Base {
 			$import_result = $this->import_single_template( $path );
 
 			if ( is_wp_error( $import_result ) ) {
-				Plugin::$instance->uploads_manager->remove_file_or_dir( $import_result );
-
 				return $import_result;
 			}
 
@@ -899,7 +1005,7 @@ class Source_Local extends Source_Base {
 	 * @access public
 	 */
 	public function admin_import_template_form() {
-		if ( ! self::is_base_templates_screen() ) {
+		if ( ! self::is_base_templates_screen() || ! User::is_current_user_can_upload_json() ) {
 			return;
 		}
 
@@ -916,7 +1022,7 @@ class Source_Local extends Source_Base {
 					<input type="hidden" name="_nonce" value="<?php Utils::print_unescaped_internal_string( $ajax->create_nonce() ); ?>">
 					<fieldset id="elementor-import-template-form-inputs">
 						<input type="file" name="file" accept=".json,application/json,.zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed" required>
-						<input type="submit" class="button" value="<?php echo esc_attr__( 'Import Now', 'elementor' ); ?>">
+						<input id="e-import-template-action" type="submit" class="button" value="<?php echo esc_attr__( 'Import Now', 'elementor' ); ?>">
 					</fieldset>
 				</form>
 			</div>
@@ -945,7 +1051,7 @@ class Source_Local extends Source_Base {
 	/**
 	 * Is template library supports export.
 	 *
-	 * whether the template library supports export.
+	 * Whether the template library supports export.
 	 *
 	 * Template saved by the user locally on his site, support export by default
 	 * but this can be changed using a filter.
@@ -1138,14 +1244,10 @@ class Source_Local extends Source_Base {
 	 * @return array An updated array of available list table views.
 	 */
 	public function admin_print_tabs( $views ) {
-		$current_type = '';
-		$active_class = ' nav-tab-active';
+		//phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce is not required to retrieve the value.
+		$current_type = Utils::get_super_global_value( $_REQUEST, self::TAXONOMY_TYPE_SLUG ) ?? '';
+		$active_class = $current_type ? '' : ' nav-tab-active';
 		$current_tabs_group = $this->get_current_tab_group();
-
-		if ( ! empty( $_REQUEST[ self::TAXONOMY_TYPE_SLUG ] ) ) {
-			$current_type = $_REQUEST[ self::TAXONOMY_TYPE_SLUG ];
-			$active_class = '';
-		}
 
 		$url_args = [
 			'post_type' => self::CPT,
@@ -1210,7 +1312,7 @@ class Source_Local extends Source_Base {
 	 * @access public
 	 *
 	 * @param string $which The location of the extra table nav markup: 'top' or 'bottom'.
-	 * @param array $args
+	 * @param array  $args
 	 */
 	public function maybe_render_blank_state( $which, array $args = [] ) {
 		global $post_type;
@@ -1228,6 +1330,7 @@ class Source_Local extends Source_Base {
 
 		$total_items = $wp_list_table->get_pagination_arg( 'total_items' );
 
+		//phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce is not required to retrieve the value.
 		if ( ! empty( $total_items ) || ! empty( $_REQUEST['s'] ) ) {
 			return;
 		}
@@ -1292,22 +1395,22 @@ class Source_Local extends Source_Base {
 	 * @since 3.1.0
 	 * @access public
 	 *
-	 * @param string $current_type_label The Entity title
-	 * @param string $href The URL for the 'Add New' button
-	 * @param string $description The sub title describing the Entity (Post Type, Taxonomy, etc.)
+	 * @param string $current_type_label The Entity title.
+	 * @param string $href The URL for the 'Add New' button.
+	 * @param string $description The sub title describing the Entity (Post Type, Taxonomy, etc.).
 	 */
 	public function print_blank_state_template( $current_type_label, $href, $description ) {
 		?>
 			<div class="elementor-blank_state">
 				<i class="eicon-folder"></i>
-				<h2>
+				<h3>
 					<?php
 					/* translators: %s: Template type label. */
 					printf( esc_html__( 'Create Your First %s', 'elementor' ), esc_html( $current_type_label ) );
 					?>
-				</h2>
+				</h3>
 				<p><?php echo wp_kses_post( $description ); ?></p>
-				<a id="elementor-template-library-add-new" class="elementor-button elementor-button-success" href="<?php echo esc_url( $href ); ?>">
+				<a id="elementor-template-library-add-new" class="elementor-button e-primary" href="<?php echo esc_url( $href ); ?>">
 					<?php
 					/* translators: %s: Template type label. */
 					printf( esc_html__( 'Add New %s', 'elementor' ), esc_html( $current_type_label ) );
@@ -1317,14 +1420,22 @@ class Source_Local extends Source_Base {
 		<?php
 	}
 
+	/**
+	 * Add filter by category.
+	 *
+	 * In the templates library, add a filter by Elementor library category.
+	 *
+	 * @access public
+	 *
+	 * @param string $post_type The post type slug.
+	 */
 	public function add_filter_by_category( $post_type ) {
 		if ( self::CPT !== $post_type ) {
 			return;
 		}
 
 		$all_items = get_taxonomy( self::TAXONOMY_CATEGORY_SLUG )->labels->all_items;
-
-		$dropdown_options = array(
+		$dropdown_options = [
 			'show_option_all' => $all_items,
 			'show_option_none' => $all_items,
 			'hide_empty' => 0,
@@ -1334,9 +1445,15 @@ class Source_Local extends Source_Base {
 			'value_field' => 'slug',
 			'taxonomy' => self::TAXONOMY_CATEGORY_SLUG,
 			'name' => self::TAXONOMY_CATEGORY_SLUG,
-			'selected' => empty( $_GET[ self::TAXONOMY_CATEGORY_SLUG ] ) ? '' : $_GET[ self::TAXONOMY_CATEGORY_SLUG ],
+			//phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce is not required to retrieve the value.
+			'selected' => Utils::get_super_global_value( $_GET, self::TAXONOMY_CATEGORY_SLUG ) ?? '',
+		];
+
+		printf(
+			'<label class="screen-reader-text" for="%1$s">%2$s</label>',
+			esc_attr( self::TAXONOMY_CATEGORY_SLUG ),
+			esc_html_x( 'Filter by category', 'Template Library', 'elementor' )
 		);
-		echo '<label class="screen-reader-text" for="cat">' . esc_html_x( 'Filter by category', 'Template Library', 'elementor' ) . '</label>';
 		wp_dropdown_categories( $dropdown_options );
 	}
 
@@ -1354,44 +1471,18 @@ class Source_Local extends Source_Base {
 	 *                             `WP_Error`.
 	 */
 	private function import_single_template( $file_path ) {
-		$data = json_decode( file_get_contents( $file_path ), true );
+		$data = $this->prepare_import_template_data( $file_path );
 
 		if ( empty( $data ) ) {
 			return new \WP_Error( 'file_error', 'Invalid File' );
 		}
 
-		$content = $data['content'];
-
-		if ( ! is_array( $content ) ) {
-			return new \WP_Error( 'file_error', 'Invalid Content In File' );
-		}
-
-		$content = $this->process_export_import_content( $content, 'on_import' );
-
-		$page_settings = [];
-
-		if ( ! empty( $data['page_settings'] ) ) {
-			$page = new Model( [
-				'id' => 0,
-				'settings' => $data['page_settings'],
-			] );
-
-			$page_settings_data = $this->process_element_export_import_content( $page, 'on_import' );
-
-			if ( ! empty( $page_settings_data['settings'] ) ) {
-				$page_settings = $page_settings_data['settings'];
-			}
-		}
-
 		$template_id = $this->save_item( [
-			'content' => $content,
+			'content' => $data['content'],
 			'title' => $data['title'],
 			'type' => $data['type'],
-			'page_settings' => $page_settings,
+			'page_settings' => $data['page_settings'],
 		] );
-
-		// Remove the temporary file, now that we're done with it.
-		Plugin::$instance->uploads_manager->remove_file_or_dir( $file_path );
 
 		if ( is_wp_error( $template_id ) ) {
 			return $template_id;
@@ -1421,11 +1512,16 @@ class Source_Local extends Source_Base {
 			return new \WP_Error( 'empty_template', 'The template is empty' );
 		}
 
+		$content = apply_filters(
+			'elementor/template_library/sources/local/export/elements',
+			$template_data['content']
+		);
+
 		$export_data = [
-			'content' => $template_data['content'],
+			'content' => $content,
 			'page_settings' => $template_data['settings'],
 			'version' => DB::DB_VERSION,
-			'title' => get_the_title( $template_id ),
+			'title' => $document->get_main_post()->post_title,
 			'type' => self::get_template_type( $template_id ),
 		];
 
@@ -1433,26 +1529,6 @@ class Source_Local extends Source_Base {
 			'name' => 'elementor-' . $template_id . '-' . gmdate( 'Y-m-d' ) . '.json',
 			'content' => wp_json_encode( $export_data ),
 		];
-	}
-
-	/**
-	 * Send file headers.
-	 *
-	 * Set the file header when export template data to a file.
-	 *
-	 * @since 1.6.0
-	 * @access private
-	 *
-	 * @param string $file_name File name.
-	 * @param int    $file_size File size.
-	 */
-	private function send_file_headers( $file_name, $file_size ) {
-		header( 'Content-Type: application/octet-stream' );
-		header( 'Content-Disposition: attachment; filename=' . $file_name );
-		header( 'Expires: 0' );
-		header( 'Cache-Control: must-revalidate' );
-		header( 'Pragma: public' );
-		header( 'Content-Length: ' . $file_size );
 	}
 
 	/**
@@ -1536,8 +1612,18 @@ class Source_Local extends Source_Base {
 	 */
 	private function add_actions() {
 		if ( is_admin() ) {
-			add_action( 'admin_menu', [ $this, 'admin_menu' ] );
-			add_action( 'admin_menu', [ $this, 'admin_menu_reorder' ], 800 );
+			add_action( 'elementor/admin/menu/register', function ( Admin_Menu_Manager $admin_menu ) {
+				$this->register_admin_menu( $admin_menu );
+			}, static::ADMIN_MENU_PRIORITY );
+
+			add_action( 'elementor/admin/menu/register', function ( Admin_Menu_Manager $admin_menu ) {
+				$this->admin_menu_reorder( $admin_menu );
+			}, 800 );
+
+			add_action( 'elementor/admin/menu/after_register', function () {
+				$this->admin_menu_set_current();
+			} );
+
 			add_filter( 'admin_title', [ $this, 'admin_title' ], 10, 2 );
 			add_action( 'all_admin_notices', [ $this, 'replace_admin_heading' ] );
 			add_filter( 'post_row_actions', [ $this, 'post_row_actions' ], 10, 2 );
@@ -1565,6 +1651,8 @@ class Source_Local extends Source_Base {
 			add_action( 'manage_posts_extra_tablenav', [ $this, 'maybe_render_blank_state' ] );
 		}
 
+		add_action( 'elementor/document/after_save', [ $this, 'on_template_update' ], 10, 2 );
+
 		add_action( 'template_redirect', [ $this, 'block_template_frontend' ] );
 
 		// Remove elementor library templates from WP Sitemap
@@ -1574,6 +1662,15 @@ class Source_Local extends Source_Base {
 				return $this->remove_elementor_cpt_from_sitemap( $post_types );
 			}
 		);
+	}
+
+	public function on_template_update( \Elementor\Core\Base\Document $document, array $data ) {
+		if ( ! empty( $data['post_title'] ) ) {
+			wp_update_post( [
+				'ID' => $document->get_main_id(),
+				'post_title' => $data['post_title'],
+			] );
+		}
 	}
 
 	/**
@@ -1609,17 +1706,17 @@ class Source_Local extends Source_Base {
 	}
 
 	public function get_current_tab_group( $default = '' ) {
-		$current_tabs_group = $default;
+		//phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verification is not required here.
+		$current_tabs_group = Utils::get_super_global_value( $_REQUEST, 'tabs_group' ) ?? '';
+		//phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verification is not required here.
+		$type_slug = Utils::get_super_global_value( $_REQUEST, self::TAXONOMY_TYPE_SLUG );
 
-		if ( ! empty( $_REQUEST[ self::TAXONOMY_TYPE_SLUG ] ) ) {
-			$doc_type = Plugin::$instance->documents->get_document_type( $_REQUEST[ self::TAXONOMY_TYPE_SLUG ], '' );
+		if ( $type_slug ) {
+			$doc_type = Plugin::$instance->documents->get_document_type( $type_slug, '' );
 			if ( $doc_type ) {
 				$current_tabs_group = $doc_type::get_property( 'admin_tab_group' );
 			}
-		} elseif ( ! empty( $_REQUEST['tabs_group'] ) ) {
-			$current_tabs_group = $_REQUEST['tabs_group'];
 		}
-
 		return $current_tabs_group;
 	}
 
@@ -1660,6 +1757,33 @@ class Source_Local extends Source_Base {
 		unset( $post_types[ self::CPT ] );
 
 		return $post_types;
+	}
+
+	private function avoid_rest_access_for_non_admins(): void {
+		add_filter( 'rest_pre_dispatch', function ( $value, \WP_REST_Server $server, \WP_REST_Request $request ) {
+			if ( strpos( $request->get_route(), self::CPT ) !== false ) {
+				if ( ! current_user_can( 'manage_options' ) ) {
+					return new \WP_Error( 'rest_forbidden', esc_html__( 'Sorry, you are not allowed to do that.', 'elementor' ), [ 'status' => rest_authorization_required_code() ] );
+				}
+			}
+
+			return $value;
+		}, 10, 3 );
+	}
+
+	public function save_bulk_items( array $args = [] ) {
+		$items = [];
+
+		foreach ( $args as $item ) {
+			$items[] = $this->save_item( [
+				'content' => $item['content'],
+				'title' => $item['title'],
+				'type' => $item['type'],
+				'page_settings' => $item['page_settings'],
+			] );
+		}
+
+		return $items;
 	}
 
 	/**

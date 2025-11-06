@@ -2,7 +2,7 @@
 namespace Elementor\Modules\Library;
 
 use Elementor\Core\Base\Module as BaseModule;
-use Elementor\Modules\Library\Documents;
+use Elementor\Modules\AtomicWidgets\Module as AtomicWidgets_Module;
 use Elementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -42,9 +42,20 @@ class Module extends BaseModule {
 	 * @access public
 	 */
 	public function __construct() {
+		add_action( 'elementor/documents/register', [ $this, 'register_documents' ] );
+	}
+
+	public function register_documents() {
 		Plugin::$instance->documents
 			->register_document_type( 'not-supported', Documents\Not_Supported::get_class_full_name() )
 			->register_document_type( 'page', Documents\Page::get_class_full_name() )
 			->register_document_type( 'section', Documents\Section::get_class_full_name() );
+
+		$experiments_manager = Plugin::$instance->experiments;
+
+		if ( $experiments_manager->is_feature_active( 'container' ) ) {
+			Plugin::$instance->documents
+				->register_document_type( 'container', Documents\Container::get_class_full_name() );
+		}
 	}
 }

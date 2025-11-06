@@ -5,7 +5,7 @@ use Elementor\TemplateLibrary\Source_Local;
 use Elementor\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 /**
@@ -13,7 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Elementor section library document handler class is responsible for
  * handling a document of a section type.
- *
  */
 class Not_Supported extends Library_Document {
 
@@ -34,10 +33,7 @@ class Not_Supported extends Library_Document {
 		$properties['register_type'] = false;
 		$properties['is_editable'] = false;
 		$properties['show_in_library'] = false;
-
-		$properties['cpt'] = [
-			Source_Local::CPT,
-		];
+		$properties['show_in_finder'] = false;
 
 		return $properties;
 	}

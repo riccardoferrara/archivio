@@ -1,13 +1,9 @@
 <?php
 namespace Elementor;
 
-// Elementor Classes
-use \Elementor\Core\Schemes\Color as Scheme_Color;
-use \Elementor\Core\Schemes\Typography as Scheme_Typography;
-
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Category_List_Element extends Widget_Base {
+class Woolentor_Wl_Category_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wl-category-list';
@@ -23,6 +19,10 @@ class WL_Category_List_Element extends Widget_Base {
 
     public function get_categories() {
         return array( 'woolentor-addons' );
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -54,7 +54,7 @@ class WL_Category_List_Element extends Widget_Base {
                         'horizontal' => esc_html__('Horizontal','woolentor'),
                     ],
                     'label_block' => true,
-                    'description'   => wp_kses_post( 'Vertical layout are available in the pro version. (<a href="'.esc_url('https://hasthemes.com/plugins/woolentor-pro-woocommerce-page-builder/?fd').'" target="_blank">Get Pro</a>)', 'woolentor' ),
+                    'description'   => wp_kses_post( 'Vertical layout are available in the pro version. (<a href="'.esc_url('https://woolentor.com/pricing/?utm_source=admin&utm_medium=editor&utm_campaign=free').'" target="_blank">Get Pro</a>)' ),
                 ]
             );
 
@@ -94,6 +94,7 @@ class WL_Category_List_Element extends Widget_Base {
                         'single_cat' => esc_html__('Single Category','woolentor-pro'),
                         'multiple_cat'=> esc_html__('Multiple Categories','woolentor-pro'),
                         'all_cat'=> esc_html__('All Categories','woolentor-pro'),
+                        'all_cat_parent'=> esc_html__('All Categories (Parent Only)','woolentor'),
                     ],
                     'label_block' => true,
                 ]
@@ -141,6 +142,24 @@ class WL_Category_List_Element extends Widget_Base {
                     ]
                 ]
             );
+            $this->add_control(
+                'catorderby',
+                [
+                    'label' => esc_html__( 'Orderby', 'woolentor' ),
+                    'type' => Controls_Manager::SELECT,
+                    'default' => 'name',
+                    'options' => [
+                        'ID'    => esc_html__('ID','woolentor'),
+                        'name'  => esc_html__('Name','woolentor'),
+                        'slug'  => esc_html__('Slug','woolentor'),
+                        'parent' => esc_html__('Parent','woolentor'),
+                        'menu_order' => esc_html__('Menu Order','woolentor'),
+                    ],
+                    'condition' => [
+                        'category_display_type!' => 'single_cat',
+                    ]
+                ]
+            );
 
             $this->add_control(
                 'limitcount',
@@ -148,11 +167,25 @@ class WL_Category_List_Element extends Widget_Base {
                     'label' => esc_html__( 'Show items', 'woolentor' ),
                     'type' => Controls_Manager::NUMBER,
                     'min' => 1,
-                    'max' => 10,
                     'step' => 1,
                     'default' => 5,
                     'condition' => [
-                        'category_display_type' => 'all_cat',
+                        'category_display_type' => ['all_cat','all_cat_parent']
+                    ]
+                ]
+            );
+
+            $this->add_control(
+                'hide_empty',
+                [
+                    'label' => __( 'Hide Empty Category', 'woolentor' ),
+                    'type' => Controls_Manager::SWITCHER,
+                    'label_on' => __( 'Yes', 'woolentor' ),
+                    'label_off' => __( 'No', 'woolentor' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'condition'=>[
+                        'category_display_type' => ['all_cat','all_cat_parent']
                     ]
                 ]
             );
@@ -188,7 +221,7 @@ class WL_Category_List_Element extends Widget_Base {
                             <div class="elementor-nerd-box-message">' .
                                 __( 'Product counter, Custom icon, Category Description option are available in the pro version', 'woolentor' ) .
                             '</div>
-                            <a class="elementor-nerd-box-link elementor-button elementor-button-default elementor-go-pro" href="' . esc_url( 'https://hasthemes.com/plugins/woolentor-pro-woocommerce-page-builder/?fd' ) . '" target="_blank">' .
+                            <a class="elementor-nerd-box-link elementor-button elementor-button-default elementor-go-pro" href="' . esc_url( 'https://woolentor.com/pricing/?utm_source=admin&utm_medium=editor&utm_campaign=free' ) . '" target="_blank">' .
                                 __( 'Go Pro', 'woolentor' ) .
                             '</a>
                             </div>',
@@ -352,6 +385,7 @@ class WL_Category_List_Element extends Widget_Base {
 
         $display_type = $this->get_settings_for_display('category_display_type');
         $order = ! empty( $settings['catorder'] ) ? $settings['catorder'] : '';
+        $orderby = ! empty( $settings['catorderby'] ) ? $settings['catorderby'] : 'name';
 
         $column         = $this->get_settings_for_display('category_grid_column');
         $layout         = $this->get_settings_for_display('layout');
@@ -362,12 +396,16 @@ class WL_Category_List_Element extends Widget_Base {
         }
 
         $catargs = array(
-            'orderby'    => 'name',
+            'taxonomy'   => 'product_cat',
+            'orderby'    => $orderby,
             'order'      => $order,
-            'hide_empty' => true,
+            'hide_empty' => ( 'yes' === $settings['hide_empty'] )
         );
 
-        if( $display_type == 'single_cat' ){
+        if ( 'all_cat_parent' === $display_type ) {
+            $catargs['parent'] = 0;
+        }
+        elseif( $display_type == 'single_cat' ){
             $product_categories = $settings['product_categories'];
             $product_cats = str_replace( ' ', '', $product_categories );
             $catargs['slug'] = $product_cats;
@@ -379,9 +417,9 @@ class WL_Category_List_Element extends Widget_Base {
         }else{
             $catargs['slug'] = '';
         }
-        $prod_categories = get_terms( 'product_cat', $catargs );
+        $prod_categories = get_terms( $catargs );
 
-        if( $display_type == 'all_cat' ){
+        if( $display_type == 'all_cat' || $display_type == 'all_cat_parent' ){
             $limitcount = $settings['limitcount'];
         }else{
             $limitcount = -1;
@@ -401,7 +439,7 @@ class WL_Category_List_Element extends Widget_Base {
         $counter = 0;
         $thumbnails = '';
 
-        echo '<div class="wl-row '.( $settings['no_gutters'] === 'yes' ? 'wlno-gutters' : '' ).' wl-layout-'.$settings['layout'].'">';
+        echo '<div class="wl-row '.( $settings['no_gutters'] === 'yes' ? 'wlno-gutters' : '' ).' wl-layout-'.esc_attr($settings['layout']).'">';
         foreach ( $prod_categories as $key => $prod_cat ):
             $counter++;
 
@@ -413,19 +451,25 @@ class WL_Category_List_Element extends Widget_Base {
 
             $thumbnails = $cat_thumb;
 
+            // Link attributes
+            $link_attributes = array(
+                'aria-label' => $prod_cat->name,
+                'rel'        => 'nofollow',
+            );
+
         ?>
         <div class="<?php echo esc_attr( esc_attr( $collumval ) ); ?>">
             <div class="wlsingle-categorie">
                 <?php if( !empty($thumbnails) ):?>
                     <div class="wlsingle-categorie-img">
-                        <a href="<?php echo esc_url( $term_link ); ?>">
-                            <?php echo $thumbnails; ?>
+                        <a href="<?php echo esc_url( $term_link ); ?>" <?php echo wc_implode_html_attributes( $link_attributes ); ?>>
+                            <?php echo $thumbnails; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                         </a>
                     </div>
                 <?php endif; ?>
                 <div class="wlcategorie-content">
-                    <h4><a href="<?php echo esc_url( $term_link ); ?>"><?php echo esc_html__( $prod_cat->name, 'woolentor' ); ?></a><sup>(<?php echo esc_html__( $prod_cat->count, 'woolentor' ); ?>)</sup></h4>
-                    <p><?php echo wp_trim_words( $prod_cat->description ); ?></p>
+                    <h4><a href="<?php echo esc_url( $term_link ); ?>" <?php echo wc_implode_html_attributes( $link_attributes ); ?>><?php echo esc_html__( $prod_cat->name, 'woolentor' ); ?></a><sup>(<?php echo esc_html__( $prod_cat->count, 'woolentor' ); ?>)</sup></h4>
+                    <p><?php echo wp_trim_words( $prod_cat->description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
                 </div>
             </div>
         </div>
@@ -436,4 +480,3 @@ class WL_Category_List_Element extends Widget_Base {
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Category_List_Element() );

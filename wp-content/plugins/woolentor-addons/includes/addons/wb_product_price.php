@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Product_Price_Element extends Widget_Base {
+class Woolentor_Wb_Product_Price_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wl-single-product-price';
@@ -19,6 +19,10 @@ class WL_Product_Price_Element extends Widget_Base {
 
     public function get_categories() {
         return array( 'woolentor-addons' );
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -114,8 +118,8 @@ class WL_Product_Price_Element extends Widget_Base {
         global $product;
         $product = wc_get_product();
 
-        if( Plugin::instance()->editor->is_edit_mode() ){
-            echo \WooLentor_Default_Data::instance()->default( $this->get_name() );
+        if( woolentor_is_preview_mode() ){
+            echo \WooLentor_Default_Data::instance()->default( $this->get_name() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         }else{
             if ( empty( $product ) ) { return; }
             woocommerce_template_single_price();
@@ -124,4 +128,3 @@ class WL_Product_Price_Element extends Widget_Base {
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Product_Price_Element() );

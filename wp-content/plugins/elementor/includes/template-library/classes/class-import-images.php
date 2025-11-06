@@ -1,6 +1,11 @@
 <?php
 namespace Elementor\TemplateLibrary\Classes;
 
+use Elementor\Core\Common\Modules\Ajax\Module as Ajax;
+use Elementor\Core\Files\Uploads_Manager;
+use Elementor\Plugin;
+use Elementor\Utils;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -98,27 +103,64 @@ class Import_Images {
 	 * @access public
 	 *
 	 * @param array $attachment The attachment.
-	 * @param int $parent_post_id Optional
+	 * @param int   $parent_post_id Optional.
 	 *
 	 * @return false|array Imported image data, or false.
 	 */
 	public function import( $attachment, $parent_post_id = null ) {
-		if ( ! empty( $attachment['id'] ) ) {
-			$saved_image = $this->get_saved_image( $attachment );
+		if ( isset( $attachment['tmp_name'] ) ) {
+			// Used when called to import a directly-uploaded file.
+			$filename = $attachment['name'];
+			$file_content = false;
 
-			if ( $saved_image ) {
-				return $saved_image;
+			// security validation in case the tmp_name has been tampered with
+			if ( is_uploaded_file( $attachment['tmp_name'] ) ) {
+				$file_content = Utils::file_get_contents( $attachment['tmp_name'] );
 			}
+		} else {
+			// Used when attachment information is passed to this method.
+			if ( ! empty( $attachment['id'] ) ) {
+				$saved_image = $this->get_saved_image( $attachment );
+
+				if ( $saved_image ) {
+					return $saved_image;
+				}
+			}
+
+			// Extract the file name and extension from the url.
+			$filename = basename( $attachment['url'] );
+
+			$request = wp_safe_remote_get( $attachment['url'] );
+
+			// Make sure the request returns a valid result.
+			if ( is_wp_error( $request ) || ( ! empty( $request['response']['code'] ) && 200 !== (int) $request['response']['code'] ) ) {
+				return false;
+			}
+
+			$file_content = wp_remote_retrieve_body( $request );
 		}
-
-		// Extract the file name and extension from the url.
-		$filename = basename( $attachment['url'] );
-
-		$file_content = wp_remote_retrieve_body( wp_safe_remote_get( $attachment['url'] ) );
 
 		if ( empty( $file_content ) ) {
 			return false;
 		}
+
+		$filetype = wp_check_filetype( $filename );
+
+		// If the file type is not recognized by WordPress, exit here to avoid creation of an empty attachment document.
+		if ( ! $filetype['ext'] ) {
+			return false;
+		}
+
+		if ( 'svg' === $filetype['ext'] ) {
+			// In case that unfiltered-files upload is not enabled, SVG images should not be imported.
+			if ( ! Uploads_Manager::are_unfiltered_uploads_enabled() ) {
+				return false;
+			}
+
+			$svg_handler = Plugin::$instance->uploads_manager->get_file_type_handlers( 'svg' );
+
+			$file_content = $svg_handler->sanitizer( $file_content );
+		};
 
 		$upload = wp_upload_bits(
 			$filename,
@@ -132,6 +174,7 @@ class Import_Images {
 		];
 
 		$info = wp_check_filetype( $upload['file'] );
+
 		if ( $info ) {
 			$post['post_mime_type'] = $info['type'];
 		} else {
@@ -141,6 +184,8 @@ class Import_Images {
 		}
 
 		$post_id = wp_insert_attachment( $post, $upload['file'], $parent_post_id );
+
+		apply_filters( 'elementor/template_library/import_images/new_attachment', $post_id );
 
 		// On REST requests.
 		if ( ! function_exists( 'wp_generate_attachment_metadata' ) ) {

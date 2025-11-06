@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Woolentor_Elementor_Widget_QR_code extends Widget_Base {
+class Woolentor_Wb_Product_Qr_Code_Widget extends Widget_Base {
 
     public function get_name() {
         return 'woolentor-qrcode-addons';
@@ -19,6 +19,10 @@ class Woolentor_Elementor_Widget_QR_code extends Widget_Base {
 
     public function get_categories() {
         return [ 'woolentor-addons' ];
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -80,19 +84,19 @@ class Woolentor_Elementor_Widget_QR_code extends Widget_Base {
             $this->add_responsive_control(
                 'code_align',
                 [
-                    'label' => esc_html__( 'Alignment', 'move' ),
+                    'label' => esc_html__( 'Alignment', 'woolentor' ),
                     'type' => Controls_Manager::CHOOSE,
                     'options' => [
                         'left' => [
-                            'title' => esc_html__( 'Left', 'move' ),
+                            'title' => esc_html__( 'Left', 'woolentor' ),
                             'icon' => 'eicon-text-align-left',
                         ],
                         'center' => [
-                            'title' => esc_html__( 'Center', 'move' ),
+                            'title' => esc_html__( 'Center', 'woolentor' ),
                             'icon' => 'eicon-text-align-center',
                         ],
                         'right' => [
-                            'title' => esc_html__( 'Right', 'move' ),
+                            'title' => esc_html__( 'Right', 'woolentor' ),
                             'icon' => 'eicon-text-align-right',
                         ],
                     ],
@@ -111,7 +115,7 @@ class Woolentor_Elementor_Widget_QR_code extends Widget_Base {
         $settings   = $this->get_settings_for_display();
         $this->add_render_attribute( 'area_attr', 'class', 'woolentor-qrcode' );
 
-        if( Plugin::instance()->editor->is_edit_mode() ){
+        if( woolentor_is_preview_mode() ){
             $product_id = woolentor_get_last_product_id();
         } else{
             $product_id = get_the_ID();
@@ -128,20 +132,18 @@ class Woolentor_Elementor_Widget_QR_code extends Widget_Base {
         $product_url   = urlencode( $url );
 
         $size    = ( !empty( $settings['size'] ) ? $settings['size'] : 120 );
-        $dimension = $size.'x'.$size;
+        $dimension = esc_attr($size.'x'.$size);
 
         $image_src = sprintf( 'https://api.qrserver.com/v1/create-qr-code/?size=%s&ecc=L&qzone=1&data=%s', $dimension, $product_url );
        
         ?>
         <div <?php echo $this->get_render_attribute_string( 'area_attr' ); ?> >
             <?php
-                echo sprintf('<img src="%1$s" alt="%2$s">', $image_src, $title );
+                echo sprintf('<img src="%1$s" alt="%2$s">', $image_src, $title ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             ?>
         </div>
         <?php
     }
 
 }
-
-Plugin::instance()->widgets_manager->register_widget_type( new Woolentor_Elementor_Widget_QR_code() );
 

@@ -5,6 +5,9 @@
  * @package WooCommerce\Classes
  */
 
+use Automattic\WooCommerce\Enums\ProductStatus;
+use Automattic\WooCommerce\Enums\ProductStockStatus;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -119,8 +122,21 @@ class WC_Product_Variable_Data_Store_CPT extends WC_Product_Data_Store_CPT imple
 	public function read_children( &$product, $force_read = false ) {
 		$children_transient_name = 'wc_product_children_' . $product->get_id();
 		$children                = get_transient( $children_transient_name );
+		if ( empty( $children ) || ! is_array( $children ) ) {
+			$children = array();
+		}
 
-		if ( empty( $children ) || ! is_array( $children ) || ! isset( $children['all'] ) || ! isset( $children['visible'] ) || $force_read ) {
+		$transient_version = WC_Cache_Helper::get_transient_version( 'product' );
+
+		if ( ! $force_read && $children ) {
+			// Validate the children data.
+			if ( ! $this->validate_children_data( $children, $transient_version ) ) {
+				$children   = array();
+				$force_read = true;
+			}
+		}
+
+		if ( ! isset( $children['all'] ) || ! isset( $children['visible'] ) || $force_read ) {
 			$all_args = array(
 				'post_parent' => $product->get_id(),
 				'post_type'   => 'product_variation',
@@ -129,25 +145,28 @@ class WC_Product_Variable_Data_Store_CPT extends WC_Product_Data_Store_CPT imple
 					'ID'         => 'ASC',
 				),
 				'fields'      => 'ids',
-				'post_status' => array( 'publish', 'private' ),
+				'post_status' => array( ProductStatus::PUBLISH, ProductStatus::PRIVATE ),
 				'numberposts' => -1, // phpcs:ignore WordPress.VIP.PostsPerPage.posts_per_page_numberposts
 			);
 
 			$visible_only_args                = $all_args;
-			$visible_only_args['post_status'] = 'publish';
+			$visible_only_args['post_status'] = ProductStatus::PUBLISH;
 
 			if ( 'yes' === get_option( 'woocommerce_hide_out_of_stock_items' ) ) {
 				$visible_only_args['tax_query'][] = array(
 					'taxonomy' => 'product_visibility',
 					'field'    => 'name',
-					'terms'    => 'outofstock',
+					'terms'    => ProductStockStatus::OUT_OF_STOCK,
 					'operator' => 'NOT IN',
 				);
 			}
 			$children['all']     = get_posts( apply_filters( 'woocommerce_variable_children_args', $all_args, $product, false ) );
 			$children['visible'] = get_posts( apply_filters( 'woocommerce_variable_children_args', $visible_only_args, $product, true ) );
 
-			set_transient( $children_transient_name, $children, DAY_IN_SECONDS * 30 );
+			// Validate the children data before storing it in the transient.
+			if ( $this->validate_children_data( $children, $transient_version ) ) {
+				set_transient( $children_transient_name, $children, DAY_IN_SECONDS * 30 );
+			}
 		}
 
 		$children['all']     = wp_parse_id_list( (array) $children['all'] );
@@ -257,13 +276,6 @@ class WC_Product_Variable_Data_Store_CPT extends WC_Product_Data_Store_CPT imple
 		$transient_version = WC_Cache_Helper::get_transient_version( 'product' );
 		$price_hash        = $this->get_price_hash( $product, $for_display );
 
-		// Check if prices array is stale.
-		if ( ! isset( $this->prices_array['version'] ) || $this->prices_array['version'] !== $transient_version ) {
-			$this->prices_array = array(
-				'version' => $transient_version,
-			);
-		}
-
 		/**
 		 * $this->prices_array is an array of values which may have been modified from what is stored in transients - this may not match $transient_cached_prices_array.
 		 * If the value has already been generated, we don't need to grab the values again so just return them. They are already filtered.
@@ -271,11 +283,9 @@ class WC_Product_Variable_Data_Store_CPT extends WC_Product_Data_Store_CPT imple
 		if ( empty( $this->prices_array[ $price_hash ] ) ) {
 			$transient_cached_prices_array = array_filter( (array) json_decode( strval( get_transient( $transient_name ) ), true ) );
 
-			// If the product version has changed since the transient was last saved, reset the transient cache.
-			if ( ! isset( $transient_cached_prices_array['version'] ) || $transient_version !== $transient_cached_prices_array['version'] ) {
-				$transient_cached_prices_array = array(
-					'version' => $transient_version,
-				);
+			// If the prices are not valid, reset the transient cache.
+			if ( ! $this->validate_prices_data( $transient_cached_prices_array, $transient_version ) ) {
+				$transient_cached_prices_array = array();
 			}
 
 			// If the prices are not stored for this hash, generate them and add to the transient.
@@ -372,7 +382,10 @@ class WC_Product_Variable_Data_Store_CPT extends WC_Product_Data_Store_CPT imple
 					$transient_cached_prices_array[ $price_hash ][ $key ] = $values;
 				}
 
-				set_transient( $transient_name, wp_json_encode( $transient_cached_prices_array ), DAY_IN_SECONDS * 30 );
+				// Validate the prices data before storing it in the transient.
+				if ( $this->validate_prices_data( $transient_cached_prices_array, $transient_version ) ) {
+					set_transient( $transient_name, wp_json_encode( $transient_cached_prices_array ), DAY_IN_SECONDS * 30 );
+				}
 			}
 
 			/**
@@ -473,7 +486,7 @@ class WC_Product_Variable_Data_Store_CPT extends WC_Product_Data_Store_CPT imple
 	 * @return boolean
 	 */
 	public function child_is_in_stock( $product ) {
-		return $this->child_has_stock_status( $product, 'instock' );
+		return $this->child_has_stock_status( $product, ProductStockStatus::IN_STOCK );
 	}
 
 	/**
@@ -632,11 +645,11 @@ class WC_Product_Variable_Data_Store_CPT extends WC_Product_Data_Store_CPT imple
 	 */
 	public function sync_stock_status( &$product ) {
 		if ( $product->child_is_in_stock() ) {
-			$product->set_stock_status( 'instock' );
+			$product->set_stock_status( ProductStockStatus::IN_STOCK );
 		} elseif ( $product->child_is_on_backorder() ) {
-			$product->set_stock_status( 'onbackorder' );
+			$product->set_stock_status( ProductStockStatus::ON_BACKORDER );
 		} else {
-			$product->set_stock_status( 'outofstock' );
+			$product->set_stock_status( ProductStockStatus::OUT_OF_STOCK );
 		}
 	}
 
@@ -659,7 +672,7 @@ class WC_Product_Variable_Data_Store_CPT extends WC_Product_Data_Store_CPT imple
 					'post_parent' => $product_id,
 					'post_type'   => 'product_variation',
 					'fields'      => 'ids',
-					'post_status' => array( 'any', 'trash', 'auto-draft' ),
+					'post_status' => array( 'any', ProductStatus::TRASH, ProductStatus::AUTO_DRAFT ),
 					'numberposts' => -1, // phpcs:ignore WordPress.VIP.PostsPerPage.posts_per_page_numberposts
 				)
 			)
@@ -706,5 +719,106 @@ class WC_Product_Variable_Data_Store_CPT extends WC_Product_Data_Store_CPT imple
 		}
 
 		delete_transient( 'wc_product_children_' . $product_id );
+	}
+
+	/**
+	 * Validate the children data by checking the structure and type of the data.
+	 *
+	 * @param array  $children The children data.
+	 * @param string $deprecated Was the current transient version, unused since 10.3.0.
+	 * @return bool True if valid, false otherwise.
+	 */
+	protected function validate_children_data( $children, $deprecated ) {
+		if ( ! is_array( $children ) ) {
+			return false;
+		}
+
+		// Basic structure checks.
+		if ( empty( $children['all'] ) || ! isset( $children['visible'] ) ) {
+			return false;
+		}
+
+		if ( ! is_array( $children['all'] ) || ! is_array( $children['visible'] ) ) {
+			return false;
+		}
+
+		foreach ( $children['all'] as $id ) {
+			if ( ! is_numeric( $id ) ) {
+				return false;
+			}
+		}
+
+		foreach ( $children['visible'] as $id ) {
+			if ( ! is_numeric( $id ) ) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * Validate the prices data by checking the structure and type of the data.
+	 *
+	 * @param  array  $prices_array The prices data.
+	 * @param  string $deprecated Was the current transient version, unused since 10.3.0.
+	 * @return bool True if valid, false otherwise.
+	 */
+	protected function validate_prices_data( $prices_array, $deprecated ) {
+		if ( ! is_array( $prices_array ) ) {
+			return false;
+		}
+
+		// Fail if array is empty - we want to rebuild in this case.
+		if ( empty( $prices_array ) ) {
+			return false;
+		}
+
+		$price_data_is_empty = true;
+
+		foreach ( $prices_array as $price_data ) {
+			if ( ! is_array( $price_data ) ) {
+				return false;
+			}
+
+			$required_types = array( 'price', 'regular_price', 'sale_price' );
+
+			foreach ( $required_types as $type ) {
+				// If all 'price' fields are empty, we want to track that so we can rebuild the data.
+				if ( 'price' === $type && ! empty( $price_data[ $type ] ) && $price_data_is_empty ) {
+					$price_data_is_empty = false;
+				}
+
+				if ( ! isset( $price_data[ $type ] ) || ! is_array( $price_data[ $type ] ) ) {
+					return false;
+				}
+			}
+
+			$variation_ids = array_keys( $price_data['price'] );
+
+			foreach ( $variation_ids as $variation_id ) {
+				if ( ! is_numeric( $variation_id ) ) {
+					return false;
+				}
+
+				foreach ( $required_types as $type ) {
+					if ( ! array_key_exists( $variation_id, $price_data[ $type ] ) ) {
+						return false;
+					}
+
+					$type_price = $price_data[ $type ][ $variation_id ];
+					if ( ! is_numeric( $type_price ) && '' !== $type_price ) {
+						return false;
+					}
+				}
+			}
+		}
+
+		// If price is empty, we want to rebuild the data.
+		if ( $price_data_is_empty ) {
+			return false;
+		}
+
+		return true;
 	}
 }

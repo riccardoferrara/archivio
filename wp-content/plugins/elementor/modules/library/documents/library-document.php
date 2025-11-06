@@ -6,7 +6,7 @@ use Elementor\Modules\Library\Traits\Library;
 use Elementor\TemplateLibrary\Source_Local;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 /**
@@ -28,6 +28,11 @@ abstract class Library_Document extends Document {
 	const TAXONOMY_TYPE_SLUG = 'elementor_library_type';
 
 	/**
+	 * The customization group for Kit Export.
+	 */
+	const EXPORT_GROUP = 'site-templates';
+
+	/**
 	 * Get document properties.
 	 *
 	 * Retrieve the document properties.
@@ -44,6 +49,8 @@ abstract class Library_Document extends Document {
 		$properties['admin_tab_group'] = 'library';
 		$properties['show_in_library'] = true;
 		$properties['register_type'] = true;
+		$properties['cpt'] = [ Source_Local::CPT ];
+		$properties['export_group'] = static::EXPORT_GROUP;
 
 		return $properties;
 	}
@@ -69,5 +76,9 @@ abstract class Library_Document extends Document {
 		];
 
 		return $config;
+	}
+
+	public function get_content( $with_css = false ) {
+		return do_shortcode( parent::get_content( $with_css ) );
 	}
 }

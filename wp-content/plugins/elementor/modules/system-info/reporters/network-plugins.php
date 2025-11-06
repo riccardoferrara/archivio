@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class Network_Plugins extends Base {
+class Network_Plugins extends Base_Plugin {
 
 	/**
 	 * Network plugins.
@@ -75,7 +75,7 @@ class Network_Plugins extends Base {
 			return false;
 		};
 
-		return ! ! $this->get_network_plugins();
+		return (bool) $this->get_network_plugins();
 	}
 
 	/**

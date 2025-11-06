@@ -29,10 +29,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'woocommerce_before_single_product' );
 
 if ( post_password_required() ) {
-	echo get_the_password_form();
+	echo get_the_password_form(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	return;
 }
-global $post;
+global $product, $post;
+if ( $product && !is_a( $product, 'WC_Product' ) ) {
+    $product = wc_get_product( $post->ID );
+}
 ?>
 
 <div id="product-<?php the_ID(); ?>" <?php post_class(); ?>>

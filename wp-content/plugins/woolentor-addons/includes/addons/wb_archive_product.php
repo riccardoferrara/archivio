@@ -1,13 +1,9 @@
 <?php
 namespace Elementor;
 
-// Elementor Classes
-use \Elementor\Core\Schemes\Color as Scheme_Color;
-use \Elementor\Core\Schemes\Typography as Scheme_Typography;
-
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Woolentor_Elementor_Widget_Archive_Product extends Widget_Base {
+class Woolentor_Wb_Archive_Product_Widget extends Widget_Base {
 
     public function get_name() {
         return 'woolentor-product-archive-addons';
@@ -23,6 +19,10 @@ class Woolentor_Elementor_Widget_Archive_Product extends Widget_Base {
 
     public function get_categories() {
         return [ 'woolentor-addons' ];
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -51,7 +51,7 @@ class Woolentor_Elementor_Widget_Archive_Product extends Widget_Base {
                     'type' => Controls_Manager::NUMBER,
                     'prefix_class' => 'woolentorducts-columns%s-',
                     'min' => 1,
-                    'max' => 12,
+                    'max' => 6,
                     'default' => 4,
                     'required' => true,
                     'device_args' => [
@@ -213,7 +213,7 @@ class Woolentor_Elementor_Widget_Archive_Product extends Widget_Base {
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
-                        '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                        '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important',
                     ],
                 ]
             );
@@ -320,7 +320,7 @@ class Woolentor_Elementor_Widget_Archive_Product extends Widget_Base {
                         'label' => __( 'Normal', 'woolentor' ),
                     ]
                 );
-                    $this->add_control(
+                $this->add_control(
                         'product_title_color',
                         [
                             'label' => __( 'Color', 'woolentor' ),
@@ -328,6 +328,7 @@ class Woolentor_Elementor_Widget_Archive_Product extends Widget_Base {
                             'selectors' => [
                                 '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product .woocommerce-loop-product__title' => 'color: {{VALUE}}',
                                 '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons .woocommerce-loop-product__title' => 'color: {{VALUE}} !important',
+                                '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product .title a' => 'color: {{VALUE}} !important',
                             ],
                         ]
                     );
@@ -336,8 +337,7 @@ class Woolentor_Elementor_Widget_Archive_Product extends Widget_Base {
                         Group_Control_Typography::get_type(),
                         [
                             'name' => 'product_title_typography',
-                            'selector' => '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product .woocommerce-loop-product__title',
-                            'selector' => '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons .woocommerce-loop-product__title',
+                            'selector' => '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product .woocommerce-loop-product__title,{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons .woocommerce-loop-product__title,{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product .title a',
                         ]
                     );
 
@@ -350,6 +350,7 @@ class Woolentor_Elementor_Widget_Archive_Product extends Widget_Base {
                             'selectors' => [
                                 '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product .woocommerce-loop-product__title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
                                 '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons .woocommerce-loop-product__title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important',
+                                '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product .title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important',
                             ],
                         ]
                     );
@@ -363,6 +364,7 @@ class Woolentor_Elementor_Widget_Archive_Product extends Widget_Base {
                             'selectors' => [
                                 '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product .woocommerce-loop-product__title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
                                 '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons .woocommerce-loop-product__title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important',
+                                '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product .title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important',
                             ],
                         ]
                     );
@@ -385,6 +387,7 @@ class Woolentor_Elementor_Widget_Archive_Product extends Widget_Base {
                             'selectors' => [
                                 '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product .woocommerce-loop-product__title:hover' => 'color: {{VALUE}}',
                                 '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons .woocommerce-loop-product__title:hover' => 'color: {{VALUE}} !important',
+                                '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product .title a:hover' => 'color: {{VALUE}} !important',
                             ],
                         ]
                     );
@@ -809,6 +812,7 @@ class Woolentor_Elementor_Widget_Archive_Product extends Widget_Base {
                         '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons ul.products li.product span.onsale' => 'display: block',
                         '{{WRAPPER}}.elementor-widget-woolentor-product-archive-addons span.onsale' => 'display: block !important',
                     ],
+                    'prefix_class' => 'woolentor-sale-status-',
                 ]
             );
 
@@ -927,8 +931,7 @@ class Woolentor_Elementor_Widget_Archive_Product extends Widget_Base {
     protected function render( $instance = [] ) {
 
         $settings = $this->get_settings_for_display();
-       
-        if ( WC()->session ) {
+        if ( WC()->session && function_exists('wc_print_notices') ) {
             wc_print_notices();
         }
 
@@ -936,21 +939,42 @@ class Woolentor_Elementor_Widget_Archive_Product extends Widget_Base {
             $GLOBALS['post'] = null;
         }
 
+        $filterable = ( isset( $settings['filterable'] ) ? rest_sanitize_boolean( $settings['filterable'] ) : true );
+
         $settings = $this->get_settings();
         $settings['editor_mode'] = Plugin::instance()->editor->is_edit_mode();
         add_filter( 'product_custom_limit', array( $this, 'woolentor_custom_product_limit' ) );
-        $shortcode = new \Archive_Products_Render( $settings );
-
+        $shortcode = new \Archive_Products_Render( $settings, 'products', $filterable );
         $content = $shortcode->get_content();
-        if ( $content ) {
-            echo $content;
-        } else{
-            echo '<div class="products-not-found">' . esc_html__( 'Product Not Available','woolentor' ) . '</div>';
+        $not_found_content = woolentor_products_not_found_content();
+
+        if ( true === $filterable ) {
+            $wrap_class = 'wl-filterable-products-wrap';
+            $content_class = 'wl-filterable-products-content';
+            $wrap_attributes = 'data-wl-widget-name="woolentor-product-archive-addons"';
+            $wrap_attributes .= ' data-wl-widget-settings="' . esc_attr( htmlspecialchars( wp_json_encode( $settings ) ) ) . '"';
+            ?>
+            <div class="<?php echo esc_attr( $wrap_class ); ?>"<?php echo $wrap_attributes; ?>>
+                <div class="<?php echo esc_attr( $content_class ); ?>">
+                    <?php
+                        if ( wp_strip_all_tags( $content ) ) {
+                            echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                        } else{
+                            echo $not_found_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                        }
+                    ?>
+                </div>
+            </div>
+            <?php
+        } else {
+            if ( wp_strip_all_tags( $content ) ) {
+                echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            } else{
+                echo $not_found_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            }
         }
 
     }
 
 }
-
-Plugin::instance()->widgets_manager->register_widget_type( new Woolentor_Elementor_Widget_Archive_Product() );
 

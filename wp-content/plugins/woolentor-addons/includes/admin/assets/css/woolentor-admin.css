@@ -1,76 +1,7 @@
 *, *::before, *::after {
     box-sizing: border-box;
   }
-  .woolentor-admin-wrapper {
-    font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 1.715;
-    position: relative;
-    visibility: visible;
-    color: #6D7175;
-  }
-  .woolentor-admin-wrapper h1, .woolentor-admin-wrapper h2, .woolentor-admin-wrapper h3, .woolentor-admin-wrapper h4, .woolentor-admin-wrapper h5, .woolentor-admin-wrapper h6 {
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.2;
-    margin-top: 0;
-  }
-  .woolentor-admin-wrapper .h1, .woolentor-admin-wrapper .h2, .woolentor-admin-wrapper .h3, .woolentor-admin-wrapper .h4, .woolentor-admin-wrapper .h5, .woolentor-admin-wrapper .h6 {
-    line-height: inherit;
-    margin: 0;
-  }
-  .woolentor-admin-wrapper p {
-    margin-top: 0;
-  }
-  .woolentor-admin-wrapper p:last-child {
-    margin-bottom: 0;
-  }
-  .woolentor-admin-wrapper a, .woolentor-admin-wrapper button {
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .woolentor-admin-wrapper a:not(.ui-draggable), .woolentor-admin-wrapper button, .woolentor-admin-wrapper img, .woolentor-admin-wrapper input {
-    transition: all 0.3s ease 0s;
-  }
-  .woolentor-admin-wrapper *:focus {
-    outline: none;
-    box-shadow: none;
-  }
-  .woolentor-admin-wrapper a:hover {
-    text-decoration: none;
-  }
-  .woolentor-admin-wrapper button, .woolentor-admin-wrapper input[type=submit] {
-    cursor: pointer;
-  }
-  .woolentor-admin-wrapper button[disabled="disabled"] {
-    cursor: not-allowed;
-}
-  .woolentor-admin-wrapper img {
-    max-width: 100%;
-  }
-  .woolentor-admin-wrapper input::-webkit-input-placeholder, .woolentor-admin-wrapper textarea::-webkit-input-placeholder {
-    opacity: 0.5;
-  }
-  .woolentor-admin-wrapper input:-moz-placeholder, .woolentor-admin-wrapper textarea:-moz-placeholder {
-    opacity: 0.5;
-  }
-  .woolentor-admin-wrapper input::-moz-placeholder, .woolentor-admin-wrapper textarea::-moz-placeholder {
-    opacity: 0.5;
-  }
-  .woolentor-admin-wrapper input:-ms-input-placeholder, .woolentor-admin-wrapper textarea:-ms-input-placeholder {
-    opacity: 0.5;
-  }
-  .woolentor-admin-wrapper ul {
-    margin-top: 0;
-  }
-  .woolentor-admin-wrapper ul:last-child {
-    margin-bottom: 0;
-  }
-  .woolentor-admin-wrapper hr {
-    border-top-width: 2px;
-  }
-  
+
   /* Option Disable */
   [data-woolentor-pro=disabled] {
     position: relative;
@@ -87,6 +18,9 @@
     content: "";
     opacity: 0;
     background-color: transparent;
+  }
+  [data-woolentor-pro=disabled] .woolentor-admin-switch input{
+    z-index: inherit;
   }
   
   /* Tooltip */
@@ -124,6 +58,89 @@
     transform: translateX(-50%) rotate(45deg);
     background-color: #333333;
   }
+
+  /* Help Tip */
+  .woolenor-help-tip {
+    color: #666;
+    display: inline-block;
+    position: relative;
+  }
+  .woolenor-help-text {
+    position: absolute;
+    max-width: 200px;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    opacity: 0;
+    padding: 10px 10px;
+    background-color: #333;
+    font-size: 11px;
+    line-height: 16px;
+    font-weight: 400;
+    text-align: center;
+    z-index: 1;
+    transition: all 0.15s ease-in-out;
+    border-radius: 3px;
+    color: #fff;
+    pointer-events: none;
+}
+.woolenor-help-text::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0.375rem solid transparent;
+    border-top-color: #333;
+}
+.woolenor-help-tip:hover span.woolenor-help-text{
+    opacity: 1;
+    visibility: visible;
+}
+.woolenor-help-tip .woolentor-helptip-top, .woolenor-help-tip .woolentor-helptip-bottom {
+  left: 50%;
+  transform: translate(-50%, 5px);
+}
+.woolenor-help-tip .woolentor-helptip-top {
+  bottom: calc(100% + 10px);
+}
+.woolenor-help-tip .woolentor-helptip-bottom {
+  top: 100%;
+}
+.woolenor-help-tip .woolentor-helptip-left, .woolenor-help-tip .woolentor-helptip-right {
+  top: 50%;
+}
+.woolenor-help-tip .woolentor-helptip-left {
+  right: 100%;
+  transform: translate(-5px, -50%);
+}
+.woolenor-help-tip .woolentor-helptip-right {
+  left: 100%;
+  transform: translate(5px, -50%);
+}
+
+/* Arrow Position */
+.woolenor-help-tip .woolentor-helptip-top:before, .woolenor-help-tip .woolentor-helptip-bottom:before {
+  left: 50%;
+}
+.woolenor-help-tip .woolentor-helptip-top:before {
+  top: 100%;
+  transform: translate(-50%, 0);
+}
+.woolenor-help-tip .woolentor-helptip-bottom:before {
+  bottom: 100%;
+  transform: translate(-50%, 0) rotate(180deg);
+}
+.woolenor-help-tip .woolentor-helptip-left:before, .woolenor-help-tip .woolentor-helptip-right:before {
+  top: 50%;
+}
+.woolenor-help-tip .woolentor-helptip-left:before {
+  left: 100%;
+  transform: translate(0, -50%) rotate(-90deg);
+}
+.woolenor-help-tip .woolentor-helptip-right:before {
+  right: 100%;
+  transform: translate(0, -50%) rotate(90deg);
+}
   
   /* Button */
   .woolentor-admin-btn {
@@ -170,12 +187,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    visibility: hidden;
     overflow: hidden;
-    width: 0;
-    height: 0;
-    opacity: 0;
-  }
+    width: 100%;
+    height: 100%;
+    opacity: 0 !important;
+    margin: 0;
+    z-index: 99;
+}
   .woolentor-admin-switch input:checked + label {
     background-color: #007EFF;
   }
@@ -233,12 +251,23 @@
     background: #FFFFFF;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   }
+
+  /* For Module */
+  .woolentor-module-field .woolentor-admin-switch-block-setting {
+    color: #222;
+  }
+  .woolentor-module-field.woolentor-module-enable .woolentor-admin-switch-block-setting{
+    color:#007EFF;
+  }
+  .woolentor-module-field .woolentor-admin-switch-block-setting i{
+    font-size: 16px;
+  }
   
-  /* Form Number */
+  /* For Number */
   .woolentor-admin-number {
     position: relative;
     display: flex;
-    width: 65px;
+    width: 85px;
   }
   .woolentor-admin-number input[type=number] {
     display: flex;
@@ -314,7 +343,7 @@
     display: flex;
     width: 100%;
   }
-  .woolentor-admin-input input {
+  .woolentor-admin-input input,.woolentor-admin-input textarea {
     font-size: 12px;
     width: 100%;
     height: 40px;
@@ -325,9 +354,12 @@
     border-radius: 3px;
     background: #FFFFFF;
   }
-  .woolentor-admin-input input:focus {
+  .woolentor-admin-input input:focus,.woolentor-admin-input textarea:focus {
     border-color: #CBE0FF;
     box-shadow: 0 0 8px rgba(0, 126, 255, 0.25);
+  }
+  .woolentor-admin-input textarea{
+    height: auto;
   }
   
   /* Form Radio */
@@ -342,11 +374,11 @@
   .woolentor-admin-radio input[type=radio] {
     position: absolute;
     left: 0;
-    overflow: hidden;
-    width: 0;
-    height: 0;
+    width: 100%;
+    height: 100%;
     margin: 0;
     opacity: 0;
+    z-index: 99;
   }
   .woolentor-admin-radio input[type=radio]:checked + label::after {
     transform: scale(0.444);
@@ -379,16 +411,32 @@
     background-color: #007EFF;
   }
   
-  /* Form Color */
+  /* For Color */
   .woolentor-admin-color {
     display: flex;
     width: 100%;
   }
 
+  /* For Media Uploader */
+  .woolentor_display {
+    max-width: 150px;
+  }
+  .woolentor_display img {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .woolentor-remove{
+    margin-left: 10px !important;
+  }
+
   /* Dimensions Field */
+  .woolentor_dimensions{
+    margin: 0;
+  }
   .woolentor_dimensions li {
     float: left;
     width: 75px;
+    margin: 0;
   }
   .woolentor_dimensions li input {
     display: block;
@@ -418,95 +466,112 @@
     text-align: center;
     font-size: 13px;
     text-transform: uppercase;
+    margin-top: 3px;
   }
-  
-  /* Icon List */
-  @font-face {
-    font-family: "woolentor-admin";
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-    src: url("../fonts/woolentor-admin.ttf?55zl88") format("truetype"), url("../fonts/woolentor-admin.woff?55zl88") format("woff"), url("../fonts/woolentor-admin.svg?55zl88#woolentor-admin") format("svg");
+
+  /* For Repeater */
+  .woolenor-reapeater-fields-area {
+    text-align: left;
   }
-  .wli {
-    font-family: "woolentor-admin";
-    font-weight: normal;
-    font-style: normal;
-    font-variant: normal;
-    line-height: 1;
-    text-transform: none;
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    /* speak: never; */
+  .woolentor-admin-option.woolentor-repeater-heading:not(.woolentor-condition-on) {
+    display: block !important;
+    text-align: left;
+    padding-bottom: 10px !important;
+}
+  .woolentor-option-repeater-item:not(.woolentor_active_repeater) .woolentor-option-repeater-fields, .woolentor-option-repeater-item.woolentor-repeater-hidden {
+    display: none;
   }
-  
-  .wli-feature-list:before {
-    content: "\e904";
+  .woolentor-option-repeater-item-area{
+    margin-right: 10px;
   }
-  
-  .wli-info:before {
-    content: "\e908";
+  .woolentor-option-repeater-item {
+    margin-bottom: 10px;
   }
-  
-  .wli-bell:before {
-    content: "\e900";
+  .woolentor-option-repeater-item + .woolentor-option-repeater-item {
+    margin-top: 10px;
   }
-  
-  .wli-cog:before {
-    content: "\e901";
+  .woolentor-option-repeater-item .woolentor-option-repeater-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #d5dadf;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    height: 42px;
   }
-  
-  .wli-cog-light:before {
-    content: "\e902";
+  .woolentor-option-repeater-tools .woolentor-option-repeater-item-title {
+    margin-left: 10px;
   }
-  
-  .wli-envelope:before {
-    content: "\e903";
+  .woolentor-option-repeater-item-remove {
+    width: 40px;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid #d5dadf;
   }
-  
-  .wli-file:before {
-    content: "\e905";
+  .woolentor-option-repeater-item-remove:hover{
+    color: rgb(230, 23, 23);
   }
-  
-  .wli-grid:before {
-    content: "\e906";
+  .woolentor-option-repeater-fields {
+    border: 1px solid #d5dadf;
+    padding: 10px;
+    border-top: 0;
+    background-color: #ffffff;
   }
-  
-  .wli-images:before {
-    content: "\e907";
+  button.woolentor-repeater-item-add, .woolentor-repeater-custom-action {
+    padding: 5px 15px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-transform: uppercase;
+    margin-right: 10px;
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    border-radius: 3px;
+    transition: 0.4s;
   }
-  
-  .wli-question:before {
-    content: "\e90d";
+  .wp-core-ui .button-primary.woolentor-repeater-custom-action {
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    background-color: #007EFF;
+    border-color: #007EFF;
+    padding: 1px 10px;
+    box-shadow:none;
   }
-  
-  .wli-masonry:before {
-    content: "\e909";
+  button.woolentor-repeater-item-add:hover, .wp-core-ui .button-primary.woolentor-repeater-custom-action:hover {
+    border-color: #0065cc;
+    background-color: #0065cc;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
   }
-  
-  .wli-monitor:before {
-    content: "\e90a";
+
+  /* For Shortable Field */
+  .woolenor-shortable-fields .woolentor-option-repeater-tools{
+    position: relative;
+    padding-left: 20px;
   }
-  
-  .wli-pencil:before {
-    content: "\e90b";
+  .woolenor-shortable-fields .woolentor-option-repeater-tools::before {
+    position: absolute;
+    content: "::";
+    left: 9px;
+    top: 8px;
+    font-size: 22px;
   }
-  
-  .wli-play:before {
-    content: "\e90c";
+  .woolenor-shortable-fields .woolentor-option-repeater-item .woolentor-option-repeater-tools{
+    cursor: all-scroll;
   }
-  
-  .wli-store:before {
-    content: "\e90e";
+  .woolenor-shortable-fields .woolentor-option-repeater-item .woolentor-option-repeater-tools label{
+    cursor: pointer;
   }
-  
-  .wli-support:before {
-    content: "\e90f";
+
+  /* Button Field Type */
+  .woolentor-admin-button-type a{
+    text-decoration: none;
   }
-  
-  .wli-tag:before {
-    content: "\e910";
+  .woolentor-admin-button-type a.woolentor-admin-btn{
+    color: #fff;
   }
   
   .woolentor-admin-main-nav {
@@ -597,6 +662,10 @@
     transition: all 0.15s ease 0s;
     opacity: 0.75;
   }
+  .woolentor-admin-main-nav-btn i.dashicons{
+    font-size: 18px;
+    margin-right: 5px;
+  }
   .woolentor-admin-main-nav-btn.wlactive, .woolentor-admin-main-nav-btn:hover {
     color: #FFFFFF;
     background-color: #007EFF;
@@ -612,6 +681,57 @@
   }
   .woolentor-admin-main-nav-btn:focus {
     color: #007EFF;
+  }
+
+  /* Nested Tab */
+  #woolentor_gutenberg_tabs .woolentor-admin-main-tab-pane-inner {
+    padding-top: 10px;
+  }
+  .woolentor-nested-tabs-area {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #EAEAEA;
+  }
+  ul.woolentor-nested-tabs {
+    margin: 0;
+    list-style: none;
+    display: block;
+  }
+  ul.woolentor-nested-tabs li {
+    display: inline-block;
+    margin: 0 5px;
+  }
+  ul.woolentor-nested-tabs li:first-child{
+    margin: 0;
+  }
+  ul.woolentor-nested-tabs li:last-child {
+    margin-right: 0;
+  }
+  ul.woolentor-nested-tabs li a {
+    padding: 15px 0;
+    margin-right: 20px;
+    display: block;
+    text-decoration: none;
+    color: #6D7175;
+    position: relative;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+  }
+  ul.woolentor-nested-tabs li a:after {
+    content: "";
+    background: transparent;
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+  }
+  ul.woolentor-nested-tabs li a.wlactive:after,ul.woolentor-nested-tabs li a:hover:after{
+    background: #007EFF;
+  }
+  ul.woolentor-nested-tabs li a.wlactive{
+    color: #000000;
+    font-weight: 700;
   }
   
   .woolentor-admin-wrapper {
@@ -647,7 +767,7 @@
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
   }
   
-  .woolentor-admin-main-tab-pane:not(.wlactive) {
+  .woolentor-admin-main-tab-pane:not(.wlactive),.woolentor-admin-nested-tab-pane:not(.wlactive) {
     display: none;
   }
   .woolentor-admin-main-tab-pane-inner {
@@ -740,6 +860,20 @@
     display: flex;
     justify-content: flex-end;
     margin-top: 30px;
+    padding: 20px 0;
+    border-top: 1px solid #E7E7E7;
+  }
+  .woolentor-admin-footer button{
+    margin: 0;
+  }
+  #woolentor_others_tabs .woolentor-admin-footer{
+    margin-top: 0;
+  }
+  .woolentor-admin-sticky {
+    position: sticky;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 99;
   }
   
   .woolentor-admin-switch-blocks {
@@ -770,7 +904,7 @@
   .woolentor-admin-switch-block-content {
     display: flex;
     flex-wrap: wrap;
-    max-width: calc(100% - 90px);
+    max-width: calc(100% - 85px);
     margin-bottom: -5px;
   }
   .woolentor-admin-switch-block-title {
@@ -818,11 +952,10 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 90px;
+    width: 85px;
   }
   .woolentor-admin-switch-block-setting {
     display: flex;
-    margin-right: 17px;
     padding: 0;
     color: #007EFF;
     border: none;
@@ -830,6 +963,9 @@
   }
   .woolentor-admin-switch-block-setting i {
     font-size: 14px;
+  }
+  .woolentor-admin-switch-block-setting + .woolentor-admin-switch {
+    margin-left: 15px;
   }
   
   .woolentor-admin-banner {
@@ -1283,13 +1419,29 @@
       padding-left: 0;
     }
   }
-  .woolentor-admin-option-heading {
+  #woolentor_elements_tabs .woolentor-admin-header, .woolentor-admin-header-two{
+    border-bottom: 1px solid #E7E7E7;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+  }
+  .woolentor-admin-option-heading:not(.woolentor_heading_style_two) {
     padding: 16px 20px;
     border-radius: 5px;
     background-color: #EBF9FC;
   }
+  .woolentor_heading_style_two{
+    width: 100%;
+    padding: 0 20px;
+    margin: 30px 0 10px 0;
+  }
+  .woolentor_heading_style_two .woolentor-admin-option-heading-title{
+    margin-bottom: 10px;
+  }
+  .woolenor-reapeater-fields-area + .woolentor-admin-option-heading {
+    margin-top: 20px;
+  }
   @media only screen and (max-width: 575px) {
-    .woolentor-admin-option-heading {
+    .woolentor-admin-option-heading:not(.woolentor_heading_style_two) {
       padding: 12px 20px;
     }
   }
@@ -1304,10 +1456,20 @@
       font-size: 16px;
     }
   }
+
+  .woolentor-admin-option-heading.woolentor_option_field_notice {
+    padding: 5px 10px;
+    border-radius: 0;
+    border-left: 3px solid #222;
+  }
+  .woolentor_option_field_notice .woolentor-admin-option-heading-title {
+    font-size: 12px;
+    line-height: 22px !important;
+  }
   
   .woolentor-admin-popup {
     position: fixed;
-    z-index: 9999;
+    z-index: 999;
     top: 0;
     left: 0;
     display: flex;
@@ -1387,7 +1549,16 @@
   .woolentor-admin-popup .woolentor-admin-btn:not(.activated,[disabled=disabled]):hover {
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
   }
-  
+
+  /* Sidebar Pro-Banner */
+  .woolentor-promo-banner {
+    margin-bottom: 30px;
+    padding-top: 47px;
+  }
+  .woolentor-promo-banner a{
+    display: block;
+    line-height: 1;
+  }
   .woolentor-pro-banner {
     display: flex;
     flex-direction: column;
@@ -1500,12 +1671,30 @@
 
   .woolentor-admin-others-options{
     padding: 30px 0;
-    border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
     margin-top: 30px;
   }
   .woolentor-admin-others-options .woolentor-admin-option:last-child{
     padding-bottom: 0;
+  }
+
+  /* Setting Page Pro notice */
+  .hastech-admin-notice.notice-custom {
+    position: relative;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-top: 3px solid #f56640;
+}
+  .hastech-admin-notice.notice-custom p{
+    margin: 0;
+  }
+  .hastech-admin-notice.notice-custom .notice-dismiss {
+    padding: 0;
+    top: 7px;
+    right: 7px;
   }
 
 
@@ -1663,80 +1852,6 @@
   background-color: #007EFF;
 }
 
-/* Extension Tabs */
-.extension-admin-tab-area.wp-filter {
-  padding: 0;
-  margin: 0;
-  margin-bottom: 30px;
-  border: none;
-}
-.woolentor-admin-tabs.filter-links {
-  display: flex;
-  padding: 7px 10px;
-  list-style: none;
-  border: 2px solid #EAEFF3;
-  border-radius: 5px;
-  box-shadow: 0 4px 13px rgba(0, 0, 0, 0.1);
-}
-.woolentor-admin-tabs.filter-links li {
-  position: relative;
-  z-index: 1;
-  border: none;
-}
-.woolentor-admin-tabs.filter-links li::before, .woolentor-admin-tabs.filter-links li::after {
-  position: absolute;
-  z-index: -2;
-  top: 50%;
-  width: 5px;
-  height: 5px;
-  margin-top: -2.5px;
-  content: "";
-  transition: all 0.3s ease 0s;
-  opacity: 0.25;
-  border-radius: 10px;
-  background-color: #007EFF;
-}
-.woolentor-admin-tabs.filter-links li::before {
-  left: -2.5px;
-}
-.woolentor-admin-tabs.filter-links li::after {
-  right: -2.5px;
-}
-.woolentor-admin-tabs.filter-links li:first-child::before {
-  display: none;
-}
-.woolentor-admin-tabs.filter-links li:last-child::after {
-  display: none;
-}
-.woolentor-admin-tabs.filter-links li.wlactive {
-  z-index: 2;
-}
-.woolentor-admin-tabs.filter-links li.wlactive::before, .woolentor-admin-tabs.filter-links li.wlactive::after {
-  z-index: -1;
-  opacity: 1;
-  background-color: #FFFFFF;
-}
-.woolentor-admin-tabs.filter-links li a {
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  display: flex;
-  padding: 9px 20px;
-  text-transform: capitalize;
-  color: #007EFF;
-  border-radius: 5px;
-  margin: 0;
-  border: none;
-}
-.woolentor-admin-tabs.filter-links li a.wlactive {
-  color: #FFFFFF;
-  background-color: #007EFF;
-}
-.woolentor-admin-tabs.filter-links li a.wlactive:hover,.woolentor-admin-tabs.filter-links li a.wlactive:focus {
-  color: #FFFFFF;
-  background-color: #007EFF;
-}
-
 /* Module Edit PopUp */
 .woolentor-module-setting-popup-content {
   padding: 20px;
@@ -1760,14 +1875,34 @@
   bottom: 0;
   width: 100%;
 }
+.woolentor-admin-footer.has-reset{
+  justify-content: space-between;
+}
+.woolentor-admin-module-reset {
+  background: #FFFFFF;
+  border-color: #E7E7E7;
+  color: rgba(109, 113, 117, 0.5);
+  font-weight: normal;
+}
+.woolentor-admin-module-reset:hover{
+  background-color: rgb(221, 51, 51) !important;
+  border-color: rgb(221, 51, 51) !important;
+}
 .woolentor-module-setting-popup-content .woolentor-admin-option{
-  padding: 20px 0;
+  padding: 20px 5px 20px 0;
+}
+.woolentor-repeater-item-add + .woolentor-admin-option {
+  border-top: 1px solid #EAEAEA;
+  margin-top: 20px;
 }
 .woolentor-module-setting-popup-content .woolentor-admin-option:not(.woolentor-action-field-left){
   display: block;
 }
 .woolentor-module-setting-popup-content .woolentor-admin-option-title{
   margin-top: 0;
+}
+.woolentor-module-setting-popup-content .woolentor-admin-option-heading-title{
+  text-align: left;
 }
 .woolentor-module-setting-popup-content .woolentor-admin-option-content,.woolentor-module-setting-popup-content .woolentor-admin-option-action{
   text-align: left;
@@ -1777,6 +1912,19 @@
 }
 .woolentor-module-setting-popup-content .woolentor-admin-option.woolentor-action-field-left .woolentor-admin-option-action{
   width: 45%;
+}
+.woolentor-module-setting-popup-content .woolentor-admin-option.woolentor-action-field-left.woolentor-dimention-field-left .woolentor-admin-option-content {
+  width: 40%;
+}
+.woolentor-module-setting-popup-content .woolentor-admin-option.woolentor-action-field-left.woolentor-dimention-field-left .woolentor_dimensions li {
+  width: 73px;
+}
+.woolentor-module-setting-popup-content .woolentor-admin-option.woolentor-action-field-left.woolentor-dimention-field-left.woolentor-repeater-field .woolentor_dimensions li {
+  width: 65px;
+}
+.woolentor-module-setting-popup-content .woolentor-admin-option.woolentor-action-field-left.woolentor-dimention-field-left .woolentor-admin-option-action {
+  width: 60%;
+  padding-left: 10px;
 }
 .woolentor-module-setting-popup-content .woolentor-admin-option:not(.woolentor-action-field-left) .woolentor-admin-option-content,.woolentor-module-setting-popup-content .woolentor-admin-option:not(.woolentor-action-field-left) .woolentor-admin-option-action{
   width: 100%;
@@ -1802,6 +1950,8 @@
 
 .woolentor-module-setting-popup-content .woolentor-admin-btn {
   margin: 0;
+  padding: 7px 35px;
+  transition: 0.4s;
 }
 .woolentor-module-setting-popup-content .woolentor-admin-popup-close {
   top: -10px;
@@ -1815,4 +1965,12 @@
 .woolentor-visibility-none {
   opacity: 0;
   visibility: hidden;
+}
+.woolentor-condition-on{
+  display: none !important;
+}
+
+.woolentor-adv-pro-notice > *,.woolentor-adv-pro-opacity{
+  opacity: 0.5;
+  pointer-events: none;
 }

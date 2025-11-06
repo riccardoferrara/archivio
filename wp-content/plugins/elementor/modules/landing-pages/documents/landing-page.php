@@ -9,7 +9,7 @@ use Elementor\Plugin;
 use Elementor\TemplateLibrary\Source_Local;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 class Landing_Page extends PageBase {
@@ -25,6 +25,10 @@ class Landing_Page extends PageBase {
 		$properties['cpt'] = [ Landing_Pages_Module::CPT ];
 
 		return $properties;
+	}
+
+	public static function get_type() {
+		return Landing_Pages_Module::DOCUMENT_TYPE;
 	}
 
 	/**
@@ -47,7 +51,11 @@ class Landing_Page extends PageBase {
 	 * @static
 	 */
 	public static function get_plural_title() {
-		return __( 'Landing Pages', 'elementor' );
+		return esc_html__( 'Landing Pages', 'elementor' );
+	}
+
+	public static function get_create_url() {
+		return parent::get_create_url() . '#library';
 	}
 
 	/**

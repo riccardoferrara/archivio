@@ -61,6 +61,21 @@
 				} );
 		
 			}
+
+			if( "yes" === hfe_admin_data.show_all_hfe ) {
+				// Add the "View All" button next to the "Add New" button.
+				const addNewButton = document.querySelector('.page-title-action');
+				if ( addNewButton ) {
+					// Create the new button.
+					const customButton = document.createElement('a');
+					customButton.href = hfe_admin_data.hfe_edit_url;
+					customButton.textContent = hfe_admin_data.view_all_text;
+					customButton.className = 'page-title-action';
+					customButton.style.marginLeft = '10px';
+					addNewButton.insertAdjacentElement('afterend', customButton);
+				}
+			}
+			
 		},
 
 		_animate_fields: function ( event ) {
@@ -140,12 +155,14 @@
 			var email_field = $('.hfe-subscribe-field[name="hfe_subscribe_email"]');
 			var user_type_field = $('.hfe-subscribe-field[name="wp_user_type"]');
 			var build_for_field = $('.hfe-subscribe-field[name="build_website_for"]');
+			var accept_field = $('.hfe_subscribe_accept[name="hfe_subscribe_accept"]');
 
 			var subscription_first_name = first_name_field.val() || '';
 			var subscription_email = email_field.val() || '';
 			var subscription_user_type = user_type_field.val() || '';
 			var subscription_build_for = build_for_field.val() || '';
 			var button_text = submit_button.find( '.hfe-submit-button-text' );
+			var subscription_accept = accept_field.is( ':checked' ) ? '1' : '0';
 
 			HFEAdmin._validate_field( first_name_field );
 			HFEAdmin._validate_field( email_field );
@@ -172,6 +189,7 @@
 				PAGE_BUILDER: "1",
 				WP_USER_TYPE: subscription_user_type,
 				BUILD_WEBSITE_FOR: subscription_build_for,
+				OPT_IN: subscription_accept,
 				SOURCE: hfe_admin_data.data_source
 			};
 

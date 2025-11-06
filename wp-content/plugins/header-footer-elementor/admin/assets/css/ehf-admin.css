@@ -52,9 +52,15 @@ li#toplevel_page_Settings-page,
 .wp-admin #adminmenu .wp-submenu a[href="themes.php?page=hfe-about"] {
     display: none;
 }
-.appearance_page_hfe-settings #adminmenu .wp-submenu a[href ="edit.php?post_type=elementor-hf" ] {
-    color: #ffffff;
+.post-type-elementor-hf .wp-submenu a[href ="edit.php?post_type=elementor-hf" ] {
+    color: #ffffff !important;
     font-weight: 600;
+}
+.toplevel_page_hfe .wp-submenu a[href ="post-new.php?post_type=elementor-hf" ],
+.toplevel_page_hfe .wp-submenu a[href ="admin.php?page=hfe#onboarding" ],
+.toplevel_page_hfe .wp-submenu a[href ="admin.php?page=hfe#onboardingsuccess" ],
+.toplevel_page_uaepro .wp-submenu a[href ="post-new.php?post_type=elementor-hf" ] {
+    display: none !important;
 }
 .hfe-heading-inline {
     font-size: 23px;
@@ -167,6 +173,17 @@ li#toplevel_page_Settings-page,
     transition: all 0.25s ease;
     pointer-events: none;
 }
+
+.hfe-subscription-row input#hfe_subscribe_accept {
+	border: 1px solid #585F66;
+	border-radius: 3px;
+	margin: 0 4px 0 0;
+}
+
+.hfe-guide-modal-popup .hfe-guide-modal-popup-wrapper .hfe-subscription-row .hfe-input-container:nth-of-type(3) {
+	margin-bottom: 16px;
+}
+
 .hfe-subscription-row .hfe-input-container:not(.subscription-success, .subscription-error) .hfe-subscribe-field:hover {
     border-color: #2271b1;
 }
@@ -810,4 +827,79 @@ span.dashicons.dashicons-update.hfe-loader {
     .hfe-admin-addons .addon-container:last-child {
         padding-right: 0px;
     }
+}
+
+#toplevel_page_hfe .wp-submenu li a[href*="https://ultimateelementor.com/pricing/?utm_source=wp-admin&utm_medium=menu&utm_campaign=uae-upgrade"]{
+background-color:#04a382;
+color:#fff;
+font-size:13px;
+font-weight:500;
+line-height:20px;
+padding-right:12px!important;
+padding-left:12px!important
+}
+
+#toplevel_page_hfe .wp-submenu li a[href*="https://ultimateelementor.com/pricing/?utm_source=wp-admin&utm_medium=menu&utm_campaign=uae-upgrade"]:hover
+{
+background-color:#018d71;
+color:#fff;
+font-size:13px;
+font-weight:500;
+line-height:20px;
+padding-right:12px!important;
+padding-left:12px!important
+}
+
+.uae-plugins-go-pro{
+    color: #93003C;
+    font-weight: 700;
+}
+
+.uae-plugins-go-pro:active,
+.uae-plugins-go-pro:focus,
+.uae-plugins-go-pro:hover
+{
+    color:#93003C;
+    opacity:.8;
+}
+
+/* Rating Stars in Plugin List - Remove all borders and outlines */
+tr[data-plugin*="header-footer-elementor"] a[href*="reviews"],
+tr[data-plugin*="header-footer-elementor"] a[href*="reviews"]:focus,
+tr[data-plugin*="header-footer-elementor"] a[href*="reviews"]:active,
+tr[data-plugin*="header-footer-elementor"] a[href*="reviews"]:hover,
+tr[data-plugin*="header-footer-elementor"] .plugin-description-actions a[href*="reviews"],
+tr[data-plugin*="header-footer-elementor"] .plugin-description-actions a[href*="reviews"]:focus,
+tr[data-plugin*="header-footer-elementor"] .plugin-description-actions a[href*="reviews"]:active,
+tr[data-plugin*="header-footer-elementor"] .plugin-description-actions a[href*="reviews"]:hover {
+    text-decoration: none !important;
+    outline: 0 !important;
+    outline: none !important;
+    border: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    background: transparent !important;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+tr[data-plugin*="header-footer-elementor"] a[href*="reviews"]:hover,
+tr[data-plugin*="header-footer-elementor"] .plugin-description-actions a[href*="reviews"]:hover {
+    opacity: 0.8;
+}
+
+tr[data-plugin*="header-footer-elementor/header-footer-elementor.php"] .plugin-description-actions a[href*="reviews"] .dashicons {
+    vertical-align: top;
+    margin: 0 1px;
+}
+
+/* Rating star styles for plugin meta links */
+.hfe-rating-star {
+    color: #ffb900;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 1.2;
 }

@@ -3,14 +3,16 @@ namespace Elementor\Core\Logger;
 
 use Elementor\Core\Base\Module as BaseModule;
 use Elementor\Core\Common\Modules\Ajax\Module;
+use Elementor\Core\Editor\Editor;
 use Elementor\Core\Logger\Loggers\Logger_Interface;
 use Elementor\Core\Logger\Items\PHP;
 use Elementor\Core\Logger\Items\JS;
 use Elementor\Plugin;
 use Elementor\Modules\System_Info\Module as System_Info;
+use Elementor\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 class Manager extends BaseModule {
@@ -23,7 +25,7 @@ class Manager extends BaseModule {
 		return 'log';
 	}
 
-	public function shutdown( $last_error = null ) {
+	public function shutdown( $last_error = null, $should_exit = false ) {
 		if ( ! $last_error ) {
 			$last_error = error_get_last();
 		}
@@ -36,11 +38,7 @@ class Manager extends BaseModule {
 			return;
 		}
 
-		$error_path = ( wp_normalize_path( $last_error['file'] ) );
-		// `untrailingslashit` in order to include other plugins prefixed with elementor.
-		$elementor_path = untrailingslashit( wp_normalize_path( ELEMENTOR_PATH ) );
-
-		if ( false === strpos( $error_path, $elementor_path ) ) {
+		if ( ! Utils::is_elementor_path( $last_error['file'] ) ) {
 			return;
 		}
 
@@ -50,9 +48,18 @@ class Manager extends BaseModule {
 		$item = new PHP( $last_error );
 
 		$this->get_logger()->log( $item );
+
+		if ( $should_exit ) {
+			exit;
+		}
 	}
 
 	public function rest_error_handler( $error_number, $error_message, $error_file, $error_line ) {
+		// Temporary solution until all PHP notices will be fixed in the core and pro.
+		if ( Utils::is_wp_cli() ) {
+			return null;
+		}
+
 		$error = new \WP_Error( $error_number, $error_message, [
 			'type' => $error_number,
 			'message' => $error_message,
@@ -60,14 +67,28 @@ class Manager extends BaseModule {
 			'line' => $error_line,
 		] );
 
+		if ( ! Utils::is_elementor_path( $error_file ) ) {
+			// Do execute PHP internal error handler.
+			return false;
+		}
+
+		$is_an_error = in_array( // It can be notice or warning
+			$error_number,
+			[ E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR ],
+			true
+		);
+
+		$error_data = $error->get_error_data();
+
+		// TODO: This part should be modular, temporary hard-coded.
 		// Notify $e.data.
-		if ( ! headers_sent() ) {
+		if ( $is_an_error && ! headers_sent() ) {
 			header( 'Content-Type: application/json; charset=UTF-8' );
 
 			http_response_code( 500 );
 
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				echo wp_json_encode( $error->get_error_data() );
+				echo wp_json_encode( $error_data );
 			} else {
 				echo wp_json_encode( [
 					'message' => 'Server error, see Elementor => System Info',
@@ -75,9 +96,11 @@ class Manager extends BaseModule {
 			}
 		}
 
-		$this->shutdown( $error->get_error_data() );
+		$this->shutdown( $error_data, $is_an_error );
+	}
 
-		exit;
+	public function register_error_handler() {
+		set_error_handler( [ $this, 'rest_error_handler' ], E_ALL );
 	}
 
 	public function add_system_info_report() {
@@ -95,7 +118,6 @@ class Manager extends BaseModule {
 	 * Log Elementor errors and save them in the database.
 	 *
 	 * Fired by `wp_ajax_elementor_js_log` action.
-	 *
 	 */
 	public function js_log() {
 		/** @var Module $ajax */
@@ -106,13 +128,19 @@ class Manager extends BaseModule {
 			wp_send_json_error();
 		}
 
+		if ( ! current_user_can( Editor::EDITING_CAPABILITY ) ) {
+			wp_send_json_error( 'Permission denied' );
+		}
+
 		// PHPCS - See comment above.
-		array_walk_recursive( $_POST['data'], function( &$value ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$data = Utils::get_super_global_value( $_POST, 'data' ) ?? []; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
+		array_walk_recursive( $data, function( &$value ) {
 			$value = sanitize_text_field( $value );
 		} );
 
 		// PHPCS - See comment above.
-		foreach ( $_POST['data'] as $error ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		foreach ( $data as $error ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$error['type'] = Logger_Interface::LEVEL_ERROR;
 
 			if ( ! empty( $error['customFields'] ) ) {
@@ -172,7 +200,7 @@ class Manager extends BaseModule {
 
 	/**
 	 * @param string $message
-	 * @param array $args
+	 * @param array  $args
 	 *
 	 * @return void
 	 */
@@ -182,7 +210,7 @@ class Manager extends BaseModule {
 
 	/**
 	 * @param string $message
-	 * @param array $args
+	 * @param array  $args
 	 *
 	 * @return void
 	 */
@@ -192,7 +220,7 @@ class Manager extends BaseModule {
 
 	/**
 	 * @param string $message
-	 * @param array $args
+	 * @param array  $args
 	 *
 	 * @return void
 	 */
@@ -202,7 +230,7 @@ class Manager extends BaseModule {
 
 	/**
 	 * @param string $message
-	 * @param array $args
+	 * @param array  $args
 	 *
 	 * @return void
 	 */

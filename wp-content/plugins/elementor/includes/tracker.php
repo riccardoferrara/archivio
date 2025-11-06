@@ -1,6 +1,8 @@
 <?php
 namespace Elementor;
 
+use Elementor\Core\Common\Modules\EventTracker\DB as Events_DB_Manager;
+use Elementor\Core\Experiments\Experiments_Reporter;
 use Elementor\Modules\System_Info\Module as System_Info_Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -27,9 +29,11 @@ class Tracker {
 	 *
 	 * @var string API URL.
 	 */
-	private static $_api_url = 'https://my.elementor.com/api/v1/tracker/';
+	private static $api_url = 'https://my.elementor.com/api/v1/tracker/';
 
 	private static $notice_shown = false;
+
+	const LAST_TERMS_UPDATED = '2025-07-07';
 
 	/**
 	 * Init.
@@ -43,6 +47,8 @@ class Tracker {
 	public static function init() {
 		add_action( 'elementor/tracker/send_event', [ __CLASS__, 'send_tracking_data' ] );
 		add_action( 'admin_init', [ __CLASS__, 'handle_tracker_actions' ] );
+
+		add_action( 'update_option_elementor_allow_tracking', [ __CLASS__, 'set_last_update_time' ] );
 	}
 
 	/**
@@ -61,12 +67,18 @@ class Tracker {
 	public static function check_for_settings_optin( $new_value ) {
 		$old_value = get_option( 'elementor_allow_tracking', 'no' );
 		if ( $old_value !== $new_value && 'yes' === $new_value ) {
-			self::send_tracking_data( true );
+			Plugin::$instance->custom_tasks->add_tasks_requested_to_run( [
+				'opt_in_recalculate_usage',
+				'opt_in_send_tracking_data',
+			] );
 		}
+
+		self::set_last_update_time();
 
 		if ( empty( $new_value ) ) {
 			$new_value = 'no';
 		}
+
 		return $new_value;
 	}
 
@@ -122,11 +134,8 @@ class Tracker {
 			if ( $last_send && $last_send > $last_send_interval ) {
 				return;
 			}
-		} else {
-			// Make sure there is at least a 1 hour delay between override sends, we dont want duplicate calls due to double clicking links.
-			if ( $last_send && $last_send > strtotime( '-1 hours' ) ) {
-				return;
-			}
+		} elseif ( $last_send && $last_send > strtotime( '-1 hours' ) ) {
+			return;
 		}
 
 		// Update time first before sending to ensure it is set.
@@ -134,19 +143,25 @@ class Tracker {
 
 		$params = self::get_tracking_data( empty( $last_send ) );
 
+		// Tracking data is used for System Info reports, and events should not be included in System Info reports,
+		// so it is added here.
+		$params['analytics_events'] = self::get_events();
+
 		add_filter( 'https_ssl_verify', '__return_false' );
 
 		wp_safe_remote_post(
-			self::$_api_url,
+			self::$api_url,
 			[
 				'timeout' => 25,
 				'blocking' => false,
-				// 'sslverify' => false,
 				'body' => [
 					'data' => wp_json_encode( $params ),
 				],
 			]
 		);
+
+		// After sending the event tracking data, we reset the events table.
+		Events_DB_Manager::reset_table();
 	}
 
 	/**
@@ -160,6 +175,29 @@ class Tracker {
 	 */
 	public static function is_allow_track() {
 		return 'yes' === get_option( 'elementor_allow_tracking', 'no' );
+	}
+
+	public static function get_last_update_time() {
+		return get_option( 'elementor_allow_tracking_last_update', false );
+	}
+
+	public static function set_last_update_time(): void {
+		update_option( 'elementor_allow_tracking_last_update', gmdate( 'U' ) );
+	}
+
+	public static function has_terms_changed( $terms_updated = self::LAST_TERMS_UPDATED ): bool {
+		if ( ! self::is_allow_track() ) {
+			return false;
+		}
+
+		$last_update_time = self::get_last_update_time();
+		if ( $last_update_time ) {
+			$terms_updated_timestamp = strtotime( $terms_updated . ' UTC' );
+
+			return $last_update_time < $terms_updated_timestamp;
+		}
+
+		return true;
 	}
 
 	/**
@@ -190,7 +228,7 @@ class Tracker {
 			self::set_opt_in( false );
 		}
 
-		wp_redirect( remove_query_arg( 'elementor_tracker' ) );
+		wp_safe_redirect( remove_query_arg( 'elementor_tracker' ) );
 		exit;
 	}
 
@@ -206,6 +244,8 @@ class Tracker {
 	public static function set_opt_in( $value ) {
 		if ( $value ) {
 			update_option( 'elementor_allow_tracking', 'yes' );
+			self::set_last_update_time();
+
 			self::send_tracking_data( true );
 		} else {
 			update_option( 'elementor_allow_tracking', 'no' );
@@ -227,10 +267,15 @@ class Tracker {
 	private static function get_system_reports_data() {
 		$reports = Plugin::$instance->system_info->load_reports( System_Info_Module::get_allowed_reports() );
 
+		// The log report should not be sent with the usage data - it is not used and causes bloat.
+		if ( isset( $reports['log'] ) ) {
+			unset( $reports['log'] );
+		}
+
 		$system_reports = [];
 		foreach ( $reports as $report_key => $report_details ) {
 			$system_reports[ $report_key ] = [];
-			foreach ( $report_details['report'] as $sub_report_key => $sub_report_details ) {
+			foreach ( $report_details['report']->get_report() as $sub_report_key => $sub_report_details ) {
 				$system_reports[ $report_key ][ $sub_report_key ] = $sub_report_details['value'];
 			}
 		}
@@ -280,6 +325,7 @@ class Tracker {
 
 		$usage = [];
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery
 		$results = $wpdb->get_results(
 			"SELECT `post_type`, `post_status`, COUNT(`ID`) `hits`
 				FROM {$wpdb->posts} `p`
@@ -314,6 +360,7 @@ class Tracker {
 
 		$usage = [];
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery
 		$results = $wpdb->get_results(
 			"SELECT `post_type`, `post_status`, COUNT(`ID`) `hits`
 				FROM {$wpdb->posts} `p`
@@ -325,7 +372,7 @@ class Tracker {
 
 		if ( $results ) {
 			foreach ( $results as $result ) {
-				$usage[ $result->post_type ][ $result->post_status ] = $result->hits;
+				$usage[ $result->post_type ][ $result->post_status ] = (int) $result->hits;
 			}
 		}
 
@@ -349,6 +396,7 @@ class Tracker {
 
 		$usage = [];
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery
 		$results = $wpdb->get_results(
 			"SELECT `meta_value`, COUNT(`ID`) `hits`
 				FROM {$wpdb->posts} `p`
@@ -365,7 +413,6 @@ class Tracker {
 		}
 
 		return $usage;
-
 	}
 
 	/**
@@ -389,6 +436,16 @@ class Tracker {
 	}
 
 	/**
+	 * Get usage of performance settings.
+	 * 'Elementor->Settings->Performance'.
+	 *
+	 * @return array
+	 */
+	public static function get_settings_performance_usage() {
+		return self::get_tracking_data_from_settings( 'performance' );
+	}
+
+	/**
 	 * Get usage of experiments settings.
 	 *
 	 * 'Elementor->Settings->Experiments'.
@@ -396,28 +453,16 @@ class Tracker {
 	 * @return array
 	 */
 	public static function get_settings_experiments_usage() {
-		$result = [];
+		$system_info = Plugin::$instance->system_info;
 
-		$experiments_manager = Plugin::$instance->experiments;
+		/**
+		 * @var $experiments_report Experiments_Reporter
+		 */
+		$experiments_report = $system_info->create_reporter( [
+			'class_name' => Experiments_Reporter::class,
+		] );
 
-		// TODO: Those keys should be at `$experiments_manager`.
-		$tracking_keys = [
-			'default',
-			'state',
-		];
-
-		foreach ( $experiments_manager->get_features() as $feature_name => $feature_data ) {
-			$data_to_collect = [];
-
-			// Extract only tracking keys.
-			foreach ( $tracking_keys as $tracking_key ) {
-				$data_to_collect[ $tracking_key ] = $feature_data[ $tracking_key ];
-			}
-
-			$result[ $feature_name ] = $data_to_collect;
-		}
-
-		return $result;
+		return $experiments_report->get_experiments()['value'];
 	}
 
 	/**
@@ -451,6 +496,64 @@ class Tracker {
 	}
 
 	/**
+	 * Get library usage extend.
+	 *
+	 * Retrieve the number of Elementor library items saved.
+	 *
+	 * @return array The number of Elementor library items grouped by post types, post status
+	 *               and meta value.
+	 */
+	public static function get_library_usage_extend() {
+		global $wpdb;
+
+		$usage = [];
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery
+		$results = $wpdb->get_results(
+			"SELECT `meta_value`, COUNT(`ID`) `hits`, `post_status`
+				FROM {$wpdb->posts} `p`
+				LEFT JOIN {$wpdb->postmeta} `pm` ON(`p`.`ID` = `pm`.`post_id`)
+				WHERE `post_type` = 'elementor_library'
+					AND `meta_key` = '_elementor_template_type'
+				GROUP BY `post_type`, `meta_value`, `post_status`;"
+		);
+
+		if ( $results ) {
+			foreach ( $results as $result ) {
+				if ( empty( $usage[ $result->meta_value ] ) ) {
+					$usage[ $result->meta_value ] = [];
+				}
+
+				if ( empty( $usage[ $result->meta_value ][ $result->post_status ] ) ) {
+					$usage[ $result->meta_value ][ $result->post_status ] = 0;
+				}
+
+				$usage[ $result->meta_value ][ $result->post_status ] += $result->hits;
+			}
+		}
+
+		return $usage;
+	}
+
+	public static function get_events() {
+		global $wpdb;
+		$table_name = $wpdb->prefix . Events_DB_Manager::TABLE_NAME;
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery
+		$results = $wpdb->get_results( "SELECT event_data FROM {$table_name}" );
+
+		$events_data = [];
+
+		foreach ( $results as $event ) {
+			// Results are stored in the database as a JSON string. Since all tracking data is encoded right before
+			// being sent, it is now decoded.
+			$events_data[] = json_decode( $event->event_data, true );
+		}
+
+		return $events_data;
+	}
+
+	/**
 	 * Get the tracking data
 	 *
 	 * Retrieve tracking data and apply filter
@@ -481,10 +584,16 @@ class Tracker {
 					'version' => self::get_tools_version_control_usage(),
 					'maintenance' => self::get_tools_maintenance_usage(),
 				],
+				'library-details' => self::get_library_usage_extend(),
 			],
 			'is_first_time' => $is_first_time,
 			'install_time' => Plugin::instance()->get_install_time(),
 		];
+
+		$site_key = Api::get_site_key();
+		if ( ! empty( $site_key ) ) {
+			$params['site_key'] = $site_key;
+		}
 
 		/**
 		 * Tracker send tracking data params.
@@ -494,7 +603,6 @@ class Tracker {
 		 * @param array $params Variable to encode as JSON.
 		 *
 		 * @since 1.0.0
-		 *
 		 */
 		$params = apply_filters( 'elementor/tracker/send_tracking_data_params', $params );
 

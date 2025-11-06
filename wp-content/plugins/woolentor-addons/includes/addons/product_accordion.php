@@ -4,7 +4,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Woolentor_Product_Accordion_Layout_Widget extends Widget_Base {
+class Woolentor_Product_Accordion_Widget extends Widget_Base {
 
     public function get_name() {
         return 'woolentor-accordion-product';
@@ -20,6 +20,10 @@ class Woolentor_Product_Accordion_Layout_Widget extends Widget_Base {
     
     public function get_categories() {
         return [ 'woolentor-addons' ];
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -203,6 +207,7 @@ class Woolentor_Product_Accordion_Layout_Widget extends Widget_Base {
                 'add_to_cart_text',
                 [
                     'label'         => esc_html__( 'Add to Cart Button Text', 'woolentor' ),
+                    'description'   => esc_html__( 'This text effect only for simple product.', 'woolentor' ),
                     'type'          => Controls_Manager::TEXT,
                     'default'       => esc_html__( 'Buy', 'woolentor' ),
                     'placeholder'   => esc_html__( 'Type your cart button text', 'woolentor' ),
@@ -241,8 +246,7 @@ class Woolentor_Product_Accordion_Layout_Widget extends Widget_Base {
                         'button_icon[value]!' => '',
                     ],
                     'selectors' => [ 
-                        '{{WRAPPER}} .wl_product-accordion .card-body .product-content .product-acontent-bottom .action a.action-item i'  => 'margin-left: {{SIZE}}{{UNIT}};',
-                        '{{WRAPPER}} .wl_product-accordion .card-body .product-content .product-acontent-bottom .action a.action-item i'   => 'margin-right: {{SIZE}}{{UNIT}};',
+                        '{{WRAPPER}} .wl_product-accordion .card-body .product-content .product-acontent-bottom .action a.action-item i'  => 'margin-left: {{SIZE}}{{UNIT}}; margin-right:{{SIZE}}{{UNIT}};',
                     ],
                 ]
             );            
@@ -270,9 +274,6 @@ class Woolentor_Product_Accordion_Layout_Widget extends Widget_Base {
                 [
                     'label'     => __( 'Hide Content', 'woolentor' ),
                     'type'      => Controls_Manager::SWITCHER,
-                    'selectors' => [
-                        '{{WRAPPER}} .wl_product-accordion .card-body .product-content .product-content-top p' => 'display: none !important;',
-                    ],
                 ]
             );
 
@@ -294,9 +295,6 @@ class Woolentor_Product_Accordion_Layout_Widget extends Widget_Base {
                 [
                     'label'     => __( 'Hide Price', 'woolentor' ),
                     'type'      => Controls_Manager::SWITCHER,
-                    'selectors' => [
-                        '{{WRAPPER}} .wl_product-accordion .card-body .product-content .product-acontent-bottom .product-price' => 'display: none !important;',
-                    ],
                 ]
             );
 
@@ -305,9 +303,6 @@ class Woolentor_Product_Accordion_Layout_Widget extends Widget_Base {
                 [
                     'label'     => __( 'Hide Rating', 'woolentor' ),
                     'type'      => Controls_Manager::SWITCHER,
-                    'selectors' => [
-                        '{{WRAPPER}} .wl_product-accordion .card-body .product-content .product-content-top .reading' => 'display: none !important;',
-                    ],
                 ]
             );
 
@@ -790,7 +785,7 @@ class Woolentor_Product_Accordion_Layout_Widget extends Widget_Base {
         }
         $button_text  = ! empty( $settings['add_to_cart_text'] ) ? $settings['add_to_cart_text'] : '';
 
-        $cart_btn = $button_icon.$button_text;
+        $cart_btn_content = $button_icon.$button_text;
 
         $products = new \WP_Query( $args );
 
@@ -811,39 +806,51 @@ class Woolentor_Product_Accordion_Layout_Widget extends Widget_Base {
                            $btn_class = $product->is_purchasable() && $product->is_in_stock() ? ' add_to_cart_button' : '';
 
                             $btn_class .= $product->supports( 'ajax_add_to_cart' ) && $product->is_purchasable() && $product->is_in_stock() ? ' ajax_add_to_cart' : '';
+
+                            if( $product->get_type() !== 'simple' ){
+                                $cart_btn = $button_icon.$product->add_to_cart_text();
+                            }else{
+                                $cart_btn = $cart_btn_content;
+                            }
                        
                             $content_count = wp_trim_words(get_the_content(),$settings['content_count'],'');
                 ?>                           
 
                             <div class="wl_product-accordion-card <?php if( $i ==1){echo esc_attr('active'); } ?>">
-                                <div class="wl_product-accordion-head <?php echo $tabuniqid; ?>">
+                                <div class="wl_product-accordion-head <?php echo esc_attr($tabuniqid); ?>">
                                     <span class="wl_product-accordion-head-text"><?php the_title(); ?></span>
                                     <span class="wl_product-accordion-head-indicator"><i class="fa fa-caret-down"></i><i class="fa fa-caret-up"></i></span>
                                 </div>
-                                <div class="wl_product-accordion-body <?php echo $tabuniqid; ?> ">
+                                <div class="wl_product-accordion-body <?php echo esc_attr($tabuniqid); ?> ">
                                     <div class="wl_product-accordion-content">
                                         <div class="card-body">
                                             <div class="product-thumbnail">
-                                                <a href="<?php echo $product->get_permalink(); ?>"><?php echo $product->get_image($image_size); ?></a>
+                                                <a href="<?php echo esc_url($product->get_permalink()); ?>"><?php echo $product->get_image($image_size); ?></a>
                                             </div>
                                             <div class="product-content">
                                                 <div class="product-content-top">
-                                                    <p><?php echo $content_count; ?> </p>
-                                                    <div class="reading">
-                                                        <?php woocommerce_template_loop_rating(); ?>
-                                                    </div>
+                                                    <?php if($settings['hide_product_content'] !=='yes'){ ?>
+                                                        <p><?php echo $content_count; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+                                                    <?php } ?>
+                                                    <?php if($settings['hide_product_ratting'] !=='yes'){ ?>
+                                                        <div class="reading">
+                                                            <?php woocommerce_template_loop_rating(); ?>
+                                                        </div>
+                                                    <?php } ?>
                                                 </div>
                                                 <div class="product-acontent-bottom">
                                                     <div class="product-price">
-                                                        <span class="new-price"><?php woocommerce_template_loop_price();?></span>
+                                                        <?php if($settings['hide_product_price'] !=='yes'){ ?>
+                                                            <span class="new-price"><?php woocommerce_template_loop_price();?></span>
+                                                        <?php } ?>
                                                     </div>
                                                     <ul class="action">
                                                         <li class="btn_cart">
-                                                            <a href="<?php echo $product->add_to_cart_url(); ?>" data-quantity="1" class="action-item <?php echo $btn_class; ?>" data-product_id="<?php echo $product->get_id(); ?>"><?php echo __( $cart_btn, 'woolentor' );?></a>
+                                                            <a href="<?php echo esc_url($product->add_to_cart_url()); ?>" data-quantity="1" class="action-item <?php echo esc_attr($btn_class); ?>" data-product_id="<?php echo esc_attr($product->get_id()); ?>"><?php echo __( $cart_btn, 'woolentor' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
                                                         </li>
                                                         <?php
                                                             if( true === woolentor_has_wishlist_plugin() ){
-                                                                echo '<li>'.woolentor_add_to_wishlist_button('<i class="sli sli-heart"></i>','<i class="sli sli-heart"></i>').'</li>';
+                                                                echo '<li>'.woolentor_add_to_wishlist_button('<i class="sli sli-heart"></i>','<i class="sli sli-heart"></i>').'</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                             }
                                                         
                                                             if( function_exists('woolentor_compare_button') && true === woolentor_exist_compare_plugin() && !Plugin::instance()->editor->is_edit_mode() ){
@@ -859,6 +866,7 @@ class Woolentor_Product_Accordion_Layout_Widget extends Widget_Base {
                                                         ?> 
                                                     </ul>
                                                 </div>
+                                                <?php do_action( 'woolentor_addon_after_price' ); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -871,35 +879,31 @@ class Woolentor_Product_Accordion_Layout_Widget extends Widget_Base {
         </div>
 
         <script>
-                ;jQuery(document).ready(function($) {
-                    'use strict';
-                     (function HTProductAccordionFunction() {
-                        var HTProductAccordionHead = $('.wl_product-accordion-head.<?php echo $tabuniqid; ?>'),
-                            HTProductAccordionBody = $('.wl_product-accordion-body.<?php echo $tabuniqid; ?>');
-                        HTProductAccordionBody.hide()
-                        $('.wl_product-accordion-card.active').find('.wl_product-accordion-body.<?php echo $tabuniqid; ?>').slideDown();
-                        HTProductAccordionHead.on('click', function(e) {
-                            e.preventDefault();
-                            var $this = $(this);
+            ;jQuery(document).ready(function($) {
+                'use strict';
+                    (function HTProductAccordionFunction() {
+                    var HTProductAccordionHead = $('.wl_product-accordion-head.<?php echo esc_js($tabuniqid); ?>'),
+                        HTProductAccordionBody = $('.wl_product-accordion-body.<?php echo esc_js($tabuniqid); ?>');
+                    HTProductAccordionBody.hide()
+                    $('.wl_product-accordion-card.active').find('.wl_product-accordion-body.<?php echo esc_js($tabuniqid); ?>').slideDown();
+                    HTProductAccordionHead.on('click', function(e) {
+                        e.preventDefault();
+                        var $this = $(this);
 
-                            if ($this.parent('.wl_product-accordion-card').hasClass('active')) {
-                                $this.parent('.wl_product-accordion-card').removeClass('active').find('.wl_product-accordion-body.<?php echo $tabuniqid; ?>').slideUp();
-                            } else {
-                                $this.parent('.wl_product-accordion-card').addClass('active').find('.wl_product-accordion-body.<?php echo $tabuniqid; ?>').slideDown();
-                                $this.parent().siblings('.wl_product-accordion-card').removeClass('active').find('.wl_product-accordion-body.<?php echo $tabuniqid; ?>').slideUp();
-                            }
-                        })
-                     })();
+                        if ($this.parent('.wl_product-accordion-card').hasClass('active')) {
+                            $this.parent('.wl_product-accordion-card').removeClass('active').find('.wl_product-accordion-body.<?php echo esc_js($tabuniqid); ?>').slideUp();
+                        } else {
+                            $this.parent('.wl_product-accordion-card').addClass('active').find('.wl_product-accordion-body.<?php echo esc_js($tabuniqid); ?>').slideDown();
+                            $this.parent().siblings('.wl_product-accordion-card').removeClass('active').find('.wl_product-accordion-body.<?php echo esc_js($tabuniqid); ?>').slideUp();
+                        }
+                    })
+                    })();
 
-                });
-            </script>
+            });
+        </script>
                
         <?php
 
     }
 
 }
-
-Plugin::instance()->widgets_manager->register_widget_type( new Woolentor_Product_Accordion_Layout_Widget() );
-
-?>

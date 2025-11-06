@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Product_Description_Element extends Widget_Base {
+class Woolentor_Wb_Product_Description_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wl-single-product-description';
@@ -19,6 +19,10 @@ class WL_Product_Description_Element extends Widget_Base {
 
     public function get_categories() {
         return array( 'woolentor-addons' );
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -90,6 +94,30 @@ class WL_Product_Description_Element extends Widget_Base {
                 ]
             );
 
+            $this->add_responsive_control(
+                'short_descriptioon_margin',
+                [
+                    'label' => __( 'Margin', 'woolentor' ),
+                    'type' => Controls_Manager::DIMENSIONS,
+                    'size_units' => [ 'px', 'em' ],
+                    'selectors' => [
+                        '.woocommerce {{WRAPPER}} .woocommerce_product_description' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+
+            $this->add_responsive_control(
+                'short_descriptioon_padding',
+                [
+                    'label' => __( 'Padding', 'woolentor' ),
+                    'type' => Controls_Manager::DIMENSIONS,
+                    'size_units' => [ 'px', 'em' ],
+                    'selectors' => [
+                        '.woocommerce {{WRAPPER}} .woocommerce_product_description' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+
         $this->end_controls_section();
 
     }
@@ -98,18 +126,14 @@ class WL_Product_Description_Element extends Widget_Base {
     protected function render( $instance = [] ) {
        global $product, $post;
         $product = wc_get_product();
-        if ( Plugin::instance()->editor->is_edit_mode() ) {
-            echo '<div class="woocommerce_product_description">'.\WooLentor_Default_Data::instance()->default( $this->get_name() ).'</div>';
+        if( woolentor_is_preview_mode() ){
+            echo '<div class="woocommerce_product_description">'.\WooLentor_Default_Data::instance()->default( $this->get_name() ).'</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         }else{
             if ( empty( $product ) ) { return; }
             echo '<div class="woocommerce_product_description">';
                 the_content();
             echo '</div>';
-            //echo '<div class="woocommerce_product_description">'.$post->post_content.'</div>';
-            //echo '<div class="woocommerce_product_description">'.$product->get_description().'</div>';
-
         }
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Product_Description_Element() );

@@ -3,7 +3,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class WL_Product_Rating_Element extends Widget_Base {
+class Woolentor_Wb_Product_Rating_Widget extends Widget_Base {
 
     public function get_name() {
         return 'wl-single-product-rating';
@@ -19,6 +19,10 @@ class WL_Product_Rating_Element extends Widget_Base {
 
     public function get_categories() {
         return array( 'woolentor-addons' );
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -48,6 +52,7 @@ class WL_Product_Rating_Element extends Widget_Base {
                     'type'      => Controls_Manager::COLOR,
                     'selectors' => [
                         '{{WRAPPER}} .star-rating' => 'color: {{VALUE}} !important;',
+                        '{{WRAPPER}} .star-rating span:before' => 'color: {{VALUE}} !important;',
                         '{{WRAPPER}} .woocommerce-product-rating' => 'color: {{VALUE}} !important;',
                     ],
                 ]
@@ -85,6 +90,32 @@ class WL_Product_Rating_Element extends Widget_Base {
                 ]
             );
 
+            $this->add_responsive_control(
+                'product_rating_align',
+                [
+                    'label' => __( 'Alignment', 'woolentor' ),
+                    'type' => Controls_Manager::CHOOSE,
+                    'options' => [
+                        'left' => [
+                            'title' => __( 'Left', 'woolentor' ),
+                            'icon' => 'eicon-text-align-left',
+                        ],
+                        'center' => [
+                            'title' => __( 'Center', 'woolentor' ),
+                            'icon' => 'eicon-text-align-center',
+                        ],
+                        'right' => [
+                            'title' => __( 'Right', 'woolentor' ),
+                            'icon' => 'eicon-text-align-right',
+                        ]
+                    ],
+                    'selectors' => [
+                        '.woocommerce {{WRAPPER}} .woocommerce-product-rating' => 'text-align: {{VALUE}};line-height:1',
+                        '.woocommerce {{WRAPPER}} .woocommerce-product-rating .star-rating' => 'display:inline-block;float:none;margin-top:0',
+                    ],
+                ]
+            );
+
         $this->end_controls_section();
 
     }
@@ -96,8 +127,8 @@ class WL_Product_Rating_Element extends Widget_Base {
         global $product;
         $product = wc_get_product();
 
-        if( Plugin::instance()->editor->is_edit_mode() ){
-            echo \WooLentor_Default_Data::instance()->default( $this->get_name() );
+        if( woolentor_is_preview_mode() ){
+            echo \WooLentor_Default_Data::instance()->default( $this->get_name() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         } else{
             if ( empty( $product ) ) { return; }
             woocommerce_template_single_rating();
@@ -106,4 +137,3 @@ class WL_Product_Rating_Element extends Widget_Base {
     }
 
 }
-Plugin::instance()->widgets_manager->register_widget_type( new WL_Product_Rating_Element() );

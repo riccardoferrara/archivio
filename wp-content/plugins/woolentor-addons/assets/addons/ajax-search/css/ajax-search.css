@@ -3,25 +3,67 @@
 	position: relative;
 }
 
-.pro-sidebar-search-form input {
+.woolentor_widget_psa_field_area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 	background: transparent none repeat scroll 0 0;
 	border: 1px solid #c8c6c6;
+	padding: 4px 0;
+}
+.woolentor_widget_psa_input_area {
+    width: 100%;
+    display: flex;
+}
+.woolentor_widget_psa_input_field{
+	width: 100%;
+	position: relative;
+}
+
+.pro-sidebar-search-form input {
+	background: transparent none repeat scroll 0 0;
+	border: none;
 	color: #000;
 	font-size: 14px;
-	height: 43px;
-	padding: 2px 55px 2px 18px;
+	height: 40px;
 }
 
 .woolentor_widget_psa input[type="search"] {
-	background: transparent none repeat scroll 0 0;
-	border: 1px solid #c8c6c6;
-	color: #000;
-	font-size: 14px;
-	height: 43px;
-	padding: 2px 55px 2px 18px;
-	width: 100%;
+    background: transparent none repeat scroll 0 0;
+    border: none;
+    color: #000;
+    font-size: 14px;
+    height: 40px;
+    padding: 0px 10px;
+    width: 100%;
 }
-
+.woolentor_widget_psa input[type=search]:focus {
+    outline: none;
+}
+.woolentor_widget_psa_category{
+	position: relative;
+	padding-right: 15px;
+}
+.woolentor_widget_psa_category select {
+    background: transparent;
+    border: none;
+    padding: 10px 10px;
+	appearance:auto;
+}
+.woolentor_widget_psa_category select:focus-visible{
+	outline: none;
+}
+.woolentor_widget_psa_category::after {
+    position: absolute;
+	content: "";
+	width: 2px;
+    height: 60%;
+    border-left: 1px solid #c8c6c6;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
 /* clears the 'X' from Internet Explorer */
 .woolentor_widget_psa input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
 .woolentor_widget_psa input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
@@ -39,13 +81,14 @@
 	border-image: none;
 	border-style: none none none solid;
 	border-width: medium medium medium 1px;
+	border-color: #c8c6c6;
 	padding: 0 15px;
-	position: absolute;
+	/* position: absolute;
 	right: 0;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
+	transform: translateY(-50%); */
 	cursor: pointer;
 	color: #938989;
 	-webkit-transition: all .3s ease 0s;
@@ -53,6 +96,8 @@
 	transition: all .3s ease 0s;
 	font-size: 20px;
 	border-radius: 0;
+	flex: 0 0 45px;
+	height: 40px;
 }
 
 #woolentor_psa_results_wrapper {
@@ -149,10 +194,9 @@ span.woolentor_widget_psa_loading_icon {
 .woolentor_widget_psa_loading span.woolentor_widget_psa_loading_icon {
 	display: inline-block;
 	position: absolute;
-	line-height: 46px;
 	font-size: 20px;
-	right: 60px;
-	top: 0;
+	right: 5px;
+	top: 8px;
 	color: #c8c6c6;
 	cursor: pointer;
 }

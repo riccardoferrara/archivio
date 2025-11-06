@@ -1,13 +1,9 @@
 <?php
 namespace Elementor;
 
-// Elementor Classes
-use \Elementor\Core\Schemes\Color as Scheme_Color;
-use \Elementor\Core\Schemes\Typography as Scheme_Typography;
-
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Woolentor_Elementor_Widget_Add_Banner extends Widget_Base {
+class Woolentor_Add_Banner_Widget extends Widget_Base {
 
     public function get_name() {
         return 'woolentor-addbanner-addons';
@@ -23,6 +19,10 @@ class Woolentor_Elementor_Widget_Add_Banner extends Widget_Base {
 
     public function get_categories() {
         return [ 'woolentor-addons' ];
+    }
+
+    public function get_help_url() {
+        return 'https://woolentor.com/documentation/';
     }
 
     public function get_style_depends(){
@@ -286,19 +286,19 @@ class Woolentor_Elementor_Widget_Add_Banner extends Widget_Base {
                 <div class="woolentor-content">
                     <?php
                         if( !empty( $settings['bannersubtitle'] ) ){
-                            echo '<h3 class="banner_subtitle">'.$settings['bannersubtitle'].'</h3>';
+                            echo '<h3 class="banner_subtitle">'.wp_kses_post($settings['bannersubtitle']).'</h3>';
                         }
                         if( !empty( $settings['bannertitle'] ) ){
-                            echo '<h2 class="banner_title">'.$settings['bannertitle'].'</h2>';
+                            echo '<h2 class="banner_title">'.wp_kses_post($settings['bannertitle']).'</h2>';
                         }
                         if( !empty( $settings['buttontxt'] ) ){
-                            echo '<a class="banner_button" href="'.esc_url( $settings['buttonlink']['url'] ).'" '.$target.$nofollow.'>'.esc_html__( $settings['buttontxt'], 'woolentor' ).'</a>';
+                            echo '<a class="banner_button" href="'.esc_url( $settings['buttonlink']['url'] ).'" '.$target.$nofollow.'>'.esc_html__( $settings['buttontxt'], 'woolentor' ).'</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                         }
                     ?>
                 </div>
                 <div class="woolentor-banner-img">
                     <a href="<?php echo esc_url( $settings['buttonlink']['url'] );?>" <?php echo $target.$nofollow; ?> >
-                        <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'bannerimagesize', 'bannerimage' );?>
+                        <?php echo Group_Control_Image_Size::get_attachment_image_html( $settings, 'bannerimagesize', 'bannerimage' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                     </a>
                 </div>
             </div>
@@ -306,6 +306,4 @@ class Woolentor_Elementor_Widget_Add_Banner extends Widget_Base {
     }
 
 }
-
-Plugin::instance()->widgets_manager->register_widget_type( new Woolentor_Elementor_Widget_Add_Banner() );
 

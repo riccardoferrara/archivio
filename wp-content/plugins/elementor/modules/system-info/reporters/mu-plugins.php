@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class MU_Plugins extends Base {
+class MU_Plugins extends Base_Plugin {
 
 	/**
 	 * Must-Use plugins.
@@ -56,7 +56,7 @@ class MU_Plugins extends Base {
 	 * @return bool True if the site has must-use plugins, False otherwise.
 	 */
 	public function is_enabled() {
-		return ! ! $this->get_mu_plugins();
+		return (bool) $this->get_mu_plugins();
 	}
 
 	/**
