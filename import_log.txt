@@ -1,0 +1,19 @@
+[0;32m[INFO][0m Importazione database da: backups/db/production_20251108.sql
+[0;32m[INFO][0m Creazione backup database locale...
+[0;32m[INFO][0m ✓ Backup creato: backups/db/backup_local_before_import_20251108_203521.sql
+[0;32m[INFO][0m Sostituzione URL da produzione a locale...
+[0;32m[INFO][0m Sostituzione collation MySQL 8.0 → MySQL 5.7...
+[0;32m[INFO][0m Importazione in corso (può richiedere alcuni minuti)...
+mysql: [Warning] Using a password on the command line interface can be insecure.
+ERROR 1050 (42S01) at line 32: Table 'wpstg0_actionscheduler_actions' already exists
+[0;32m[INFO][0m ✓ Database importato con successo!
+[0;32m[INFO][0m Verifica importazione...
+[0;32m[INFO][0m ✓ Immagini nel database: ERROR 1146 (42S02) at line 1: Table 'archivio_local.wp_posts' doesn't exist
+[0;32m[INFO][0m 
+[0;32m[INFO][0m === Completato ===
+[0;32m[INFO][0m Ora puoi accedere al sito su: http://localhost:8888
+[0;32m[INFO][0m 
+[1;33m[WARN][0m NOTA: Se vedi ancora problemi, verifica che:
+[1;33m[WARN][0m   - Gli URL nel database siano stati sostituiti correttamente
+[1;33m[WARN][0m   - I permessi dei file siano corretti
+[1;33m[WARN][0m   - Il file wp-config.php abbia WP_HOME e WP_SITEURL configurati
