@@ -1,7 +1,9 @@
 (function ( $ ) {
 	'use strict';
 
-	window.qodef = {};
+	window.qodef              = {};
+	window.qodefEmptyCallback = function () {
+	};
 
 	qodef.body         = $( 'body' );
 	qodef.html         = $( 'html' );
@@ -125,7 +127,7 @@
 			var options = qodefSwiper.getOptions( $currentItem ),
 				events  = qodefSwiper.getEvents( $currentItem, options );
 
-			var $swiper = new Swiper( $currentItem, Object.assign( options, events ) );
+			var $swiper = new Swiper( $currentItem[0], Object.assign( options, events ) );
 		},
 		getOptions: function ( $holder, returnBreakpoints ) {
 			var sliderOptions     = typeof $holder.data( 'options' ) !== 'undefined' ? $holder.data( 'options' ) : {},
@@ -141,9 +143,9 @@
 				slideAnimation    = sliderOptions.slideAnimation !== undefined && sliderOptions.slideAnimation !== '' ? sliderOptions.slideAnimation : '',
 				customStages      = sliderOptions.customStages !== undefined && sliderOptions.customStages !== '' ? sliderOptions.customStages : false,
 				outsideNavigation = sliderOptions.outsideNavigation !== undefined && sliderOptions.outsideNavigation === 'yes',
-				nextNavigation    = outsideNavigation ? '.swiper-button-next-' + sliderOptions.unique : $holder.find( '.swiper-button-next' ),
-				prevNavigation    = outsideNavigation ? '.swiper-button-prev-' + sliderOptions.unique : $holder.find( '.swiper-button-prev' ),
-				pagination        = $holder.find( '.swiper-pagination' );
+				nextNavigation    = outsideNavigation ? '.swiper-button-next-' + sliderOptions.unique : ($holder.children( '.swiper-button-next' ).length ? $holder.children( '.swiper-button-next' )[0] : null),
+				prevNavigation    = outsideNavigation ? '.swiper-button-prev-' + sliderOptions.unique : ($holder.children( '.swiper-button-prev' ).length ? $holder.children( '.swiper-button-prev' )[0] : null),
+				pagination        = $holder.children( '.swiper-pagination' ).length ? $holder.children( '.swiper-pagination' )[0] : null;
 
 			if ( autoplay !== false && speed !== 5000 ) {
 				autoplay = {
@@ -573,6 +575,53 @@
 	};
 
 	qodef.qodefAnchor = qodefAnchor;
+
+	/**
+	 * Wait element images to loaded
+	 */
+	var qodefWaitForImages = {
+		check: function ( $element, callback ) {
+			if ( $element.length ) {
+				var images       = $element.find( 'img' );
+				var images_count = images.length;
+
+				if ( images_count ) {
+					var counter = 0;
+
+					for ( var index = 0; index < images_count; index++ ) {
+						var img = images[index];
+
+						if ( img.complete ) {
+							counter++;
+
+							if ( counter === images.length ) {
+								callback.call( $element );
+							}
+						} else {
+							var image = new Image();
+
+							image.addEventListener(
+								'load',
+								function () {
+									counter++;
+									if ( counter === images.length ) {
+										callback.call( $element );
+										return false;
+									}
+								},
+								false
+							);
+							image.src = img.src;
+						}
+					}
+				} else {
+					callback.call( $element );
+				}
+			}
+		},
+	};
+
+	qodef.qodefWaitForImages = qodefWaitForImages;
 
 	var qodefAppearAnimation = {
 		init () {

@@ -10,7 +10,7 @@ if ( ! empty( $link_url ) ) {
 	?>
 	<div class="qodef-e-link" style="background-image: url('<?php echo esc_url( $background_image[0] ) ?>')">
 		<span class="qodef-e-link-subtitle"><?php echo esc_html__( 'Link', 'valeska' ); ?></span>
-		<<?php echo esc_attr( $title_tag ); ?> class="qodef-e-link-text"><?php echo esc_html( $link_text ); ?></<?php echo esc_attr( $title_tag ); ?>>
+		<<?php echo valeska_escape_title_tag( $title_tag ); ?> class="qodef-e-link-text"><?php echo esc_html( $link_text ); ?></<?php echo valeska_escape_title_tag( $title_tag ); ?>>
 		<a itemprop="url" class="qodef-e-link-url" href="<?php echo esc_url( $link_url ); ?>" target="_blank"></a>
 	</div>
 <?php } ?>

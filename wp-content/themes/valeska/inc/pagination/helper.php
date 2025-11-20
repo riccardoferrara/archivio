@@ -1,5 +1,10 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	// Exit if accessed directly.
+	exit;
+}
+
 if ( ! function_exists( 'valeska_add_rest_api_pagination_global_variables' ) ) {
 	/**
 	 * Extend main rest api variables with new case
@@ -34,8 +39,8 @@ if ( ! function_exists( 'valeska_add_rest_api_pagination_route' ) ) {
 			'args'     => array(
 				'options' => array(
 					'required'          => true,
-					'validate_callback' => function ( $param, $request, $key ) {
-						// Simple solution for validation can be 'is_array' value instead of callback function
+					'validate_callback' => function ( $param ) {
+						// Simple solution for validation can be 'is_array' value instead of callback function.
 						return is_array( $param ) ? $param : (array) $param;
 					},
 					'description'       => esc_html__( 'Options data is array with all selected shortcode parameters value', 'valeska' ),
@@ -57,9 +62,11 @@ if ( ! function_exists( 'valeska_get_new_posts' ) ) {
 	 */
 	function valeska_get_new_posts() {
 
+		// phpcs:ignore WordPress.Security.NonceVerification
 		if ( ! isset( $_GET ) || empty( $_GET ) ) {
 			valeska_get_ajax_status( 'error', esc_html__( 'Get method is invalid', 'valeska' ) );
 		} else {
+			// phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput
 			$options = isset( $_GET['options'] ) ? (array) $_GET['options'] : array();
 
 			if ( ! empty( $options ) ) {
@@ -68,17 +75,25 @@ if ( ! function_exists( 'valeska_get_new_posts' ) ) {
 				$shortcode  = $options['shortcode'];
 				$query_args = valeska_get_query_params( $options );
 
-				$options['query_result'] = new \WP_Query( $query_args );
+				$options['query_result'] = new WP_Query( $query_args );
 				if ( isset( $options['object_class_name'] ) && ! empty( $options['object_class_name'] ) && class_exists( $options['object_class_name'] ) ) {
-					$options['this_shortcode'] = new $options['object_class_name'](); // needed for pagination loading items since object is not transferred via data params
+					// needed for pagination loading items since object is not transferred via data params.
+					$options['this_shortcode'] = new $options['object_class_name']();
 				}
 
 				ob_start();
 
 				$get_template_part = $plugin . '_get_template_part';
 
-				// Variable name is function name - escaped no need
-				echo apply_filters( "valeska_filter_{$get_template_part}", $get_template_part( $module . '/' . $shortcode, 'templates/loop', '', $options ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				// Include global masonry template from theme.
+				if ( isset( $options['behavior'] ) ) {
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo apply_filters( 'valeska_filter_masonry_template_part_pagination', valeska_get_template_part( 'masonry', 'templates/sizer-gutter', '', $options['behavior'] ) );
+				}
+
+				// Variable name is function name - escaped no need.
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo apply_filters( "valeska_filter_{$get_template_part}", $get_template_part( $module . '/' . $shortcode, 'templates/loop', '', $options ) );
 
 				$html = ob_get_contents();
 
@@ -86,7 +101,8 @@ if ( ! function_exists( 'valeska_get_new_posts' ) ) {
 
 				$pagination_html = '';
 				if ( 'standard' === $options['pagination_type'] ) {
-					$pagination_html = apply_filters( "valeska_filter_{$get_template_part}_pagination", valeska_get_template_part( 'pagination', 'templates/pagination', $options['pagination_type'], $options ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					$pagination_html = apply_filters( "valeska_filter_{$get_template_part}_pagination", valeska_get_template_part( 'pagination', 'templates/pagination', $options['pagination_type'], $options ) );
 				}
 
 				$data = apply_filters(
@@ -132,6 +148,11 @@ if ( ! function_exists( 'valeska_get_query_params' ) ) {
 			$args['paged'] = intval( $params['next_page'] );
 		} elseif ( ! empty( max( 1, get_query_var( 'paged' ) ) ) ) {
 			$args['paged'] = max( 1, get_query_var( 'paged' ) );
+
+			// Additional conditional for archives pages to prevent widgets element to change paged value.
+			if ( isset( $params['is_widget_element'] ) && 'yes' === $params['is_widget_element'] ) {
+				$args['paged'] = 1;
+			}
 		} else {
 			$args['paged'] = 1;
 		}
@@ -185,10 +206,29 @@ if ( ! function_exists( 'valeska_get_pagination_data' ) ) {
 				$params['space_value'] = valeska_get_space_value( $params['space'] );
 			}
 
-			$data = json_encode( array_filter( array_merge( $additional_params, $params ) ) );
+			$data = wp_json_encode( array_filter( array_merge( $additional_params, $params ), 'valeska_validate_pagination_data' ) );
 		}
 
 		return $data;
+	}
+}
+
+if ( ! function_exists( 'valeska_validate_pagination_data' ) ) {
+	/**
+	 * Function that validate pagination data element
+	 *
+	 * @param mixed $value
+	 *
+	 * @return mixed
+	 */
+	function valeska_validate_pagination_data( $value ) {
+		$blocked_values = array(
+			null,
+			false,
+			'',
+		);
+
+		return ! in_array( $value, $blocked_values, true );
 	}
 }
 
@@ -203,8 +243,7 @@ if ( ! function_exists( 'valeska_add_link_pages_after_content' ) ) {
 			'after'       => '</div>',
 			'link_before' => '<span>',
 			'link_after'  => '</span>',
-			'pagelink'    => '0%',
-
+			'pagelink'    => '%',
 		);
 
 		wp_link_pages( $args_pages );

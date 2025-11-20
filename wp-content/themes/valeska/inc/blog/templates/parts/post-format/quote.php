@@ -10,9 +10,9 @@ if ( ! empty( $quote_text ) ) {
 	?>
 	<div class="qodef-e-quote" style="background-image: url('<?php echo esc_url( $background_image[0] ) ?>')">
 	<span class="qodef-e-quote-subtitle"><?php echo esc_html__( 'Quote', 'valeska' ); ?></span>
-		<<?php echo esc_attr( $title_tag ); ?> class="qodef-e-quote-text"><?php echo esc_html( $quote_text ); ?></<?php echo esc_attr( $title_tag ); ?>>
+		<<?php echo valeska_escape_title_tag( $title_tag ); ?> class="qodef-e-quote-text"><?php echo esc_html( $quote_text ); ?></<?php echo valeska_escape_title_tag( $title_tag ); ?>>
 		<?php if ( ! empty( $quote_author ) ) { ?>
-			<<?php echo esc_attr( $author_title_tag ); ?> class="qodef-e-quote-author"><?php echo esc_html( $quote_author ); ?></<?php echo esc_attr( $author_title_tag ); ?>>
+			<<?php echo valeska_escape_title_tag( $author_title_tag ); ?> class="qodef-e-quote-author"><?php echo esc_html( $quote_author ); ?></<?php echo valeska_escape_title_tag( $author_title_tag ); ?>>
 		<?php } ?>
 		<?php if ( ! is_single() ) { ?>
 			<a itemprop="url" class="qodef-e-quote-url" href="<?php the_permalink(); ?>"></a>

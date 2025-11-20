@@ -527,13 +527,13 @@ if ( ! function_exists( 'valeska_woo_shop_loop_item_title' ) ) {
 	 */
 	function valeska_woo_shop_loop_item_title() {
 		$option    = valeska_get_post_value_through_levels( 'qodef_woo_product_list_title_tag' );
-		$title_tag = ! empty( $option ) ? esc_attr( $option ) : 'p';
+		$title_tag = ! empty( $option ) ? esc_attr( $option ) : 'h6';
 
-		echo '<' . esc_attr( $title_tag ) . ' class="qodef-woo-product-title woocommerce-loop-product__title">';
+		echo '<' . valeska_escape_title_tag( $title_tag ) . ' class="qodef-woo-product-title woocommerce-loop-product__title">';
 		do_action( 'qodef_woo_product_list_title_tag_link_open' );
 		echo wp_kses_post( get_the_title() );
 		do_action( 'qodef_woo_product_list_title_tag_link_close' );
-		echo '</' . esc_attr( $title_tag ) . '>';
+		echo '</' . valeska_escape_title_tag( $title_tag ) . '>';
 	}
 }
 
@@ -545,7 +545,7 @@ if ( ! function_exists( 'valeska_woo_template_single_title' ) ) {
 		$option    = valeska_get_post_value_through_levels( 'qodef_woo_single_title_tag' );
 		$title_tag = ! empty( $option ) ? esc_attr( $option ) : 'h1';
 
-		echo '<' . esc_attr( $title_tag ) . ' class="qodef-woo-product-title qodef-h3 product_title entry-title">' . wp_kses_post( get_the_title() ) . '</' . esc_attr( $title_tag ) . '>';
+		echo '<' . valeska_escape_title_tag( $title_tag ) . ' class="qodef-woo-product-title qodef-h3 product_title entry-title">' . wp_kses_post( get_the_title() ) . '</' . valeska_escape_title_tag( $title_tag ) . '>';
 	}
 }
 

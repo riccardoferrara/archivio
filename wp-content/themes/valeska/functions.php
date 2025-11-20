@@ -152,45 +152,49 @@ if ( ! class_exists( 'Valeska_Handler' ) ) {
 		}
 
 		function include_google_fonts() {
-			$font_subset_array = array(
-				'latin-ext',
-			);
+			$is_enabled = boolval( apply_filters( 'valeska_filter_enable_google_fonts', true ) );
 
-			$font_weight_array = array(
-				'300',
-				'300i',
-				'400',
-				'500',
-				'600',
-				'700',
-			);
-
-			$default_font_family = array(
-				'Yantramanav',
-				'Cormorant Garamond',
-			);
-
-			$font_weight_str = implode( ',', array_unique( apply_filters( 'valeska_filter_google_fonts_weight_list', $font_weight_array ) ) );
-			$font_subset_str = implode( ',', array_unique( apply_filters( 'valeska_filter_google_fonts_subset_list', $font_subset_array ) ) );
-			$fonts_array     = apply_filters( 'valeska_filter_google_fonts_list', $default_font_family );
-
-			if ( ! empty( $fonts_array ) ) {
-				$modified_default_font_family = array();
-
-				foreach ( $fonts_array as $font ) {
-					$modified_default_font_family[] = $font . ':' . $font_weight_str;
-				}
-
-				$default_font_string = implode( '|', $modified_default_font_family );
-
-				$fonts_full_list_args = array(
-					'family'  => urlencode( $default_font_string ),
-					'subset'  => urlencode( $font_subset_str ),
-					'display' => 'swap',
+			if ( $is_enabled ) {
+				$font_subset_array = array(
+					'latin-ext',
 				);
 
-				$google_fonts_url = add_query_arg( $fonts_full_list_args, 'https://fonts.googleapis.com/css' );
-				wp_enqueue_style( 'valeska-google-fonts', esc_url_raw( $google_fonts_url ), array(), '1.0.0' );
+				$font_weight_array = array(
+					'300',
+					'300i',
+					'400',
+					'500',
+					'600',
+					'700',
+				);
+
+				$default_font_family = array(
+					'Yantramanav',
+					'Cormorant Garamond',
+				);
+
+				$font_weight_str = implode( ',', array_unique( apply_filters( 'valeska_filter_google_fonts_weight_list', $font_weight_array ) ) );
+				$font_subset_str = implode( ',', array_unique( apply_filters( 'valeska_filter_google_fonts_subset_list', $font_subset_array ) ) );
+				$fonts_array     = apply_filters( 'valeska_filter_google_fonts_list', $default_font_family );
+
+				if ( ! empty( $fonts_array ) ) {
+					$modified_default_font_family = array();
+
+					foreach ( $fonts_array as $font ) {
+						$modified_default_font_family[] = $font . ':' . $font_weight_str;
+					}
+
+					$default_font_string = implode( '|', $modified_default_font_family );
+
+					$fonts_full_list_args = array(
+						'family'  => urlencode( $default_font_string ),
+						'subset'  => urlencode( $font_subset_str ),
+						'display' => 'swap',
+					);
+
+					$google_fonts_url = add_query_arg( $fonts_full_list_args, 'https://fonts.googleapis.com/css' );
+					wp_enqueue_style( 'valeska-google-fonts', esc_url_raw( $google_fonts_url ), array(), '1.0.0' );
+				}
 			}
 		}
 

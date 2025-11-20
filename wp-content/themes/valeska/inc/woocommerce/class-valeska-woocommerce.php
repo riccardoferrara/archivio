@@ -159,10 +159,10 @@ if ( ! class_exists( 'Valeska_WooCommerce' ) ) {
 
 		function change_templates_position() {
 			// Add link at the end of woocommerce_before_shop_loop_item_title
-			add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_link_open', 28 ); // permission 28 is set because masterds_theme_add_product_list_item_image_holder_end is 30
-			add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_link_close', 29 ); // permission 29 is set because masterds_theme_add_product_list_item_image_holder_end is 30
+			add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_link_open', 28 ); // permission 28 is set because valeska_add_product_list_item_image_holder_end is 30
+			add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_link_close', 29 ); // permission 29 is set because valeska_add_product_list_item_image_holder_end is 30
 
-			// Add link inside masterds_theme_woo_shop_loop_item_title
+			// Add link inside valeska_woo_shop_loop_item_title
 			add_action( 'qodef_woo_product_list_title_tag_link_open', 'woocommerce_template_loop_product_link_open' );
 			add_action( 'qodef_woo_product_list_title_tag_link_close', 'woocommerce_template_loop_product_link_close' );
 		}

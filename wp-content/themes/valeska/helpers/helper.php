@@ -76,13 +76,35 @@ if ( ! function_exists( 'valeska_get_template_part' ) ) {
 	 * @return string - string containing html of template
 	 */
 	function valeska_get_template_part( $module, $template, $slug = '', $params = array() ) {
-		//HTML Content from template
+		$available_characters = '/[^A-Za-z0-9\_\-\/]/';
+
+		if ( is_scalar( $module ) ) {
+			$module = preg_replace( $available_characters, '', $module );
+		} else {
+			$module = '';
+		}
+
+		if ( is_scalar( $template ) ) {
+			$template = preg_replace( $available_characters, '', $template );
+		} else {
+			$template = '';
+		}
+
+		if ( is_scalar( $slug ) ) {
+			$slug = preg_replace( $available_characters, '', $slug );
+		} else {
+			$slug = '';
+		}
+
+		// HTML Content from template.
 		$html          = '';
 		$template_path = VALESKA_INC_ROOT_DIR . '/' . $module;
 
 		$temp = $template_path . '/' . $template;
+
+		// The array of parameters to pass to the template.
 		if ( is_array( $params ) && count( $params ) ) {
-			extract( $params ); // @codingStandardsIgnoreLine
+			extract( $params, EXTR_SKIP ); // @codingStandardsIgnoreLine
 		}
 
 		$template = '';
@@ -101,7 +123,7 @@ if ( ! function_exists( 'valeska_get_template_part' ) ) {
 
 		if ( $template ) {
 			ob_start();
-			include( $template ); // phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
+			include $template; // phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
 			$html = ob_get_clean();
 		}
 
@@ -331,6 +353,40 @@ if ( ! function_exists( 'valeska_get_svg_icon' ) ) {
 				break;
 		}
 
-		return apply_filters( 'valeska_filter_svg_icon', $html );
+		return apply_filters( 'valeska_filter_svg_icon', $html, $name );
+	}
+}
+
+if ( ! function_exists( 'valeska_escape_title_tag' ) ) {
+	/**
+	 * Function that escape title tag variable for modules
+	 *
+	 * @param string $title_tag
+	 *
+	 * @return string
+	 */
+	function valeska_escape_title_tag( $title_tag ) {
+		$allowed_tags = array(
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
+			'p',
+			'span',
+			'ul',
+			'ol',
+			'div',
+		);
+
+		$escaped_title_tag = '';
+		$title_tag         = strtolower( sanitize_key( $title_tag ) );
+
+		if ( in_array( $title_tag, $allowed_tags, true ) ) {
+			$escaped_title_tag = $title_tag;
+		}
+
+		return $escaped_title_tag;
 	}
 }

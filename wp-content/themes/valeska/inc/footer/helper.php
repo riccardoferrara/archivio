@@ -131,8 +131,8 @@ if ( ! function_exists( 'valeska_register_footer_sidebars' ) ) {
 							'description'   => $value['description'],
 							'before_widget' => '<div id="%1$s" class="widget %2$s" data-area="' . esc_attr( $sidebar_id ) . '">',
 							'after_widget'  => '</div>',
-							'before_title'  => '<' . esc_attr( $value['title_tag'] ) . ' class="' . esc_attr( $config['title_class'] ) . '">',
-							'after_title'   => '</' . esc_attr( $value['title_tag'] ) . '>',
+							'before_title'  => '<' . valeska_escape_title_tag( $value['title_tag'] ) . ' class="' . esc_attr( $config['title_class'] ) . '">',
+							'after_title'   => '</' . valeska_escape_title_tag( $value['title_tag'] ) . '>',
 						)
 					);
 				}
