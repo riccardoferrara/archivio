@@ -201,6 +201,65 @@ sync_pull() {
     log_info "=== PULL completato ==="
 }
 
+# UPLOAD: Carica un singolo file da locale a remoto
+upload_single_file() {
+    local file_path="$1"
+    
+    if [ -z "$file_path" ]; then
+        log_error "Percorso file non specificato"
+        exit 1
+    fi
+    
+    # Converti percorso relativo in assoluto
+    if [ ! "${file_path:0:1}" = "/" ]; then
+        file_path="$(pwd)/$file_path"
+    fi
+    
+    # Verifica che il file esista
+    if [ ! -f "$file_path" ]; then
+        log_error "File non trovato: $file_path"
+        exit 1
+    fi
+    
+    # Calcola percorso relativo alla root di WordPress
+    local wp_root="$LOCAL_WP_PATH"
+    if [[ "$file_path" != "$wp_root"* ]]; then
+        log_error "Il file deve essere all'interno della directory WordPress: $wp_root"
+        exit 1
+    fi
+    
+    # Percorso relativo dalla root WP
+    local relative_path="${file_path#$wp_root/}"
+    local remote_file_path="$REMOTE_FTP_PATH/$relative_path"
+    local remote_dir=$(dirname "$remote_file_path")
+    
+    log_info "=== Upload singolo file (FTP) ==="
+    log_info "File locale: $file_path"
+    log_info "File remoto: $remote_file_path"
+    
+    if ! check_ftp_connection; then
+        exit 1
+    fi
+    
+    # Usa lftp per caricare il singolo file
+    # lftp creerà automaticamente le directory necessarie
+    lftp -c "
+        set ftp:list-options -a;
+        set ssl:verify-certificate no;
+        set net:max-retries 3;
+        set net:timeout 30;
+        set ftp:use-feat no;
+        set ftp:use-mlsd no;
+        open -p $REMOTE_FTP_PORT -u $REMOTE_FTP_USER,$REMOTE_FTP_PASS $REMOTE_FTP_HOST;
+        cd $remote_dir 2>/dev/null || true;
+        put -O $remote_dir $file_path;
+        bye;
+    " && log_info "✓ File caricato con successo!" || {
+        log_error "Errore durante il caricamento del file"
+        exit 1
+    }
+}
+
 # PUSH: Carica da locale a remoto
 sync_push() {
     log_info "=== PUSH: Sincronizzazione da locale a produzione (FTP) ==="
@@ -289,15 +348,20 @@ sync_push() {
 
 # Verifica parametri
 if [ $# -eq 0 ]; then
-    echo "Uso: $0 [pull|push] [--db-only|--files-only]"
+    echo "Uso: $0 [pull|push|upload-file] [--db-only|--files-only|FILE_PATH]"
     echo ""
     echo "Comandi:"
-    echo "  pull        Scarica da produzione a locale (FTP)"
-    echo "  push        Carica da locale a produzione (FTP)"
+    echo "  pull              Scarica da produzione a locale (FTP)"
+    echo "  push              Carica da locale a produzione (FTP)"
+    echo "  upload-file FILE  Carica un singolo file su produzione (FTP)"
     echo ""
     echo "Opzioni:"
-    echo "  --db-only   Sincronizza solo il database (richiede intervento manuale)"
-    echo "  --files-only Sincronizza solo i file"
+    echo "  --db-only         Sincronizza solo il database (richiede intervento manuale)"
+    echo "  --files-only      Sincronizza solo i file"
+    echo ""
+    echo "Esempi:"
+    echo "  $0 upload-file wp-content/themes/valeska-child-server/functions.php"
+    echo "  $0 upload-file wp-content/plugins/my-plugin/my-plugin.php"
     echo ""
     echo "NOTA: Per il database, questo script richiede accesso a phpMyAdmin"
     echo "      o un metodo alternativo per esportare/importare il database."
@@ -305,6 +369,19 @@ if [ $# -eq 0 ]; then
 fi
 
 DIRECTION=$1
+
+# Gestione upload singolo file
+if [ "$DIRECTION" = "upload-file" ]; then
+    if [ -z "$2" ]; then
+        log_error "Specifica il percorso del file da caricare"
+        echo "Esempio: $0 upload-file wp-content/themes/valeska-child-server/functions.php"
+        exit 1
+    fi
+    check_lftp
+    upload_single_file "$2"
+    exit 0
+fi
+
 SYNC_DB=true
 SYNC_FILES=true
 
