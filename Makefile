@@ -1,5 +1,6 @@
 .PHONY: help test-ssh test-ftp pull push pull-ftp push-ftp pull-ssh push-ssh \
 	pull-ftp-files push-ftp-files pull-ssh-files push-ssh-files \
+	push-file push-file-ftp push-file-ssh \
 	update-core update-plugins update-themes update-all \
 	db-check db-info db-export db-export-gz db-import db-replace db-replace-reverse \
 	db-optimize db-repair db-reset db-query \
@@ -40,6 +41,10 @@ help:
 	@echo "  make push-ftp          Carica da locale a produzione (FTP)"
 	@echo "  make pull-ftp-files    Scarica solo i file (FTP)"
 	@echo "  make push-ftp-files    Carica solo i file (FTP)"
+	@echo ""
+	@echo "$(GREEN)UPLOAD SINGOLO FILE:$(NC)"
+	@echo "  make push-file FILE=   Carica un singolo file su produzione (FTP)"
+	@echo "                         Es: make push-file FILE=wp-content/themes/valeska/functions.php"
 	@echo ""
 	@echo "$(GREEN)AGGIORNAMENTI WORDPRESS:$(NC)"
 	@echo "  make update-core       Aggiorna WordPress core"
@@ -153,6 +158,49 @@ push-ftp-files:
 		./sync-wp-ftp.sh push --files-only; \
 	else \
 		echo "$(RED)File sync-wp-ftp.sh non trovato$(NC)"; \
+	fi
+
+# ============================================
+# UPLOAD SINGOLO FILE
+# ============================================
+push-file:
+	@if [ -z "$(FILE)" ]; then \
+		echo "$(RED)Errore: Specifica il file con FILE=percorso/file$(NC)"; \
+		echo "Esempio: make push-file FILE=wp-content/themes/valeska/functions.php"; \
+		exit 1; \
+	fi
+	@if [ ! -f "$(FILE)" ]; then \
+		echo "$(RED)File non trovato: $(FILE)$(NC)"; \
+		echo "$(YELLOW)Assicurati di essere nella directory root di WordPress$(NC)"; \
+		exit 1; \
+	fi
+	@echo "$(BLUE)=== Upload singolo file verso produzione (FTP) ===$(NC)"
+	@if [ -f sync-wp-ftp.sh ]; then \
+		./sync-wp-ftp.sh upload-file "$(FILE)"; \
+	else \
+		echo "$(RED)File sync-wp-ftp.sh non trovato$(NC)"; \
+	fi
+
+push-file-ftp: push-file
+	@echo "$(YELLOW)NOTA: Usato FTP. Per SSH usa: make push-file-ssh$(NC)"
+
+push-file-ssh:
+	@if [ -z "$(FILE)" ]; then \
+		echo "$(RED)Errore: Specifica il file con FILE=percorso/file$(NC)"; \
+		echo "Esempio: make push-file-ssh FILE=wp-content/themes/valeska/functions.php"; \
+		exit 1; \
+	fi
+	@if [ ! -f "$(FILE)" ]; then \
+		echo "$(RED)File non trovato: $(FILE)$(NC)"; \
+		echo "$(YELLOW)Assicurati di essere nella directory root di WordPress$(NC)"; \
+		exit 1; \
+	fi
+	@echo "$(BLUE)=== Upload singolo file verso produzione (SSH) ===$(NC)"
+	@if [ -f sync-wp.sh ]; then \
+		echo "$(YELLOW)NOTA: La funzione upload-file non è ancora implementata per SSH$(NC)"; \
+		echo "$(YELLOW)Usa: make push-file FILE=$(FILE)$(NC)"; \
+	else \
+		echo "$(RED)File sync-wp.sh non trovato$(NC)"; \
 	fi
 
 # ============================================

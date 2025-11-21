@@ -84,6 +84,16 @@ function override_woo_frontend_scripts() {
     wp_enqueue_script('wc-add-to-cart-variation', '/wp-content/themes/valeska-child-server/woocommerce/assets/js/frontend/add-to-cart-variation.min.js', array('jquery', 'woocommerce', 'wc-country-select', 'wc-address-i18n'), null, true);
 }
 
+//--------------------------------------------------------
+// RIMUOVI CSS MEGA-MENU (file non esiste, causa 404)
+// Il plugin header-footer-elementor cerca di caricare questo file
+// ma non esiste in Elementor Pro, quindi lo rimuoviamo
+//--------------------------------------------------------
+add_action('wp_enqueue_scripts', 'remove_hfe_mega_menu_css', 25);
+function remove_hfe_mega_menu_css() {
+    wp_dequeue_style('hfe-mega-menu');
+    wp_deregister_style('hfe-mega-menu');
+}
 
 //---------------------------------------------
 // RECUPERO IL COLORE SELEZIONATO DALLA PDP
@@ -152,7 +162,10 @@ function custom_jquery_shop_script(){
 
             // if page is loaded after add to cart, color is just selected but not in the address
             if (!selected_color) {
-                selected_color = document.querySelectorAll("[role='radio'][name='color'][aria-checked='true']")[0].dataset.value
+                var checkedColorElement = document.querySelectorAll("[role='radio'][data-attribute_name='attribute_pa_color'][aria-checked='true']")[0];
+                if (checkedColorElement) {
+                    selected_color = checkedColorElement.dataset.value
+                }
             }
 
             let has_size = false
@@ -173,34 +186,38 @@ function custom_jquery_shop_script(){
                 //muovi le etichette COLOR and SIZE da accanto a sopra nelle tabelle
                 //recupera la tabella
                 let var_table = document.querySelector('table.variations')
-                //recupera la cella contenente il colore e la taglia per ricopiarla dopo
-                var color_th = var_table.childNodes[1].childNodes[1].childNodes[1]
-                var size_th = var_table.childNodes[1].childNodes[3].childNodes[1]
-                // rimuovi vecchie etichette
-                var_table.childNodes[1].childNodes[1].deleteCell(0)
-                var_table.childNodes[1].childNodes[3].deleteCell(0)
-                // inserisci due nuove righe
-                var color_row = var_table.insertRow(0)
-                var size_row = var_table.insertRow(2)
-                // inserisci una cella per riga
-                var color = color_row.insertCell(0)
-                var size = size_row.insertCell(0)
-                color.outerHTML = color_th.outerHTML
-                size.outerHTML = size_th.outerHTML         
+                if (var_table && var_table.childNodes[1] && var_table.childNodes[1].childNodes[1] && var_table.childNodes[1].childNodes[3]) { // Only proceed if table and nodes exist
+                    //recupera la cella contenente il colore e la taglia per ricopiarla dopo
+                    var color_th = var_table.childNodes[1].childNodes[1].childNodes[1]
+                    var size_th = var_table.childNodes[1].childNodes[3].childNodes[1]
+                    // rimuovi vecchie etichette
+                    var_table.childNodes[1].childNodes[1].deleteCell(0)
+                    var_table.childNodes[1].childNodes[3].deleteCell(0)
+                    // inserisci due nuove righe
+                    var color_row = var_table.insertRow(0)
+                    var size_row = var_table.insertRow(2)
+                    // inserisci una cella per riga
+                    var color = color_row.insertCell(0)
+                    var size = size_row.insertCell(0)
+                    color.outerHTML = color_th.outerHTML
+                    size.outerHTML = size_th.outerHTML
+                }         
             } else {
                 //muovi l'etichetta COLOR da accanto a sopra nelle tabelle
                 //recupera la tabella
                 let var_table = document.querySelector('table.variations')
-                //color:
-                //recupera la cella contenente il colore e la taglia per ricopiarla dopo
-                var color_th = var_table.childNodes[1].childNodes[1].childNodes[1]
-                // rimuovi vecchie etichette
-                var_table.childNodes[1].childNodes[1].deleteCell(0)
-                // inserisci due nuove righe
-                var color_row = var_table.insertRow(0)
-                // inserisci una cella per riga
-                var color = color_row.insertCell(0)
-                color.outerHTML = color_th.outerHTML
+                if (var_table && var_table.childNodes[1] && var_table.childNodes[1].childNodes[1]) { // Only proceed if table and nodes exist
+                    //color:
+                    //recupera la cella contenente il colore e la taglia per ricopiarla dopo
+                    var color_th = var_table.childNodes[1].childNodes[1].childNodes[1]
+                    // rimuovi vecchie etichette
+                    var_table.childNodes[1].childNodes[1].deleteCell(0)
+                    // inserisci due nuove righe
+                    var color_row = var_table.insertRow(0)
+                    // inserisci una cella per riga
+                    var color = color_row.insertCell(0)
+                    color.outerHTML = color_th.outerHTML
+                }
             }
 
             //inserisci delle funzioni click per ogni colore
@@ -219,12 +236,17 @@ function custom_jquery_shop_script(){
 
             //non appena l'elemento colors viene caricato sulla pagina viene generata la variabile colors
             function waitForColorsElements(){
-                if(typeof document.querySelectorAll("form.variations_form.cart.wvs-loaded [name='color']")[0] !== "undefined"){
+                console.log('Searching for color elements...');
+                var elements = document.querySelectorAll("form.variations_form.cart.wvs-loaded [role='radio'][data-attribute_name='attribute_pa_color']");
+                console.log('Found elements:', elements);
+                if(typeof elements[0] !== "undefined"){
                     //l'elemento esiste sulla pagina ora carichiamola in "colors"
-                    colors = document.querySelectorAll("form.variations_form.cart.wvs-loaded [name='color']")
+                    console.log('Assigning click behavior to', elements.length, 'elements');
+                    colors = elements;
                     assignOnClickBehavoir(colors)
                 }
                 else{
+                    console.log('Elements not found yet, will retry in 250ms');
                     setTimeout(waitForColorsElements, 250);
                 }
             }
@@ -290,8 +312,14 @@ function custom_jquery_shop_script(){
 
             // show the name of the selected color on the page
             function showSelectedColorDescription(){
-                color_label = document.querySelectorAll('[value="'+ selected_color+'"]')[0].text
-                document.querySelectorAll('[for="pa_color"]')[0].innerText = color_label           
+                var colorElement = document.querySelectorAll('[value="'+ selected_color+'"]')[0];
+                if (colorElement && colorElement.text) {
+                    color_label = colorElement.text;
+                    var colorLabelElement = document.querySelectorAll('[for="pa_color"]')[0];
+                    if (colorLabelElement) {
+                        colorLabelElement.innerText = color_label;
+                    }
+                }
             }
 
             //update photos as requested product
