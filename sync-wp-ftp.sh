@@ -251,10 +251,10 @@ upload_single_file() {
         set ftp:use-feat no;
         set ftp:use-mlsd no;
         open -p $REMOTE_FTP_PORT -u $REMOTE_FTP_USER,$REMOTE_FTP_PASS $REMOTE_FTP_HOST;
-        cd $remote_dir 2>/dev/null || true;
+        cd $remote_dir;
         put -O $remote_dir $file_path;
         bye;
-    " && log_info "✓ File caricato con successo!" || {
+    " 2>/dev/null && log_info "✓ File caricato con successo!" || {
         log_error "Errore durante il caricamento del file"
         exit 1
     }
