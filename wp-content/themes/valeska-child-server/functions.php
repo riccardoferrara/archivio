@@ -84,6 +84,16 @@ function override_woo_frontend_scripts() {
     wp_enqueue_script('wc-add-to-cart-variation', '/wp-content/themes/valeska-child-server/woocommerce/assets/js/frontend/add-to-cart-variation.min.js', array('jquery', 'woocommerce', 'wc-country-select', 'wc-address-i18n'), null, true);
 }
 
+//--------------------------------------------------------
+// RIMUOVI CSS MEGA-MENU (file non esiste, causa 404)
+// Il plugin header-footer-elementor cerca di caricare questo file
+// ma non esiste in Elementor Pro, quindi lo rimuoviamo
+//--------------------------------------------------------
+add_action('wp_enqueue_scripts', 'remove_hfe_mega_menu_css', 25);
+function remove_hfe_mega_menu_css() {
+    wp_dequeue_style('hfe-mega-menu');
+    wp_deregister_style('hfe-mega-menu');
+}
 
 //---------------------------------------------
 // RECUPERO IL COLORE SELEZIONATO DALLA PDP
