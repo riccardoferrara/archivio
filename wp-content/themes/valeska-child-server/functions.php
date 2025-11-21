@@ -269,11 +269,34 @@ function custom_jquery_shop_script(){
                     imgElement.removeAttribute('data-src');
                 }
             }
+            function lockGalleryHeight(container) {
+                if (container && !container.dataset.lockedHeight) {
+                    const currentHeight = container.offsetHeight;
+                    if (currentHeight > 0) {
+                        container.dataset.lockedHeight = currentHeight;
+                        container.style.minHeight = currentHeight + 'px';
+                    }
+                }
+            }
+
+            function unlockGalleryHeight(container) {
+                if (container && container.dataset.lockedHeight) {
+                    container.style.minHeight = '';
+                    delete container.dataset.lockedHeight;
+                }
+            }
+
             //nascondo le foto del colore non selezionato e rendo visibili quelle del colore selezionato
             function showSelectedColorVariation() {
                 // indico che sto per scorrere per evitare che la funzione IntersectionObserver in product-image.php
                 // prenda il sopravvento
                 isProgrammaticScrolling = true; 
+
+                const galleryLargeWrapper = document.querySelector('.woocommerce-product-gallery__large-images');
+                const galleryThumbnailsWrapper = document.querySelector('.woocommerce-product-gallery__thumbnails');
+
+                lockGalleryHeight(galleryLargeWrapper);
+                lockGalleryHeight(galleryThumbnailsWrapper);
 
                 while (document.getElementsByClassName("selected-color")[0] != undefined) {
                     hideImageElement(document.getElementsByClassName("selected-color")[0]);
@@ -304,15 +327,15 @@ function custom_jquery_shop_script(){
                         firstImageParent.classList.add('active-thumbnail');
                     }
 
-                    // SCROLL alla prima immagine grande della variazione selezionata
-                    bigImagesElementOfTheColorToShow[0].scrollIntoView({
-                        behavior: 'smooth', // Scorrimento fluido
-                        block: 'center'     // Centra la prima immagine nello schermo
-                    });
-
                     setTimeout(() => {
                         isProgrammaticScrolling = false;
+                        unlockGalleryHeight(galleryLargeWrapper);
+                        unlockGalleryHeight(galleryThumbnailsWrapper);
                     }, 800);
+                } else {
+                    // in assenza di immagini rilascio comunque il lock
+                    unlockGalleryHeight(galleryLargeWrapper);
+                    unlockGalleryHeight(galleryThumbnailsWrapper);
                 }
             }
 
