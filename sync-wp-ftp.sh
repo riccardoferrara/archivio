@@ -243,7 +243,11 @@ upload_single_file() {
     
     # Usa lftp per caricare il singolo file
     # lftp creerà automaticamente le directory necessarie
-    lftp -c "
+    local lftp_output
+    local remote_filename=$(basename "$remote_file_path")
+    
+    # Prova approccio alternativo: usa put con percorso completo remoto
+    lftp_output=$(lftp -c "
         set ftp:list-options -a;
         set ssl:verify-certificate no;
         set net:max-retries 3;
@@ -251,13 +255,71 @@ upload_single_file() {
         set ftp:use-feat no;
         set ftp:use-mlsd no;
         open -p $REMOTE_FTP_PORT -u $REMOTE_FTP_USER,$REMOTE_FTP_PASS $REMOTE_FTP_HOST;
+        mkdir -p $remote_dir;
         cd $remote_dir;
-        put -O $remote_dir $file_path;
+        put $file_path -o $remote_filename;
         bye;
-    " 2>/dev/null && log_info "✓ File caricato con successo!" || {
-        log_error "Errore durante il caricamento del file"
+    " 2>&1)
+    
+    # Se fallisce, prova metodo alternativo
+    if [ $? -ne 0 ] || [ -z "$(echo "$lftp_output" | grep -i "put\|upload")" ]; then
+        log_warn "Tentativo metodo alternativo..."
+        lftp_output=$(lftp -c "
+            set ftp:list-options -a;
+            set ssl:verify-certificate no;
+            set net:max-retries 3;
+            set net:timeout 30;
+            set ftp:use-feat no;
+            set ftp:use-mlsd no;
+            open -p $REMOTE_FTP_PORT -u $REMOTE_FTP_USER,$REMOTE_FTP_PASS $REMOTE_FTP_HOST;
+            mkdir -p $remote_dir;
+            cd $remote_dir;
+            lcd $(dirname $file_path);
+            put $(basename $file_path) -o $remote_filename;
+            bye;
+        " 2>&1)
+    fi
+    
+    local exit_code=$?
+    if [ $exit_code -eq 0 ]; then
+        log_info "✓ File caricato con successo!"
+        
+        # Verifica che il file sia stato caricato correttamente
+        log_info "Verifica dimensione file remoto..."
+        
+        # Ottieni listing remoto
+        local remote_ls_output
+        remote_ls_output=$(lftp -c "
+            set ftp:list-options -a;
+            set ssl:verify-certificate no;
+            open -p $REMOTE_FTP_PORT -u $REMOTE_FTP_USER,$REMOTE_FTP_PASS $REMOTE_FTP_HOST;
+            cd \"$remote_dir\";
+            ls -l \"$remote_filename\";
+            bye;
+        " 2>/dev/null || true)
+        
+        # Parsa la dimensione (assumendo formato ls -l standard: permessi link user group size date time name)
+        # Nota: il formato può variare a seconda del server FTP
+        local remote_size=$(echo "$remote_ls_output" | grep "$remote_filename" | awk '{print $5}' | head -1)
+        
+        local local_size=$(stat -f%z "$file_path" 2>/dev/null || stat -c%s "$file_path" 2>/dev/null)
+        
+        if [ -n "$remote_size" ] && [ "$remote_size" != "0" ]; then
+             # Tolleranza leggera o check esatto
+             if [ "$remote_size" = "$local_size" ]; then
+                 log_info "✓ Verifica dimensione: $remote_size bytes (locale: $local_size bytes)"
+             else
+                 log_warn "⚠ Attenzione: dimensione file remoto ($remote_size) diversa da locale ($local_size)"
+             fi
+        else
+             log_warn "Impossibile verificare dimensione remota (output ls non standard o vuoto)"
+             # Non falliamo per questo, l'upload sembra essere andato bene
+        fi
+    else
+        log_error "Errore durante il caricamento del file (exit code: $exit_code)"
+        log_error "Output lftp: $lftp_output"
         exit 1
-    }
+    fi
 }
 
 # PUSH: Carica da locale a remoto
