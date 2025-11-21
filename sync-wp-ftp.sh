@@ -24,6 +24,8 @@ REMOTE_FTP_PORT="21"
 # Prova anche porta 22 per SFTP se FTP non funziona
 # REMOTE_FTP_PORT="22"
 REMOTE_FTP_PATH="/www.archiviowebsite.com"  # Percorso relativo dalla root FTP
+# Disattiva SSL perché il server Aruba resetta i file a 0 byte con FTPS
+FTP_SSL_ALLOW="no"  # Usa "yes" per forzare FTPS (solo se testato)
 # Se il percorso è diverso, verifica connettendoti con un client FTP grafico
 
 # IMPORTANTE: Se ricevi errore "530 Errore critico: impossibile collegarsi al server"
@@ -91,7 +93,7 @@ check_ftp_connection() {
     log_info "Verifica connessione FTP a $REMOTE_FTP_HOST:$REMOTE_FTP_PORT..."
     
     # Prova connessione FTP normale
-    if lftp -c "set ftp:list-options -a; set ssl:verify-certificate no; open -p $REMOTE_FTP_PORT -u $REMOTE_FTP_USER,$REMOTE_FTP_PASS $REMOTE_FTP_HOST; ls" > /dev/null 2>&1; then
+    if lftp -c "set ftp:ssl-allow $FTP_SSL_ALLOW; set ftp:list-options -a; set ssl:verify-certificate no; open -p $REMOTE_FTP_PORT -u $REMOTE_FTP_USER,$REMOTE_FTP_PASS $REMOTE_FTP_HOST; ls" > /dev/null 2>&1; then
         log_info "Connessione FTP verificata!"
         return 0
     else
@@ -179,6 +181,7 @@ sync_pull() {
             # Usa lftp per scaricare i file
             # Ottimizzazioni: --parallel=3 (3 connessioni parallele), --only-newer (solo file nuovi/modificati)
             lftp -c "
+                set ftp:ssl-allow $FTP_SSL_ALLOW;
                 set ftp:list-options -a;
                 set ssl:verify-certificate no;
                 set net:max-retries 3;
@@ -246,8 +249,9 @@ upload_single_file() {
     local lftp_output
     local remote_filename=$(basename "$remote_file_path")
     
-    # Prova approccio alternativo: usa put con percorso completo remoto
+    # Prova approccio principale: usa put con percorso completo remoto
     lftp_output=$(lftp -c "
+        set ftp:ssl-allow $FTP_SSL_ALLOW;
         set ftp:list-options -a;
         set ssl:verify-certificate no;
         set net:max-retries 3;
@@ -255,16 +259,19 @@ upload_single_file() {
         set ftp:use-feat no;
         set ftp:use-mlsd no;
         open -p $REMOTE_FTP_PORT -u $REMOTE_FTP_USER,$REMOTE_FTP_PASS $REMOTE_FTP_HOST;
-        mkdir -p $remote_dir;
-        cd $remote_dir;
-        put $file_path -o $remote_filename;
+        mkdir -p \"$remote_dir\";
+        cd \"$remote_dir\";
+        put \"$file_path\" -o \"$remote_filename\";
         bye;
     " 2>&1)
     
+    local exit_code=$?
+    
     # Se fallisce, prova metodo alternativo
-    if [ $? -ne 0 ] || [ -z "$(echo "$lftp_output" | grep -i "put\|upload")" ]; then
+    if [ $exit_code -ne 0 ]; then
         log_warn "Tentativo metodo alternativo..."
         lftp_output=$(lftp -c "
+            set ftp:ssl-allow $FTP_SSL_ALLOW;
             set ftp:list-options -a;
             set ssl:verify-certificate no;
             set net:max-retries 3;
@@ -272,35 +279,76 @@ upload_single_file() {
             set ftp:use-feat no;
             set ftp:use-mlsd no;
             open -p $REMOTE_FTP_PORT -u $REMOTE_FTP_USER,$REMOTE_FTP_PASS $REMOTE_FTP_HOST;
-            mkdir -p $remote_dir;
-            cd $remote_dir;
-            lcd $(dirname $file_path);
-            put $(basename $file_path) -o $remote_filename;
+            mkdir -p \"$remote_dir\";
+            cd \"$remote_dir\";
+            lcd \"$(dirname "$file_path")\";
+            put \"$(basename "$file_path")\" -o \"$remote_filename\";
             bye;
         " 2>&1)
+        exit_code=$?
     fi
     
-    local exit_code=$?
     if [ $exit_code -eq 0 ]; then
         log_info "✓ File caricato con successo!"
         
         # Verifica che il file sia stato caricato correttamente
         log_info "Verifica dimensione file remoto..."
         
-        # Ottieni listing remoto
-        local remote_ls_output
-        remote_ls_output=$(lftp -c "
+        # Prima prova con il comando SIZE (più affidabile)
+        local remote_size_output
+        local remote_size=""
+        remote_size_output=$(lftp -c "
+            set ftp:ssl-allow $FTP_SSL_ALLOW;
             set ftp:list-options -a;
             set ssl:verify-certificate no;
             open -p $REMOTE_FTP_PORT -u $REMOTE_FTP_USER,$REMOTE_FTP_PASS $REMOTE_FTP_HOST;
             cd \"$remote_dir\";
-            ls -l \"$remote_filename\";
+            size \"$remote_filename\";
             bye;
         " 2>/dev/null || true)
         
-        # Parsa la dimensione (assumendo formato ls -l standard: permessi link user group size date time name)
-        # Nota: il formato può variare a seconda del server FTP
-        local remote_size=$(echo "$remote_ls_output" | grep "$remote_filename" | awk '{print $5}' | head -1)
+        remote_size=$(echo "$remote_size_output" | awk '/^213 / {print $2}' | tail -1)
+        
+        # Se il comando SIZE non è supportato, fallback su ls -l
+        if [ -z "$remote_size" ]; then
+            log_warn "Comando SIZE non disponibile, uso fallback ls -l"
+            local remote_ls_output
+            remote_ls_output=$(lftp -c "
+                set ftp:ssl-allow $FTP_SSL_ALLOW;
+                set ftp:list-options -a;
+                set ssl:verify-certificate no;
+                open -p $REMOTE_FTP_PORT -u $REMOTE_FTP_USER,$REMOTE_FTP_PASS $REMOTE_FTP_HOST;
+                cd \"$remote_dir\";
+                ls -l \"$remote_filename\";
+                bye;
+            " 2>/dev/null || true)
+            remote_size=$(
+                echo "$remote_ls_output" | tr -d '\r' | awk -v name="$remote_filename" '
+                    $NF==name {
+                        # POSIX format: size immediately precedes month name
+                        for (i=1; i<=NF; i++) {
+                            if ($i ~ /^[A-Za-z]{3}$/) {
+                                if (i > 1 && $(i-1) ~ /^[0-9]+$/) {
+                                    print $(i-1)
+                                    exit
+                                }
+                            }
+                        }
+                        # DOS format fallback: last numeric before filename
+                        size=""
+                        for (i=1; i<NF; i++) {
+                            if ($i ~ /^[0-9]+$/) {
+                                size=$i
+                            }
+                        }
+                        if (size != "") {
+                            print size
+                        }
+                        exit
+                    }
+                '
+            )
+        fi
         
         local local_size=$(stat -f%z "$file_path" 2>/dev/null || stat -c%s "$file_path" 2>/dev/null)
         
@@ -382,6 +430,7 @@ sync_push() {
             # Usa lftp per caricare i file
             # Ottimizzazioni: --parallel=3 (3 connessioni parallele), --only-newer (solo file nuovi/modificati)
             lftp -c "
+                set ftp:ssl-allow $FTP_SSL_ALLOW;
                 set ftp:list-options -a;
                 set ssl:verify-certificate no;
                 set net:max-retries 3;
