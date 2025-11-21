@@ -107,13 +107,23 @@ foreach ( $images_colors_url as $color_position => $image_url ) {
     // Definiamo un ID univoco per l’immagine grande, che useremo anche come anchor target
     $img_id = 'img-' . $color . '-' . $pos;
 
-    // Stabiliamo la “visibility class” (solo la prima immagine globale sarà `selected-color`)
+    // Stabiliamo la "visibility class" (solo la prima immagine globale sarà `selected-color`)
     $visibility_class = $selected_color ? 'selected-color' : 'unselected-color';
+
+    // Controlla se il lazy loading è disabilitato tramite parametro URL
+    $lazy_loading_enabled = !isset($_GET['lazy']) || $_GET['lazy'] !== 'false';
 
     // -----------------------------
     //  A) Creazione della MINIATURA
     // -----------------------------
-    // Oltre al link di ancoraggio, aggiungiamo la stessa visibility_class e l’attributo color
+    // Oltre al link di ancoraggio, aggiungiamo la stessa visibility_class e l'attributo color
+    // Usa data-src per immagini nascoste (lazy loading) se abilitato
+    if ($lazy_loading_enabled) {
+        $src_attr = $visibility_class === 'selected-color' ? 'src' : 'data-src';
+    } else {
+        // Se lazy loading disabilitato, usa sempre src (carica tutte le immagini)
+        $src_attr = 'src';
+    }
     $thumbnails_html .= sprintf(
         '<div class="product-thumbnail">
             <a href="#%1$s">
@@ -121,14 +131,15 @@ foreach ( $images_colors_url as $color_position => $image_url ) {
                     loading="lazy" 
                     class="%2$s" 
                     color="%3$s"
-                    src="%4$s" 
-                    alt="Thumbnail for %5$s" 
+                    %4$s="%5$s" 
+                    alt="Thumbnail for %6$s" 
                 />
             </a>
         </div>',
         esc_attr( $img_id ),             // #id di destinazione
         esc_attr( $visibility_class ),   // selected/unselected
         esc_attr( $color ),             // attributo color="xxx"
+        $src_attr,                       // src o data-src
         esc_url( $image_url ),           
         esc_html( $color_position )      // alt text
     );
@@ -136,19 +147,27 @@ foreach ( $images_colors_url as $color_position => $image_url ) {
     // ---------------------------
     //  B) Creazione IMMAGINE GRANDE
     // ---------------------------
-    // Anche qui aggiungiamo la stessa visibility_class e l’attributo color
+    // Anche qui aggiungiamo la stessa visibility_class e l'attributo color
+    // Usa data-src per immagini nascoste (lazy loading) se abilitato
+    if ($lazy_loading_enabled) {
+        $src_attr = $visibility_class === 'selected-color' ? 'src' : 'data-src';
+    } else {
+        // Se lazy loading disabilitato, usa sempre src (carica tutte le immagini)
+        $src_attr = 'src';
+    }
     $big_image_element = sprintf(
         '<img 
             id="%1$s"
             class="wp-post-image %2$s" 
             color="%3$s"
             loading="lazy" 
-            src="%4$s" 
-            alt="%5$s" 
+            %4$s="%5$s" 
+            alt="%6$s" 
         />',
         esc_attr( $img_id ),           // ID per l’ancoraggio
         esc_attr( $visibility_class ), // es. “selected-color”
         esc_attr( $color ),            // attributo color="xxx"
+        $src_attr,                     // src o data-src
         esc_url( $image_url ),
         esc_html__( 'Awaiting product image', 'woocommerce' )
     );
