@@ -117,11 +117,12 @@ foreach ( $images_colors_url as $color_position => $image_url ) {
     //  A) Creazione della MINIATURA
     // -----------------------------
     // Oltre al link di ancoraggio, aggiungiamo la stessa visibility_class e l'attributo color
-    // Usa data-src per immagini nascoste (lazy loading) se abilitato
-    if ($lazy_loading_enabled) {
-        $src_attr = $visibility_class === 'selected-color' ? 'src' : 'data-src';
+    // IMPORTANTE: La prima immagine (selected-color) DEVE sempre avere src, non data-src
+    // per essere visualizzata immediatamente al caricamento della pagina
+    if ($lazy_loading_enabled && $visibility_class !== 'selected-color') {
+        $src_attr = 'data-src';
     } else {
-        // Se lazy loading disabilitato, usa sempre src (carica tutte le immagini)
+        // Prima immagine o lazy loading disabilitato: usa sempre src
         $src_attr = 'src';
     }
     $thumbnails_html .= sprintf(
@@ -148,11 +149,12 @@ foreach ( $images_colors_url as $color_position => $image_url ) {
     //  B) Creazione IMMAGINE GRANDE
     // ---------------------------
     // Anche qui aggiungiamo la stessa visibility_class e l'attributo color
-    // Usa data-src per immagini nascoste (lazy loading) se abilitato
-    if ($lazy_loading_enabled) {
-        $src_attr = $visibility_class === 'selected-color' ? 'src' : 'data-src';
+    // IMPORTANTE: La prima immagine (selected-color) DEVE sempre avere src, non data-src
+    // per essere visualizzata immediatamente al caricamento della pagina
+    if ($lazy_loading_enabled && $visibility_class !== 'selected-color') {
+        $src_attr = 'data-src';
     } else {
-        // Se lazy loading disabilitato, usa sempre src (carica tutte le immagini)
+        // Prima immagine o lazy loading disabilitato: usa sempre src
         $src_attr = 'src';
     }
     $big_image_element = sprintf(

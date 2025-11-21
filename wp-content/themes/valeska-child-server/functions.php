@@ -262,6 +262,12 @@ function custom_jquery_shop_script(){
                 // console.log(imgElement)
                 imgElement.classList.remove('unselected-color')
                 imgElement.classList.add('selected-color')
+                
+                // CARICA L'IMMAGINE AL VOLO SE NON È GIÀ CARICATA (lazy loading)
+                if (imgElement.hasAttribute('data-src')) {
+                    imgElement.src = imgElement.getAttribute('data-src');
+                    imgElement.removeAttribute('data-src');
+                }
             }
             //nascondo le foto del colore non selezionato e rendo visibili quelle del colore selezionato
             function showSelectedColorVariation() {
@@ -329,9 +335,38 @@ function custom_jquery_shop_script(){
                     showSelectedColorVariation()
                     showSelectedColorDescription()
                     showSelectedColorVariationMobile()
+                } else {
+                    // Se selected_color non è definito, mostra la prima immagine con selected-color
+                    // (quella generata dal PHP come default)
+                    var firstSelectedImage = document.querySelector('.woocommerce-product-gallery__large-images img.selected-color');
+                    if (firstSelectedImage) {
+                        // La prima immagine è già visibile, ma verifica se ha data-src e caricala
+                        if (firstSelectedImage.hasAttribute('data-src')) {
+                            firstSelectedImage.src = firstSelectedImage.getAttribute('data-src');
+                            firstSelectedImage.removeAttribute('data-src');
+                        }
+                        console.log('No color selected, showing first image by default');
+                    } else {
+                        // Se non c'è nessuna immagine con selected-color, mostra la prima immagine
+                        var firstImage = document.querySelector('.woocommerce-product-gallery__large-images img');
+                        if (firstImage) {
+                            showImageElement(firstImage);
+                            // Carica anche l'immagine se ha data-src
+                            if (firstImage.hasAttribute('data-src')) {
+                                firstImage.src = firstImage.getAttribute('data-src');
+                                firstImage.removeAttribute('data-src');
+                            }
+                            console.log('No selected-color image found, showing first image');
+                        }
+                    }
                 }
             }
-            updatePhotos()
+            // Esegui updatePhotos quando il DOM è pronto
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', updatePhotos);
+            } else {
+                updatePhotos();
+            }
 
 
             //------------------------------
